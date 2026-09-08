@@ -20,6 +20,7 @@
   "scripts": {
     "fetch": "tsx src/fetch.ts",
     "build": "tsx src/build.ts",
+    "test": "node --import tsx --test test/*.test.ts",
     "typecheck": "tsc --noEmit",
     "docs": "tsx src/docs.ts"
   },

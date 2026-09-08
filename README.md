@@ -268,6 +268,12 @@ are kept, with `Off trail m` recording the detour.
 - `src/docs.ts` — regenerates the marked blocks in this README and the project
   page from `out/te-araroa.meta.json`, so no number here is typed by hand.
 - `src/summary.ts` — diffs two builds into the prose the refresh PR carries.
+- `test/` — `npm test`. The route maths and the attribute mappings are unit
+  tested; `test/outputs.test.ts` reads the committed `out/` and asserts what a
+  reader trusts it for, which is what makes a refresh pull request reviewable
+  without reading a few megabytes of regenerated GPX.
+- `.github/workflows/ci.yml` — typecheck, tests, and a check that the generated
+  prose still matches the data. Runs on every pull request.
 - `.github/workflows/refresh.yml` — the weekly check. The route is assembled once in the
   trust's southbound chainage; `writeDirection` is the only part that knows
   there is more than one way to walk it, and is called once per direction.
