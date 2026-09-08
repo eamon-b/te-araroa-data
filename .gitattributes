@@ -1,0 +1,4 @@
+# The build writes CSV with CRLF line endings (papaparse's default, and what
+# Excel expects). Leave them alone, so a rebuild does not show every CSV as
+# modified purely because git normalised it on the way in.
+*.csv -text

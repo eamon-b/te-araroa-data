@@ -1,0 +1,784 @@
+{
+  "description": "Resupply points on Te Araroa, researched by hand. The trust's KMZ contains no towns or shops at all, so these fill the gap the official data leaves. Positions are OpenStreetMap geocodes of the settlement or the named business; the build projects each onto the route to get its trail km and how far off-trail it sits. Where a town is reached from a named point on the trail rather than by the route's nearest approach, accessFromKm gives the trail km you leave at and accessRoadKm the road distance from there.",
+  "sources": [
+    "https://teararoanobo.net/ (regional guides: Northland, Auckland, Waikato, Whanganui, Manawatu, Wellington, Marlborough-Tasman, Canterbury, Otago, Southland)",
+    "https://bikehikesafari.com/te-araroa-resupply/",
+    "https://seanmaskill.com/hikes/te-ararora-resupply-guide/",
+    "Coordinates: OpenStreetMap via Nominatim, ODbL"
+  ],
+  "researchedAt": "2026-09-08",
+  "points": [
+    {
+      "name": "Ahipara",
+      "type": "resupply",
+      "lat": -35.1713,
+      "lon": 173.153431,
+      "acceptsBoxes": false,
+      "notes": "Ahipara Superette: groceries and post shop. Cafe closes 2pm. First resupply after Cape Reinga.",
+      "osm": "node/1750928663"
+    },
+    {
+      "name": "Kaitaia",
+      "type": "town",
+      "lat": -35.114126,
+      "lon": 173.263996,
+      "acceptsBoxes": false,
+      "notes": "Pak'nSave, Bells Produce, two bulk-food shops. 14 km inland from Ahipara; hitch or bus.",
+      "osm": "node/549269651"
+    },
+    {
+      "name": "Mangamuka Bridge Dairy",
+      "type": "food",
+      "lat": -35.236829,
+      "lon": 173.543988,
+      "acceptsBoxes": false,
+      "notes": "Dairy and takeaways on SH1, Mon-Fri 7am-6pm. Phone charging. Snacks only.",
+      "osm": "node/7764475956"
+    },
+    {
+      "name": "Kerikeri",
+      "type": "town",
+      "lat": -35.227261,
+      "lon": 173.949106,
+      "acceptsBoxes": false,
+      "notes": "New World and Countdown. Full resupply, hostels.",
+      "osm": "node/1297247535"
+    },
+    {
+      "name": "Paihia",
+      "type": "town",
+      "lat": -35.281241,
+      "lon": 174.092088,
+      "acceptsBoxes": false,
+      "notes": "Countdown Central plus a larger Countdown at Waitangi. Four Square on Williams Rd.",
+      "osm": "way/1442884916"
+    },
+    {
+      "name": "Opua",
+      "type": "resupply",
+      "lat": -35.312631,
+      "lon": 174.121422,
+      "acceptsBoxes": false,
+      "notes": "Small general store, expensive. Ferry point.",
+      "osm": "node/251192315"
+    },
+    {
+      "name": "Whananaki",
+      "type": "resupply",
+      "lat": -35.507515,
+      "lon": 174.462946,
+      "acceptsBoxes": false,
+      "notes": "Whananaki Superette: limited supplies. Holiday park with a hut for TA walkers.",
+      "osm": "node/1767164936"
+    },
+    {
+      "name": "Matapouri",
+      "type": "resupply",
+      "lat": -35.566397,
+      "lon": 174.50307,
+      "acceptsBoxes": false,
+      "notes": "Small general store.",
+      "osm": "node/332339617"
+    },
+    {
+      "name": "Ngunguru",
+      "type": "resupply",
+      "lat": -35.633363,
+      "lon": 174.500775,
+      "acceptsBoxes": false,
+      "notes": "Four Square dairy and takeaway, plus cafes. Limited and expensive.",
+      "osm": "node/332339535"
+    },
+    {
+      "name": "Whangarei",
+      "type": "town",
+      "lat": -35.727527,
+      "lon": 174.31942,
+      "acceptsBoxes": false,
+      "notes": "Countdown and Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangarei Heads / Marsden Point crossing.",
+      "osm": "node/71374851",
+      "accessFromKm": 407.33,
+      "accessRoadKm": 36
+    },
+    {
+      "name": "Ruakaka",
+      "type": "town",
+      "lat": -35.875436,
+      "lon": 174.455707,
+      "acceptsBoxes": false,
+      "notes": "FreshChoice supermarket and takeaways.",
+      "osm": "node/1657057307"
+    },
+    {
+      "name": "Waipu",
+      "type": "town",
+      "lat": -35.985007,
+      "lon": 174.447497,
+      "acceptsBoxes": false,
+      "notes": "Four Square, cafes, hotel with budget rooms. Camp Waipu Cove has a dairy.",
+      "osm": "node/1586573112"
+    },
+    {
+      "name": "Mangawhai Heads",
+      "type": "resupply",
+      "lat": -36.094794,
+      "lon": 174.587198,
+      "acceptsBoxes": false,
+      "notes": "Four Square at 3 Wood St. Holiday park.",
+      "osm": "node/1420555131"
+    },
+    {
+      "name": "Mangawhai",
+      "type": "town",
+      "lat": -36.125995,
+      "lon": 174.575476,
+      "acceptsBoxes": false,
+      "notes": "New World 1 km north of the village, plus a Four Square.",
+      "osm": "node/Mangawhai Village"
+    },
+    {
+      "name": "Warkworth",
+      "type": "town",
+      "lat": -36.397669,
+      "lon": 174.665849,
+      "acceptsBoxes": false,
+      "notes": "Countdown, New World and a Bin Inn. About 6 km off trail. Short detour off the Dome Valley section.",
+      "osm": "node/251601939",
+      "accessFromKm": 508.2,
+      "accessRoadKm": 6
+    },
+    {
+      "name": "Pakiri Beach Holiday Park",
+      "type": "resupply",
+      "lat": -36.264396,
+      "lon": 174.727471,
+      "acceptsBoxes": false,
+      "notes": "Camp store: food, drinks, milk, bread. 9am-5pm summer only.",
+      "osm": "node/4698326934"
+    },
+    {
+      "name": "Puhoi",
+      "type": "resupply",
+      "lat": -36.512092,
+      "lon": 174.66112,
+      "acceptsBoxes": false,
+      "notes": "General store 7am-7pm, historic pub, three cafes.",
+      "osm": "node/528459196"
+    },
+    {
+      "name": "Orewa",
+      "type": "town",
+      "lat": -36.58576,
+      "lon": 174.691496,
+      "acceptsBoxes": false,
+      "notes": "New World and Countdown, cafes, outdoor shops.",
+      "osm": "node/795264556"
+    },
+    {
+      "name": "Silverdale",
+      "type": "town",
+      "lat": -36.61768,
+      "lon": 174.676905,
+      "acceptsBoxes": false,
+      "notes": "Silverdale Centre: Woolworths, Macpac, Kathmandu, ATMs.",
+      "osm": "node/295194516"
+    },
+    {
+      "name": "Browns Bay",
+      "type": "town",
+      "lat": -36.715628,
+      "lon": 174.748198,
+      "acceptsBoxes": false,
+      "notes": "New World and Countdown.",
+      "osm": "node/292687627"
+    },
+    {
+      "name": "Devonport",
+      "type": "town",
+      "lat": -36.829731,
+      "lon": 174.797538,
+      "acceptsBoxes": false,
+      "notes": "New World. Ferry to the city.",
+      "osm": "node/98143111"
+    },
+    {
+      "name": "Auckland CBD",
+      "type": "town",
+      "lat": -36.852095,
+      "lon": 174.76318,
+      "acceptsBoxes": false,
+      "notes": "Full resupply and gear replacement. Metro supermarkets are smaller than suburban ones.",
+      "osm": "node/292806332"
+    },
+    {
+      "name": "Mangere Bridge",
+      "type": "town",
+      "lat": -36.943904,
+      "lon": 174.785241,
+      "acceptsBoxes": false,
+      "notes": "FreshChoice, slightly off trail.",
+      "osm": "node/62202218"
+    },
+    {
+      "name": "Papakura",
+      "type": "town",
+      "lat": -37.064265,
+      "lon": 174.944667,
+      "acceptsBoxes": false,
+      "notes": "Pak'nSave, Countdown, New World.",
+      "osm": "node/560604787"
+    },
+    {
+      "name": "Mercer",
+      "type": "food",
+      "lat": -37.276572,
+      "lon": 175.048501,
+      "acceptsBoxes": false,
+      "notes": "Service centre with food outlets; motel with camping.",
+      "osm": "node/567601170"
+    },
+    {
+      "name": "Huntly",
+      "type": "town",
+      "lat": -37.5584,
+      "lon": 175.158832,
+      "acceptsBoxes": false,
+      "notes": "Woolworths, about 1 km off trail.",
+      "osm": "node/860209476"
+    },
+    {
+      "name": "Ngaruawahia",
+      "type": "town",
+      "lat": -37.666266,
+      "lon": 175.150053,
+      "acceptsBoxes": false,
+      "notes": "New World and cafes.",
+      "osm": "node/60729034"
+    },
+    {
+      "name": "Hamilton",
+      "type": "town",
+      "lat": -37.787881,
+      "lon": 175.281788,
+      "acceptsBoxes": false,
+      "notes": "Pak'nSave, Woolworths, Trek N Travel outdoor store. Full gear replacement.",
+      "osm": "relation/2595124"
+    },
+    {
+      "name": "Whatawhata",
+      "type": "food",
+      "lat": -37.797633,
+      "lon": 175.153352,
+      "acceptsBoxes": false,
+      "notes": "Petrol station store, gastro pub and village cafe.",
+      "osm": "node/1577708337"
+    },
+    {
+      "name": "Waitomo",
+      "type": "resupply",
+      "lat": -38.261094,
+      "lon": 175.110322,
+      "acceptsBoxes": false,
+      "notes": "Waitomo Village Store 7am-7pm, expensive. Cafes and restaurants.",
+      "osm": "node/293889084"
+    },
+    {
+      "name": "Te Kuiti",
+      "type": "town",
+      "lat": -38.334193,
+      "lon": 175.165712,
+      "acceptsBoxes": false,
+      "notes": "New World and SuperValue.",
+      "osm": "node/71354624"
+    },
+    {
+      "name": "Taumarunui",
+      "type": "town",
+      "lat": -38.882951,
+      "lon": 175.262462,
+      "acceptsBoxes": false,
+      "notes": "New World at the west end. Seriously Outdoors for gear; canoe hire.",
+      "osm": "node/296287151"
+    },
+    {
+      "name": "Owhango",
+      "type": "food",
+      "lat": -38.995956,
+      "lon": 175.379537,
+      "acceptsBoxes": false,
+      "notes": "Blue Hill Cafe, 8am-2pm.",
+      "osm": "node/1572426520"
+    },
+    {
+      "name": "Whakapapa Village",
+      "type": "food",
+      "lat": -39.201127,
+      "lon": 175.539895,
+      "acceptsBoxes": false,
+      "notes": "Camp store carries little more than ice blocks and muesli bars. Not a resupply.",
+      "osm": "node/21634017"
+    },
+    {
+      "name": "National Park (Waimarino)",
+      "type": "resupply",
+      "lat": -39.175606,
+      "lon": 175.394566,
+      "acceptsBoxes": false,
+      "notes": "Four Square, well stocked with dehydrated meals and gas. First real shop since Whanganui.",
+      "osm": "node/290681617"
+    },
+    {
+      "name": "Whakahoro",
+      "type": "food",
+      "lat": -39.106443,
+      "lon": 175.074228,
+      "acceptsBoxes": true,
+      "notes": "Blue Duck Cafe 8am-3pm Thu-Mon. DoC campsite. Blue Duck Station does meals and accommodation.",
+      "osm": "node/1684244963"
+    },
+    {
+      "name": "Pipiriki",
+      "type": "food",
+      "lat": -39.478542,
+      "lon": 175.042254,
+      "acceptsBoxes": false,
+      "notes": "Minimal cafe and shop at the campground. Jetboat transfers.",
+      "osm": "node/1315853005"
+    },
+    {
+      "name": "Matahiwi",
+      "type": "food",
+      "lat": -39.605687,
+      "lon": 175.160834,
+      "acceptsBoxes": false,
+      "notes": "Matahiwi Gallery and Cafe: coffee, cold drinks, local knowledge.",
+      "osm": "node/7836636987"
+    },
+    {
+      "name": "Whanganui",
+      "type": "town",
+      "lat": -39.93249,
+      "lon": 175.051931,
+      "acceptsBoxes": true,
+      "notes": "New World, Countdown, Pak'nSave. Kathmandu; Wilsons Hunting and Outdoors stores bounce boxes.",
+      "osm": "node/60023047"
+    },
+    {
+      "name": "Bulls",
+      "type": "town",
+      "lat": -40.174539,
+      "lon": 175.384895,
+      "acceptsBoxes": false,
+      "notes": "Four Square at 114 Bridge St, plus takeaways.",
+      "osm": "node/281129770"
+    },
+    {
+      "name": "Feilding",
+      "type": "town",
+      "lat": -40.226276,
+      "lon": 175.564441,
+      "acceptsBoxes": false,
+      "notes": "New World, Bin Inn. Friday farmers market. 2-3 km off trail.",
+      "osm": "node/178448275"
+    },
+    {
+      "name": "Palmerston North",
+      "type": "town",
+      "lat": -40.356317,
+      "lon": 175.611239,
+      "acceptsBoxes": false,
+      "notes": "Pak'nSave, Woolworths, New World, Bin Inn. Full resupply.",
+      "osm": "node/56095285"
+    },
+    {
+      "name": "Bunnythorpe",
+      "type": "food",
+      "lat": -40.28259,
+      "lon": 175.631499,
+      "acceptsBoxes": false,
+      "notes": "Dairy, takeaway bar and toilets, on trail.",
+      "osm": "node/1787184851"
+    },
+    {
+      "name": "Levin",
+      "type": "town",
+      "lat": -40.621816,
+      "lon": 175.286585,
+      "acceptsBoxes": false,
+      "notes": "Pak'nSave, New World, Countdown. About 9 km off trail. Leave at Poads Rd.",
+      "osm": "node/57843878",
+      "accessFromKm": 1573.1,
+      "accessRoadKm": 9
+    },
+    {
+      "name": "Waikanae",
+      "type": "town",
+      "lat": -40.875843,
+      "lon": 175.064304,
+      "acceptsBoxes": false,
+      "notes": "Countdown and New World near the town centre. No backpackers.",
+      "osm": "node/339057887"
+    },
+    {
+      "name": "Paraparaumu Beach",
+      "type": "town",
+      "lat": -40.891477,
+      "lon": 174.981287,
+      "acceptsBoxes": false,
+      "notes": "Cafes, shops and a small supermarket.",
+      "osm": "node/2190657713"
+    },
+    {
+      "name": "Paekakariki",
+      "type": "resupply",
+      "lat": -40.988307,
+      "lon": 174.951443,
+      "acceptsBoxes": false,
+      "notes": "Dairy/grocery, two fruit and vegetable shops, cafes and a pub.",
+      "osm": "node/172208418"
+    },
+    {
+      "name": "Porirua",
+      "type": "town",
+      "lat": -41.135422,
+      "lon": 174.839782,
+      "acceptsBoxes": false,
+      "notes": "New World, Woolworths and Pak'nSave together, 150 m off trail.",
+      "osm": "node/57805233"
+    },
+    {
+      "name": "Wellington",
+      "type": "town",
+      "lat": -41.288795,
+      "lon": 174.777211,
+      "acceptsBoxes": true,
+      "notes": "Capital: full resupply, gear stores, bulk-food refilleries. End of the North Island.",
+      "osm": "node/204648"
+    },
+    {
+      "name": "Picton",
+      "type": "town",
+      "lat": -41.290916,
+      "lon": 174.006908,
+      "acceptsBoxes": false,
+      "notes": "Four Square and FreshChoice on High St. Ferry arrival; off the walking route. Ferry landing; walk resumes at Ship Cove by water taxi.",
+      "osm": "node/53442053",
+      "accessFromKm": 1738.96,
+      "accessRoadKm": 0
+    },
+    {
+      "name": "Havelock",
+      "type": "town",
+      "lat": -41.278597,
+      "lon": 173.767683,
+      "acceptsBoxes": true,
+      "notes": "Small Four Square, post office, cafes. Havelock Holiday Park accepts food parcels.",
+      "osm": "node/205139786"
+    },
+    {
+      "name": "Nelson",
+      "type": "town",
+      "lat": -41.271085,
+      "lon": 173.283676,
+      "acceptsBoxes": false,
+      "notes": "Supermarkets, outdoor shops, backpackers. About 29 km off trail from Hacket car park. Leave at the Hacket car park, start of the Richmond Alpine Track.",
+      "osm": "relation/17000449",
+      "accessFromKm": 1895.0,
+      "accessRoadKm": 29
+    },
+    {
+      "name": "St Arnaud",
+      "type": "resupply",
+      "lat": -41.801358,
+      "lon": 172.847786,
+      "acceptsBoxes": true,
+      "notes": "General store and 24 hr NPD station; DoC centre sells gas and dehydrated meals. Alpine Lodge holds parcels ($15-30). Expensive.",
+      "osm": "node/254814456"
+    },
+    {
+      "name": "Hanmer Springs",
+      "type": "town",
+      "lat": -42.521795,
+      "lon": 172.830299,
+      "acceptsBoxes": false,
+      "notes": "Four Square, hot pools, backpackers. About 55 km off trail from Boyle; shuttle or hitch. Leave at Boyle Village on SH7; shuttle or hitch.",
+      "osm": "node/294472598",
+      "accessFromKm": 2109.38,
+      "accessRoadKm": 55
+    },
+    {
+      "name": "Boyle Village",
+      "type": "resupply",
+      "lat": -42.517037,
+      "lon": 172.387488,
+      "acceptsBoxes": true,
+      "notes": "No shop. Boyle River Outdoor Education Centre holds resupply boxes, sells basic food, beds $50.",
+      "osm": "node/1988454043"
+    },
+    {
+      "name": "Arthur's Pass",
+      "type": "resupply",
+      "lat": -42.939301,
+      "lon": 171.561379,
+      "acceptsBoxes": true,
+      "notes": "Arthur's Pass Cafe and Store: limited, expensive groceries. DoC centre sells gas. Mountain House holds boxes.",
+      "osm": "way/297010449"
+    },
+    {
+      "name": "Lake Coleridge Village",
+      "type": "food",
+      "lat": -43.365964,
+      "lon": 171.532599,
+      "acceptsBoxes": true,
+      "notes": "No shops. Powerhouse Lodge holds bounce boxes and has tent sites.",
+      "osm": "node/10852540371"
+    },
+    {
+      "name": "Methven",
+      "type": "town",
+      "lat": -43.632433,
+      "lon": 171.647261,
+      "acceptsBoxes": true,
+      "notes": "Two supermarkets, Alpine Sports for dehydrated meals and gas. Snow Denn Lodge holds boxes ($5). Shuttle from Rakaia. Leave at the Rakaia River; the river is a no-ford hazard zone, shuttle required.",
+      "osm": "relation/19467816",
+      "accessFromKm": 2298.31,
+      "accessRoadKm": 48
+    },
+    {
+      "name": "Geraldine",
+      "type": "town",
+      "lat": -44.092104,
+      "lon": 171.24259,
+      "acceptsBoxes": false,
+      "notes": "Supermarket and accommodation. About 70 km from the Rangitata via Methven; community shuttle $24. Leave at the Rangitata River; community shuttle $24, book two days ahead.",
+      "osm": "node/173798403",
+      "accessFromKm": 2367.8,
+      "accessRoadKm": 70
+    },
+    {
+      "name": "Peel Forest",
+      "type": "resupply",
+      "lat": -43.911219,
+      "lon": 171.260376,
+      "acceptsBoxes": false,
+      "notes": "DoC Peel Forest camp and a small store. Homestay offers transport to the trailhead. Leave at the Rangitata River.",
+      "osm": "node/2246888431",
+      "accessFromKm": 2367.8,
+      "accessRoadKm": 50
+    },
+    {
+      "name": "Mesopotamia Station",
+      "type": "food",
+      "lat": -43.663438,
+      "lon": 170.884449,
+      "acceptsBoxes": true,
+      "notes": "Historic station near the Rangitata; holds food parcels. Leave at the Rangitata River crossing.",
+      "osm": "relation/15310392",
+      "accessFromKm": 2367.8,
+      "accessRoadKm": 2.5
+    },
+    {
+      "name": "Mt Potts Lodge",
+      "type": "food",
+      "lat": -43.502584,
+      "lon": 170.924859,
+      "acceptsBoxes": true,
+      "notes": "Cafe and restaurant, closed Tue/Wed, book meals ahead. Has held food parcels; check first. Leave at the Rangitata River crossing.",
+      "osm": "node/514253716",
+      "accessFromKm": 2367.8,
+      "accessRoadKm": 3
+    },
+    {
+      "name": "Lake Tekapo",
+      "type": "town",
+      "lat": -44.004519,
+      "lon": 170.477727,
+      "acceptsBoxes": true,
+      "notes": "Large Four Square, cafes. Tailormade Backpackers and Bespoke Bikes receive bounce boxes.",
+      "osm": "node/166733708"
+    },
+    {
+      "name": "Twizel",
+      "type": "town",
+      "lat": -44.257483,
+      "lon": 170.099414,
+      "acceptsBoxes": true,
+      "notes": "Two Four Squares, Southern Alps Outdoors for gas. High Country Lodge holds parcels.",
+      "osm": "node/173837843"
+    },
+    {
+      "name": "Lake Hawea",
+      "type": "resupply",
+      "lat": -44.612673,
+      "lon": 169.264055,
+      "acceptsBoxes": false,
+      "notes": "Sailz general store with cafe, open to 9pm; FreshChoice on Bodkin St; Hawea Hotel for pub food.",
+      "osm": "place/Lake Hawea (town)"
+    },
+    {
+      "name": "Albert Town",
+      "type": "resupply",
+      "lat": -44.68324,
+      "lon": 169.187264,
+      "acceptsBoxes": false,
+      "notes": "Small Four Square and a patisserie, a short detour off trail.",
+      "osm": "node/176718615"
+    },
+    {
+      "name": "Wanaka",
+      "type": "town",
+      "lat": -44.694169,
+      "lon": 169.136464,
+      "acceptsBoxes": false,
+      "notes": "New World, Four Square, Mediterranean Market for bulk, Macpac. Full resupply.",
+      "osm": "node/175803613"
+    },
+    {
+      "name": "Arrowtown",
+      "type": "resupply",
+      "lat": -44.940563,
+      "lon": 168.835076,
+      "acceptsBoxes": false,
+      "notes": "Small supermarket and a Night'n Day; limited and expensive. Hourly bus to Queenstown.",
+      "osm": "node/666995206"
+    },
+    {
+      "name": "Frankton",
+      "type": "town",
+      "lat": -45.020792,
+      "lon": 168.731096,
+      "acceptsBoxes": false,
+      "notes": "Pak'nSave, New World, Woolworths. Cheapest resupply in the Queenstown basin.",
+      "osm": "place/Frankton"
+    },
+    {
+      "name": "Queenstown",
+      "type": "town",
+      "lat": -45.032192,
+      "lon": 168.661,
+      "acceptsBoxes": false,
+      "notes": "FreshChoice, Four Square, outdoor stores. Full gear replacement.",
+      "osm": "node/175734291"
+    },
+    {
+      "name": "Glenorchy",
+      "type": "resupply",
+      "lat": -44.849749,
+      "lon": 168.385198,
+      "acceptsBoxes": false,
+      "notes": "Glenorchy Hotel general store. About 1.5 hr drive from the Greenstone car park. Leave at the Greenstone car park.",
+      "osm": "node/269675970",
+      "accessFromKm": 2733.8,
+      "accessRoadKm": 25
+    },
+    {
+      "name": "Te Anau",
+      "type": "town",
+      "lat": -45.41449,
+      "lon": 167.717489,
+      "acceptsBoxes": false,
+      "notes": "Four Square and FreshChoice, Outside Sports. 28-35 km off trail from SH94; shuttle or hitch. Leave at the SH94 / Princhester junction (The Key).",
+      "osm": "node/354120405",
+      "accessFromKm": 2829.8,
+      "accessRoadKm": 35
+    },
+    {
+      "name": "Mossburn",
+      "type": "resupply",
+      "lat": -45.669331,
+      "lon": 168.234768,
+      "acceptsBoxes": false,
+      "notes": "Four Square at 37 Devon St. About 20 km from the Princhester/SH94 junction. Leave at the SH94 / Princhester junction (The Key).",
+      "osm": "node/175189703",
+      "accessFromKm": 2829.8,
+      "accessRoadKm": 20
+    },
+    {
+      "name": "The Key (Princhester)",
+      "type": "food",
+      "lat": -45.545322,
+      "lon": 167.895161,
+      "acceptsBoxes": false,
+      "notes": "Sprig and Thistle coffee caravan at the SH94 junction, Tue-Fri 7am-3pm, Sat 8am-2pm.",
+      "osm": "node/4847385240"
+    },
+    {
+      "name": "Nightcaps",
+      "type": "resupply",
+      "lat": -45.970441,
+      "lon": 168.031142,
+      "acceptsBoxes": false,
+      "notes": "Four Square and a pub. About 9-16 km east of the trail near Birchwood. Leave near Birchwood.",
+      "osm": "node/1005301801",
+      "accessFromKm": 2912.4,
+      "accessRoadKm": 9
+    },
+    {
+      "name": "Otautau",
+      "type": "resupply",
+      "lat": -46.142735,
+      "lon": 167.997221,
+      "acceptsBoxes": false,
+      "notes": "Small supermarket, hotels with backpacker beds. About 12-16 km east of Merrivale Rd. Leave at Merrivale Rd.",
+      "osm": "node/984610300",
+      "accessFromKm": 2960.1,
+      "accessRoadKm": 16
+    },
+    {
+      "name": "Tuatapere",
+      "type": "resupply",
+      "lat": -46.131637,
+      "lon": 167.689851,
+      "acceptsBoxes": false,
+      "notes": "Small supermarket, several lodges. About 26 km west of Merrivale Rd. Leave at Merrivale Rd.",
+      "osm": "node/269099366",
+      "accessFromKm": 2943.1,
+      "accessRoadKm": 26
+    },
+    {
+      "name": "Colac Bay",
+      "type": "food",
+      "lat": -46.369551,
+      "lon": 167.914933,
+      "acceptsBoxes": false,
+      "notes": "Colac Bay Bakehouse and Cafe with a camping ground; shop operating.",
+      "osm": "way/1014499077"
+    },
+    {
+      "name": "Riverton",
+      "type": "town",
+      "lat": -46.350998,
+      "lon": 168.020269,
+      "acceptsBoxes": false,
+      "notes": "FreshChoice/SuperValue on Palmerston St, cafes and takeaways. Holiday park.",
+      "osm": "node/983008811"
+    },
+    {
+      "name": "Otatara",
+      "type": "resupply",
+      "lat": -46.43803,
+      "lon": 168.28698,
+      "acceptsBoxes": false,
+      "notes": "Four Square, on the way into Invercargill.",
+      "osm": "node/968281593"
+    },
+    {
+      "name": "Invercargill",
+      "type": "town",
+      "lat": -46.411847,
+      "lon": 168.347063,
+      "acceptsBoxes": false,
+      "notes": "Pak'nSave, New World, Woolworths, Macpac and Kathmandu. Last full resupply.",
+      "osm": "relation/1656388"
+    },
+    {
+      "name": "Bluff",
+      "type": "town",
+      "lat": -46.59882,
+      "lon": 168.343368,
+      "acceptsBoxes": false,
+      "notes": "Four Square. Trail end at Stirling Point.",
+      "osm": "node/974363520"
+    }
+  ]
+}

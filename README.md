@@ -1,0 +1,199 @@
+# te-araroa-data
+
+The Te Araroa Trust publishes its trail data as a KMZ and a GPX. This turns the
+KMZ into files you can actually plan with: the trail in walking order, with
+elevation, huts, campsites and a resupply plan the official data does not
+contain.
+
+**[Download the data](out/)** · **[Project page](https://eamon-b.github.io/te-araroa-data/)**
+
+---
+
+> ### This is a snapshot, and it may be wrong by the time you read it
+>
+> Built on **8 September 2026** from the trust's **2026-27 release (v45)**.
+>
+> The trust reroutes the trail continuously - closures, new easements, washouts -
+> and publishes a new release each season. Nothing here updates itself, and
+> **there is no promise that it will be updated at all.** The moment the trust
+> republishes, these files are stale and nothing in them will tell you so.
+>
+> This is not official, and it is not endorsed by the Te Araroa Trust. It is one
+> person's derived copy of their data. Before you walk, get the current files
+> from **[teararoa.org.nz](https://www.teararoa.org.nz/trail-maps/)** and read
+> the trust's own trail notes and closure notices.
+>
+> Hut, water and resupply details go out of date faster than the route does.
+> Treat every one of them as a starting point for your own checking, not as
+> something to rely on in the field.
+>
+> `out/te-araroa.meta.json` records the SHA-256 of the exact source files this
+> was built from. `npm run fetch` re-downloads from the trust and tells you if
+> they have changed.
+
+---
+
+## Why this exists
+
+Both official files are public, and the GPX is the weaker of the two - but it is
+the one most tools reach for:
+
+| | official GPX | official KMZ |
+|---|---|---|
+| Track points | 28,027 | 35,987 |
+| Elevation | none | on every vertex |
+| Track order | alphabetical (`42 Traverse`, `Access Road No 3`, …) | chainage (`Fromkm`/`Tokm`) |
+| Huts / campsites | none | 135 DOC + 49 private, with full attributes |
+| Section names | none | on every segment and km marker |
+| Bypasses, no-camping zones | none | 13 + 353 |
+
+The KMZ has everything, and almost nothing consumes a KMZ. So this build reads
+the KMZ, uses the GPX only to check its work, and writes ordinary GPX and CSV.
+
+**The official data also contains no resupply at all** - no towns, shops or
+supermarkets anywhere in the KMZ, and only 3 of its 184 sites classify as food.
+`data/resupply.json` fills that gap with 82 resupply points researched by hand
+from the trail guides credited in the file.
+
+## Use it without building anything
+
+Everything in [`out/`](out/) is committed. If you just want the data, take it:
+
+| File | Contents |
+|---|---|
+| `te-araroa-2026-27.gpx` | 15 tracks (main route, transport connectors, 13 bypasses), 574 waypoints typed `hut`/`campsite`/`town`/`resupply`/`food`/`accommodation`/`caravan-park` |
+| `resupply-plan.csv` | 266 sites in trail order: km, section, trail elevation, leg distances, leg ascent/descent, bunks, water, booking, phone, address, hours, DOC link |
+| `sections.csv` | 79 official sections with km ranges |
+| `datasheet.csv`, `datasheet-resupply.csv` | the same route through `gpx-tools`' `processGpxTravelPlan` |
+| `no-camping-areas.geojson` | 353 restricted-camping polygons |
+| `te-araroa.meta.json` | every GIS attribute per site, plus sections, connectors, route gaps and source checksums |
+
+## Building it yourself
+
+```bash
+npm install
+npm run fetch      # downloads the trust's KMZ and GPX into data/source/
+npm run build      # writes out/
+```
+
+The trust's own files are **not committed** to this repository. They are the
+trust's to publish, and a mirror here would quietly serve a stale copy long
+after they had rerouted. `npm run fetch` gets them from teararoa.org.nz and
+records the URL, size and SHA-256 of each in `data/source/manifest.json`; run it
+again later and it will tell you whether anything has changed.
+
+Requires [`gpx-tools`](https://github.com/eamon-b/gpx-tools) for the KML/KMZ
+reading, GPX writing and datasheet processing. It is an ordinary dependency;
+`npm install` handles it.
+
+## What the build does
+
+1. **Reads the KMZ.** The trust exports from ArcGIS, which writes each feature's
+   attributes as an HTML table inside `<description>`; `parseDescriptionFields`
+   recovers them as key/value pairs.
+2. **Separates walking from transport.** Four segments have `Fromkm === Tokm` -
+   the Cook Strait ferry, the Picton–Ship Cove water taxi, the Devonport ferry
+   and the Whangarei Heads crossing. They contribute nothing to the official
+   3,073 km and would inflate every distance downstream, so they are held out of
+   the main route and emitted as their own track.
+3. **Assembles the route.** The remaining 466 segments are sorted by `Fromkm` and
+   oriented head-to-tail. Orientation is solved with a two-state dynamic program
+   rather than greedily - a greedy pass invents an 11.9 km gap near Cape Reinga,
+   because one wrong flip propagates down the chain.
+4. **Interpolates official km onto every vertex**, proportionally within each
+   segment's `Fromkm`→`Tokm` span. Chainage is asserted continuous; the build
+   fails if it is not.
+5. **Positions each hut and campsite** by projecting it onto the route, giving
+   official km, section, island and off-trail distance.
+6. **Writes** the GPX, a sidecar JSON with every GIS attribute, a GeoJSON of the
+   no-camping polygons, and the planning CSVs.
+
+### Accuracy check
+
+The build finishes by projecting all 3,058 km-marker waypoints from the official
+GPX onto the assembled route and comparing to the km each one declares:
+
+```
+cross-check against 3058 official km markers: mean error 8 m, worst 1.427 km
+```
+
+An 8 m mean error means the interpolated chainage reproduces the trust's own km
+markers essentially exactly.
+
+## Known characteristics of the data
+
+**Official length is 3,073.2 km; the geometry measures 3,159.5 km.** The
+difference is the six places where the walking route stops and starts again.
+Three are covered by a published ferry route, three are links you arrange
+yourself:
+
+| km | Gap | Covered by |
+|---|---|---|
+| 407.3 | 1.1 km | Whangarei Heads crossing (ferry) |
+| 606.0 | 2.9 km | Devonport ferry |
+| 1739.0 | 52.7 km | Cook Strait ferry + Picton–Ship Cove water taxi |
+| 2298.3 | 12.6 km | *no published route* |
+| 2367.8 | 7.0 km | *no published route* |
+| 2733.8 | 26.5 km | *no published route* (Queenstown → Greenstone) |
+
+**Resupply is hand-researched, not official.** 44 of the 82 points are
+full-supermarket towns, 24 are limited stores or dairies, 14 are cafés or pubs;
+13 accept resupply boxes. Some towns are reached from a named road end rather
+than by the route's nearest approach, and for those the file declares
+`accessFromKm` (the trail km you leave at) and `accessRoadKm` (the road
+distance). Without it the build reports a straight line across country that
+nobody walks - Geraldine came out 55 km off the Two Thumb Range, when in reality
+you leave at the Rangitata.
+
+The longest carries between resupply points come out as:
+
+| km | Stretch |
+|---|---|
+| 161.7 | Te Kūiti → Taumarunui (Pureora / Timber Trail) |
+| 118.7 | St Arnaud → Boyle Village (Nelson Lakes) |
+| 117.2 | Twizel → Lake Hāwea (Ahuriri / Breast Hill) |
+| 112.8 | Hanmer Springs → Arthur's Pass |
+| 96.0 | Glenorchy → Te Anau |
+
+That still leaves the long-tail POIs - individual supermarkets, post shops,
+water taps - to OSM enrichment.
+
+**Point features carry no elevation.** The trust publishes every hut, campsite
+and km marker with `z=0`; only the line geometry has real heights. Waypoint
+elevation is therefore read off the route at the site's km, which for a site far
+off-trail is the height where you leave the trail - hence the column name
+`Trail elevation m`.
+
+**25 sites sit more than 5 km off the trail** - the Tongariro and Whanganui
+River huts, the Nelson Lakes huts, and Peel Forest Campground at 34.7 km. They
+are kept, with `Off trail m` recording the detour.
+
+## Layout
+
+- `src/fetch.ts` — downloads the trust's release, records checksums.
+- `src/route.ts` — chainage-driven route assembly. Trail-agnostic; would suit any
+  trail published as GIS segments with a chainage.
+- `src/te-araroa.ts` — the Te Araroa specifics: folder names, the DOC and private
+  attribute vocabularies, the waypoint-type mapping.
+- `src/build.ts` — orchestration and output.
+- `docs/` — the project page.
+
+The generic KML/KMZ reading lives in `gpx-tools` so the next trail that ships a
+KMZ does not need it rewritten.
+
+## Contributing
+
+Corrections to the resupply data are the most useful thing anyone can send -
+that file is hand-built and it decays. If a shop has closed, changed hours, or
+stopped taking boxes, open an issue or a PR against `data/resupply.json`.
+
+## Licence and attribution
+
+Code MIT. The data is not mine to relicense and different files carry different
+obligations - **see [DATA-LICENCE.md](DATA-LICENCE.md)**, which also documents an
+ambiguity in the trust's own licence declaration worth knowing about before you
+build anything commercial on this.
+
+> Trail data © Te Araroa Trust. Hut and campsite data © NZ Department of
+> Conservation (CC BY 4.0). Resupply coordinates © OpenStreetMap contributors
+> (ODbL). Built by te-araroa-data.

@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>te-araroa-data</title>
+<meta name="description" content="The official Te Araroa KMZ, rebuilt as a chainage-ordered GPX with elevation, huts, campsites and a resupply plan.">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root {
+  --bg: #fbfaf8;
+  --panel: #ffffff;
+  --ink: #1c1e21;
+  --muted: #5f6672;
+  --line: #e2e0db;
+  --accent: #2f6b4f;
+  --accent-soft: #e8f0eb;
+  --warn-bg: #fdf6e6;
+  --warn-line: #e0c877;
+  --warn-ink: #6b5310;
+  --route: #d4571f;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16181b;
+    --panel: #1e2125;
+    --ink: #e8e6e2;
+    --muted: #9aa1ac;
+    --line: #32363c;
+    --accent: #6fb894;
+    --accent-soft: #22302a;
+    --warn-bg: #2b2313;
+    --warn-line: #6b5a24;
+    --warn-ink: #e8cf8e;
+    --route: #ef7a45;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+a { color: var(--accent); }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--accent-soft);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
+header { padding: 56px 0 28px; }
+h1 {
+  font-size: clamp(28px, 6vw, 40px);
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+}
+.tagline { font-size: clamp(17px, 3vw, 20px); color: var(--muted); margin: 0 0 20px; max-width: 42em; }
+.badge {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 12px;
+  margin-right: 6px;
+}
+
+.warn {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-line);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 8px 0 36px;
+  color: var(--warn-ink);
+}
+.warn strong { color: var(--warn-ink); }
+.warn p { margin: 0 0 10px; font-size: 15px; }
+.warn p:last-child { margin-bottom: 0; }
+.warn a { color: var(--warn-ink); }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.stat { background: var(--panel); padding: 16px 18px; }
+.stat b { display: block; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.stat span { font-size: 12.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+
+.map-shell { position: relative; margin-bottom: 8px; }
+#zoom-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 400;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 12.5px;
+  color: var(--muted);
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+#map {
+  height: 460px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  z-index: 0;
+}
+.map-note { font-size: 13px; color: var(--muted); margin: 0 0 36px; }
+
+h2 {
+  font-size: 21px;
+  margin: 40px 0 12px;
+  letter-spacing: -0.01em;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+p { max-width: 42em; }
+
+.files { width: 100%; border-collapse: collapse; font-size: 15px; }
+.files td { padding: 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.files td:first-child { white-space: nowrap; padding-right: 18px; }
+.files td:first-child a { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13.5px; }
+.files td:last-child { color: var(--muted); font-size: 14px; }
+
+.cmp { width: 100%; border-collapse: collapse; font-size: 15px; margin-top: 4px; }
+.cmp th, .cmp td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: left; }
+.cmp th { font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); font-weight: 600; }
+.cmp td:first-child { color: var(--muted); }
+.cmp .yes { color: var(--accent); font-weight: 600; }
+
+footer {
+  margin-top: 56px;
+  padding: 28px 0 60px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--muted);
+}
+.leaflet-popup-content { font-size: 13px; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <h1>te-araroa-data</h1>
+  <p class="tagline">
+    The Te Araroa Trust publishes its trail data as a KMZ that almost nothing can
+    read. This turns it into an ordinary GPX in walking order — with elevation,
+    huts, campsites, and a resupply plan the official data does not contain.
+  </p>
+  <span class="badge">2026-27 release (v45)</span>
+  <span class="badge">built 8 September 2026</span>
+  <span class="badge"><a href="https://github.com/eamon-b/te-araroa-data">Source on GitHub</a></span>
+</header>
+
+<div class="warn">
+  <p><strong>This is a snapshot, and it may already be out of date.</strong></p>
+  <p>
+    The trust reroutes the trail continuously and republishes each season.
+    Nothing here updates itself, and there is no promise that it will be updated
+    at all. This is not official and not endorsed by the Te Araroa Trust.
+  </p>
+  <p>
+    Before you walk, get the current files from
+    <a href="https://www.teararoa.org.nz/trail-maps/">teararoa.org.nz</a> and read
+    the trust's own trail notes and closure notices. Hut, water and resupply
+    details decay faster than the route does — treat all of them as a starting
+    point for your own checking, not as something to rely on in the field.
+  </p>
+</div>
+
+<div class="stats">
+  <div class="stat"><b>3,073 km</b><span>Official length</span></div>
+  <div class="stat"><b>35,441</b><span>Route points</span></div>
+  <div class="stat"><b>574</b><span>Waypoints</span></div>
+  <div class="stat"><b>79</b><span>Sections</span></div>
+  <div class="stat"><b>8 m</b><span>Chainage error</span></div>
+</div>
+
+<div class="map-shell">
+  <div id="map"></div>
+  <div id="zoom-hint">Zoom in for huts, campsites and resupply</div>
+</div>
+<p class="map-note">
+  Simplified for the web to 7,113 points. Huts and campsites in green, resupply
+  in orange. The published GPX has the full 35,441-point geometry.
+</p>
+
+<h2>Why it exists</h2>
+<p>
+  Both official files are public, and the GPX — the one most tools reach for — is
+  the weaker of the two:
+</p>
+<table class="cmp">
+  <tr><th></th><th>official GPX</th><th>official KMZ</th></tr>
+  <tr><td>Track points</td><td>28,027</td><td class="yes">35,987</td></tr>
+  <tr><td>Elevation</td><td>none</td><td class="yes">every vertex</td></tr>
+  <tr><td>Track order</td><td>alphabetical</td><td class="yes">chainage</td></tr>
+  <tr><td>Huts / campsites</td><td>none</td><td class="yes">184, with attributes</td></tr>
+  <tr><td>Section names</td><td>none</td><td class="yes">every segment</td></tr>
+  <tr><td>Bypasses / no-camping</td><td>none</td><td class="yes">13 + 353</td></tr>
+</table>
+<p>
+  So the build reads the KMZ, uses the GPX only to check its work, and writes
+  ordinary GPX and CSV. It then projects all 3,058 official km markers onto the
+  assembled route: <strong>mean error 8 m</strong>, which is to say the
+  interpolated chainage reproduces the trust's own markers essentially exactly.
+</p>
+<p>
+  The official data also contains <strong>no resupply at all</strong> — no towns,
+  shops or supermarkets anywhere in the KMZ. 82 resupply points were researched
+  by hand to fill that gap.
+</p>
+
+<h2>Download</h2>
+<table class="files">
+  <tr>
+    <td><a href="https://github.com/eamon-b/te-araroa-data/raw/main/out/te-araroa-2026-27.gpx">te-araroa-2026-27.gpx</a></td>
+    <td>15 tracks (main route, ferry connectors, 13 bypasses) and 574 typed waypoints. Elevation throughout.</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/eamon-b/te-araroa-data/raw/main/out/resupply-plan.csv">resupply-plan.csv</a></td>
+    <td>266 sites in trail order: km, section, elevation, leg distances and ascent, bunks, water, booking, phone, hours.</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/eamon-b/te-araroa-data/raw/main/out/sections.csv">sections.csv</a></td>
+    <td>The 79 official sections with their km ranges.</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/eamon-b/te-araroa-data/raw/main/out/no-camping-areas.geojson">no-camping-areas.geojson</a></td>
+    <td>353 restricted-camping polygons.</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/eamon-b/te-araroa-data/raw/main/out/te-araroa.meta.json">te-araroa.meta.json</a></td>
+    <td>Every GIS attribute per site, plus sections, ferry connectors, route gaps, and the SHA-256 of the source files this was built from.</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/eamon-b/te-araroa-data/tree/main/out">all files &rarr;</a></td>
+    <td>Including the <code>gpx-tools</code> datasheets.</td>
+  </tr>
+</table>
+
+<h2>What you might build on it</h2>
+<p>
+  The waypoints carry a GPX <code>&lt;type&gt;</code>, so a hut arrives as a hut
+  rather than as a string to guess at. Every site has an official trail km, which
+  makes "what is between km 1,200 and km 1,340" a filter rather than a geometry
+  problem. Sensible things to do with that: itinerary planners that schedule by
+  hut rather than by distance, resupply calculators, elevation profiles per
+  section, or simply loading the GPX into a watch that refused the KMZ.
+</p>
+<p>
+  Corrections to the resupply data are the most useful contribution anyone can
+  make — that file is hand-built and it decays.
+  <a href="https://github.com/eamon-b/te-araroa-data/issues">Open an issue</a>.
+</p>
+
+<footer>
+  <p>
+    Trail data © Te Araroa Trust. Hut and campsite data © NZ Department of
+    Conservation (CC BY 4.0). Resupply coordinates © OpenStreetMap contributors
+    (ODbL). Code MIT — see
+    <a href="https://github.com/eamon-b/te-araroa-data/blob/main/DATA-LICENCE.md">DATA-LICENCE.md</a>
+    for what covers which file.
+  </p>
+  <p>Not affiliated with or endorsed by the Te Araroa Trust.</p>
+</footer>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const hint = document.getElementById('zoom-hint');
+const map = L.map('map', { scrollWheelZoom: false }).setView([-41.0, 173.0], 5);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 17,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+const RESUPPLY = new Set(['town', 'resupply', 'food', 'accommodation', 'caravan-park']);
+
+fetch('data/overview.geojson')
+  .then((r) => {
+    if (!r.ok) throw new Error(r.status);
+    return r.json();
+  })
+  .then((geo) => {
+    const route = L.geoJSON(geo, {
+      filter: (f) => f.geometry.type === 'LineString',
+      style: { color: getComputedStyle(document.documentElement).getPropertyValue('--route').trim(), weight: 2.5, opacity: 0.9 }
+    }).addTo(map);
+
+    const sites = L.geoJSON(geo, {
+      filter: (f) => f.geometry.type === 'Point',
+      pointToLayer: (f, latlng) => {
+        const resupply = RESUPPLY.has(f.properties.kind);
+        return L.circleMarker(latlng, {
+          radius: resupply ? 4.5 : 3,
+          color: resupply ? '#d4571f' : '#2f6b4f',
+          weight: 1.5,
+          fillOpacity: 0.75,
+          fillColor: resupply ? '#f0a06a' : '#7fbfa0'
+        });
+      },
+      onEachFeature: (f, layer) => {
+        const p = f.properties;
+        layer.bindPopup(
+          '<strong>' + p.name + '</strong><br>' +
+          p.kind + ' &middot; km ' + p.km + '<br>' +
+          '<span style="color:#777">' + p.section + '</span>'
+        );
+      }
+    });
+
+    // 266 sites strung along 3,000 km merge into one smear at country zoom, and
+    // the smear hides the route it is meant to annotate. They appear once the
+    // view is tight enough to tell them apart.
+    const SITE_ZOOM = 7;
+    const syncSites = () => {
+      const show = map.getZoom() >= SITE_ZOOM;
+      if (show && !map.hasLayer(sites)) sites.addTo(map);
+      else if (!show && map.hasLayer(sites)) map.removeLayer(sites);
+      hint.style.display = show ? 'none' : '';
+    };
+    map.on('zoomend', syncSites);
+
+    map.fitBounds(route.getBounds(), { padding: [12, 12] });
+    syncSites();
+  })
+  .catch((err) => {
+    hint.style.display = 'none';
+    document.getElementById('map').innerHTML =
+      '<p style="padding:20px;color:#888">Map preview unavailable (' + err.message + ').</p>';
+  });
+</script>
+
+</body>
+</html>

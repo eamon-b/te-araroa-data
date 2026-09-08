@@ -1,0 +1,22 @@
+{
+  "description": "Official Te Araroa Trust files this build reads. Fetched by npm run fetch; not committed to the repository.",
+  "fetchedAt": "2026-09-08",
+  "files": [
+    {
+      "file": "Te_Araroa_2026-27_Google_Earth.kmz",
+      "note": "Google Earth KMZ - the file this build reads",
+      "url": "https://www.teararoa.org.nz/te_araroa_2026-27_google_earth/",
+      "resolvedUrl": "https://www.teararoa.org.nz/wp-content/uploads/2026/09/Te_Araroa_2026-27_Google_Earth.zip",
+      "bytes": 2198385,
+      "sha256": "2eebceb2d9667a358da54281b199df2dbd33b9554929b9e57f848570797e962f"
+    },
+    {
+      "file": "TeAraroaTrail_2026_27.gpx",
+      "note": "Official tracks GPX - used only to cross-check the result",
+      "url": "https://www.teararoa.org.nz/teararoatrail_2026_27/",
+      "resolvedUrl": "https://www.teararoa.org.nz/wp-content/uploads/2026/06/TeAraroaTrail_2026_27.zip",
+      "bytes": 7962914,
+      "sha256": "71cf54287639e1f9f34b6fa126db454cd179d587d192fcac66e155c21b76197b"
+    }
+  ]
+}
