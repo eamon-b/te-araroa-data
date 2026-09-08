@@ -1,0 +1,66 @@
+# Check a change before it reaches main.
+#
+# Two kinds of pull request land here, and they need checking for different
+# reasons. A change to src/ has to keep the maths right - a segment oriented the
+# wrong way or a km interpolated wrongly makes every distance downstream wrong
+# and nothing else notices. A refresh from the trust changes no code at all: it
+# replaces out/ with a few megabytes of regenerated GPX and CSV that nobody can
+# review by eye, and what a reviewer actually needs is an assurance that the
+# rebuilt data is still internally consistent.
+#
+# So this runs the unit tests over the route and attribute logic, and a second
+# suite that reads the committed out/ and asserts the things a reader trusts it
+# for: chainage that covers the trail exactly once, two directions that mirror
+# each other, files that hold what the metadata claims.
+#
+# It deliberately does not run `npm run build`. That needs the trust's own KMZ,
+# which is not committed, and downloading a few hundred megabytes from a small
+# trust's web server on every push to a pull request would be rude. The
+# scheduled refresh builds; this checks what the build produced.
+
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      # The README and the project page are generated from out/te-araroa.meta.json.
+      # A refresh that rebuilt the data without regenerating the prose would leave
+      # both describing the previous release - true-looking and wrong. Regenerating
+      # here must be a no-op.
+      - name: The prose matches the data
+        run: |
+          npx tsx src/docs.ts
+          if ! git diff --quiet README.md docs/index.html; then
+            echo "::error::README.md or docs/index.html is out of date. Run 'npm run docs' and commit the result."
+            git diff README.md docs/index.html
+            exit 1
+          fi
