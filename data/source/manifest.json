@@ -1,8 +1,10 @@
 {
   "description": "Official Te Araroa Trust files this build reads. Fetched by npm run fetch; not committed to the repository.",
+  "season": "2026-27",
   "fetchedAt": "2026-09-08",
   "files": [
     {
+      "role": "kmz",
       "file": "Te_Araroa_2026-27_Google_Earth.kmz",
       "note": "Google Earth KMZ - the file this build reads",
       "url": "https://www.teararoa.org.nz/te_araroa_2026-27_google_earth/",
@@ -11,6 +13,7 @@
       "sha256": "2eebceb2d9667a358da54281b199df2dbd33b9554929b9e57f848570797e962f"
     },
     {
+      "role": "gpx",
       "file": "TeAraroaTrail_2026_27.gpx",
       "note": "Official tracks GPX - used only to cross-check the result",
       "url": "https://www.teararoa.org.nz/teararoatrail_2026_27/",

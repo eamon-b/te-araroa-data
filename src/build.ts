@@ -16,7 +16,8 @@
  *   npm run build
  *
  * Outputs land in out/, with `-sobo` and `-nobo` variants of each:
- *   te-araroa-2026-27-*.gpx    the trail, for gpx-tools and trail-maps
+ *   te-araroa-*.gpx            the trail, for gpx-tools and trail-maps
+ *   te-araroa-<season>-*.gpx   the same bytes under the release name
  *   resupply-plan-*.csv        the planning sheet
  *   datasheet-*.csv            the same route through gpx-tools' datasheet
  *   sections-*.csv             section boundaries with km ranges
@@ -26,9 +27,16 @@
  *   no-camping-areas.geojson   the 353 restricted-camping polygons
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import {
+  readFileSync,
+  writeFileSync,
+  mkdirSync,
+  existsSync,
+  readdirSync,
+  unlinkSync,
+} from "node:fs";
 import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
+import { basename, dirname, join } from "node:path";
 import { JSDOM } from "jsdom";
 import Papa from "papaparse";
 
@@ -67,7 +75,8 @@ import {
   isTransportConnector,
   privateSiteType,
 } from "./te-araroa.ts";
-import type { SourceManifest } from "./fetch.ts";
+import type { SourceManifest, SourceRole } from "./fetch.ts";
+import { writeDocs } from "./docs.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, "..");
@@ -75,11 +84,74 @@ const outDir = join(root, "out");
 const sourceDir = join(root, "data", "source");
 const docsDataDir = join(root, "docs", "data");
 
-const KMZ = join(sourceDir, "Te_Araroa_2026-27_Google_Earth.kmz");
-const OFFICIAL_GPX = join(sourceDir, "TeAraroaTrail_2026_27.gpx");
 const SOURCE_MANIFEST = join(sourceDir, "manifest.json");
 const TRAIL_NAME = "Te Araroa";
-const ATTRIBUTION = "Te Araroa Trust, CC BY 4.0 NZ - 2026-27 trail data (v45)";
+
+/**
+ * Which files to build from, and which release they are.
+ *
+ * All of it comes from the manifest `npm run fetch` wrote, so that a new season
+ * needs no edit here: the trust names its files with the season in them, fetch
+ * records those names, and everything downstream - the output filenames, the
+ * attribution string, the GPX track names - follows from this one lookup.
+ */
+function resolveSource(): {
+  kmz: string;
+  officialGpx: string;
+  season: string;
+  manifest: SourceManifest | null;
+} {
+  if (!existsSync(SOURCE_MANIFEST)) {
+    throw new Error(
+      `${SOURCE_MANIFEST} is not here. The trust's own files are not committed ` +
+        `to this repository - run \`npm run fetch\` to download them first.`
+    );
+  }
+  const manifest = JSON.parse(
+    readFileSync(SOURCE_MANIFEST, "utf8")
+  ) as SourceManifest;
+
+  const pathFor = (role: SourceRole): string => {
+    const entry = manifest.files.find((f) => f.role === role);
+    if (!entry) {
+      throw new Error(
+        `The source manifest has no ${role} entry. Re-run \`npm run fetch\`.`
+      );
+    }
+    const path = join(sourceDir, entry.file);
+    if (!existsSync(path)) {
+      throw new Error(
+        `${path} is named in the manifest but is not on disk. The trust's own ` +
+          `files are not committed - run \`npm run fetch\` to download them.`
+      );
+    }
+    return path;
+  };
+
+  return {
+    kmz: pathFor("kmz"),
+    officialGpx: pathFor("gpx"),
+    season: manifest.season,
+    manifest,
+  };
+}
+
+/**
+ * Delete dated GPX files from previous seasons.
+ *
+ * out/ is committed, and without this every release would leave its dated files
+ * behind - the repository would accumulate a copy of every season it ever built
+ * and quietly offer stale ones for download beside the current one.
+ */
+function pruneSupersededGpx(keep: string[]): void {
+  for (const name of readdirSync(outDir)) {
+    if (keep.includes(name)) continue;
+    if (/^te-araroa-\d{4}-\d{2}-(sobo|nobo)\.gpx$/.test(name)) {
+      unlinkSync(join(outDir, name));
+      console.log(`  removed superseded ${name}`);
+    }
+  }
+}
 
 /**
  * The two ways to walk the trail.
@@ -129,10 +201,15 @@ const DIRECTIONS: DirectionSpec[] = [
  * `datasheet.csv` become `datasheet.csv` and `datasheet (1).csv` in a downloads
  * folder, and a GPX copied onto a watch keeps nothing but its name.
  */
-function directionFiles(direction: DirectionSpec) {
+function directionFiles(direction: DirectionSpec, season: string) {
   const d = direction.id;
   return {
-    gpx: `te-araroa-2026-27-${d}.gpx`,
+    // The dated name is what a person wants once the file is in their downloads
+    // folder - it says what they have got. The stable name is what a link can
+    // point at: this build runs unattended now, and a URL that changed every
+    // season would break every bookmark, script and README referencing it.
+    gpx: `te-araroa-${season}-${d}.gpx`,
+    stableGpx: `te-araroa-${d}.gpx`,
     plan: `resupply-plan-${d}.csv`,
     sections: `sections-${d}.csv`,
     datasheet: `datasheet-${d}.csv`,
@@ -150,6 +227,8 @@ interface SectionSpan {
 
 /** Everything `writeDirection` needs, all of it in official chainage terms. */
 interface DirectionContext {
+  season: string;
+  attribution: string;
   sites: SiteRecord[];
   connectors: ChainedSegment[];
   mainSegments: RoutePoint[][];
@@ -276,17 +355,14 @@ async function main(): Promise<void> {
   mkdirSync(outDir, { recursive: true });
   mkdirSync(docsDataDir, { recursive: true });
 
-  if (!existsSync(KMZ)) {
-    throw new Error(
-      `${KMZ} is not here. The trust's own files are not committed to this ` +
-        `repository - run \`npm run fetch\` to download them first.`
-    );
-  }
-  const sourceManifest = existsSync(SOURCE_MANIFEST)
-    ? (JSON.parse(readFileSync(SOURCE_MANIFEST, "utf8")) as SourceManifest)
-    : null;
+  const {
+    kmz: KMZ,
+    officialGpx: OFFICIAL_GPX,
+    season,
+    manifest: sourceManifest,
+  } = resolveSource();
 
-  console.log(`Reading ${KMZ}`);
+  console.log(`Reading ${KMZ}  (${season} release)`);
   const kml = await parseKmz(readFileSync(KMZ));
   console.log(
     `  ${kml.placemarks.length} placemarks across ${kml.folders.length} folders`
@@ -305,6 +381,15 @@ async function main(): Promise<void> {
       throw new Error(`KMZ has no folder named ${JSON.stringify(name)}`);
     return list;
   };
+
+  // The trust stamps a version on every trail segment. Read it rather than
+  // carrying it in a constant here, where it would silently describe the wrong
+  // release the first time the build ran unattended.
+  const version = folder(FOLDERS.mainTrail)[0].fields["Version"] ?? "";
+  const versionLabel = /^\d/.test(version) ? `v${version}` : version;
+  const ATTRIBUTION =
+    `Te Araroa Trust, CC BY 4.0 NZ - ${season} trail data` +
+    (versionLabel ? ` (${versionLabel})` : "");
 
   // ---------------------------------------------------------------- the route
 
@@ -637,6 +722,8 @@ async function main(): Promise<void> {
   // ---------------------------------------------- one output set per direction
 
   const context: DirectionContext = {
+    season,
+    attribution: ATTRIBUTION,
     sites,
     connectors,
     mainSegments,
@@ -650,14 +737,122 @@ async function main(): Promise<void> {
     cumulativeAscentAt,
   };
 
-  for (const direction of DIRECTIONS) writeDirection(direction, context);
+  const written = DIRECTIONS.map((direction) =>
+    writeDirection(direction, context)
+  );
+  pruneSupersededGpx(
+    DIRECTIONS.flatMap((direction) => {
+      const files = directionFiles(direction, season);
+      return [files.gpx, files.stableGpx];
+    })
+  );
+
+  // ------------------------------------------------------- accuracy and stats
+
+  // Run the cross-check before the metadata is assembled rather than after, so
+  // its numbers land in the file. The project page and the README quote them,
+  // and a figure quoted from a build log is a figure nobody can regenerate.
+  const accuracy = crossCheckAgainstOfficialGpx(route.points, OFFICIAL_GPX);
+
+  const resupplySites = sites.filter((s) => s.source === "Resupply");
+  const byResupplyType: Record<string, number> = {};
+  for (const point of resupply.points) {
+    byResupplyType[point.type] = (byResupplyType[point.type] ?? 0) + 1;
+  }
+
+  // Which official sections a carry crosses. "St Arnaud to Boyle Village" is a
+  // pair of place names; "Waiau Pass Track" is the reason it is 118 km without
+  // a shop. The two sections it spends the most distance in carry that, and
+  // being read off the route means they stay right through a reroute.
+  const sectionsBetween = (fromKm: number, toKm: number): string[] =>
+    baseSections
+      .map((span) => ({
+        name: span.section,
+        fromKm: span.fromKm,
+        overlap: Math.min(toKm, span.toKm) - Math.max(fromKm, span.fromKm),
+      }))
+      .filter((entry) => entry.overlap > 1)
+      .sort((a, b) => b.overlap - a.overlap)
+      .slice(0, 2)
+      .sort((a, b) => a.fromKm - b.fromKm)
+      .map((entry) => entry.name);
+
+  // The longest you walk between one resupply point and the next. This is the
+  // number that decides how much food a pack has to carry, so it is the one
+  // worth stating outright. It is the same set of stretches whichever way you
+  // walk; only the order reverses.
+  const carries = resupplySites
+    .slice(1)
+    .map((site, i) => ({
+      from: resupplySites[i].name,
+      to: site.name,
+      fromKm: round(resupplySites[i].km, 1),
+      toKm: round(site.km, 1),
+      distanceKm: round(site.km - resupplySites[i].km, 1),
+      sections: sectionsBetween(resupplySites[i].km, site.km),
+    }))
+    .sort((a, b) => b.distanceKm - a.distanceKm)
+    .slice(0, 5);
+
+  // `stranded` covers every site, including towns whose off-trail figure is a
+  // road distance we chose to record rather than a hut that genuinely sits that
+  // far out. Only the trust's own sites belong in a claim about the trust's own
+  // data, so the published figure counts those.
+  const strandedOfficial = stranded.filter((s) => s.source !== "Resupply");
+  const farthest = [...strandedOfficial].sort(
+    (a, b) => b.offTrailMeters - a.offTrailMeters
+  )[0];
+
+  /**
+   * Everything the README and the project page quote about this release.
+   *
+   * They are generated from this block (see src/docs.ts), so that a rebuild
+   * cannot leave the prose describing a release the data no longer is. Track,
+   * waypoint and row counts are the same in both directions, so the southbound
+   * write speaks for both.
+   */
+  const stats = {
+    officialGpxTrackPoints: accuracy?.officialTrackPoints ?? null,
+    kmzTrackPoints: allSegments.reduce((n, s) => n + s.coordinates.length, 0),
+    routePoints: route.points.length,
+    tracks: written[0].tracks,
+    waypoints: written[0].waypoints,
+    sections: baseSections.length,
+    docSites: sites.filter((s) => s.source === "DOC").length,
+    privateSites: sites.filter((s) => s.source === "Private").length,
+    officialSites: sites.filter((s) => s.source !== "Resupply").length,
+    // The KMZ's own food count, which is the case for data/resupply.json
+    // existing at all.
+    officialFoodSites: sites.filter(
+      (s) => s.source !== "Resupply" && s.type === "food"
+    ).length,
+    bypasses: folder(FOLDERS.bypasses).length,
+    noCampingAreas: noCampingFeatures.length,
+    planRows: written[0].planRows,
+    resupply: {
+      total: resupply.points.length,
+      byType: byResupplyType,
+      acceptsBoxes: resupply.points.filter((p) => p.acceptsBoxes).length,
+      researchedAt: resupply.researchedAt ?? "",
+    },
+    longestCarries: carries,
+    strandedSites: strandedOfficial.length,
+    strandedSitesIncludingTowns: stranded.length,
+    farthestSite: farthest
+      ? {
+          name: farthest.name,
+          offTrailKm: round(farthest.offTrailMeters / 1000, 1),
+        }
+      : null,
+    accuracy,
+  };
 
   // ---------------------------------------------------------------- metadata
 
   const meta = {
     trail: TRAIL_NAME,
-    season: "2026-27",
-    version: folder(FOLDERS.mainTrail)[0].fields["Version"] ?? "",
+    season,
+    version: versionLabel,
     attribution: ATTRIBUTION,
     // Every `km` in this file is the trust's own chainage, which runs
     // southbound from Cape Reinga. There is deliberately no northbound copy of
@@ -675,13 +870,13 @@ async function main(): Promise<void> {
       label: d.label,
       from: d.from,
       to: d.to,
-      files: Object.values(directionFiles(d)),
+      files: Object.values(directionFiles(d, season)),
     })),
     generatedAt: new Date().toISOString(),
     // Which bytes this was built from. A consumer holding a copy of these files
     // can confirm it is looking at the same release, and anyone wondering
     // whether the trust has moved on since can re-run `npm run fetch` and
-    // compare. Without this, "the 2026-27 data" is only a claim.
+    // compare. Without this, the season stamped above is only a claim.
     source: sourceManifest
       ? {
           fetchedAt: sourceManifest.fetchedAt,
@@ -692,10 +887,8 @@ async function main(): Promise<void> {
             sha256: f.sha256,
           })),
         }
-      : {
-          kmz: "Te_Araroa_2026-27_Google_Earth.kmz",
-          gpx: "TeAraroaTrail_2026_27.gpx",
-        },
+      : { kmz: basename(KMZ), gpx: basename(OFFICIAL_GPX) },
+    stats,
     officialLengthKm: round(officialKm, 3),
     geometricLengthKm: round(geometricKm, 3),
     routePoints: route.points.length,
@@ -752,7 +945,11 @@ async function main(): Promise<void> {
 
   writeDocsOverview(route.points, sites, meta);
 
-  crossCheckAgainstOfficialGpx(route.points);
+  // The README and the project page quote these numbers. Regenerating them here
+  // rather than in a separate step someone has to remember is the whole point:
+  // an unattended build that refreshed the data and left the prose describing
+  // the previous release would be lying in a way nobody would notice.
+  writeDocs();
 }
 
 /**
@@ -762,11 +959,19 @@ async function main(): Promise<void> {
  * in the trust's southbound chainage; this function is the only place that
  * knows about the other direction.
  */
+interface DirectionResult {
+  tracks: number;
+  waypoints: number;
+  planRows: number;
+}
+
 function writeDirection(
   direction: DirectionSpec,
   context: DirectionContext
-): void {
+): DirectionResult {
   const {
+    season,
+    attribution: ATTRIBUTION,
     sites,
     connectors,
     mainSegments,
@@ -781,7 +986,7 @@ function writeDirection(
   } = context;
 
   const nobo = direction.id === "nobo";
-  const files = directionFiles(direction);
+  const files = directionFiles(direction, season);
 
   /** Distance walked so far in this direction, from an official km. */
   const progressKm = (km: number): number => (nobo ? officialKm - km : km);
@@ -893,7 +1098,7 @@ function writeDirection(
   const gpx = writeGpx(
     { tracks, routes: [], waypoints },
     {
-      name: `${TRAIL_NAME} 2026-27 (${direction.code})`,
+      name: `${TRAIL_NAME} ${season} (${direction.code})`,
       desc:
         `Built from the official KMZ, walked ${direction.from} to ${direction.to}. ` +
         `Official chainage ${officialKm.toFixed(1)} km (measured southbound from ` +
@@ -904,9 +1109,12 @@ function writeDirection(
       creator: "te-araroa-data (gpx-tools kml-parser)",
     }
   );
+  // Written twice: under the release's name, and under a name that never
+  // changes so links to it survive a season rollover.
   writeFileSync(join(outDir, files.gpx), gpx);
+  writeFileSync(join(outDir, files.stableGpx), gpx);
   console.log(
-    `  wrote ${files.gpx} (${(gpx.length / 1e6).toFixed(1)} MB, ` +
+    `  wrote ${files.gpx} and ${files.stableGpx} (${(gpx.length / 1e6).toFixed(1)} MB, ` +
       `${tracks.length} tracks, ${waypoints.length} waypoints)`
   );
 
@@ -985,7 +1193,7 @@ function writeDirection(
   const mainRouteGpx = writeGpx(
     { tracks: [mainTrack], routes: [], waypoints },
     {
-      name: `${TRAIL_NAME} 2026-27 (${direction.code}) - main route`,
+      name: `${TRAIL_NAME} ${season} (${direction.code}) - main route`,
       keywords: ATTRIBUTION,
     }
   );
@@ -1016,6 +1224,12 @@ function writeDirection(
       `(${datasheet.stats.matchedWaypoints}/${datasheet.stats.totalWaypoints} waypoints matched, ` +
       `${datasheet.stats.totalDistance.toFixed(1)} km)`
   );
+
+  return {
+    tracks: tracks.length,
+    waypoints: waypoints.length,
+    planRows: planRows.length,
+  };
 }
 
 /**
@@ -1124,14 +1338,27 @@ function indexAtKm(points: RoutePoint[], km: number): number {
  * statement of where each km falls, which is exactly what our chainage
  * interpolation claims to reproduce.
  */
-function crossCheckAgainstOfficialGpx(points: RoutePoint[]): void {
+interface Accuracy {
+  markers: number;
+  meanErrorMeters: number;
+  worstErrorKm: number;
+  worstAtKm: number;
+  /** Track points in the official GPX, for the comparison the README makes. */
+  officialTrackPoints: number;
+}
+
+function crossCheckAgainstOfficialGpx(
+  points: RoutePoint[],
+  officialGpxPath: string
+): Accuracy | null {
   let xml: string;
   try {
-    xml = readFileSync(OFFICIAL_GPX, "utf8");
+    xml = readFileSync(officialGpxPath, "utf8");
   } catch {
     console.log("  (official GPX not present, skipping cross-check)");
-    return;
+    return null;
   }
+  const officialTrackPoints = (xml.match(/<trkpt\b/g) ?? []).length;
 
   const markers = [
     ...xml.matchAll(
@@ -1140,7 +1367,7 @@ function crossCheckAgainstOfficialGpx(points: RoutePoint[]): void {
   ];
   if (markers.length === 0) {
     console.log("  (no km markers in the official GPX, skipping cross-check)");
-    return;
+    return null;
   }
 
   let worst = 0;
@@ -1164,6 +1391,14 @@ function crossCheckAgainstOfficialGpx(points: RoutePoint[]): void {
       `mean error ${((total / markers.length) * 1000).toFixed(0)} m, ` +
       `worst ${worst.toFixed(3)} km (at km ${worstKm})`
   );
+
+  return {
+    markers: markers.length,
+    meanErrorMeters: Math.round((total / markers.length) * 1000),
+    worstErrorKm: round(worst, 3),
+    worstAtKm: worstKm,
+    officialTrackPoints,
+  };
 }
 
 await main();

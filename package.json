@@ -20,7 +20,8 @@
   "scripts": {
     "fetch": "tsx src/fetch.ts",
     "build": "tsx src/build.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "docs": "tsx src/docs.ts"
   },
   "dependencies": {
     "gpx-tools": "github:eamon-b/gpx-tools"
