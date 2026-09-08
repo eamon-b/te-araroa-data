@@ -123,6 +123,63 @@ h1 {
 }
 .map-note { font-size: 13px; color: var(--muted); margin: 0 0 36px; }
 
+/* Direction switch. One control, sitting above the map because it governs both
+   the map and the Download table further down. */
+.dirbar {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-bottom: 10px;
+}
+.dirswitch {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 999px;
+  padding: 3px;
+}
+.dirswitch button {
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 6px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.dirswitch button:hover { color: var(--ink); }
+.dirswitch button[aria-pressed="true"] {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+.dirswitch button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.dirlegs { font-size: 13.5px; color: var(--muted); }
+.dirlegs b { color: var(--ink); font-weight: 600; }
+
+/* Echo of the switch in the Download heading, so the state is visible at the
+   point where it actually changes what you get. */
+h2 .dirchip {
+  float: right;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  padding: 3px 12px;
+  position: relative;
+  top: -1px;
+}
+@media (max-width: 480px) {
+  h2 .dirchip { float: none; display: block; margin-top: 8px; }
+}
+
 h2 {
   font-size: 21px;
   margin: 40px 0 12px;
@@ -168,33 +225,53 @@ footer {
     it as well as a resupply data sheet that only contains points were you can 
     resupply. The official data does not contain these, hopefully they are helpful.
   </p>
+<!-- generated:badges -->
   <span class="badge">2026-27 release (v45)</span>
   <span class="badge">built 8 September 2026</span>
   <span class="badge"><a href="https://github.com/eamon-b/te-araroa-data">Source on GitHub</a></span>
+<!-- /generated:badges -->
 </header>
 
 <div class="warn">
-  <p><strong>This is a snapshot, and it may already be out of date.</strong></p>
+<!-- generated:warning -->
+  <p><strong>This follows the trust, but it is not the trust.</strong></p>
   <p>
-    The trust reroutes the trail continuously and republishes each season.
-    Nothing here updates itself, and there is no promise that it will be updated
-    at all. This is not official and not endorsed by the Te Araroa Trust.
+    A scheduled job checks the trust's download page every Monday and rebuilds
+    when the published files change, so this is not a frozen snapshot. But a
+    rebuild still needs a person to merge it, and nothing here can see a reroute
+    the trust has not published yet. This is not official and not endorsed by
+    the Te Araroa Trust.
+  </p>
+  <p>
+    The resupply data is the exception: it is researched by hand, last revised
+    8 September 2026, and it does not update itself at all.
   </p>
   <p>
     Before you walk, get the current files from
     <a href="https://www.teararoa.org.nz/trail-maps/">teararoa.org.nz</a> and read
     the trust's own trail notes and closure notices. Hut, water and resupply
-    details decay faster than the route does, so you might want to double check 
+    details decay faster than the route does, so you might want to double check
     them against more recent data and reports.
   </p>
+<!-- /generated:warning -->
 </div>
 
 <div class="stats">
+<!-- generated:stats -->
   <div class="stat"><b>3,073 km</b><span>Official length</span></div>
   <div class="stat"><b>35,441</b><span>Route points</span></div>
   <div class="stat"><b>574</b><span>Waypoints</span></div>
   <div class="stat"><b>79</b><span>Sections</span></div>
   <div class="stat"><b>8 m</b><span>Chainage error</span></div>
+<!-- /generated:stats -->
+</div>
+
+<div class="dirbar">
+  <div class="dirswitch" role="group" aria-label="Direction of travel">
+    <button type="button" id="dir-sobo" data-dir="sobo" aria-pressed="true">Southbound</button>
+    <button type="button" id="dir-nobo" data-dir="nobo" aria-pressed="false">Northbound</button>
+  </div>
+  <p class="dirlegs" id="dir-legs"><b>Cape Reinga</b> &rarr; <b>Bluff</b></p>
 </div>
 
 <div class="map-shell">
@@ -202,8 +279,11 @@ footer {
   <div id="zoom-hint">Zoom in for huts, campsites and resupply</div>
 </div>
 <p class="map-note">
+<!-- generated:mapnote -->
   Simplified for the web to 7,113 points. Huts and campsites in green, resupply
-  in orange. The published GPX has the full 35,441-point geometry.
+  in orange, and the ringed markers are where this direction starts and finishes.
+  The published GPX has the full 35,441-point geometry.
+<!-- /generated:mapnote -->
 </p>
 
 <h2>Why it exists</h2>
@@ -212,6 +292,7 @@ footer {
   the weaker of the two:
 </p>
 <table class="cmp">
+<!-- generated:comparison -->
   <tr><th></th><th>official GPX</th><th>official KMZ</th></tr>
   <tr><td>Track points</td><td>28,027</td><td class="yes">35,987</td></tr>
   <tr><td>Elevation</td><td>none</td><td class="yes">every vertex</td></tr>
@@ -219,44 +300,66 @@ footer {
   <tr><td>Huts / campsites</td><td>none</td><td class="yes">184, with attributes</td></tr>
   <tr><td>Section names</td><td>none</td><td class="yes">every segment</td></tr>
   <tr><td>Bypasses / no-camping</td><td>none</td><td class="yes">13 + 353</td></tr>
+<!-- /generated:comparison -->
 </table>
 <p>
+<!-- generated:accuracy -->
   So the build reads the KMZ, uses the GPX only to check its work, and writes
   ordinary GPX and CSV. It then projects all 3,058 official km markers onto the
   assembled route: <strong>mean error 8 m</strong>, which is to say the
   interpolated chainage reproduces the trust's own markers essentially exactly.
+<!-- /generated:accuracy -->
 </p>
 <p>
+<!-- generated:resupplyGap -->
   The official data also contains <strong>no resupply at all</strong> — no towns,
   shops or supermarkets anywhere in the KMZ. 82 resupply points were researched
   by hand to fill that gap.
+<!-- /generated:resupplyGap -->
 </p>
 
-<h2>Download</h2>
+<h2>Download <span class="dirchip" id="dir-chip">Southbound</span></h2>
+<p>
+  These follow the switch above the map. Files whose name ends <code>-sobo</code>
+  or <code>-nobo</code> come in both directions; the other two are the same
+  either way. A northbound sheet is not the southbound one read from the bottom
+  &mdash; every leg's ascent and descent swap over, so the climbing figures
+  genuinely differ.
+</p>
 <table class="files">
+<!-- generated:downloads -->
   <tr>
-    <td><a href="https://github.com/eamon-b/te-araroa-data/raw/main/out/te-araroa-2026-27.gpx">te-araroa-2026-27.gpx</a></td>
-    <td>15 tracks (main route, ferry connectors, 13 bypasses) and 574 typed waypoints. Elevation throughout.</td>
+    <td><a data-file="te-araroa-2026-27-{dir}.gpx"></a></td>
+    <td>15 tracks (main route, ferry connectors, 13 bypasses) and 574 typed waypoints, in walking order. Elevation throughout.</td>
   </tr>
   <tr>
-    <td><a href="https://github.com/eamon-b/te-araroa-data/raw/main/out/resupply-plan.csv">resupply-plan.csv</a></td>
-    <td>266 sites in trail order: km, section, elevation, leg distances and ascent, bunks, water, booking, phone, hours.</td>
+    <td><a data-file="resupply-plan-{dir}.csv"></a></td>
+    <td>266 sites in trail order: km, official km, section, elevation, leg distances and ascent, bunks, water, booking, phone, hours.</td>
   </tr>
   <tr>
-    <td><a href="https://github.com/eamon-b/te-araroa-data/raw/main/out/sections.csv">sections.csv</a></td>
-    <td>The 79 official sections with their km ranges.</td>
+    <td><a data-file="datasheet-{dir}.csv"></a></td>
+    <td>The route through <code>gpx-tools</code>' datasheet: every waypoint with running distance, ascent and descent.</td>
   </tr>
   <tr>
-    <td><a href="https://github.com/eamon-b/te-araroa-data/raw/main/out/no-camping-areas.geojson">no-camping-areas.geojson</a></td>
-    <td>353 restricted-camping polygons.</td>
+    <td><a data-file="datasheet-resupply-{dir}.csv"></a></td>
+    <td>The same datasheet cut down to the points where you can resupply.</td>
   </tr>
   <tr>
-    <td><a href="https://github.com/eamon-b/te-araroa-data/raw/main/out/te-araroa.meta.json">te-araroa.meta.json</a></td>
-    <td>Every GIS attribute per site, plus sections, ferry connectors, route gaps, and the SHA-256 of the source files this was built from.</td>
+    <td><a data-file="sections-{dir}.csv"></a></td>
+    <td>The 79 official sections with their km ranges, counted in this direction and in the trust's own chainage.</td>
   </tr>
+  <tr>
+    <td><a data-file="no-camping-areas.geojson"></a></td>
+    <td>353 restricted-camping polygons. No chainage, so the same file either way.</td>
+  </tr>
+  <tr>
+    <td><a data-file="te-araroa.meta.json"></a></td>
+    <td>Every GIS attribute per site, plus sections, ferry connectors, route gaps, and the SHA-256 of the source files this was built from. Always in the trust's southbound chainage; northbound km is <code>officialLengthKm - km</code>.</td>
+  </tr>
+<!-- /generated:downloads -->
   <tr>
     <td><a href="https://github.com/eamon-b/te-araroa-data/tree/main/out">all files &rarr;</a></td>
-    <td>Including the <code>gpx-tools</code> datasheets.</td>
+    <td>Both directions, side by side.</td>
   </tr>
 </table>
 
@@ -301,6 +404,87 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 const RESUPPLY = new Set(['town', 'resupply', 'food', 'accommodation', 'caravan-park']);
 
+// --------------------------------------------------------------- direction
+
+// The trust chains the trail southbound, so every km in overview.geojson is a
+// southbound one and northbound is `officialLengthKm - km`. That arithmetic is
+// the whole of the difference on this page, which is why there is one overview
+// file rather than two: a mirrored copy would only be a second thing to fall
+// out of step with the first.
+const RAW = 'https://github.com/eamon-b/te-araroa-data/raw/main/out/';
+const DIRECTIONS = {
+  sobo: { label: 'Southbound', from: 'Cape Reinga', to: 'Bluff' },
+  nobo: { label: 'Northbound', from: 'Bluff', to: 'Cape Reinga' }
+};
+
+const listeners = [];
+let direction = 'sobo';
+
+function readInitialDirection() {
+  const hash = location.hash.replace('#', '').toLowerCase();
+  if (hash === 'nobo' || hash === 'northbound') return 'nobo';
+  if (hash === 'sobo' || hash === 'southbound') return 'sobo';
+  try {
+    const saved = localStorage.getItem('te-araroa-direction');
+    if (saved === 'nobo' || saved === 'sobo') return saved;
+  } catch (e) {
+    // Private windows and blocked site data both throw here. Southbound is the
+    // right default anyway - it is how the trust numbers the trail.
+  }
+  return 'sobo';
+}
+
+function setDirection(next, pushHash) {
+  direction = DIRECTIONS[next] ? next : 'sobo';
+  const spec = DIRECTIONS[direction];
+
+  for (const button of document.querySelectorAll('.dirswitch button')) {
+    button.setAttribute('aria-pressed', String(button.dataset.dir === direction));
+  }
+  document.getElementById('dir-legs').innerHTML =
+    '<b>' + spec.from + '</b> &rarr; <b>' + spec.to + '</b>';
+  document.getElementById('dir-chip').textContent = spec.label;
+
+  // The direction is in the filename, so the link text is its own confirmation
+  // that the switch did something - no need to trust a chip further up.
+  for (const link of document.querySelectorAll('.files a[data-file]')) {
+    const file = link.dataset.file.replace('{dir}', direction);
+    link.href = RAW + file;
+    link.textContent = file;
+  }
+
+  try {
+    localStorage.setItem('te-araroa-direction', direction);
+  } catch (e) {
+    // Not being able to remember the choice is not a reason to fail to apply it.
+  }
+  if (pushHash) history.replaceState(null, '', '#' + direction);
+
+  for (const listener of listeners) listener(direction);
+}
+
+/** Southbound km from the file, turned into km walked in the current direction. */
+function shownKm(km, officialLengthKm) {
+  const value = direction === 'nobo' ? officialLengthKm - km : km;
+  return value.toFixed(1);
+}
+
+for (const button of document.querySelectorAll('.dirswitch button')) {
+  button.addEventListener('click', () => setDirection(button.dataset.dir, true));
+}
+
+// Changing the fragment on an open page does not reload it, so someone pasting
+// `#nobo` into the address bar of a page they already have open would otherwise
+// see nothing happen. Switching writes the hash with replaceState rather than
+// pushState, so this only ever fires for a hash the reader set themselves.
+window.addEventListener('hashchange', () => {
+  const hash = location.hash.replace('#', '').toLowerCase();
+  if (hash === 'nobo' || hash === 'northbound') setDirection('nobo', false);
+  else if (hash === 'sobo' || hash === 'southbound') setDirection('sobo', false);
+});
+
+setDirection(readInitialDirection(), false);
+
 fetch('data/overview.geojson')
   .then((r) => {
     if (!r.ok) throw new Error(r.status);
@@ -311,6 +495,20 @@ fetch('data/overview.geojson')
       filter: (f) => f.geometry.type === 'LineString',
       style: { color: getComputedStyle(document.documentElement).getPropertyValue('--route').trim(), weight: 2.5, opacity: 0.9 }
     }).addTo(map);
+
+    const totalKm = (geo.properties && geo.properties.officialLengthKm) || 3073.2;
+
+    const popupHtml = (p) => {
+      const km = shownKm(p.km, totalKm);
+      // Northbound gets both numbers: the trust's trail notes, its markers and
+      // every southbound hiker you meet are all counting the other way.
+      const line = direction === 'nobo'
+        ? 'km ' + km + ' <span style="color:#777">(TA ' + p.km.toFixed(1) + ')</span>'
+        : 'km ' + km;
+      return '<strong>' + p.name + '</strong><br>' +
+        p.kind + ' &middot; ' + line + '<br>' +
+        '<span style="color:#777">' + p.section + '</span>';
+    };
 
     const sites = L.geoJSON(geo, {
       filter: (f) => f.geometry.type === 'Point',
@@ -325,14 +523,43 @@ fetch('data/overview.geojson')
         });
       },
       onEachFeature: (f, layer) => {
-        const p = f.properties;
-        layer.bindPopup(
-          '<strong>' + p.name + '</strong><br>' +
-          p.kind + ' &middot; km ' + p.km + '<br>' +
-          '<span style="color:#777">' + p.section + '</span>'
-        );
+        layer.bindPopup(() => popupHtml(f.properties));
       }
     });
+
+    // Which end you start at is the one thing a static line cannot show, and it
+    // is the whole of what the switch means on the map.
+    const line = geo.features.find((f) => f.geometry.type === 'LineString');
+    const coords = line ? line.geometry.coordinates : [];
+    const capeReinga = coords.length ? L.latLng(coords[0][1], coords[0][0]) : null;
+    const bluff = coords.length
+      ? L.latLng(coords[coords.length - 1][1], coords[coords.length - 1][0])
+      : null;
+
+    const endMarker = (colour) => L.circleMarker([0, 0], {
+      radius: 7, color: colour, weight: 3, fillOpacity: 1, fillColor: '#fff'
+    });
+    const startMarker = endMarker('#2f6b4f');
+    const finishMarker = endMarker('#d4571f');
+
+    const syncEnds = () => {
+      if (!capeReinga || !bluff) return;
+      const nobo = direction === 'nobo';
+      const start = nobo ? bluff : capeReinga;
+      const finish = nobo ? capeReinga : bluff;
+      const startName = nobo ? 'Bluff' : 'Cape Reinga';
+      const finishName = nobo ? 'Cape Reinga' : 'Bluff';
+
+      startMarker.setLatLng(start).bindTooltip('Start &middot; ' + startName, {
+        permanent: false, direction: 'top'
+      });
+      finishMarker.setLatLng(finish).bindTooltip(
+        'Finish &middot; ' + finishName + ' &middot; km ' + totalKm.toFixed(0),
+        { permanent: false, direction: 'top' }
+      );
+      startMarker.addTo(map);
+      finishMarker.addTo(map);
+    };
 
     // 266 sites strung along 3,000 km merge into one smear at country zoom, and
     // the smear hides the route it is meant to annotate. They appear once the
@@ -346,7 +573,15 @@ fetch('data/overview.geojson')
     };
     map.on('zoomend', syncSites);
 
+    // Popups are built on open, so a switch while one is open needs it redrawn.
+    listeners.push(() => {
+      syncEnds();
+      const open = sites.getPopup && sites.getPopup();
+      if (open && open.isOpen()) open.update();
+    });
+
     map.fitBounds(route.getBounds(), { padding: [12, 12] });
+    syncEnds();
     syncSites();
   })
   .catch((err) => {

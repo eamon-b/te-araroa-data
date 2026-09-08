@@ -59,14 +59,47 @@ from the trail guides credited in the file.
 
 Everything in [`out/`](out/) is committed. If you just want the data, take it:
 
+Most files come in both directions, `-sobo` (Cape Reinga → Bluff) and `-nobo`
+(Bluff → Cape Reinga):
+
 | File | Contents |
 |---|---|
-| `te-araroa-2026-27.gpx` | 15 tracks (main route, transport connectors, 13 bypasses), 574 waypoints typed `hut`/`campsite`/`town`/`resupply`/`food`/`accommodation`/`caravan-park` |
-| `resupply-plan.csv` | 266 sites in trail order: km, section, trail elevation, leg distances, leg ascent/descent, bunks, water, booking, phone, address, hours, DOC link |
-| `sections.csv` | 79 official sections with km ranges |
-| `datasheet.csv`, `datasheet-resupply.csv` | the same route through `gpx-tools`' `processGpxTravelPlan` |
-| `no-camping-areas.geojson` | 353 restricted-camping polygons |
-| `te-araroa.meta.json` | every GIS attribute per site, plus sections, connectors, route gaps and source checksums |
+| `te-araroa-2026-27-{sobo,nobo}.gpx` | 15 tracks (main route, transport connectors, 13 bypasses), 574 waypoints typed `hut`/`campsite`/`town`/`resupply`/`food`/`accommodation`/`caravan-park`, all in walking order |
+| `resupply-plan-{sobo,nobo}.csv` | 266 sites in trail order: km, official km, section, trail elevation, leg distances, leg ascent/descent, bunks, water, booking, phone, address, hours, DOC link |
+| `sections-{sobo,nobo}.csv` | 79 official sections with km ranges, counted in that direction and in the trust's chainage |
+| `datasheet-{sobo,nobo}.csv`, `datasheet-resupply-{sobo,nobo}.csv` | the same route through `gpx-tools`' `processGpxTravelPlan` |
+| `no-camping-areas.geojson` | 353 restricted-camping polygons. No chainage, so one file serves both |
+| `te-araroa.meta.json` | every GIS attribute per site, plus sections, connectors, route gaps and source checksums, always in official chainage |
+
+## Which direction
+
+The trust chains the trail southbound: km 0 is Cape Reinga, and every number it
+publishes counts that way. Around a fifth of thru-hikers walk north from Bluff,
+and for them the official chainage runs backwards.
+
+**A northbound sheet is not the southbound sheet read from the bottom.** The
+rows reverse, but so do the climbs — what you ascend walking north you descend
+walking south — so `Leg ascent m` and `Leg descent m` genuinely differ between
+the two files. Over the whole trail it is 83,916 m of climbing northbound
+against 83,775 m southbound.
+
+Two decisions worth knowing about:
+
+- **The direction is in the filename, not in a folder.** A folder name does not
+  survive a download; two files both called `datasheet.csv` become
+  `datasheet.csv` and `datasheet (1).csv`, and a GPX copied onto a watch keeps
+  nothing but its name.
+- **Every sheet carries both numbers.** `Km` is progress in the direction you
+  are walking, `Official km` is the trust's own. Without the second one, a
+  northbound sheet cannot be lined up against the trust's trail notes, its km
+  markers, or anything a southbound hiker tells you. In the southbound sheet the
+  two columns coincide; they are both there so the files share one schema.
+
+`te-araroa.meta.json` is deliberately not duplicated. It is the trust's data
+with the trust's chainage on it; northbound km is `officialLengthKm - km`.
+
+The project page carries a switch that drives both the map and the download
+links, and it deep-links: [`#nobo`](https://eamon-b.github.io/te-araroa-data/#nobo).
 
 ## Building it yourself
 
@@ -175,7 +208,9 @@ are kept, with `Off trail m` recording the detour.
   trail published as GIS segments with a chainage.
 - `src/te-araroa.ts` — the Te Araroa specifics: folder names, the DOC and private
   attribute vocabularies, the waypoint-type mapping.
-- `src/build.ts` — orchestration and output.
+- `src/build.ts` — orchestration and output. The route is assembled once in the
+  trust's southbound chainage; `writeDirection` is the only part that knows
+  there is more than one way to walk it, and is called once per direction.
 - `docs/` — the project page.
 
 The generic KML/KMZ reading lives in `gpx-tools` so the next trail that ships a

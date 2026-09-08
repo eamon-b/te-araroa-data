@@ -2,9 +2,43 @@
   "trail": "Te Araroa",
   "season": "2026-27",
   "version": "45",
-  "direction": "SOBO",
   "attribution": "Te Araroa Trust, CC BY 4.0 NZ - 2026-27 trail data (v45)",
-  "generatedAt": "2026-09-08T11:04:30.994Z",
+  "chainage": {
+    "direction": "SOBO",
+    "origin": "Cape Reinga",
+    "northboundKm": "officialLengthKm - km"
+  },
+  "directions": [
+    {
+      "id": "sobo",
+      "code": "SOBO",
+      "label": "Southbound",
+      "from": "Cape Reinga",
+      "to": "Bluff",
+      "files": [
+        "te-araroa-2026-27-sobo.gpx",
+        "resupply-plan-sobo.csv",
+        "sections-sobo.csv",
+        "datasheet-sobo.csv",
+        "datasheet-resupply-sobo.csv"
+      ]
+    },
+    {
+      "id": "nobo",
+      "code": "NOBO",
+      "label": "Northbound",
+      "from": "Bluff",
+      "to": "Cape Reinga",
+      "files": [
+        "te-araroa-2026-27-nobo.gpx",
+        "resupply-plan-nobo.csv",
+        "sections-nobo.csv",
+        "datasheet-nobo.csv",
+        "datasheet-resupply-nobo.csv"
+      ]
+    }
+  ],
+  "generatedAt": "2026-09-08T20:43:47.143Z",
   "source": {
     "fetchedAt": "2026-09-08",
     "files": [
