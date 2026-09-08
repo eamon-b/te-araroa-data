@@ -8,15 +8,22 @@
  * hours, and the chainage that puts all of it in trail order. So this build
  * reads the KMZ and treats the GPX purely as a cross-check.
  *
+ * The route is assembled once, in the trust's own southbound chainage, and then
+ * written twice - once for each direction in `DIRECTIONS`. A northbound sheet
+ * is not a southbound sheet read from the bottom: the leg ascent and descent
+ * swap over, so the climbing figures genuinely differ.
+ *
  *   npm run build
  *
- * Outputs land in out/:
- *   te-araroa-2026-27.gpx   the trail, for gpx-tools and trail-maps
- *   te-araroa.meta.json     every GIS attribute, keyed by waypoint
- *   no-camping-areas.geojson  the 353 restricted-camping polygons
- *   resupply-plan.csv       the planning sheet
- *   datasheet.csv           the same route through gpx-tools' datasheet
- *   sections.csv            official section boundaries with km ranges
+ * Outputs land in out/, with `-sobo` and `-nobo` variants of each:
+ *   te-araroa-2026-27-*.gpx    the trail, for gpx-tools and trail-maps
+ *   resupply-plan-*.csv        the planning sheet
+ *   datasheet-*.csv            the same route through gpx-tools' datasheet
+ *   sections-*.csv             section boundaries with km ranges
+ *
+ * and two files that carry no direction of their own:
+ *   te-araroa.meta.json        every GIS attribute, in official chainage
+ *   no-camping-areas.geojson   the 353 restricted-camping polygons
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
@@ -46,6 +53,7 @@ import {
   geometricLengthKm,
   projectOntoRoute,
   type ChainedSegment,
+  type Coord,
   type RoutePoint,
 } from "./route.ts";
 import {
@@ -72,6 +80,93 @@ const OFFICIAL_GPX = join(sourceDir, "TeAraroaTrail_2026_27.gpx");
 const SOURCE_MANIFEST = join(sourceDir, "manifest.json");
 const TRAIL_NAME = "Te Araroa";
 const ATTRIBUTION = "Te Araroa Trust, CC BY 4.0 NZ - 2026-27 trail data (v45)";
+
+/**
+ * The two ways to walk the trail.
+ *
+ * The trust chains the trail southbound - km 0 is Cape Reinga - and every
+ * number it publishes counts that way. Roughly a fifth of thru-hikers walk the
+ * other way, and for them the official chainage counts down, which makes a
+ * southbound sheet awkward to plan from and its leg ascent figures simply
+ * wrong: what you climb walking north is what you descend walking south.
+ *
+ * So the route is assembled once, southbound, and the *outputs* are written
+ * twice. Nothing here reverses `route.points`: the km on a route vertex stays
+ * the trust's own, which keeps `indexAtKm`'s binary search and every projection
+ * working against ascending chainage. Direction is applied at the edge.
+ */
+interface DirectionSpec {
+  id: "sobo" | "nobo";
+  /** The abbreviation hikers actually use. */
+  code: "SOBO" | "NOBO";
+  label: string;
+  from: string;
+  to: string;
+}
+
+const DIRECTIONS: DirectionSpec[] = [
+  {
+    id: "sobo",
+    code: "SOBO",
+    label: "Southbound",
+    from: "Cape Reinga",
+    to: "Bluff",
+  },
+  {
+    id: "nobo",
+    code: "NOBO",
+    label: "Northbound",
+    from: "Bluff",
+    to: "Cape Reinga",
+  },
+];
+
+/**
+ * Where each direction's files land.
+ *
+ * The direction is in the filename rather than in a containing directory
+ * because a directory name does not survive the download. Two files both called
+ * `datasheet.csv` become `datasheet.csv` and `datasheet (1).csv` in a downloads
+ * folder, and a GPX copied onto a watch keeps nothing but its name.
+ */
+function directionFiles(direction: DirectionSpec) {
+  const d = direction.id;
+  return {
+    gpx: `te-araroa-2026-27-${d}.gpx`,
+    plan: `resupply-plan-${d}.csv`,
+    sections: `sections-${d}.csv`,
+    datasheet: `datasheet-${d}.csv`,
+    datasheetResupply: `datasheet-resupply-${d}.csv`,
+  };
+}
+
+/** A named stretch of trail, in the trust's chainage. */
+interface SectionSpan {
+  section: string;
+  island: string;
+  fromKm: number;
+  toKm: number;
+}
+
+/** Everything `writeDirection` needs, all of it in official chainage terms. */
+interface DirectionContext {
+  sites: SiteRecord[];
+  connectors: ChainedSegment[];
+  mainSegments: RoutePoint[][];
+  bypasses: Array<{
+    name: string;
+    coordinates: Coord[];
+    startKm: number;
+    endKm: number;
+  }>;
+  kmMarkers: Array<{ km: number; section: string; coord: Coord }>;
+  baseSections: SectionSpan[];
+  officialKm: number;
+  geometricKm: number;
+  routePointCount: number;
+  elevationAt: (km: number) => number;
+  cumulativeAscentAt: (km: number) => { ascent: number; descent: number };
+}
 
 /** A hut or campsite, positioned on the route. */
 interface SiteRecord {
@@ -411,36 +506,7 @@ async function main(): Promise<void> {
     }
   }
 
-  // ----------------------------------------------------------------- the GPX
-
-  const waypoints: GpxWaypoint[] = sites.map((site) => ({
-    lat: site.lat,
-    lon: site.lon,
-    ele: site.ele,
-    name: site.name,
-    // Leading km makes the waypoint self-locating in any viewer that only shows a name.
-    desc: `km ${site.km.toFixed(1)} | ${site.description}`,
-    type: site.type,
-    cmt: site.section,
-    ...(site.link ? { link: site.link } : {}),
-  }));
-
-  // Km markers every 10 km: enough to read position off the map, few enough not
-  // to bury the huts. All 3,073 would swamp any waypoint list.
-  for (const placemark of folder(FOLDERS.kmMarkers)) {
-    const km = Number(placemark.fields["KM"]);
-    if (!Number.isFinite(km) || km % 10 !== 0) continue;
-    const coord = pointCoord(placemark);
-    if (!coord) continue;
-    waypoints.push({
-      lat: coord.lat,
-      lon: coord.lon,
-      ele: coord.ele,
-      name: `${km} km`,
-      desc: placemark.fields["Section"] ?? "",
-      type: "waypoint",
-    });
-  }
+  // ------------------------------------------- pieces both directions build on
 
   // The main route is one track. trail-maps concatenates a track's segments, so
   // splitting at the transport gaps would not change its distances; the split is
@@ -457,66 +523,57 @@ async function main(): Promise<void> {
   });
   if (current.length > 0) mainSegments.push(current);
 
-  const tracks: GpxTrack[] = [
-    {
-      name: TRAIL_NAME,
-      segments: mainSegments.map((points) => ({
-        points: points.map((p) => ({
-          lat: p.lat,
-          lon: p.lon,
-          ele: p.ele,
-          time: null,
-        })),
-      })),
-    },
-    {
-      name: "Te Araroa - Transport Connectors",
-      segments: connectors.map((segment) => ({
-        points: segment.coordinates.map((c) => ({
-          lat: c.lat,
-          lon: c.lon,
-          ele: c.ele,
-          time: null,
-        })),
-      })),
-    },
-  ];
+  // Bypasses are published as bare lines with no chainage of their own, and the
+  // trust does not draw them all the same way round. Projecting each one's two
+  // endpoints onto the route gives it a km span, which is what lets
+  // `writeDirection` lay it down pointing the way you are walking.
+  const bypasses = folder(FOLDERS.bypasses)
+    .map((placemark) => {
+      const coordinates = lineCoords(placemark);
+      const ends =
+        coordinates.length > 0
+          ? {
+              startKm: projectOntoRoute(coordinates[0], route.points).km,
+              endKm: projectOntoRoute(
+                coordinates[coordinates.length - 1],
+                route.points
+              ).km,
+            }
+          : { startKm: 0, endKm: 0 };
+      return {
+        name: `Bypass: ${placemark.fields["Name"] ?? placemark.name}`,
+        coordinates,
+        ...ends,
+      };
+    })
+    .filter((bypass) => bypass.coordinates.length > 0)
+    .sort(
+      (a, b) => Math.min(a.startKm, a.endKm) - Math.min(b.startKm, b.endKm)
+    );
 
-  for (const placemark of folder(FOLDERS.bypasses)) {
-    const coords = lineCoords(placemark);
-    if (coords.length === 0) continue;
-    tracks.push({
-      name: `Bypass: ${placemark.fields["Name"] ?? placemark.name}`,
-      segments: [
-        {
-          points: coords.map((c) => ({
-            lat: c.lat,
-            lon: c.lon,
-            ele: c.ele,
-            time: null,
-          })),
-        },
-      ],
-    });
+  const misdrawn = bypasses.filter((b) => b.endKm < b.startKm).length;
+  if (misdrawn > 0) {
+    console.log(
+      `  ${misdrawn} of ${bypasses.length} bypasses are drawn against the trust's ` +
+        `chainage; each is oriented to the direction being written`
+    );
   }
 
-  const gpx = writeGpx(
-    { tracks, routes: [], waypoints },
-    {
-      name: `${TRAIL_NAME} 2026-27 (SOBO)`,
-      desc:
-        `Built from the official KMZ. Official chainage ${officialKm.toFixed(1)} km; ` +
-        `route geometry ${geometricKm.toFixed(1)} km over ${route.points.length} points.`,
-      author: "Te Araroa Trust",
-      keywords: ATTRIBUTION,
-      creator: "te-araroa-data (gpx-tools kml-parser)",
-    }
-  );
-  writeFileSync(join(outDir, "te-araroa-2026-27.gpx"), gpx);
-  console.log(
-    `  wrote te-araroa-2026-27.gpx (${(gpx.length / 1e6).toFixed(1)} MB, ` +
-      `${tracks.length} tracks, ${waypoints.length} waypoints)`
-  );
+  // Km markers every 10 km: enough to read position off the map, few enough not
+  // to bury the huts. All 3,073 would swamp any waypoint list.
+  const kmMarkers = folder(FOLDERS.kmMarkers)
+    .map((placemark) => ({
+      km: Number(placemark.fields["KM"]),
+      section: placemark.fields["Section"] ?? "",
+      coord: pointCoord(placemark),
+    }))
+    .filter(
+      (marker): marker is { km: number; section: string; coord: Coord } =>
+        Number.isFinite(marker.km) &&
+        marker.km % 10 === 0 &&
+        marker.coord !== null
+    )
+    .sort((a, b) => a.km - b.km);
 
   // ------------------------------------------------------- no-camping polygons
 
@@ -556,112 +613,44 @@ async function main(): Promise<void> {
     `  wrote no-camping-areas.geojson (${noCampingFeatures.length} polygons)`
   );
 
-  // ------------------------------------------------------------- sections CSV
-
-  const sectionRows: Array<Record<string, string | number>> = [];
+  // Section boundaries in the trust's own chainage order. The spans belong to
+  // the route, not to the direction you walk it, so they are found once and
+  // mirrored per direction.
+  const baseSections: SectionSpan[] = [];
   let sectionStart = route.segments[0];
   for (let i = 1; i <= route.segments.length; i++) {
     const segment = route.segments[i];
     const previous = route.segments[i - 1];
     if (!segment || segment.section !== sectionStart.section) {
-      sectionRows.push({
-        Section: sectionStart.section,
-        Island: sectionStart.island,
-        "Start km": round(sectionStart.fromKm, 2),
-        "End km": round(previous.toKm, 2),
-        "Length km": round(previous.toKm - sectionStart.fromKm, 2),
+      baseSections.push({
+        section: sectionStart.section,
+        island: sectionStart.island,
+        fromKm: sectionStart.fromKm,
+        toKm: previous.toKm,
       });
       if (segment) sectionStart = segment;
     }
   }
-  writeFileSync(
-    join(outDir, "sections.csv"),
-    Papa.unparse(tidyCsvRows(sectionRows), { quotes: true })
-  );
-  console.log(`  wrote sections.csv (${sectionRows.length} sections)`);
-
-  // -------------------------------------------------------- resupply planning
 
   const cumulativeAscentAt = buildCumulativeAscent(route.points);
 
-  const planRows = sites.map((site, index) => {
-    const previous = index > 0 ? sites[index - 1] : null;
-    const next = index < sites.length - 1 ? sites[index + 1] : null;
-    const legAscent = previous
-      ? cumulativeAscentAt(site.km).ascent -
-        cumulativeAscentAt(previous.km).ascent
-      : 0;
-    const legDescent = previous
-      ? cumulativeAscentAt(site.km).descent -
-        cumulativeAscentAt(previous.km).descent
-      : 0;
+  // ---------------------------------------------- one output set per direction
 
-    return {
-      Km: round(site.km, 2),
-      Name: site.name,
-      Type: site.type,
-      Source: site.source,
-      Section: site.section,
-      Island: site.island,
-      "Trail elevation m": Math.round(elevationAt(site.km)),
-      "Off trail m": Math.round(site.offTrailMeters),
-      "From previous km": previous ? round(site.km - previous.km, 2) : 0,
-      "To next km": next ? round(next.km - site.km, 2) : 0,
-      "Leg ascent m": Math.round(legAscent),
-      "Leg descent m": Math.round(legDescent),
-      Bunks: site.bunks ?? "",
-      Water: site.water ? "Yes" : "",
-      "Booking required": site.bookingRequired ? "Yes" : "",
-      "Trail Pass": site.trailPass,
-      Phone: site.fields["phone"] ?? "",
-      Address: site.fields["physical_address"] ?? "",
-      Hours: site.fields["opening_hours"] ?? "",
-      Link: site.link,
-      Detail: site.description,
-    };
-  });
-  writeFileSync(
-    join(outDir, "resupply-plan.csv"),
-    Papa.unparse(tidyCsvRows(planRows), { quotes: true })
-  );
-  console.log(`  wrote resupply-plan.csv (${planRows.length} rows)`);
+  const context: DirectionContext = {
+    sites,
+    connectors,
+    mainSegments,
+    bypasses,
+    kmMarkers,
+    baseSections,
+    officialKm,
+    geometricKm,
+    routePointCount: route.points.length,
+    elevationAt,
+    cumulativeAscentAt,
+  };
 
-  // ------------------------------------- the same route through gpx-tools
-
-  // Only the main route goes in. `processGpxTravelPlan` totals every track it
-  // is given, so handing it the bypasses and connectors as well would report a
-  // trail nearly 5,000 km long.
-  const mainRouteGpx = writeGpx(
-    { tracks: [tracks[0]], routes: [], waypoints },
-    { name: `${TRAIL_NAME} 2026-27 (SOBO) - main route`, keywords: ATTRIBUTION }
-  );
-  const datasheet = processGpxTravelPlan(mainRouteGpx, {
-    // The KMZ has no shops in it, so "resupply" here means a site that sells
-    // food or a holiday park in a town - see README on filling this gap.
-    resupplyKeywords: [
-      "holiday park",
-      "store",
-      "shop",
-      "hotel",
-      "tavern",
-      "motor camp",
-      "campground",
-    ],
-    waypointMaxDistance: 500,
-  });
-  writeFileSync(
-    join(outDir, "datasheet.csv"),
-    tidyCsvText(datasheet.processedPlan)
-  );
-  writeFileSync(
-    join(outDir, "datasheet-resupply.csv"),
-    tidyCsvText(datasheet.resupplyPoints)
-  );
-  console.log(
-    `  wrote datasheet.csv via gpx-tools ` +
-      `(${datasheet.stats.matchedWaypoints}/${datasheet.stats.totalWaypoints} waypoints matched, ` +
-      `${datasheet.stats.totalDistance.toFixed(1)} km)`
-  );
+  for (const direction of DIRECTIONS) writeDirection(direction, context);
 
   // ---------------------------------------------------------------- metadata
 
@@ -669,8 +658,25 @@ async function main(): Promise<void> {
     trail: TRAIL_NAME,
     season: "2026-27",
     version: folder(FOLDERS.mainTrail)[0].fields["Version"] ?? "",
-    direction: "SOBO",
     attribution: ATTRIBUTION,
+    // Every `km` in this file is the trust's own chainage, which runs
+    // southbound from Cape Reinga. There is deliberately no northbound copy of
+    // this file: a second set of the same coordinates under mirrored numbers
+    // would be one more thing to fall out of step. Northbound km is
+    // `officialLengthKm - km`, and the northbound CSVs in out/ have it applied.
+    chainage: {
+      direction: "SOBO",
+      origin: "Cape Reinga",
+      northboundKm: "officialLengthKm - km",
+    },
+    directions: DIRECTIONS.map((d) => ({
+      id: d.id,
+      code: d.code,
+      label: d.label,
+      from: d.from,
+      to: d.to,
+      files: Object.values(directionFiles(d)),
+    })),
     generatedAt: new Date().toISOString(),
     // Which bytes this was built from. A consumer holding a copy of these files
     // can confirm it is looking at the same release, and anyone wondering
@@ -716,7 +722,13 @@ async function main(): Promise<void> {
         kind: covering.length > 0 ? ("ferry" as const) : ("unmapped" as const),
       };
     }),
-    sections: sectionRows,
+    sections: baseSections.map((s) => ({
+      Section: s.section,
+      Island: s.island,
+      "Start km": round(s.fromKm, 2),
+      "End km": round(s.toKm, 2),
+      "Length km": round(s.toKm - s.fromKm, 2),
+    })),
     sites: sites.map((site) => ({
       name: site.name,
       type: site.type,
@@ -741,6 +753,269 @@ async function main(): Promise<void> {
   writeDocsOverview(route.points, sites, meta);
 
   crossCheckAgainstOfficialGpx(route.points);
+}
+
+/**
+ * Write one direction's GPX, planning CSVs and datasheets.
+ *
+ * Called once per entry in `DIRECTIONS`. Everything in `context` is expressed
+ * in the trust's southbound chainage; this function is the only place that
+ * knows about the other direction.
+ */
+function writeDirection(
+  direction: DirectionSpec,
+  context: DirectionContext
+): void {
+  const {
+    sites,
+    connectors,
+    mainSegments,
+    bypasses,
+    kmMarkers,
+    baseSections,
+    officialKm,
+    geometricKm,
+    routePointCount,
+    elevationAt,
+    cumulativeAscentAt,
+  } = context;
+
+  const nobo = direction.id === "nobo";
+  const files = directionFiles(direction);
+
+  /** Distance walked so far in this direction, from an official km. */
+  const progressKm = (km: number): number => (nobo ? officialKm - km : km);
+
+  /** Coordinates in the order you would walk them. */
+  const inOrder = <T>(items: T[]): T[] => (nobo ? [...items].reverse() : items);
+
+  /**
+   * Climb and drop over a leg, from the southbound prefix sums.
+   *
+   * Walking a stretch the other way turns its ascent into descent, so the two
+   * sums swap rather than being recomputed. `from`/`to` are official km, and
+   * for a northbound leg `from` is the larger of the two.
+   */
+  const legClimb = (fromKm: number, toKm: number) => {
+    const a = cumulativeAscentAt(fromKm);
+    const b = cumulativeAscentAt(toKm);
+    return nobo
+      ? { ascent: a.descent - b.descent, descent: a.ascent - b.ascent }
+      : { ascent: b.ascent - a.ascent, descent: b.descent - a.descent };
+  };
+
+  // ------------------------------------------------------------------ the GPX
+
+  const ordered = inOrder(sites);
+
+  const waypoints: GpxWaypoint[] = ordered.map((site) => ({
+    lat: site.lat,
+    lon: site.lon,
+    ele: site.ele,
+    name: site.name,
+    // Leading km makes the waypoint self-locating in any viewer that only shows
+    // a name. Northbound carries the official km alongside it, because that is
+    // the number the trust's trail notes, its physical markers and every
+    // southbound hiker you meet will be using.
+    desc: nobo
+      ? `km ${progressKm(site.km).toFixed(1)} (TA ${site.km.toFixed(1)}) | ${site.description}`
+      : `km ${site.km.toFixed(1)} | ${site.description}`,
+    type: site.type,
+    cmt: site.section,
+    ...(site.link ? { link: site.link } : {}),
+  }));
+
+  // Km markers keep the trust's own number as their name in both directions -
+  // those are the round ones, and mirroring them would give a list of markers
+  // reading 3063.2, 3053.2, 3043.2. Northbound progress goes in the note.
+  for (const marker of inOrder(kmMarkers)) {
+    waypoints.push({
+      lat: marker.coord.lat,
+      lon: marker.coord.lon,
+      ele: marker.coord.ele,
+      name: `${marker.km} km`,
+      desc: nobo
+        ? `${marker.section} | ${progressKm(marker.km).toFixed(1)} km northbound`
+        : marker.section,
+      type: "waypoint",
+    });
+  }
+
+  const mainTrack: GpxTrack = {
+    name: `${TRAIL_NAME} (${direction.code})`,
+    segments: inOrder(mainSegments).map((points) => ({
+      points: inOrder(points).map((p) => ({
+        lat: p.lat,
+        lon: p.lon,
+        ele: p.ele,
+        time: null,
+      })),
+    })),
+  };
+
+  const tracks: GpxTrack[] = [
+    mainTrack,
+    {
+      name: "Te Araroa - Transport Connectors",
+      segments: inOrder(connectors).map((segment) => ({
+        points: inOrder(segment.coordinates).map((c) => ({
+          lat: c.lat,
+          lon: c.lon,
+          ele: c.ele,
+          time: null,
+        })),
+      })),
+    },
+  ];
+
+  for (const bypass of inOrder(bypasses)) {
+    // Point the bypass the way you are walking, whichever way it was drawn.
+    const drawnWithChainage = bypass.endKm >= bypass.startKm;
+    const coords =
+      drawnWithChainage === nobo
+        ? [...bypass.coordinates].reverse()
+        : bypass.coordinates;
+    tracks.push({
+      name: bypass.name,
+      segments: [
+        {
+          points: coords.map((c) => ({
+            lat: c.lat,
+            lon: c.lon,
+            ele: c.ele,
+            time: null,
+          })),
+        },
+      ],
+    });
+  }
+
+  const gpx = writeGpx(
+    { tracks, routes: [], waypoints },
+    {
+      name: `${TRAIL_NAME} 2026-27 (${direction.code})`,
+      desc:
+        `Built from the official KMZ, walked ${direction.from} to ${direction.to}. ` +
+        `Official chainage ${officialKm.toFixed(1)} km (measured southbound from ` +
+        `Cape Reinga); route geometry ${geometricKm.toFixed(1)} km over ` +
+        `${routePointCount} points.`,
+      author: "Te Araroa Trust",
+      keywords: ATTRIBUTION,
+      creator: "te-araroa-data (gpx-tools kml-parser)",
+    }
+  );
+  writeFileSync(join(outDir, files.gpx), gpx);
+  console.log(
+    `  wrote ${files.gpx} (${(gpx.length / 1e6).toFixed(1)} MB, ` +
+      `${tracks.length} tracks, ${waypoints.length} waypoints)`
+  );
+
+  // ------------------------------------------------------------- sections CSV
+
+  const sectionRows = inOrder(baseSections).map((span) => {
+    const start = progressKm(nobo ? span.toKm : span.fromKm);
+    const end = progressKm(nobo ? span.fromKm : span.toKm);
+    return {
+      Section: span.section,
+      Island: span.island,
+      "Start km": round(start, 2),
+      "End km": round(end, 2),
+      "Length km": round(span.toKm - span.fromKm, 2),
+      "Official start km": round(span.fromKm, 2),
+      "Official end km": round(span.toKm, 2),
+    };
+  });
+  writeFileSync(
+    join(outDir, files.sections),
+    Papa.unparse(tidyCsvRows(sectionRows), { quotes: true })
+  );
+  console.log(`  wrote ${files.sections} (${sectionRows.length} sections)`);
+
+  // -------------------------------------------------------- resupply planning
+
+  const planRows = ordered.map((site, index) => {
+    const previous = index > 0 ? ordered[index - 1] : null;
+    const next = index < ordered.length - 1 ? ordered[index + 1] : null;
+    const climb = previous
+      ? legClimb(previous.km, site.km)
+      : { ascent: 0, descent: 0 };
+
+    return {
+      Km: round(progressKm(site.km), 2),
+      // In the southbound sheet this repeats the column before it. It is here
+      // anyway so the two files have one schema, and so that nothing reading
+      // the northbound sheet has to know the trail's length to recover the
+      // trust's number.
+      "Official km": round(site.km, 2),
+      Name: site.name,
+      Type: site.type,
+      Source: site.source,
+      Section: site.section,
+      Island: site.island,
+      "Trail elevation m": Math.round(elevationAt(site.km)),
+      "Off trail m": Math.round(site.offTrailMeters),
+      "From previous km": previous
+        ? round(Math.abs(site.km - previous.km), 2)
+        : 0,
+      "To next km": next ? round(Math.abs(next.km - site.km), 2) : 0,
+      "Leg ascent m": Math.round(climb.ascent),
+      "Leg descent m": Math.round(climb.descent),
+      Bunks: site.bunks ?? "",
+      Water: site.water ? "Yes" : "",
+      "Booking required": site.bookingRequired ? "Yes" : "",
+      "Trail Pass": site.trailPass,
+      Phone: site.fields["phone"] ?? "",
+      Address: site.fields["physical_address"] ?? "",
+      Hours: site.fields["opening_hours"] ?? "",
+      Link: site.link,
+      Detail: site.description,
+    };
+  });
+  writeFileSync(
+    join(outDir, files.plan),
+    Papa.unparse(tidyCsvRows(planRows), { quotes: true })
+  );
+  console.log(`  wrote ${files.plan} (${planRows.length} rows)`);
+
+  // ----------------------------------------- the same route through gpx-tools
+
+  // Only the main route goes in. `processGpxTravelPlan` totals every track it
+  // is given, so handing it the bypasses and connectors as well would report a
+  // trail nearly 5,000 km long.
+  const mainRouteGpx = writeGpx(
+    { tracks: [mainTrack], routes: [], waypoints },
+    {
+      name: `${TRAIL_NAME} 2026-27 (${direction.code}) - main route`,
+      keywords: ATTRIBUTION,
+    }
+  );
+  const datasheet = processGpxTravelPlan(mainRouteGpx, {
+    // The KMZ has no shops in it, so "resupply" here means a site that sells
+    // food or a holiday park in a town - see README on filling this gap.
+    resupplyKeywords: [
+      "holiday park",
+      "store",
+      "shop",
+      "hotel",
+      "tavern",
+      "motor camp",
+      "campground",
+    ],
+    waypointMaxDistance: 500,
+  });
+  writeFileSync(
+    join(outDir, files.datasheet),
+    tidyCsvText(datasheet.processedPlan)
+  );
+  writeFileSync(
+    join(outDir, files.datasheetResupply),
+    tidyCsvText(datasheet.resupplyPoints)
+  );
+  console.log(
+    `  wrote ${files.datasheet} via gpx-tools ` +
+      `(${datasheet.stats.matchedWaypoints}/${datasheet.stats.totalWaypoints} waypoints matched, ` +
+      `${datasheet.stats.totalDistance.toFixed(1)} km)`
+  );
 }
 
 /**

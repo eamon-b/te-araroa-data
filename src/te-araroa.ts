@@ -7,7 +7,7 @@
  * would be wrong for the next trail lives here.
  */
 
-import type { KmlPlacemark } from "../../../gpx-tools/src/lib/kml-parser";
+import type { KmlPlacemark } from "gpx-tools/lib/kml-parser";
 
 /** The folders the 2026-27 KMZ ships, as they are named in `doc.kml`. */
 export const FOLDERS = {
