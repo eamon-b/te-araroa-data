@@ -94,6 +94,19 @@ jobs:
             exit 0
           fi
 
+          # te-araroa.meta.json stamps the moment the build ran, so it differs on
+          # every run whether or not the data did. Without this the guard above
+          # could never fire, and a forced run on unchanged files would open a
+          # pull request whose entire content was a new timestamp.
+          if [ "$(git diff --cached --name-only)" = "out/te-araroa.meta.json" ] \
+            && [ -s "$RUNNER_TEMP/previous-meta.json" ] \
+            && diff -q \
+                 <(jq -S "del(.generatedAt)" "$RUNNER_TEMP/previous-meta.json") \
+                 <(jq -S "del(.generatedAt)" out/te-araroa.meta.json) >/dev/null; then
+            echo "Only the build timestamp changed. Nothing to do."
+            exit 0
+          fi
+
           if [ -n "$PREVIOUS_SEASON" ] && [ "$SEASON" != "$PREVIOUS_SEASON" ]; then
             TITLE="New season: rebuild from the trust's $SEASON release"
           else
