@@ -7,3 +7,6 @@ data/source/*.gpx
 # out/ is the point of this repository, so it is committed. Negated explicitly
 # because a global gitignore commonly excludes out/ as a build directory.
 !out/
+
+# Worktrees created by tooling. Never part of the published data.
+.claude/worktrees/

@@ -1,0 +1,166 @@
+# Follow the Te Araroa Trust's published data.
+#
+# The trust reroutes the trail continuously and refreshes its downloads roughly
+# quarterly, without announcing it. This checks weekly, rebuilds when the
+# published bytes change, and opens a pull request describing what moved.
+#
+# It deliberately stops short of merging. The build asserts a lot - continuous
+# chainage, known folder names, a cross-check against the trust's own km markers
+# - and those assertions are the reason the output can be trusted. A run that
+# fails should reach a person, not retry quietly; a run that succeeds still
+# changes data people plan a five-month walk with, so a person signs it off.
+#
+# Requires "Allow GitHub Actions to create and approve pull requests" under
+# Settings -> Actions -> General.
+
+name: Refresh from the trust
+
+on:
+  schedule:
+    # Mondays, 07:00 NZ time. The trust publishes on no fixed day, so the day of
+    # the week is arbitrary; weekly is simply far more often than quarterly.
+    - cron: "0 19 * * 0"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Rebuild and open a PR even if the trust's files are unchanged"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - run: npm ci
+
+      # Keep the build currently on main, so the pull request can say what
+      # changed rather than presenting a few megabytes of regenerated GPX and
+      # leaving the reader to guess.
+      - name: Save the current build for comparison
+        run: |
+          git show HEAD:out/te-araroa.meta.json > "$RUNNER_TEMP/previous-meta.json" \
+            || echo "no previous build on this branch"
+
+      - name: Check what the trust is publishing
+        id: fetch
+        run: npm run fetch
+
+      - name: Rebuild
+        id: build
+        if: steps.fetch.outputs.changed == 'true' || inputs.force
+        run: npm run build
+
+      - name: Describe what changed
+        if: steps.build.outcome == 'success'
+        run: |
+          npx tsx src/summary.ts \
+            "$RUNNER_TEMP/previous-meta.json" \
+            out/te-araroa.meta.json > "$RUNNER_TEMP/pr-body.md"
+          cat "$RUNNER_TEMP/pr-body.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open a pull request
+        if: steps.build.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SEASON: ${{ steps.fetch.outputs.season }}
+          PREVIOUS_SEASON: ${{ steps.fetch.outputs.previous_season }}
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # The trust's own files are gitignored, so this picks up out/, docs/,
+          # the regenerated README and the source manifest - nothing else.
+          git add -A
+          if git diff --cached --quiet; then
+            echo "The trust republished, but the build is byte-identical. Nothing to do."
+            exit 0
+          fi
+
+          if [ -n "$PREVIOUS_SEASON" ] && [ "$SEASON" != "$PREVIOUS_SEASON" ]; then
+            TITLE="New season: rebuild from the trust's $SEASON release"
+          else
+            TITLE="Rebuild from the trust's $SEASON files"
+          fi
+
+          # A fresh branch each run, so nothing ever has to be rewritten under a
+          # reviewer who is part-way through reading it. Superseded refreshes
+          # are closed below.
+          BRANCH="refresh/$SEASON-$(date -u +%Y%m%d-%H%M)"
+          git switch -c "$BRANCH"
+          git commit -m "$TITLE" -m "$(cat "$RUNNER_TEMP/pr-body.md")"
+          git push origin "$BRANCH"
+
+          URL=$(gh pr create \
+            --base "${{ github.ref_name }}" \
+            --head "$BRANCH" \
+            --title "$TITLE" \
+            --body-file "$RUNNER_TEMP/pr-body.md")
+          echo "Opened $URL"
+
+          # Only the newest refresh is worth anyone's time; an older one is by
+          # definition built from files the trust has already replaced.
+          gh pr list --state open --json number,headRefName \
+            --jq '.[] | select(.headRefName | startswith("refresh/")) | .number' \
+          | while read -r NUMBER; do
+              if [ "$(gh pr view "$NUMBER" --json headRefName --jq .headRefName)" != "$BRANCH" ]; then
+                gh pr close "$NUMBER" \
+                  --comment "Superseded by $URL, built from newer files." \
+                  --delete-branch
+              fi
+            done
+
+      # A scheduled run that fails is invisible unless it says so. The build's
+      # assertions are meant to fire when the trust changes something
+      # structural, and that is exactly when someone needs to look.
+      - name: Report a failed refresh
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          gh label create refresh-failed \
+            --color B60205 \
+            --description "The scheduled refresh from the trust could not complete" \
+            --force
+
+          BODY=$(cat <<EOF
+          The scheduled refresh failed: $RUN
+
+          Most likely one of:
+
+          - the trust restructured its download page, so the slug patterns in \`src/fetch.ts\` no longer match
+          - the KMZ renamed or dropped a folder \`src/te-araroa.ts\` expects
+          - chainage came back discontinuous, which the build refuses to publish
+
+          The data in \`out/\` is untouched and still describes the last good build.
+          EOF
+          )
+
+          EXISTING=$(gh issue list --label refresh-failed --state open --limit 1 --json number --jq '.[0].number // empty')
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+          else
+            gh issue create \
+              --title "Scheduled refresh from the trust failed" \
+              --label refresh-failed \
+              --body "$BODY"
+          fi

@@ -1,10 +1,10 @@
 {
   "trail": "Te Araroa",
   "season": "2026-27",
-  "version": "45",
+  "version": "v45",
   "direction": "SOBO",
   "attribution": "Te Araroa Trust, CC BY 4.0 NZ - 2026-27 trail data (v45)",
-  "generatedAt": "2026-09-08T11:04:30.994Z",
+  "generatedAt": "2026-09-08T20:42:44.259Z",
   "source": {
     "fetchedAt": "2026-09-08",
     "files": [
@@ -21,6 +21,99 @@
         "sha256": "71cf54287639e1f9f34b6fa126db454cd179d587d192fcac66e155c21b76197b"
       }
     ]
+  },
+  "stats": {
+    "officialGpxTrackPoints": 28027,
+    "kmzTrackPoints": 35987,
+    "routePoints": 35441,
+    "tracks": 15,
+    "waypoints": 574,
+    "sections": 79,
+    "docSites": 135,
+    "privateSites": 49,
+    "officialSites": 184,
+    "officialFoodSites": 3,
+    "bypasses": 13,
+    "noCampingAreas": 353,
+    "planRows": 266,
+    "resupply": {
+      "total": 82,
+      "byType": {
+        "resupply": 24,
+        "town": 44,
+        "food": 14
+      },
+      "acceptsBoxes": 13,
+      "researchedAt": "2026-09-08"
+    },
+    "longestCarries": [
+      {
+        "from": "Te Kūiti",
+        "to": "Taumarunui",
+        "fromKm": 898.8,
+        "toKm": 1060.5,
+        "distanceKm": 161.7,
+        "sections": [
+          "Te Kūiti to Pureora",
+          "Pureora Forest - The Timber Trail"
+        ]
+      },
+      {
+        "from": "St Arnaud",
+        "to": "Boyle Village",
+        "fromKm": 1990.5,
+        "toKm": 2109.2,
+        "distanceKm": 118.7,
+        "sections": [
+          "Waiau Pass Track"
+        ]
+      },
+      {
+        "from": "Twizel",
+        "to": "Lake Hāwea",
+        "fromKm": 2496.6,
+        "toKm": 2613.8,
+        "distanceKm": 117.2,
+        "sections": [
+          "Tekapo to Lake Ōhau",
+          "Breast Hill Track"
+        ]
+      },
+      {
+        "from": "Hanmer Springs",
+        "to": "Arthur's Pass",
+        "fromKm": 2109.4,
+        "toKm": 2222.2,
+        "distanceKm": 112.8,
+        "sections": [
+          "Boyle to Arthur's Pass"
+        ]
+      },
+      {
+        "from": "Glenorchy",
+        "to": "Te Anau",
+        "fromKm": 2733.8,
+        "toKm": 2829.8,
+        "distanceKm": 96,
+        "sections": [
+          "Mavora Walkway",
+          "Mararoa River Track"
+        ]
+      }
+    ],
+    "strandedSites": 25,
+    "strandedSitesIncludingTowns": 39,
+    "farthestSite": {
+      "name": "Peel Forest Campground",
+      "offTrailKm": 34.7
+    },
+    "accuracy": {
+      "markers": 3058,
+      "meanErrorMeters": 8,
+      "worstErrorKm": 1.427,
+      "worstAtKm": 1504,
+      "officialTrackPoints": 28027
+    }
   },
   "officialLengthKm": 3073.204,
   "geometricLengthKm": 3159.486,
@@ -2097,7 +2190,7 @@
       }
     },
     {
-      "name": "Te Kuiti",
+      "name": "Te Kūiti",
       "type": "town",
       "source": "Resupply",
       "km": 898.782,
@@ -7496,7 +7589,7 @@
       }
     },
     {
-      "name": "Lake Hawea",
+      "name": "Lake Hāwea",
       "type": "resupply",
       "source": "Resupply",
       "km": 2613.77,
