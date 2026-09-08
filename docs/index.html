@@ -161,9 +161,12 @@ footer {
 <header>
   <h1>te-araroa-data</h1>
   <p class="tagline">
-    The Te Araroa Trust publishes its trail data as a KMZ that almost nothing can
-    read. This turns it into an ordinary GPX in walking order — with elevation,
-    huts, campsites, and a resupply plan the official data does not contain.
+    The Te Araroa Trust publishes its trail data as a KMZ file. However, most
+    GPS devices work better with GPX files. So this page has built a GPX from 
+    that KMZ file. In fact, this also orders the individual tracks in walking 
+    order, with elevation, huts, campsites, a datasheet with every waypoint on 
+    it as well as a resupply data sheet that only contains points were you can 
+    resupply. The official data does not contain these, hopefully they are helpful.
   </p>
   <span class="badge">2026-27 release (v45)</span>
   <span class="badge">built 8 September 2026</span>
@@ -181,8 +184,8 @@ footer {
     Before you walk, get the current files from
     <a href="https://www.teararoa.org.nz/trail-maps/">teararoa.org.nz</a> and read
     the trust's own trail notes and closure notices. Hut, water and resupply
-    details decay faster than the route does — treat all of them as a starting
-    point for your own checking, not as something to rely on in the field.
+    details decay faster than the route does, so you might want to double check 
+    them against more recent data and reports.
   </p>
 </div>
 
@@ -259,16 +262,18 @@ footer {
 
 <h2>What you might build on it</h2>
 <p>
-  The waypoints carry a GPX <code>&lt;type&gt;</code>, so a hut arrives as a hut
-  rather than as a string to guess at. Every site has an official trail km, which
-  makes "what is between km 1,200 and km 1,340" a filter rather than a geometry
-  problem. Sensible things to do with that: itinerary planners that schedule by
+  The waypoints carry a GPX <code>&lt;type&gt;</code>, so a hut is clearly labeled. 
+  Every site has an official trail km, which
+  makes it very easy to answer questions like "what is between km 1,200 and km 1,340", 
+  or how far is it to the next water source. 
+  Sensible things to do with that: itinerary planners that schedule by
   hut rather than by distance, resupply calculators, elevation profiles per
   section, or simply loading the GPX into a watch that refused the KMZ.
 </p>
 <p>
   Corrections to the resupply data are the most useful contribution anyone can
-  make — that file is hand-built and it decays.
+  make — that file is hand-built and it decays. But if you find any inaccuracies 
+  or areas for improvement, please 
   <a href="https://github.com/eamon-b/te-araroa-data/issues">Open an issue</a>.
 </p>
 
