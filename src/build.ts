@@ -90,6 +90,27 @@ const SOURCE_MANIFEST = join(sourceDir, "manifest.json");
 const TRAIL_NAME = "Te Araroa";
 
 /**
+ * How far off the route a waypoint may sit and still count as being on it.
+ *
+ * This is the distance `processGpxTravelPlan` matches a waypoint to a track
+ * point within, and it doubles as the line between a town the trail walks
+ * through and one you have to leave the trail for. Using the one number for
+ * both is what keeps every resupply point to exactly one datasheet row: places
+ * nearer than this match on their own coordinates, places further away are
+ * represented by the turnoff where you leave the route (see `accessPoint` on
+ * SiteRecord).
+ */
+const WAYPOINT_MAX_DISTANCE_M = 500;
+
+/**
+ * Slack allowed between a hand-entered road distance and the straight line the
+ * geometry gives. Road distances in data/resupply.json are researched and
+ * rounded, and a turnoff is a route vertex up to ~85 m from the true nearest
+ * point, so only a gap wider than this is a contradiction rather than rounding.
+ */
+const ROAD_DISTANCE_TOLERANCE_M = 500;
+
+/**
  * Which files to build from, and which release they are.
  *
  * All of it comes from the manifest `npm run fetch` wrote, so that a new season
@@ -352,6 +373,13 @@ interface SiteRecord {
   ele: number;
   km: number;
   offTrailMeters: number;
+  /**
+   * Where you leave the route for this site, when it is far enough off the
+   * trail to be worth marking separately. Null for anything the trail passes
+   * within `WAYPOINT_MAX_DISTANCE_M` of - there the site's own position is the
+   * access point, and a second marker on top of it would say nothing.
+   */
+  accessPoint: Coord | null;
   section: string;
   island: string;
   source: "DOC" | "Private" | "Resupply";
@@ -662,6 +690,10 @@ async function main(): Promise<void> {
     return { section: last.section, island: last.island };
   };
 
+  /** The point on the route at a given km. */
+  const coordAtKm = (km: number): Coord =>
+    route.points[indexAtKm(route.points, km)];
+
   /**
    * Trail elevation at a given km.
    *
@@ -670,8 +702,31 @@ async function main(): Promise<void> {
    * site a long way off-trail this is the height where you leave the trail, not
    * the height of the site, which is why the column says "Trail elevation".
    */
-  const elevationAt = (km: number): number =>
-    route.points[indexAtKm(route.points, km)].ele;
+  const elevationAt = (km: number): number => coordAtKm(km).ele;
+
+  /**
+   * The point on the route you leave to reach a site, or null if you do not.
+   *
+   * A town's marker sits on the town, which is the right place for it and no
+   * use at all for planning the day you walk in: Geraldine's is 70 km from the
+   * trail. This is the other half of that pair - the spot on the route where
+   * you stop walking and start hitching.
+   *
+   * `at` is a route vertex, and for everything but a declared access point it is
+   * the vertex the projection itself found - not `coordAtKm` of its km. The two
+   * are usually the same, but km is stationary across a transport connector, so
+   * a km lookup there can come back on the wrong side of the gap: that put
+   * Kinloch Campsite's turnoff 32 km from a site recorded as 9 km off trail.
+   *
+   * A vertex rather than the exact nearest point on the line, because that is
+   * what the datasheet matches against - `processGpxTravelPlan` measures each
+   * waypoint to track points, not to the edges between them. Snapping costs
+   * half a vertex spacing, ~40 m; on a long straight like Oreti Beach it costs
+   * a few hundred metres, and a turnoff placed mid-edge there would have been
+   * dropped from the datasheet entirely.
+   */
+  const accessPointFor = (at: Coord, offTrailMeters: number): Coord | null =>
+    offTrailMeters >= WAYPOINT_MAX_DISTANCE_M ? at : null;
 
   const sites: SiteRecord[] = [];
 
@@ -688,6 +743,10 @@ async function main(): Promise<void> {
       ele: coord.ele || elevationAt(projection.km),
       km: projection.km,
       offTrailMeters: projection.offTrailMeters,
+      accessPoint: accessPointFor(
+        route.points[projection.index],
+        projection.offTrailMeters
+      ),
       section,
       island,
       source: "DOC",
@@ -714,6 +773,10 @@ async function main(): Promise<void> {
       ele: coord.ele || elevationAt(projection.km),
       km: projection.km,
       offTrailMeters: projection.offTrailMeters,
+      accessPoint: accessPointFor(
+        route.points[projection.index],
+        projection.offTrailMeters
+      ),
       section,
       island,
       source: "Private",
@@ -755,6 +818,12 @@ async function main(): Promise<void> {
       ele: elevationAt(km),
       km,
       offTrailMeters,
+      accessPoint: accessPointFor(
+        point.accessFromKm !== undefined
+          ? coordAtKm(km)
+          : route.points[projection.index],
+        offTrailMeters
+      ),
       section,
       island,
       source: "Resupply",
@@ -777,6 +846,37 @@ async function main(): Promise<void> {
       `${sites.filter((s) => s.source === "Private").length} private, ` +
       `${sites.filter((s) => s.source === "Resupply").length} researched resupply)`
   );
+
+  // A declared road distance shorter than the straight line from the turnoff to
+  // the place is impossible, and means one of the two hand-entered numbers is
+  // wrong: either accessFromKm names the wrong point on the trail, or
+  // accessRoadKm is the distance from somewhere else. Now that the turnoff is
+  // published as a coordinate the contradiction is visible on the map, so say
+  // so rather than draw it silently.
+  const impossible = sites.filter(
+    (s) =>
+      s.accessPoint !== null &&
+      s.offTrailMeters + ROAD_DISTANCE_TOLERANCE_M <
+        haversineMeters(s.accessPoint, { lat: s.lat, lon: s.lon, ele: 0 })
+  );
+  if (impossible.length > 0) {
+    console.log(
+      `  ${impossible.length} resupply points claim a road distance shorter ` +
+        `than the straight line from their access point - check ` +
+        `accessFromKm/accessRoadKm in data/resupply.json:`
+    );
+    for (const site of impossible) {
+      const line = haversineMeters(site.accessPoint!, {
+        lat: site.lat,
+        lon: site.lon,
+        ele: 0,
+      });
+      console.log(
+        `    ${site.name}: ${(site.offTrailMeters / 1000).toFixed(1)} km by ` +
+          `road, ${(line / 1000).toFixed(1)} km as the crow flies`
+      );
+    }
+  }
 
   const stranded = sites.filter((s) => s.offTrailMeters > 5000);
   if (stranded.length > 0) {
@@ -1089,6 +1189,11 @@ async function main(): Promise<void> {
       researchedAt: resupply.researchedAt ?? "",
     },
     longestCarries: carries,
+    // Sites the trail does not pass, each of which now carries a turnoff
+    // waypoint on the route as well as its own marker.
+    accessPoints: sites.filter((s) => s.accessPoint !== null).length,
+    resupplyAccessPoints: resupplySites.filter((s) => s.accessPoint !== null)
+      .length,
     strandedSites: strandedOfficial.length,
     strandedSitesIncludingTowns: stranded.length,
     farthestSite: farthest
@@ -1196,6 +1301,8 @@ async function main(): Promise<void> {
       lon: round(site.lon, 6),
       elevation: Math.round(site.ele),
       offTrailMeters: Math.round(site.offTrailMeters),
+      accessLat: site.accessPoint ? round(site.accessPoint.lat, 6) : null,
+      accessLon: site.accessPoint ? round(site.accessPoint.lon, 6) : null,
       section: site.section,
       island: site.island,
       bunks: site.bunks,
@@ -1281,22 +1388,51 @@ function writeDirection(
 
   const ordered = inOrder(sites);
 
-  const waypoints: GpxWaypoint[] = ordered.map((site) => ({
-    lat: site.lat,
-    lon: site.lon,
-    ele: site.ele,
-    name: site.name,
-    // Leading km makes the waypoint self-locating in any viewer that only shows
-    // a name. Northbound carries the official km alongside it, because that is
-    // the number the trust's trail notes, its physical markers and every
-    // southbound hiker you meet will be using.
-    desc: nobo
-      ? `km ${progressKm(site.km).toFixed(1)} (TA ${site.km.toFixed(1)}) | ${site.description}`
-      : `km ${site.km.toFixed(1)} | ${site.description}`,
-    type: site.type,
-    cmt: site.section,
-    ...(site.link ? { link: site.link } : {}),
-  }));
+  /**
+   * Leading km, so a waypoint locates itself in a viewer showing only names.
+   *
+   * Northbound carries the official km alongside it, because that is the number
+   * the trust's trail notes, its physical markers and every southbound hiker
+   * you meet will be using.
+   */
+  const kmPrefix = (km: number): string =>
+    nobo
+      ? `km ${progressKm(km).toFixed(1)} (TA ${km.toFixed(1)})`
+      : `km ${km.toFixed(1)}`;
+
+  // Each off-trail site contributes two waypoints: the place itself, and the
+  // point on the route where you leave the trail for it. Without the second one
+  // a town is a marker floating in the countryside with nothing tying it to the
+  // day you walk past - and, because the datasheet only matches waypoints within
+  // WAYPOINT_MAX_DISTANCE_M of the track, no row in the datasheet at all.
+  const waypoints: GpxWaypoint[] = ordered.flatMap((site) => {
+    const place: GpxWaypoint = {
+      lat: site.lat,
+      lon: site.lon,
+      ele: site.ele,
+      name: site.name,
+      desc: `${kmPrefix(site.km)} | ${site.description}`,
+      type: site.type,
+      cmt: site.section,
+      ...(site.link ? { link: site.link } : {}),
+    };
+    if (!site.accessPoint) return [place];
+
+    const access: GpxWaypoint = {
+      lat: site.accessPoint.lat,
+      lon: site.accessPoint.lon,
+      ele: site.accessPoint.ele,
+      name: `${site.name} turnoff`,
+      desc:
+        `${kmPrefix(site.km)} | Leave the trail here for ${site.name} ` +
+        `(${site.type}), ${(site.offTrailMeters / 1000).toFixed(1)} km off ` +
+        `trail. | ${site.description}`,
+      type: "access",
+      cmt: site.section,
+    };
+    // The turnoff comes first: you reach it before you reach the place.
+    return [access, place];
+  });
 
   // Km markers keep the trust's own number as their name in both directions -
   // those are the round ones, and mirroring them would give a list of markers
@@ -1565,7 +1701,7 @@ function writeDirection(
       "motor camp",
       "campground",
     ],
-    waypointMaxDistance: 500,
+    waypointMaxDistance: WAYPOINT_MAX_DISTANCE_M,
   });
   const trackNames = mainTracks.map((track) => track.name);
   const trailLabel = `${TRAIL_NAME} (${direction.code})`;
@@ -1626,6 +1762,7 @@ function writeDocsOverview(
       walkedLengthKm: meta.walkedLengthKm,
       routePoints,
       stretches: simplified.length,
+      accessPoints: sites.filter((s) => s.accessPoint !== null).length,
     },
     features: [
       {
@@ -1667,12 +1804,57 @@ function writeDocsOverview(
           source: site.source,
           km: round(site.km, 1),
           section: site.section,
+          offTrailKm: round(site.offTrailMeters / 1000, 1),
         },
         geometry: {
           type: "Point" as const,
           coordinates: [round(site.lon, 5), round(site.lat, 5)],
         },
       })),
+      // The turnoff for each site the trail does not pass, plus the line back
+      // to it. On a whole-country map an inland town is a dot in open farmland
+      // with nothing to say which day you reach it; the tie line and the marker
+      // on the route are what make it a place on the walk.
+      ...sites.flatMap((site) =>
+        site.accessPoint
+          ? [
+              {
+                type: "Feature" as const,
+                properties: {
+                  name: `${site.name} turnoff`,
+                  kind: "access",
+                  source: site.source,
+                  km: round(site.km, 1),
+                  section: site.section,
+                  offTrailKm: round(site.offTrailMeters / 1000, 1),
+                  forName: site.name,
+                  forKind: site.type,
+                },
+                geometry: {
+                  type: "Point" as const,
+                  coordinates: [
+                    round(site.accessPoint.lon, 5),
+                    round(site.accessPoint.lat, 5),
+                  ],
+                },
+              },
+              {
+                type: "Feature" as const,
+                properties: { kind: "access-link", name: site.name },
+                geometry: {
+                  type: "LineString" as const,
+                  coordinates: [
+                    [
+                      round(site.accessPoint.lon, 5),
+                      round(site.accessPoint.lat, 5),
+                    ],
+                    [round(site.lon, 5), round(site.lat, 5)],
+                  ],
+                },
+              },
+            ]
+          : []
+      ),
     ],
   };
 

@@ -258,7 +258,7 @@ footer {
 <!-- generated:stats -->
   <div class="stat"><b>3,073 km</b><span>Official length</span></div>
   <div class="stat"><b>35,441</b><span>Route points</span></div>
-  <div class="stat"><b>586</b><span>Waypoints</span></div>
+  <div class="stat"><b>656</b><span>Waypoints</span></div>
   <div class="stat"><b>79</b><span>Sections</span></div>
   <div class="stat"><b>8 m</b><span>Chainage error</span></div>
 <!-- /generated:stats -->
@@ -274,14 +274,17 @@ footer {
 
 <div class="map-shell">
   <div id="map"></div>
-  <div id="zoom-hint">Zoom in for huts, campsites and resupply</div>
+  <div id="zoom-hint">Zoom in for huts, campsites, resupply and turnoffs</div>
 </div>
 <p class="map-note">
 <!-- generated:mapnote -->
   Simplified for the web to 7,101 points. Huts and campsites in green, resupply
   in orange, and the ringed markers are where this direction starts and finishes.
-  The six dashed links are the places the walking route stops and starts
-  again; click one to see what crosses it.
+  The six dashed links along the route are the places the walking route
+  stops and starts again; click one to see what crosses it. The
+  70 small ringed markers on the route are turnoffs — where you leave
+  the trail for somewhere it does not pass — each tied by a faint line running
+  away from the route to the place it serves.
   The published GPX has the full 35,441-point geometry.
 <!-- /generated:mapnote -->
 </p>
@@ -330,7 +333,7 @@ footer {
 <!-- generated:downloads -->
   <tr>
     <td><a data-file="te-araroa-{dir}.gpx"></a></td>
-    <td>21 tracks (7 for the main route, one per stretch you can walk, plus ferry connectors and 13 bypasses) and 586 typed waypoints, in walking order. Elevation throughout.</td>
+    <td>21 tracks (7 for the main route, one per stretch you can walk, plus ferry connectors and 13 bypasses) and 656 typed waypoints, in walking order, among them a turnoff on the route for each of the 70 sites the trail does not pass. Elevation throughout.</td>
   </tr>
   <tr>
     <td><a data-file="resupply-plan-{dir}.csv"></a></td>
@@ -526,14 +529,37 @@ fetch('data/overview.geojson')
       const line = direction === 'nobo'
         ? 'km ' + km + ' <span style="color:#777">(TA ' + p.km.toFixed(1) + ')</span>'
         : 'km ' + km;
+      // A turnoff's own name means nothing without the place it serves and how
+      // far away that is - those two facts are the whole point of the marker.
+      const what = p.kind === 'access'
+        ? 'turnoff for ' + p.forKind + ' &middot; ' + p.offTrailKm + ' km off trail'
+        : p.kind + (p.offTrailKm >= 0.5 ? ' &middot; ' + p.offTrailKm + ' km off trail' : '');
       return '<strong>' + p.name + '</strong><br>' +
-        p.kind + ' &middot; ' + line + '<br>' +
+        what + ' &middot; ' + line + '<br>' +
         '<span style="color:#777">' + p.section + '</span>';
     };
+
+    // The tie between a turnoff and the place it serves. Dotted and off the
+    // route's own colour, because a break in the trail is already drawn dashed
+    // in that colour and the two must not read as the same thing: a break lies
+    // along the route, a tie runs away from it and is nothing you walk.
+    const links = L.geoJSON(geo, {
+      filter: (f) => f.properties.kind === 'access-link',
+      style: { color: '#b07a52', weight: 1, opacity: 0.55, dashArray: '1 3' }
+    });
 
     const sites = L.geoJSON(geo, {
       filter: (f) => f.geometry.type === 'Point',
       pointToLayer: (f, latlng) => {
+        // Turnoffs sit on the route, so they are drawn hollow: a ring on the
+        // line reads as a junction, where another filled dot would read as one
+        // more place to stop.
+        if (f.properties.kind === 'access') {
+          return L.circleMarker(latlng, {
+            radius: 3.5, color: '#d4571f', weight: 2,
+            fillOpacity: 1, fillColor: '#fff'
+          });
+        }
         const resupply = RESUPPLY.has(f.properties.kind);
         return L.circleMarker(latlng, {
           radius: resupply ? 4.5 : 3,
@@ -590,8 +616,10 @@ fetch('data/overview.geojson')
     const SITE_ZOOM = 7;
     const syncSites = () => {
       const show = map.getZoom() >= SITE_ZOOM;
-      if (show && !map.hasLayer(sites)) sites.addTo(map);
-      else if (!show && map.hasLayer(sites)) map.removeLayer(sites);
+      for (const layer of [links, sites]) {
+        if (show && !map.hasLayer(layer)) layer.addTo(map);
+        else if (!show && map.hasLayer(layer)) map.removeLayer(layer);
+      }
       hint.style.display = show ? 'none' : '';
     };
     map.on('zoomend', syncSites);

@@ -98,6 +98,13 @@
     <link href="https://www.doc.govt.nz/link/de31f23db252446cad29c2e6de41e3ef.aspx" />
     <type>hut</type>
   </wpt>
+  <wpt lat="-35.221238" lon="173.945947">
+    <ele>39</ele>
+    <name>Kerikeri turnoff</name>
+    <cmt>Mangakaretu to Kerikeri</cmt>
+    <desc>km 221.6 | Leave the trail here for Kerikeri (town), 0.7 km off trail. | New World and Countdown. Full resupply, hostels.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-35.227261" lon="173.949106">
     <ele>39</ele>
     <name>Kerikeri</name>
@@ -126,12 +133,26 @@
     <desc>km 251.9 | Small general store, expensive. Ferry point.</desc>
     <type>resupply</type>
   </wpt>
+  <wpt lat="-35.513872" lon="174.451941">
+    <ele>5.7</ele>
+    <name>Whananaki turnoff</name>
+    <cmt>Waikare to Ngunguru</cmt>
+    <desc>km 322.5 | Leave the trail here for Whananaki (resupply), 1.2 km off trail. | Whananaki Superette: limited supplies. Holiday park with a hut for TA walkers.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-35.507515" lon="174.462946">
     <ele>5.7</ele>
     <name>Whananaki</name>
     <cmt>Waikare to Ngunguru</cmt>
     <desc>km 322.5 | Whananaki Superette: limited supplies. Holiday park with a hut for TA walkers.</desc>
     <type>resupply</type>
+  </wpt>
+  <wpt lat="-35.558184" lon="174.47242">
+    <ele>19</ele>
+    <name>Matapouri turnoff</name>
+    <cmt>Waikare to Ngunguru</cmt>
+    <desc>km 331.2 | Leave the trail here for Matapouri (resupply), 2.9 km off trail. | Small general store.</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-35.566397" lon="174.50307">
     <ele>19</ele>
@@ -154,12 +175,25 @@
     <desc>km 349.1 | </desc>
     <type>campsite</type>
   </wpt>
+  <wpt lat="-35.838208" lon="174.490331">
+    <ele>2</ele>
+    <name>Whangarei turnoff</name>
+    <cmt>Bream Bay Walk</cmt>
+    <desc>km 407.3 | Leave the trail here for Whangarei (town), 36.0 km off trail. | Countdown and Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangarei Heads / Marsden Point crossing.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-35.727527" lon="174.31942">
     <ele>2</ele>
     <name>Whangarei</name>
     <cmt>Bream Bay Walk</cmt>
     <desc>km 407.3 | Countdown and Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangarei Heads / Marsden Point crossing.</desc>
     <type>town</type>
+  </wpt>
+  <wpt lat="-35.879312" lon="174.469092">
+    <name>Ruakaka turnoff</name>
+    <cmt>Bream Bay Walk</cmt>
+    <desc>km 414.1 | Leave the trail here for Ruakaka (town), 1.3 km off trail. | FreshChoice supermarket and takeaways.</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-35.875436" lon="174.455707">
     <name>Ruakaka</name>
@@ -189,6 +223,13 @@
     <cmt>Bream Bay Walk</cmt>
     <desc>km 428.4 | Four Square, cafes, hotel with budget rooms. Camp Waipu Cove has a dairy.</desc>
     <type>town</type>
+  </wpt>
+  <wpt lat="-36.028951" lon="174.493809">
+    <ele>65.1</ele>
+    <name>Camp Waipu Cove turnoff</name>
+    <cmt>Cullen Brynderwyn Walkway</cmt>
+    <desc>km 435.7 | Leave the trail here for Camp Waipu Cove (food), 1.0 km off trail. | Facilities: camping ground | Address: 869 Cove Road, Waipu Cove Waipu 0582 | Phone: (09) 432 0410 | Website: http://www.campwaipucove.com | Categories: BarOrPub</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-36.028469" lon="174.504368">
     <ele>65.1</ele>
@@ -249,12 +290,26 @@
     <desc>km 488.1 | Camp store: food, drinks, milk, bread. 9am-5pm summer only.</desc>
     <type>resupply</type>
   </wpt>
+  <wpt lat="-36.307725" lon="174.702071">
+    <ele>318</ele>
+    <name>Happy Dayz Accomodation turnoff</name>
+    <cmt>Mt Tamahunga (Te Hīkoi O Te Kiri) Track</cmt>
+    <desc>km 494.9 | Leave the trail here for Happy Dayz Accomodation (accommodation), 5.0 km off trail. | Facilities: Backpacker accommodation, camping | Address: 84 Omaha Flats Rd, Matakana | Phone: 09 422 7149 | Hours: 8:00am- 8:00pm | Categories: Hostel LodgingBusiness</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-36.340531" lon="174.740361">
     <ele>318</ele>
     <name>Happy Dayz Accomodation</name>
     <cmt>Mt Tamahunga (Te Hīkoi O Te Kiri) Track</cmt>
     <desc>km 494.9 | Facilities: Backpacker accommodation, camping | Address: 84 Omaha Flats Rd, Matakana | Phone: 09 422 7149 | Hours: 8:00am- 8:00pm | Categories: Hostel LodgingBusiness</desc>
     <type>accommodation</type>
+  </wpt>
+  <wpt lat="-36.36452" lon="174.63836">
+    <ele>306.4</ele>
+    <name>Warkworth turnoff</name>
+    <cmt>Govan Wilson to Pūhoi Valley</cmt>
+    <desc>km 508.2 | Leave the trail here for Warkworth (town), 6.0 km off trail. | Countdown, New World and a Bin Inn. About 6 km off trail. Short detour off the Dome Valley section.</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-36.397669" lon="174.665849">
     <ele>306.4</ele>
@@ -299,6 +354,13 @@
     <link href="https://www.aucklandcouncil.govt.nz/parks-recreation/Pages/park-details.aspx?Location=3542#about" />
     <type>caravan-park</type>
   </wpt>
+  <wpt lat="-36.597986" lon="174.700829">
+    <ele>1</ele>
+    <name>Red Beach Top 10 Holiday Park turnoff</name>
+    <cmt>Wenderholm to Stillwater</cmt>
+    <desc>km 558.4 | Leave the trail here for Red Beach Top 10 Holiday Park (accommodation), 0.6 km off trail. | Facilities: Holiday campground, caravans, tents, motor homes, children&apos;s playground, trampoline | Address: 23 Marie Ave, Red Beach, Orewa, Hibiscus Coast, Auckland | Phone: (09) 426 4526 | Website: http://www.pinewoods.co.nz | Categories: LodgingBusiness</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-36.602166" lon="174.705907">
     <ele>1</ele>
     <name>Red Beach Top 10 Holiday Park</name>
@@ -328,6 +390,13 @@
     <desc>km 605.6 | New World. Ferry to the city.</desc>
     <type>town</type>
   </wpt>
+  <wpt lat="-36.851712" lon="174.769885">
+    <ele>40</ele>
+    <name>Auckland CBD turnoff</name>
+    <cmt>Coast to Coast Walkway</cmt>
+    <desc>km 607.5 | Leave the trail here for Auckland CBD (town), 0.6 km off trail. | Full resupply and gear replacement. Metro supermarkets are smaller than suburban ones.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-36.852095" lon="174.76318">
     <ele>40</ele>
     <name>Auckland CBD</name>
@@ -350,12 +419,26 @@
     <link href="https://www.aucklandcouncil.govt.nz/parkmaps/map-ambury-regional-park.pdf" />
     <type>campsite</type>
   </wpt>
+  <wpt lat="-37.070047" lon="174.931196">
+    <ele>20</ele>
+    <name>Papakura turnoff</name>
+    <cmt>Botanic Gardens to Mangatāwhiri</cmt>
+    <desc>km 662.7 | Leave the trail here for Papakura (town), 1.4 km off trail. | Pak&apos;nSave, Countdown, New World.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-37.064265" lon="174.944667">
     <ele>20</ele>
     <name>Papakura</name>
     <cmt>Botanic Gardens to Mangatāwhiri</cmt>
     <desc>km 662.7 | Pak&apos;nSave, Countdown, New World.</desc>
     <type>town</type>
+  </wpt>
+  <wpt lat="-37.113148" lon="174.979693">
+    <ele>49.4</ele>
+    <name>Upper Mangatawhiri Campground turnoff</name>
+    <cmt>Botanic Gardens to Mangatāwhiri</cmt>
+    <desc>km 670.5 | Leave the trail here for Upper Mangatawhiri Campground (campsite), 15.7 km off trail. | Facilities: Auckland Council</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-37.090823" lon="175.154783">
     <ele>49.4</ele>
@@ -364,6 +447,13 @@
     <desc>km 670.5 | Facilities: Auckland Council</desc>
     <type>campsite</type>
   </wpt>
+  <wpt lat="-37.113148" lon="174.979693">
+    <ele>49.4</ele>
+    <name>Repeater Campground turnoff</name>
+    <cmt>Botanic Gardens to Mangatāwhiri</cmt>
+    <desc>km 670.5 | Leave the trail here for Repeater Campground (campsite), 14.5 km off trail. | Facilities: Auckland Council</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-37.099397" lon="175.142">
     <ele>49.4</ele>
     <name>Repeater Campground</name>
@@ -371,12 +461,26 @@
     <desc>km 670.5 | Facilities: Auckland Council</desc>
     <type>campsite</type>
   </wpt>
+  <wpt lat="-37.217914" lon="175.069259">
+    <ele>20</ele>
+    <name>Mangatangi Trig Campground turnoff</name>
+    <cmt>Mangatāwhiri to Mercer</cmt>
+    <desc>km 693.8 | Leave the trail here for Mangatangi Trig Campground (campsite), 14.9 km off trail. | Facilities: Auckland Council</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-37.121812" lon="175.18624">
     <ele>20</ele>
     <name>Mangatangi Trig Campground</name>
     <cmt>Mangatāwhiri to Mercer</cmt>
     <desc>km 693.8 | Facilities: Auckland Council</desc>
     <type>campsite</type>
+  </wpt>
+  <wpt lat="-37.217914" lon="175.069259">
+    <ele>20</ele>
+    <name>Lower Mangatawhiri Campsite turnoff</name>
+    <cmt>Mangatāwhiri to Mercer</cmt>
+    <desc>km 693.8 | Leave the trail here for Lower Mangatawhiri Campsite (campsite), 12.5 km off trail. | Facilities: Auckland Council</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-37.1347" lon="175.163502">
     <ele>20</ele>
@@ -392,12 +496,26 @@
     <desc>km 703.0 | Service centre with food outlets; motel with camping.</desc>
     <type>food</type>
   </wpt>
+  <wpt lat="-37.549727" lon="175.154327">
+    <ele>14.1</ele>
+    <name>Huntly Camping &amp; Caravan Park turnoff</name>
+    <cmt>Rangiriri to Huntly</cmt>
+    <desc>km 743.7 | Leave the trail here for Huntly Camping &amp; Caravan Park (accommodation), 0.6 km off trail. | Facilities: Accommodation: tent sites, powered caravan/campervan sites, dump station | Address: 5 Taihua St,Huntly Domain, Huntly | Phone: 07 828 8363 | Categories: LodgingBusiness</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-37.550632" lon="175.160702">
     <ele>14.1</ele>
     <name>Huntly Camping &amp; Caravan Park</name>
     <cmt>Rangiriri to Huntly</cmt>
     <desc>km 743.7 | Facilities: Accommodation: tent sites, powered caravan/campervan sites, dump station | Address: 5 Taihua St,Huntly Domain, Huntly | Phone: 07 828 8363 | Categories: LodgingBusiness</desc>
     <type>accommodation</type>
+  </wpt>
+  <wpt lat="-37.556487" lon="175.151629">
+    <ele>13.5</ele>
+    <name>Huntly turnoff</name>
+    <cmt>Rangiriri to Huntly</cmt>
+    <desc>km 744.7 | Leave the trail here for Huntly (town), 0.6 km off trail. | Woolworths, about 1 km off trail.</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-37.5584" lon="175.158832">
     <ele>17.4</ele>
@@ -481,6 +599,13 @@
     <link href="https://www.doc.govt.nz/link/28723ae27b854818ab3904932dc22fed.aspx" />
     <type>campsite</type>
   </wpt>
+  <wpt lat="-38.58028" lon="175.623901">
+    <ele>840.6</ele>
+    <name>Bog Inn Hut turnoff</name>
+    <cmt>Pureora Forest - The Timber Trail</cmt>
+    <desc>km 973.2 | Leave the trail here for Bog Inn Hut (hut), 0.5 km off trail. | Category: Standard | Facilities: Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Pureora Forest Park | Region: Waikato</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-38.583166" lon="175.628789">
     <ele>840.6</ele>
     <name>Bog Inn Hut</name>
@@ -504,6 +629,13 @@
     <desc>km 1033.9 | Facilities: Te Araroa</desc>
     <type>campsite</type>
   </wpt>
+  <wpt lat="-38.883843" lon="175.267422">
+    <ele>173.6</ele>
+    <name>Taumarunui Holiday Park turnoff</name>
+    <cmt>42 Traverse</cmt>
+    <desc>km 1060.3 | Leave the trail here for Taumarunui Holiday Park (caravan-park), 3.4 km off trail. | Facilities: cabins, camping | Address: 487 Totara Street, Manunui 3946 | Phone: 0800 473 281 | Website: http://www.taumarunuiholidaypark.co.nz | Categories: RVPark LodgingBusiness</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-38.882235" lon="175.306675">
     <ele>173.6</ele>
     <name>Taumarunui Holiday Park</name>
@@ -526,6 +658,13 @@
     <desc>km 1087.0 | Blue Hill Cafe, 8am-2pm.</desc>
     <type>food</type>
   </wpt>
+  <wpt lat="-39.13223" lon="175.656895">
+    <ele>1700</ele>
+    <name>Mangatepopo Hut turnoff</name>
+    <cmt>Tongariro Alpine Crossing</cmt>
+    <desc>km 1143.8 | Leave the trail here for Mangatepopo Hut (hut), 5.4 km off trail. | Category: Great Walk | Facilities: Cooking, Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping next to hut included in The Trail Pass (Bookings Required) | Place: Tongariro National Park | Region: Central North Island</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-39.144585" lon="175.596732">
     <ele>1700</ele>
     <name>Mangatepopo Hut</name>
@@ -533,6 +672,13 @@
     <desc>km 1143.8 | Category: Great Walk | Facilities: Cooking, Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping next to hut included in The Trail Pass (Bookings Required) | Place: Tongariro National Park | Region: Central North Island</desc>
     <link href="https://www.doc.govt.nz/link/3aad802a585e496ba8fdd614ddf1b377.aspx" />
     <type>hut</type>
+  </wpt>
+  <wpt lat="-39.13223" lon="175.656895">
+    <ele>1700</ele>
+    <name>Mangatepopo Campsite turnoff</name>
+    <cmt>Tongariro Alpine Crossing</cmt>
+    <desc>km 1143.8 | Leave the trail here for Mangatepopo Campsite (campsite), 5.4 km off trail. | Category: Great Walk | Facilities: Water from tap - not treated, boil before use, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | More Info: Camping next to hut included in The Trail Pass (Bookings Required) | Place: Tongariro National Park | Region: Central North Island</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-39.144763" lon="175.596403">
     <ele>1700</ele>
@@ -558,6 +704,13 @@
     <link href="https://www.doc.govt.nz/link/8d2c9df7e97c4a178fcb02057bd891de.aspx" />
     <type>hut</type>
   </wpt>
+  <wpt lat="-39.21238" lon="175.623869">
+    <ele>1241.9</ele>
+    <name>Rangipo Hut turnoff</name>
+    <cmt>Tongariro Alpine Crossing</cmt>
+    <desc>km 1161.7 | Leave the trail here for Rangipo Hut (hut), 9.8 km off trail. | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | Place: Tongariro National Park | Region: Central North Island</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-39.300089" lon="175.623749">
     <ele>1241.9</ele>
     <name>Rangipo Hut</name>
@@ -581,6 +734,13 @@
     <link href="https://www.whakapapa.net.nz/" />
     <type>caravan-park</type>
   </wpt>
+  <wpt lat="-39.223628" lon="175.502182">
+    <ele>1145</ele>
+    <name>Blyth Hut turnoff</name>
+    <cmt>Mangatepopo to National Park</cmt>
+    <desc>km 1178.4 | Leave the trail here for Blyth Hut (hut), 12.2 km off trail. | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | Place: Tongariro National Park | Region: Central North Island</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-39.331799" lon="175.524915">
     <ele>1145</ele>
     <name>Blyth Hut</name>
@@ -588,6 +748,13 @@
     <desc>km 1178.4 | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | Place: Tongariro National Park | Region: Central North Island</desc>
     <link href="https://www.doc.govt.nz/link/0ca39d7f38e045778d4cbd32856e5e8e.aspx" />
     <type>hut</type>
+  </wpt>
+  <wpt lat="-39.223628" lon="175.502182">
+    <ele>1145</ele>
+    <name>Whakapapaiti Hut turnoff</name>
+    <cmt>Mangatepopo to National Park</cmt>
+    <desc>km 1178.4 | Leave the trail here for Whakapapaiti Hut (hut), 2.1 km off trail. | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | Place: Tongariro National Park | Region: Central North Island</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-39.23758" lon="175.517871">
     <ele>1145</ele>
@@ -597,6 +764,13 @@
     <link href="https://www.doc.govt.nz/link/547fba0f237d4b04b58d64c05a1cc4ca.aspx" />
     <type>hut</type>
   </wpt>
+  <wpt lat="-39.223628" lon="175.502182">
+    <ele>1145</ele>
+    <name>Mangaehuehu Hut turnoff</name>
+    <cmt>Mangatepopo to National Park</cmt>
+    <desc>km 1178.4 | Leave the trail here for Mangaehuehu Hut (hut), 13.9 km off trail. | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | Place: Tongariro National Park | Region: Central North Island</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-39.343089" lon="175.55">
     <ele>1145</ele>
     <name>Mangaehuehu Hut</name>
@@ -604,6 +778,13 @@
     <desc>km 1178.4 | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | Place: Tongariro National Park | Region: Central North Island</desc>
     <link href="https://www.doc.govt.nz/link/cd5521b4fd8745d4b72c98459a28e09d.aspx" />
     <type>hut</type>
+  </wpt>
+  <wpt lat="-39.224457" lon="175.490516">
+    <ele>1148.7</ele>
+    <name>Mangaturuturu Hut turnoff</name>
+    <cmt>Mangatepopo to National Park</cmt>
+    <desc>km 1179.5 | Leave the trail here for Mangaturuturu Hut (hut), 8.2 km off trail. | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | Place: Tongariro National Park | Region: Central North Island</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-39.297329" lon="175.502028">
     <ele>1148.7</ele>
@@ -643,6 +824,13 @@
     <link href="https://www.doc.govt.nz/link/afc10f759fa74e848e4f7c5643dccee9.aspx" />
     <type>campsite</type>
   </wpt>
+  <wpt lat="-39.11876" lon="175.060159">
+    <ele>132.7</ele>
+    <name>Mangapapa Campsite turnoff</name>
+    <cmt>National Park to Whanganui River</cmt>
+    <desc>km 1246.5 | Leave the trail here for Mangapapa Campsite (campsite), 5.4 km off trail. | Category: Great Walk | Facilities: Non-powered/tent sites, Shelter for cooking, Water from tap - not treated, boil before use, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: No | Trail Pass discount (%): 0 | Place: Whanganui National Park | Region: Manawatu/Whanganui</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-39.129332" lon="174.999248">
     <ele>132.7</ele>
     <name>Mangapapa Campsite</name>
@@ -675,6 +863,13 @@
     <link href="https://www.doc.govt.nz/parks-and-recreation/places-to-go/manawatu-wha" />
     <type>campsite</type>
   </wpt>
+  <wpt lat="-39.199867" lon="175.000828">
+    <ele>201.7</ele>
+    <name>Ohauora Campsite turnoff</name>
+    <cmt>National Park to Whanganui River</cmt>
+    <desc>km 1269.8 | Leave the trail here for Ohauora Campsite (campsite), 4.8 km off trail. | Category: Great Walk | Facilities: Non-powered/tent sites, Shelter for cooking, Water from tap - not treated, boil before use, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: No | Trail Pass discount (%): 0 | Place: Whanganui National Park | Region: Manawatu/Whanganui</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-39.171194" lon="174.958867">
     <ele>201.7</ele>
     <name>Ohauora Campsite</name>
@@ -691,6 +886,13 @@
     <link href="https://www.doc.govt.nz/parks-and-recreation/places-to-go/manawatu-wha" />
     <type>campsite</type>
   </wpt>
+  <wpt lat="-39.238336" lon="174.977671">
+    <ele>132.4</ele>
+    <name>John Coull Hut turnoff</name>
+    <cmt>National Park to Whanganui River</cmt>
+    <desc>km 1275.4 | Leave the trail here for John Coull Hut (hut), 5.6 km off trail. | Category: Great Walk | Facilities: Cooking, Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: No | Trail Pass discount (%): 0 | Place: Whanganui National Park | Region: Manawatu/Whanganui</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-39.2334" lon="174.913473">
     <ele>132.4</ele>
     <name>John Coull Hut</name>
@@ -698,6 +900,13 @@
     <desc>km 1275.4 | Category: Great Walk | Facilities: Cooking, Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: No | Trail Pass discount (%): 0 | Place: Whanganui National Park | Region: Manawatu/Whanganui</desc>
     <link href="https://www.doc.govt.nz/link/050de1dd02ec4a3a80cc853c77b22706.aspx" />
     <type>hut</type>
+  </wpt>
+  <wpt lat="-39.238336" lon="174.977671">
+    <ele>132.4</ele>
+    <name>John Coull Campsite turnoff</name>
+    <cmt>National Park to Whanganui River</cmt>
+    <desc>km 1275.4 | Leave the trail here for John Coull Campsite (campsite), 5.5 km off trail. | Category: Great Walk | Facilities: Non-powered/tent sites, Shelter for cooking, Water from tap - not treated, boil before use, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: No | Trail Pass discount (%): 0 | Place: Whanganui National Park | Region: Manawatu/Whanganui</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-39.23317" lon="174.914157">
     <ele>132.4</ele>
@@ -714,6 +923,13 @@
     <desc>km 1281.8 | Category: Great Walk | Facilities: Non-powered/tent sites, Shelter for cooking, Water from tap - not treated, boil before use, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: No | Trail Pass discount (%): 0 | Place: Whanganui National Park | Region: Manawatu/Whanganui</desc>
     <link href="https://www.doc.govt.nz/link/02535ee3e5cf478ea06216ae3d97d2c9.aspx" />
     <type>campsite</type>
+  </wpt>
+  <wpt lat="-39.293851" lon="174.963236">
+    <ele>61</ele>
+    <name>Mangawaiiti Campsite turnoff</name>
+    <cmt>Whanganui River - via Whanganui River</cmt>
+    <desc>km 1283.6 | Leave the trail here for Mangawaiiti Campsite (campsite), 5.1 km off trail. | Category: Great Walk | Facilities: Non-powered/tent sites, Shelter for cooking, Water from tap - not treated, boil before use, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: No | Trail Pass discount (%): 0 | Place: Whanganui National Park | Region: Manawatu/Whanganui</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-39.284105" lon="174.905213">
     <ele>61</ele>
@@ -848,6 +1064,13 @@
     <cmt>Palmerston North to Poads Road</cmt>
     <desc>km 1565.6 | Facilities: campsite | Categories: Free Campsite</desc>
     <type>campsite</type>
+  </wpt>
+  <wpt lat="-40.657991" lon="175.347326">
+    <ele>111.4</ele>
+    <name>Levin turnoff</name>
+    <cmt>Palmerston North to Poads Road</cmt>
+    <desc>km 1573.1 | Leave the trail here for Levin (town), 9.0 km off trail. | Pak&apos;nSave, New World, Countdown. About 9 km off trail. Leave at Poads Rd.</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-40.621816" lon="175.286585">
     <ele>111.4</ele>
@@ -1018,6 +1241,13 @@
     <link href="https://www.mistletoebay.co.nz/" />
     <type>caravan-park</type>
   </wpt>
+  <wpt lat="-41.24913" lon="173.963762">
+    <ele>188.6</ele>
+    <name>Picton Holiday Park turnoff</name>
+    <cmt>Queen Charlotte Track</cmt>
+    <desc>km 1802.6 | Leave the trail here for Picton Holiday Park (caravan-park), 6.1 km off trail. | Facilities: Holiday park, campground, motorhomes, campervans, tent sites for camping | Address: 5 Waimarama Street Picton 7220 | Phone: 03 573 7212 | Website: https://tasmanholidayparks.com/nz/picton/ | Categories: RVPark LodgingBusiness</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-41.288598" lon="174.014984">
     <ele>188.6</ele>
     <name>Picton Holiday Park</name>
@@ -1025,6 +1255,13 @@
     <desc>km 1802.6 | Facilities: Holiday park, campground, motorhomes, campervans, tent sites for camping | Address: 5 Waimarama Street Picton 7220 | Phone: 03 573 7212 | Website: https://tasmanholidayparks.com/nz/picton/ | Categories: RVPark LodgingBusiness</desc>
     <link href="https://tasmanholidayparks.com/nz/picton/" />
     <type>caravan-park</type>
+  </wpt>
+  <wpt lat="-41.24913" lon="173.963762">
+    <ele>188.6</ele>
+    <name>Alexanders Holiday Park turnoff</name>
+    <cmt>Queen Charlotte Track</cmt>
+    <desc>km 1802.6 | Leave the trail here for Alexanders Holiday Park (accommodation), 6.5 km off trail. | Facilities: Accommodation: cabins, tent sites powered and unpowered, caravans, campervans, dump station | Address: 2 Canterbury Street, Picton | Phone: (03) 573 6378 | Website: https://www.alexanderspicton.co.nz/ | Categories: LodgingBusiness</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-41.298126" lon="174.005381">
     <ele>188.6</ele>
@@ -1097,6 +1334,13 @@
     <link href="https://www.doc.govt.nz/link/4ba6f86f2030455e9a60bae6f4744ed8.aspx" />
     <type>hut</type>
   </wpt>
+  <wpt lat="-41.412838" lon="173.251579">
+    <ele>266.9</ele>
+    <name>Nelson turnoff</name>
+    <cmt>Richmond Alpine Track</cmt>
+    <desc>km 1895.0 | Leave the trail here for Nelson (town), 29.0 km off trail. | Supermarkets, outdoor shops, backpackers. About 29 km off trail from Hacket car park. Leave at the Hacket car park, start of the Richmond Alpine Track.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-41.271085" lon="173.283676">
     <ele>266.9</ele>
     <name>Nelson</name>
@@ -1127,6 +1371,13 @@
     <desc>km 1906.8 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
     <link href="https://www.doc.govt.nz/link/dfc191ebf2a14b208aa546f836240b40.aspx" />
     <type>hut</type>
+  </wpt>
+  <wpt lat="-41.520639" lon="173.266802">
+    <ele>1315.9</ele>
+    <name>Old Man Hut turnoff</name>
+    <cmt>Richmond Alpine Track</cmt>
+    <desc>km 1915.0 | Leave the trail here for Old Man Hut (hut), 0.6 km off trail. | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-41.525224" lon="173.270884">
     <ele>1315.9</ele>
@@ -1207,6 +1458,13 @@
     <link href="https://www.doc.govt.nz/link/d734a70dd6584ff995102388fb169168.aspx" />
     <type>campsite</type>
   </wpt>
+  <wpt lat="-41.868035" lon="172.821668">
+    <ele>620</ele>
+    <name>Speargrass Hut turnoff</name>
+    <cmt>Waiau Pass Track</cmt>
+    <desc>km 2000.1 | Leave the trail here for Speargrass Hut (hut), 6.0 km off trail. | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping next to hut included in The Trail Pass. Bookings required from 18th November | Place: Nelson Lakes National Park | Region: Nelson/Tasman</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-41.852235" lon="172.751834">
     <ele>620</ele>
     <name>Speargrass Hut</name>
@@ -1230,6 +1488,13 @@
     <desc>km 2001.0 | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping next to hut included in The Trail Pass. | Place: Nelson Lakes National Park | Region: Nelson/Tasman</desc>
     <link href="https://www.doc.govt.nz/link/9f587ce82e1844828f736a7c2dbc5a67.aspx" />
     <type>hut</type>
+  </wpt>
+  <wpt lat="-41.949978" lon="172.788929">
+    <ele>738</ele>
+    <name>Sabine Hut turnoff</name>
+    <cmt>Waiau Pass Track</cmt>
+    <desc>km 2011.9 | Leave the trail here for Sabine Hut (hut), 10.5 km off trail. | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping next to hut included in The Trail Pass. Bookings required from 18th November | Place: Nelson Lakes National Park | Region: Nelson/Tasman</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-41.901372" lon="172.680706">
     <ele>738</ele>
@@ -1279,6 +1544,13 @@
     <link href="https://www.doc.govt.nz/link/3f5b4b54c38b4425b5e6091741e84aed.aspx" />
     <type>hut</type>
   </wpt>
+  <wpt lat="-42.303853" lon="172.61328">
+    <ele>758</ele>
+    <name>Christopher Hut turnoff</name>
+    <cmt>Waiau Pass Track</cmt>
+    <desc>km 2069.0 | Leave the trail here for Christopher Hut (hut), 4.3 km off trail. | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping next to hut included in The Trail Pass. Bookings required from 18th November | Place: St James Conservation Area | Region: Canterbury</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-42.288496" lon="172.565031">
     <ele>758</ele>
     <name>Christopher Hut</name>
@@ -1286,6 +1558,13 @@
     <desc>km 2069.0 | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping next to hut included in The Trail Pass. Bookings required from 18th November | Place: St James Conservation Area | Region: Canterbury</desc>
     <link href="https://www.doc.govt.nz/link/37715c0b499e4cb3a714175e030a850d.aspx" />
     <type>hut</type>
+  </wpt>
+  <wpt lat="-42.303853" lon="172.61328">
+    <ele>758</ele>
+    <name>Christopher (Ada) Cullers Hut turnoff</name>
+    <cmt>Waiau Pass Track</cmt>
+    <desc>km 2069.0 | Leave the trail here for Christopher (Ada) Cullers Hut (hut), 5.1 km off trail. | Category: Basic | Facilities: Toilets - non-flush, Water from stream, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | More Info: Included in The Trail Pass | Place: St James Conservation Area | Region: Canterbury</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-42.283155" lon="172.557766">
     <ele>758</ele>
@@ -1303,6 +1582,13 @@
     <link href="https://www.doc.govt.nz/link/6382f58f66104b849fd0cc8b6d4e885a.aspx" />
     <type>hut</type>
   </wpt>
+  <wpt lat="-42.355666" lon="172.517259">
+    <ele>880</ele>
+    <name>Ada Pass Hut turnoff</name>
+    <cmt>Waiau Pass Track</cmt>
+    <desc>km 2080.5 | Leave the trail here for Ada Pass Hut (hut), 7.5 km off trail. | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping next to hut included in The Trail Pass. Bookings required from 18th November | Place: Lewis Pass Scenic Reserve | Region: West Coast</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-42.304374" lon="172.457329">
     <ele>880</ele>
     <name>Ada Pass Hut</name>
@@ -1310,6 +1596,13 @@
     <desc>km 2080.5 | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping next to hut included in The Trail Pass. Bookings required from 18th November | Place: Lewis Pass Scenic Reserve | Region: West Coast</desc>
     <link href="https://www.doc.govt.nz/link/3ef43190e71441e2ac7e007c520f3049.aspx" />
     <type>hut</type>
+  </wpt>
+  <wpt lat="-42.36038" lon="172.512058">
+    <ele>901.9</ele>
+    <name>Cannibal Gorge Hut turnoff</name>
+    <cmt>Waiau Pass Track</cmt>
+    <desc>km 2081.2 | Leave the trail here for Cannibal Gorge Hut (hut), 7.7 km off trail. | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping next to hut included in The Trail Pass. Bookings required from 18th November | Place: Lewis Pass Scenic Reserve | Region: West Coast</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-42.326738" lon="172.429877">
     <ele>901.9</ele>
@@ -1357,6 +1650,13 @@
     <desc>km 2109.3 | Category: Standard | Facilities: Non-powered/tent sites, Water from tap - not treated, boil before use, Wheelchair accessible with assistance, Toilets - non-flush, Toilets, Water supply | Bookable: No | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Lake Sumner Forest Park | Region: Canterbury</desc>
     <link href="https://www.doc.govt.nz/link/6dcec8a03cce41b48e73eceec1bf47f0.aspx" />
     <type>campsite</type>
+  </wpt>
+  <wpt lat="-42.516836" lon="172.385612">
+    <ele>582.7</ele>
+    <name>Hanmer Springs turnoff</name>
+    <cmt>Waiau Pass Track</cmt>
+    <desc>km 2109.4 | Leave the trail here for Hanmer Springs (town), 55.0 km off trail. | Four Square, hot pools, backpackers. About 55 km off trail from Boyle; shuttle or hitch. Leave at Boyle Village on SH7; shuttle or hitch.</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-42.521795" lon="172.830299">
     <ele>582.7</ele>
@@ -1453,6 +1753,13 @@
     <link href="https://www.doc.govt.nz/link/d9bca4c384cd4dde80dd34c0a44f7246.aspx" />
     <type>hut</type>
   </wpt>
+  <wpt lat="-42.958961" lon="171.609252">
+    <ele>721</ele>
+    <name>Arthur&apos;s Pass turnoff</name>
+    <cmt>Boyle to Arthur&apos;s Pass</cmt>
+    <desc>km 2222.2 | Leave the trail here for Arthur&apos;s Pass (resupply), 4.5 km off trail. | Arthur&apos;s Pass Cafe and Store: limited, expensive groceries. DoC centre sells gas. Mountain House holds boxes. Accepts resupply boxes.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-42.939301" lon="171.561379">
     <ele>721</ele>
     <name>Arthur&apos;s Pass</name>
@@ -1522,6 +1829,13 @@
     <desc>km 2298.1 | No shops. Powerhouse Lodge holds bounce boxes and has tent sites. Accepts resupply boxes.</desc>
     <type>food</type>
   </wpt>
+  <wpt lat="-43.363884" lon="171.528357">
+    <ele>370.3</ele>
+    <name>Methven turnoff</name>
+    <cmt>Arthur&apos;s Pass to Rākaia River</cmt>
+    <desc>km 2298.3 | Leave the trail here for Methven (town), 48.0 km off trail. | Two supermarkets, Alpine Sports for dehydrated meals and gas. Snow Denn Lodge holds boxes ($5). Shuttle from Rakaia. Leave at the Rakaia River; the river is a no-ford hazard zone, shuttle required. Accepts resupply boxes.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-43.632433" lon="171.647261">
     <ele>370.3</ele>
     <name>Methven</name>
@@ -1545,6 +1859,13 @@
     <link href="https://www.doc.govt.nz/link/8b45fa6b67ad4953b812bb436484a73e.aspx" />
     <type>hut</type>
   </wpt>
+  <wpt lat="-43.492326" lon="171.252414">
+    <ele>842.1</ele>
+    <name>Double Hut turnoff</name>
+    <cmt>Rakaia River to Rangitata River</cmt>
+    <desc>km 2330.4 | Leave the trail here for Double Hut (hut), 0.7 km off trail. | Category: Basic/bivvies | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Hakatere Conservation Park | Region: Canterbury</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-43.495506" lon="171.260504">
     <ele>842.1</ele>
     <name>Double Hut</name>
@@ -1561,6 +1882,13 @@
     <link href="https://www.doc.govt.nz/link/5e9f00e5868243a1a0e1244f18ee8b26.aspx" />
     <type>hut</type>
   </wpt>
+  <wpt lat="-43.588043" lon="171.154726">
+    <ele>656</ele>
+    <name>Peel Forest Campground turnoff</name>
+    <cmt>Rakaia River to Rangitata River</cmt>
+    <desc>km 2348.1 | Leave the trail here for Peel Forest Campground (campsite), 34.7 km off trail. | Category: Serviced | Facilities: Cookers/electric stove, Non-powered/tent sites, Phone, Powered sites, Shelter for cooking, Shower - hot, Toilets - flush, Water from tap - not treated, boil before use, Wheelchair accessible, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | Place: Peel Forest Park Scenic Reserve | Region: Canterbury</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-43.889986" lon="171.266154">
     <ele>656</ele>
     <name>Peel Forest Campground</name>
@@ -1569,12 +1897,26 @@
     <link href="https://www.doc.govt.nz/link/f8912a8f305b4d6d9202de2ae3bd9da0.aspx" />
     <type>campsite</type>
   </wpt>
+  <wpt lat="-43.57723" lon="170.953682">
+    <ele>558</ele>
+    <name>Geraldine turnoff</name>
+    <cmt>Rakaia River to Rangitata River</cmt>
+    <desc>km 2367.8 | Leave the trail here for Geraldine (town), 70.0 km off trail. | Supermarket and accommodation. About 70 km from the Rangitata via Methven; community shuttle $24. Leave at the Rangitata River; community shuttle $24, book two days ahead.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-44.092104" lon="171.24259">
     <ele>558</ele>
     <name>Geraldine</name>
     <cmt>Rakaia River to Rangitata River</cmt>
     <desc>km 2367.8 | Supermarket and accommodation. About 70 km from the Rangitata via Methven; community shuttle $24. Leave at the Rangitata River; community shuttle $24, book two days ahead.</desc>
     <type>town</type>
+  </wpt>
+  <wpt lat="-43.57723" lon="170.953682">
+    <ele>558</ele>
+    <name>Peel Forest turnoff</name>
+    <cmt>Rakaia River to Rangitata River</cmt>
+    <desc>km 2367.8 | Leave the trail here for Peel Forest (resupply), 50.0 km off trail. | DoC Peel Forest camp and a small store. Homestay offers transport to the trailhead. Leave at the Rangitata River.</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-43.911219" lon="171.260376">
     <ele>558</ele>
@@ -1583,12 +1925,26 @@
     <desc>km 2367.8 | DoC Peel Forest camp and a small store. Homestay offers transport to the trailhead. Leave at the Rangitata River.</desc>
     <type>resupply</type>
   </wpt>
+  <wpt lat="-43.57723" lon="170.953682">
+    <ele>558</ele>
+    <name>Mesopotamia Station turnoff</name>
+    <cmt>Rakaia River to Rangitata River</cmt>
+    <desc>km 2367.8 | Leave the trail here for Mesopotamia Station (food), 2.5 km off trail. | Historic station near the Rangitata; holds food parcels. Leave at the Rangitata River crossing. Accepts resupply boxes.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-43.663438" lon="170.884449">
     <ele>558</ele>
     <name>Mesopotamia Station</name>
     <cmt>Rakaia River to Rangitata River</cmt>
     <desc>km 2367.8 | Historic station near the Rangitata; holds food parcels. Leave at the Rangitata River crossing. Accepts resupply boxes.</desc>
     <type>food</type>
+  </wpt>
+  <wpt lat="-43.57723" lon="170.953682">
+    <ele>558</ele>
+    <name>Mt Potts Lodge turnoff</name>
+    <cmt>Rakaia River to Rangitata River</cmt>
+    <desc>km 2367.8 | Leave the trail here for Mt Potts Lodge (food), 3.0 km off trail. | Cafe and restaurant, closed Tue/Wed, book meals ahead. Has held food parcels; check first. Leave at the Rangitata River crossing. Accepts resupply boxes.</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-43.502584" lon="170.924859">
     <ele>558</ele>
@@ -1635,6 +1991,13 @@
     <desc>km 2442.1 | Large Four Square, cafes. Tailormade Backpackers and Bespoke Bikes receive bounce boxes. Accepts resupply boxes.</desc>
     <type>town</type>
   </wpt>
+  <wpt lat="-44.004646" lon="170.475451">
+    <ele>727</ele>
+    <name>Lake Tekapo Motels &amp; Holiday Park turnoff</name>
+    <cmt>Tekapo to Lake Ōhau</cmt>
+    <desc>km 2442.3 | Leave the trail here for Lake Tekapo Motels &amp; Holiday Park (caravan-park), 1.0 km off trail. | Facilities: Budget holiday park accommodation, backpacker accommodation, motorcamp, campervan sites, tourist flats, tent sites for camping and cabins with all the modern campground facilities | Address: 2 Lakeside Drive, Lake Tekapo | Phone: 0800 853 853 | Website: http://www.laketekapo-accommodation.co.nz/ | Categories: Motel RVPark</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-44.00081" lon="170.46452">
     <ele>727</ele>
     <name>Lake Tekapo Motels &amp; Holiday Park</name>
@@ -1656,6 +2019,13 @@
     <cmt>Tekapo to Lake Ōhau</cmt>
     <desc>km 2485.0 | </desc>
     <type>campsite</type>
+  </wpt>
+  <wpt lat="-44.260094" lon="170.104977">
+    <ele>465</ele>
+    <name>Twizel turnoff</name>
+    <cmt>Tekapo to Lake Ōhau</cmt>
+    <desc>km 2496.6 | Leave the trail here for Twizel (town), 0.5 km off trail. | Two Four Squares, Southern Alps Outdoors for gas. High Country Lodge holds parcels. Accepts resupply boxes.</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-44.257483" lon="170.099414">
     <ele>465</ele>
@@ -1731,6 +2101,13 @@
     <desc>km 2639.0 | New World, Four Square, Mediterranean Market for bulk, Macpac. Full resupply.</desc>
     <type>town</type>
   </wpt>
+  <wpt lat="-44.699186" lon="169.118018">
+    <ele>280.4</ele>
+    <name>Wanaka Top 10 Holiday Park turnoff</name>
+    <cmt>Glendhu Bay Track</cmt>
+    <desc>km 2640.6 | Leave the trail here for Wanaka Top 10 Holiday Park (accommodation), 0.9 km off trail. | Facilities: Accommodation: tents, powered caravan/campervan sites, dump station | Address: 263 Studholme Road, Wanaka | Phone: 0800 229 8439 | Website: http://www.campervanpark.co.nz | Categories: LodgingBusiness</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-44.705129" lon="169.109566">
     <ele>280.4</ele>
     <name>Wanaka Top 10 Holiday Park</name>
@@ -1771,6 +2148,13 @@
     <link href="https://www.doc.govt.nz/link/4c5ff1ac99ac4273a2ea55fe996d80ad.aspx" />
     <type>campsite</type>
   </wpt>
+  <wpt lat="-44.939505" lon="168.83069">
+    <ele>419.5</ele>
+    <name>Arrowtown Hampshire Holiday Park turnoff</name>
+    <cmt>Wakatipu Track</cmt>
+    <desc>km 2704.4 | Leave the trail here for Arrowtown Hampshire Holiday Park (accommodation), 0.7 km off trail. | Facilities: Accommodation: tents, powered/nonpowered caravans/campervans, dump station | Address: 12 Centennial Avenue, Arrowtown 9302 | Phone: 64 3 4421876 | Website: https://hampshireholidayparks.co.nz/park/arrowtown-holiday-park/ | Categories: LodgingBusiness</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-44.943139" lon="168.83861">
     <ele>419.5</ele>
     <name>Arrowtown Hampshire Holiday Park</name>
@@ -1793,6 +2177,13 @@
     <desc>km 2725.7 | Pak&apos;nSave, New World, Woolworths. Cheapest resupply in the Queenstown basin.</desc>
     <type>town</type>
   </wpt>
+  <wpt lat="-45.038956" lon="168.657043">
+    <ele>309.1</ele>
+    <name>Twelve Mile Delta Campsite turnoff</name>
+    <cmt>Wakatipu Track</cmt>
+    <desc>km 2732.7 | Leave the trail here for Twelve Mile Delta Campsite (campsite), 9.2 km off trail. | Category: Standard | Facilities: Boat launching, Non-powered/tent sites, Water from tap - not treated, boil before use, Wheelchair accessible with assistance, Toilets - non-flush, Toilets, Water supply | Bookable: No | Booking Required: No | Trail Pass: No | Trail Pass discount (%): 0 | Place: Queenstown area | Region: Otago</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-45.067442" lon="168.546517">
     <ele>309.1</ele>
     <name>Twelve Mile Delta Campsite</name>
@@ -1808,6 +2199,13 @@
     <desc>km 2733.7 | FreshChoice, Four Square, outdoor stores. Full gear replacement.</desc>
     <type>town</type>
   </wpt>
+  <wpt lat="-44.924741" lon="168.358641">
+    <ele>316.5</ele>
+    <name>Kinloch Campsite turnoff</name>
+    <cmt>Wakatipu Track</cmt>
+    <desc>km 2733.8 | Leave the trail here for Kinloch Campsite (campsite), 9.0 km off trail. | Category: Standard | Facilities: Boat launching, Jetty, Non-powered/tent sites, Water from tap - not treated, boil before use, Wheelchair accessible, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Glenorchy area | Region: Otago</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-44.843717" lon="168.349994">
     <ele>312.5</ele>
     <name>Kinloch Campsite</name>
@@ -1816,6 +2214,13 @@
     <link href="https://www.doc.govt.nz/link/a8115b67bce049f3acdada4d3556c96d.aspx" />
     <type>campsite</type>
   </wpt>
+  <wpt lat="-45.032183" lon="168.659449">
+    <ele>312.5</ele>
+    <name>Queenstown Holiday Park Creeksyde turnoff</name>
+    <cmt>Wakatipu Track</cmt>
+    <desc>km 2733.8 | Leave the trail here for Queenstown Holiday Park Creeksyde (caravan-park), 0.7 km off trail. | Facilities: Holiday park, campground, motorhomes, campervans, tent sites | Address: 54 Robins Road, Queenstown | Phone: (03) 442 9447 | Website: http://www.camp.co.nz | Categories: RVPark LodgingBusiness</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-45.025767" lon="168.660448">
     <ele>312.5</ele>
     <name>Queenstown Holiday Park Creeksyde</name>
@@ -1823,6 +2228,13 @@
     <desc>km 2733.8 | Facilities: Holiday park, campground, motorhomes, campervans, tent sites | Address: 54 Robins Road, Queenstown | Phone: (03) 442 9447 | Website: http://www.camp.co.nz | Categories: RVPark LodgingBusiness</desc>
     <link href="http://www.camp.co.nz" />
     <type>caravan-park</type>
+  </wpt>
+  <wpt lat="-44.925655" lon="168.358297">
+    <ele>319.4</ele>
+    <name>Glenorchy turnoff</name>
+    <cmt>Mavora Walkway</cmt>
+    <desc>km 2733.8 | Leave the trail here for Glenorchy (resupply), 25.0 km off trail. | Glenorchy Hotel general store. About 1.5 hr drive from the Greenstone car park. Leave at the Greenstone car park.</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-44.849749" lon="168.385198">
     <ele>319.4</ele>
@@ -1887,6 +2299,13 @@
     <link href="https://www.doc.govt.nz/link/07540cfcf9404be8bb256d49ef81d0d9.aspx" />
     <type>campsite</type>
   </wpt>
+  <wpt lat="-45.362841" lon="168.095501">
+    <ele>520</ele>
+    <name>Kiwi Burn Hut turnoff</name>
+    <cmt>Mararoa River Track</cmt>
+    <desc>km 2801.3 | Leave the trail here for Kiwi Burn Hut (hut), 0.9 km off trail. | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Snowdon Forest Conservation Area | Region: Southland</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-45.355171" lon="168.09082">
     <ele>520</ele>
     <name>Kiwi Burn Hut</name>
@@ -1895,6 +2314,13 @@
     <link href="https://www.doc.govt.nz/link/cbed8342279e4cd0864e3eda1996a7bb.aspx" />
     <type>hut</type>
   </wpt>
+  <wpt lat="-45.545359" lon="167.935053">
+    <ele>339.7</ele>
+    <name>Te Anau turnoff</name>
+    <cmt>Mararoa River Track</cmt>
+    <desc>km 2829.8 | Leave the trail here for Te Anau (town), 35.0 km off trail. | Four Square and FreshChoice, Outside Sports. 28-35 km off trail from SH94; shuttle or hitch. Leave at the SH94 / Princhester junction (The Key).</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-45.41449" lon="167.717489">
     <ele>339.7</ele>
     <name>Te Anau</name>
@@ -1902,12 +2328,26 @@
     <desc>km 2829.8 | Four Square and FreshChoice, Outside Sports. 28-35 km off trail from SH94; shuttle or hitch. Leave at the SH94 / Princhester junction (The Key).</desc>
     <type>town</type>
   </wpt>
+  <wpt lat="-45.545359" lon="167.935053">
+    <ele>339.7</ele>
+    <name>Mossburn turnoff</name>
+    <cmt>Mararoa River Track</cmt>
+    <desc>km 2829.8 | Leave the trail here for Mossburn (resupply), 20.0 km off trail. | Four Square at 37 Devon St. About 20 km from the Princhester/SH94 junction. Leave at the SH94 / Princhester junction (The Key).</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-45.669331" lon="168.234768">
     <ele>339.7</ele>
     <name>Mossburn</name>
     <cmt>Mararoa River Track</cmt>
     <desc>km 2829.8 | Four Square at 37 Devon St. About 20 km from the Princhester/SH94 junction. Leave at the SH94 / Princhester junction (The Key).</desc>
     <type>resupply</type>
+  </wpt>
+  <wpt lat="-45.545359" lon="167.935053">
+    <ele>339.7</ele>
+    <name>The Key (Princhester) turnoff</name>
+    <cmt>Mararoa River Track</cmt>
+    <desc>km 2829.8 | Leave the trail here for The Key (Princhester) (food), 3.1 km off trail. | Sprig and Thistle coffee caravan at the SH94 junction, Tue-Fri 7am-3pm, Sat 8am-2pm.</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-45.545322" lon="167.895161">
     <ele>339.7</ele>
@@ -1947,6 +2387,13 @@
     <desc>km 2873.7 | Category: Backcountry | Facilities: Many tent sites, long drop toilet, stream | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Takitimu Conservation Area | Region: Southland</desc>
     <type>campsite</type>
   </wpt>
+  <wpt lat="-45.969022" lon="167.901198">
+    <ele>376</ele>
+    <name>Nightcaps turnoff</name>
+    <cmt>Birchwood to Merrivale</cmt>
+    <desc>km 2912.4 | Leave the trail here for Nightcaps (resupply), 9.0 km off trail. | Four Square and a pub. About 9-16 km east of the trail near Birchwood. Leave near Birchwood.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-45.970441" lon="168.031142">
     <ele>376</ele>
     <name>Nightcaps</name>
@@ -1954,12 +2401,26 @@
     <desc>km 2912.4 | Four Square and a pub. About 9-16 km east of the trail near Birchwood. Leave near Birchwood.</desc>
     <type>resupply</type>
   </wpt>
+  <wpt lat="-46.14844" lon="167.823177">
+    <ele>629.7</ele>
+    <name>Tuatapere turnoff</name>
+    <cmt>Longwood Forest Track</cmt>
+    <desc>km 2943.1 | Leave the trail here for Tuatapere (resupply), 26.0 km off trail. | Small supermarket, several lodges. About 26 km west of Merrivale Rd. Leave at Merrivale Rd.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-46.131637" lon="167.689851">
     <ele>629.7</ele>
     <name>Tuatapere</name>
     <cmt>Longwood Forest Track</cmt>
     <desc>km 2943.1 | Small supermarket, several lodges. About 26 km west of Merrivale Rd. Leave at Merrivale Rd.</desc>
     <type>resupply</type>
+  </wpt>
+  <wpt lat="-46.194824" lon="167.922526">
+    <ele>79</ele>
+    <name>Otautau turnoff</name>
+    <cmt>Longwood Forest Track</cmt>
+    <desc>km 2960.1 | Leave the trail here for Otautau (resupply), 16.0 km off trail. | Small supermarket, hotels with backpacker beds. About 12-16 km east of Merrivale Rd. Leave at Merrivale Rd.</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-46.142735" lon="167.997221">
     <ele>79</ele>
@@ -1984,6 +2445,13 @@
     <link href="https://www.doc.govt.nz/link/d876515aabb342a8802cfaa1ba393388.aspx" />
     <type>hut</type>
   </wpt>
+  <wpt lat="-46.357031" lon="167.913612">
+    <ele>7.5</ele>
+    <name>Colac Bay turnoff</name>
+    <cmt>Tīhaka Beach Track</cmt>
+    <desc>km 2996.5 | Leave the trail here for Colac Bay (food), 1.4 km off trail. | Colac Bay Bakehouse and Cafe with a camping ground; shop operating.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-46.369551" lon="167.914933">
     <ele>7</ele>
     <name>Colac Bay</name>
@@ -2006,6 +2474,13 @@
     <desc>km 3007.6 | FreshChoice/SuperValue on Palmerston St, cafes and takeaways. Holiday park.</desc>
     <type>town</type>
   </wpt>
+  <wpt lat="-46.431793" lon="168.27908">
+    <ele>10</ele>
+    <name>Otatara turnoff</name>
+    <cmt>Oreti Beach Track</cmt>
+    <desc>km 3034.4 | Leave the trail here for Otatara (resupply), 0.7 km off trail. | Four Square, on the way into Invercargill.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-46.43803" lon="168.28698">
     <ele>6</ele>
     <name>Otatara</name>
@@ -2013,12 +2488,26 @@
     <desc>km 3034.4 | Four Square, on the way into Invercargill.</desc>
     <type>resupply</type>
   </wpt>
+  <wpt lat="-46.418474" lon="168.337514">
+    <ele>2</ele>
+    <name>Invercargill turnoff</name>
+    <cmt>Invercargill to Bluff</cmt>
+    <desc>km 3038.7 | Leave the trail here for Invercargill (town), 1.0 km off trail. | Pak&apos;nSave, New World, Woolworths, Macpac and Kathmandu. Last full resupply.</desc>
+    <type>access</type>
+  </wpt>
   <wpt lat="-46.411847" lon="168.347063">
     <ele>2</ele>
     <name>Invercargill</name>
     <cmt>Invercargill to Bluff</cmt>
     <desc>km 3038.7 | Pak&apos;nSave, New World, Woolworths, Macpac and Kathmandu. Last full resupply.</desc>
     <type>town</type>
+  </wpt>
+  <wpt lat="-46.610893" lon="168.346493">
+    <ele>155</ele>
+    <name>Bluff turnoff</name>
+    <cmt>Invercargill to Bluff</cmt>
+    <desc>km 3072.0 | Leave the trail here for Bluff (town), 1.4 km off trail. | Four Square. Trail end at Stirling Point.</desc>
+    <type>access</type>
   </wpt>
   <wpt lat="-46.59882" lon="168.343368">
     <ele>155</ele>

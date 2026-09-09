@@ -78,6 +78,8 @@ interface Meta {
       distanceKm: number;
       sections: string[];
     }>;
+    accessPoints: number;
+    resupplyAccessPoints: number;
     strandedSites: number;
     farthestSite: { name: string; offTrailKm: number } | null;
     accuracy: {
@@ -99,7 +101,19 @@ const km = (value: number): string =>
   });
 
 /** Small counts read better as words in a sentence. */
-const WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+const WORDS = [
+  "no",
+  "one",
+  "two",
+  "three",
+  "four",
+  "five",
+  "six",
+  "seven",
+  "eight",
+  "nine",
+  "ten",
+];
 const count = (value: number): string => WORDS[value] ?? n(value);
 
 /** "2026-09-08" or an ISO timestamp -> "8 September 2026". */
@@ -253,7 +267,7 @@ Most files come in both directions, \`-sobo\` (Cape Reinga → Bluff) and \`-nob
 
 | File | Contents |
 |---|---|
-| \`te-araroa-{sobo,nobo}.gpx\` | ${s.tracks} tracks (${s.walkingTracks} for the main route, one per stretch you can walk; transport connectors; ${s.bypasses} bypasses), ${n(s.waypoints)} waypoints typed \`hut\`/\`campsite\`/\`town\`/\`resupply\`/\`food\`/\`accommodation\`/\`caravan-park\`/\`gap\`, all in walking order. The stable filenames - link to these |
+| \`te-araroa-{sobo,nobo}.gpx\` | ${s.tracks} tracks (${s.walkingTracks} for the main route, one per stretch you can walk; transport connectors; ${s.bypasses} bypasses), ${n(s.waypoints)} waypoints typed \`hut\`/\`campsite\`/\`town\`/\`resupply\`/\`food\`/\`accommodation\`/\`caravan-park\`/\`gap\`/\`access\`, all in walking order - the ${s.accessPoints} \`access\` ones are turnoffs on the route itself, marking where you leave the trail for a site it does not pass. The stable filenames - link to these |
 | \`te-araroa-${meta.season}-{sobo,nobo}.gpx\` | the same bytes under this release's name |
 | \`resupply-plan-{sobo,nobo}.csv\` | ${n(s.planRows)} sites in trail order: km, official km, section, trail elevation, leg distances, leg ascent/descent, whether the leg crosses a break in the route, bunks, water, booking, phone, address, hours, DOC link |
 | \`sections-{sobo,nobo}.csv\` | ${s.sections} official sections with km ranges, counted in that direction and in the trust's chainage |
@@ -319,14 +333,14 @@ function projectPage(meta: Meta): Record<string, string> {
   // simplified is decided by the build, so read it back rather than restate it.
   const overview = JSON.parse(
     readFileSync(join(root, "docs", "data", "overview.geojson"), "utf8")
-  ) as { properties: { routePoints: number } };
+  ) as { properties: { routePoints: number; accessPoints: number } };
 
   const files: Array<[string, string]> = [
     [
       // The stable name, not the dated one: this page is a permanent URL and
       // its links should not break when the trust publishes a new season.
       "te-araroa-{dir}.gpx",
-      `${s.tracks} tracks (${s.walkingTracks} for the main route, one per stretch you can walk, plus ferry connectors and ${s.bypasses} bypasses) and ${n(s.waypoints)} typed waypoints, in walking order. Elevation throughout.`,
+      `${s.tracks} tracks (${s.walkingTracks} for the main route, one per stretch you can walk, plus ferry connectors and ${s.bypasses} bypasses) and ${n(s.waypoints)} typed waypoints, in walking order, among them a turnoff on the route for each of the ${s.accessPoints} sites the trail does not pass. Elevation throughout.`,
     ],
     [
       "resupply-plan-{dir}.csv",
@@ -384,8 +398,11 @@ function projectPage(meta: Meta): Record<string, string> {
     mapnote: `
   Simplified for the web to ${n(overview.properties.routePoints)} points. Huts and campsites in green, resupply
   in orange, and the ringed markers are where this direction starts and finishes.
-  The ${count(meta.routeGaps.length)} dashed links are the places the walking route stops and starts
-  again; click one to see what crosses it.
+  The ${count(meta.routeGaps.length)} dashed links along the route are the places the walking route
+  stops and starts again; click one to see what crosses it. The
+  ${n(overview.properties.accessPoints)} small ringed markers on the route are turnoffs — where you leave
+  the trail for somewhere it does not pass — each tied by a faint line running
+  away from the route to the place it serves.
   The published GPX has the full ${n(s.routePoints)}-point geometry.
 `,
 
