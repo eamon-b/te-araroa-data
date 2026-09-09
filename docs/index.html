@@ -227,20 +227,18 @@ footer {
   </p>
 <!-- generated:badges -->
   <span class="badge">2026-27 release (v45)</span>
-  <span class="badge">built 8 September 2026</span>
+  <span class="badge">built 9 September 2026</span>
   <span class="badge"><a href="https://github.com/eamon-b/te-araroa-data">Source on GitHub</a></span>
 <!-- /generated:badges -->
 </header>
 
 <div class="warn">
 <!-- generated:warning -->
-  <p><strong>This follows the trust, but it is not the trust.</strong></p>
+  <p><strong>This follows what the TA trust published, but it is not the trust.</strong></p>
   <p>
     A scheduled job checks the trust's download page every Monday and rebuilds
-    when the published files change, so this is not a frozen snapshot. But a
-    rebuild still needs a person to merge it, and nothing here can see a reroute
-    the trust has not published yet. This is not official and not endorsed by
-    the Te Araroa Trust.
+    when the published files change, so this is not a frozen snapshot. But it
+    still needs manual review and can get out of date.
   </p>
   <p>
     The resupply data is the exception: it is researched by hand, last revised
@@ -260,7 +258,7 @@ footer {
 <!-- generated:stats -->
   <div class="stat"><b>3,073 km</b><span>Official length</span></div>
   <div class="stat"><b>35,441</b><span>Route points</span></div>
-  <div class="stat"><b>574</b><span>Waypoints</span></div>
+  <div class="stat"><b>586</b><span>Waypoints</span></div>
   <div class="stat"><b>79</b><span>Sections</span></div>
   <div class="stat"><b>8 m</b><span>Chainage error</span></div>
 <!-- /generated:stats -->
@@ -280,8 +278,10 @@ footer {
 </div>
 <p class="map-note">
 <!-- generated:mapnote -->
-  Simplified for the web to 7,113 points. Huts and campsites in green, resupply
+  Simplified for the web to 7,101 points. Huts and campsites in green, resupply
   in orange, and the ringed markers are where this direction starts and finishes.
+  The six dashed links are the places the walking route stops and starts
+  again; click one to see what crosses it.
   The published GPX has the full 35,441-point geometry.
 <!-- /generated:mapnote -->
 </p>
@@ -330,15 +330,15 @@ footer {
 <!-- generated:downloads -->
   <tr>
     <td><a data-file="te-araroa-{dir}.gpx"></a></td>
-    <td>15 tracks (main route, ferry connectors, 13 bypasses) and 574 typed waypoints, in walking order. Elevation throughout.</td>
+    <td>21 tracks (7 for the main route, one per stretch you can walk, plus ferry connectors and 13 bypasses) and 586 typed waypoints, in walking order. Elevation throughout.</td>
   </tr>
   <tr>
     <td><a data-file="resupply-plan-{dir}.csv"></a></td>
-    <td>266 sites in trail order: km, official km, section, elevation, leg distances and ascent, bunks, water, booking, phone, hours.</td>
+    <td>266 sites in trail order: km, official km, section, elevation, leg distances and ascent, any break the leg crosses, bunks, water, booking, phone, hours.</td>
   </tr>
   <tr>
     <td><a data-file="datasheet-{dir}.csv"></a></td>
-    <td>The route through <code>gpx-tools</code>' datasheet: every waypoint with running distance, ascent and descent.</td>
+    <td>The route through <code>gpx-tools</code>' datasheet: every waypoint with running distance, ascent and descent, measured one walkable stretch at a time.</td>
   </tr>
   <tr>
     <td><a data-file="datasheet-resupply-{dir}.csv"></a></td>
@@ -491,9 +491,30 @@ fetch('data/overview.geojson')
     return r.json();
   })
   .then((geo) => {
+    const routeColour = getComputedStyle(document.documentElement).getPropertyValue('--route').trim();
+
+    // The route is a MultiLineString, one line per stretch you can walk, so
+    // Leaflet draws one line per stretch and joins none of them. Drawn as a
+    // single line, this is what put a straight line across Cook Strait, the
+    // Rakaia, the Rangitata and Lake Wakatipu on this map.
     const route = L.geoJSON(geo, {
-      filter: (f) => f.geometry.type === 'LineString',
-      style: { color: getComputedStyle(document.documentElement).getPropertyValue('--route').trim(), weight: 2.5, opacity: 0.9 }
+      filter: (f) => f.properties.kind === 'route',
+      style: { color: routeColour, weight: 2.5, opacity: 0.9 }
+    }).addTo(map);
+
+    // And the breaks themselves, dashed, so it reads as the trail stopping
+    // rather than the trail quietly not being there.
+    L.geoJSON(geo, {
+      filter: (f) => f.properties.kind === 'gap',
+      style: { color: routeColour, weight: 1.5, opacity: 0.5, dashArray: '3 6' },
+      onEachFeature: (f, layer) => {
+        const p = f.properties;
+        layer.bindPopup(
+          '<strong>' + p.name + '</strong><br>' +
+          'the walking route stops here for ' + p.straightLineKm + ' km<br>' +
+          '<span style="color:#777">' + p.crossing + '</span>'
+        );
+      }
     }).addTo(map);
 
     const totalKm = (geo.properties && geo.properties.officialLengthKm) || 3073.2;
@@ -529,11 +550,13 @@ fetch('data/overview.geojson')
 
     // Which end you start at is the one thing a static line cannot show, and it
     // is the whole of what the switch means on the map.
-    const line = geo.features.find((f) => f.geometry.type === 'LineString');
-    const coords = line ? line.geometry.coordinates : [];
-    const capeReinga = coords.length ? L.latLng(coords[0][1], coords[0][0]) : null;
-    const bluff = coords.length
-      ? L.latLng(coords[coords.length - 1][1], coords[coords.length - 1][0])
+    const line = geo.features.find((f) => f.properties.kind === 'route');
+    const stretches = line ? line.geometry.coordinates : [];
+    const first = stretches.length ? stretches[0] : [];
+    const last = stretches.length ? stretches[stretches.length - 1] : [];
+    const capeReinga = first.length ? L.latLng(first[0][1], first[0][0]) : null;
+    const bluff = last.length
+      ? L.latLng(last[last.length - 1][1], last[last.length - 1][0])
       : null;
 
     const endMarker = (colour) => L.circleMarker([0, 0], {

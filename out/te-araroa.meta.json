@@ -40,7 +40,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-09-08T21:02:15.492Z",
+  "generatedAt": "2026-09-09T09:53:43.176Z",
   "source": {
     "fetchedAt": "2026-09-08",
     "files": [
@@ -62,8 +62,9 @@
     "officialGpxTrackPoints": 28027,
     "kmzTrackPoints": 35987,
     "routePoints": 35441,
-    "tracks": 15,
-    "waypoints": 574,
+    "tracks": 21,
+    "walkingTracks": 7,
+    "waypoints": 586,
     "sections": 79,
     "docSites": 135,
     "privateSites": 49,
@@ -152,10 +153,12 @@
     }
   },
   "officialLengthKm": 3073.204,
-  "geometricLengthKm": 3159.486,
+  "walkedLengthKm": 3056.751,
+  "gapLengthKm": 102.735,
   "routePoints": 35441,
-  "ascentMeters": 83774,
-  "descentMeters": 83915,
+  "walkedStretches": 7,
+  "ascentMeters": 83680,
+  "descentMeters": 83864,
   "transportConnectors": [
     {
       "name": "Devonport Ferry crossing",
@@ -188,55 +191,121 @@
       "straightLineKm": 1.105,
       "from": "Reotahi Track",
       "to": "Bream Bay Marsden",
+      "label": "Whangarei Heads",
       "coveredBy": [
         "Whangarei Heads crossing"
       ],
-      "kind": "ferry"
+      "kind": "ferry",
+      "crossing": "Crossed by Whangarei Heads crossing.",
+      "endsAt": {
+        "lat": -35.826533,
+        "lon": 174.497403
+      },
+      "resumesAt": {
+        "lat": -35.834741,
+        "lon": 174.490484
+      }
     },
     {
       "km": 606.008,
       "straightLineKm": 2.873,
       "from": "North Shore Coastal Walk",
       "to": "Auckland City Coast to Coast Walk",
+      "label": "Devonport",
       "coveredBy": [
         "Devonport Ferry crossing"
       ],
-      "kind": "ferry"
+      "kind": "ferry",
+      "crossing": "Crossed by Devonport Ferry crossing.",
+      "endsAt": {
+        "lat": -36.833253,
+        "lon": 174.795577
+      },
+      "resumesAt": {
+        "lat": -36.842715,
+        "lon": 174.765542
+      }
     },
     {
       "km": 1738.956,
       "straightLineKm": 52.679,
       "from": "Mount Victoria Southern Walkway",
       "to": "Queen Charlotte Ship Cove to Resolution Bay",
+      "label": "Te Moana O Raukawa",
       "coveredBy": [
         "Picton to Ship Cove - Water Taxi",
         "Te Moana O Raukawa - Ferry Crossing"
       ],
-      "kind": "ferry"
+      "kind": "ferry",
+      "crossing": "Crossed by Picton to Ship Cove - Water Taxi and Te Moana O Raukawa - Ferry Crossing.",
+      "endsAt": {
+        "lat": -41.343986,
+        "lon": 174.770876
+      },
+      "resumesAt": {
+        "lat": -41.094737,
+        "lon": 174.235252
+      }
     },
     {
       "km": 2298.311,
       "straightLineKm": 12.61,
       "from": "Arboretum Track",
       "to": "Round Hill Route",
-      "coveredBy": [],
-      "kind": "unmapped"
+      "label": "Rakaia River",
+      "coveredBy": [
+        "Rakaia River (Hazard Bypass)"
+      ],
+      "kind": "bypass",
+      "crossing": "Crossed by Rakaia River (Hazard Bypass), published as a bypass with no chainage of its own.",
+      "endsAt": {
+        "lat": -43.363884,
+        "lon": 171.528357
+      },
+      "resumesAt": {
+        "lat": -43.318859,
+        "lon": 171.385248
+      }
     },
     {
       "km": 2367.804,
       "straightLineKm": 6.962,
       "from": "Hakatere Station Route",
       "to": "Mesopotamia Station",
-      "coveredBy": [],
-      "kind": "unmapped"
+      "label": "Rangitata River",
+      "coveredBy": [
+        "Rangitata River (Hazard Bypass)"
+      ],
+      "kind": "bypass",
+      "crossing": "Crossed by Rangitata River (Hazard Bypass), published as a bypass with no chainage of its own.",
+      "endsAt": {
+        "lat": -43.57723,
+        "lon": 170.953682
+      },
+      "resumesAt": {
+        "lat": -43.62305,
+        "lon": 170.894758
+      }
     },
     {
       "km": 2733.771,
       "straightLineKm": 26.506,
       "from": "Queenstown Waterfront",
       "to": "Greenstone Track",
-      "coveredBy": [],
-      "kind": "unmapped"
+      "label": "Lake Wakatipu",
+      "coveredBy": [
+        "Lake Wakatipu Bypass"
+      ],
+      "kind": "bypass",
+      "crossing": "Crossed by Lake Wakatipu Bypass, published as a bypass with no chainage of its own.",
+      "endsAt": {
+        "lat": -45.032183,
+        "lon": 168.659449
+      },
+      "resumesAt": {
+        "lat": -44.924741,
+        "lon": 168.358641
+      }
     }
   ],
   "sections": [

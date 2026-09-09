@@ -5,7 +5,7 @@
   xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <metadata>
     <name>Te Araroa 2026-27 (SOBO)</name>
-    <desc>Built from the official KMZ, walked Cape Reinga to Bluff. Official chainage 3073.2 km (measured southbound from Cape Reinga); route geometry 3159.5 km over 35441 points.</desc>
+    <desc>Built from the official KMZ, walked Cape Reinga to Bluff. Official chainage 3073.2 km (measured southbound from Cape Reinga); 3056.8 km of walked geometry over 35441 points, in 7 stretches separated by 6 links you do not walk.</desc>
     <author><name>Te Araroa Trust</name></author>
     <keywords>Te Araroa Trust, CC BY 4.0 NZ - 2026-27 trail data (v45)</keywords>
   </metadata>
@@ -3567,8 +3567,90 @@
     <desc>Invercargill to Bluff</desc>
     <type>waypoint</type>
   </wpt>
+  <wpt lat="-35.826533" lon="174.497403">
+    <ele>6.6</ele>
+    <name>Trail ends - Whangarei Heads</name>
+    <cmt>Whangarei Heads</cmt>
+    <desc>km 407.3: the walking route stops here and starts again 1.1 km away at Bream Bay Marsden. Crossed by Whangarei Heads crossing.</desc>
+    <type>gap</type>
+  </wpt>
+  <wpt lat="-35.834741" lon="174.490484">
+    <name>Trail resumes - Whangarei Heads</name>
+    <cmt>Whangarei Heads</cmt>
+    <desc>km 407.3: the walking route starts again here, 1.1 km from where it stopped at Reotahi Track. Crossed by Whangarei Heads crossing.</desc>
+    <type>gap</type>
+  </wpt>
+  <wpt lat="-36.833253" lon="174.795577">
+    <name>Trail ends - Devonport</name>
+    <cmt>Devonport</cmt>
+    <desc>km 606.0: the walking route stops here and starts again 2.9 km away at Auckland City Coast to Coast Walk. Crossed by Devonport Ferry crossing.</desc>
+    <type>gap</type>
+  </wpt>
+  <wpt lat="-36.842715" lon="174.765542">
+    <ele>2.3</ele>
+    <name>Trail resumes - Devonport</name>
+    <cmt>Devonport</cmt>
+    <desc>km 606.0: the walking route starts again here, 2.9 km from where it stopped at North Shore Coastal Walk. Crossed by Devonport Ferry crossing.</desc>
+    <type>gap</type>
+  </wpt>
+  <wpt lat="-41.343986" lon="174.770876">
+    <ele>6.6</ele>
+    <name>Trail ends - Te Moana O Raukawa</name>
+    <cmt>Te Moana O Raukawa</cmt>
+    <desc>km 1739.0: the walking route stops here and starts again 52.7 km away at Queen Charlotte Ship Cove to Resolution Bay. Crossed by Picton to Ship Cove - Water Taxi and Te Moana O Raukawa - Ferry Crossing.</desc>
+    <type>gap</type>
+  </wpt>
+  <wpt lat="-41.094737" lon="174.235252">
+    <ele>5.1</ele>
+    <name>Trail resumes - Te Moana O Raukawa</name>
+    <cmt>Te Moana O Raukawa</cmt>
+    <desc>km 1739.0: the walking route starts again here, 52.7 km from where it stopped at Mount Victoria Southern Walkway. Crossed by Picton to Ship Cove - Water Taxi and Te Moana O Raukawa - Ferry Crossing.</desc>
+    <type>gap</type>
+  </wpt>
+  <wpt lat="-43.363884" lon="171.528357">
+    <ele>370.3</ele>
+    <name>Trail ends - Rakaia River</name>
+    <cmt>Rakaia River</cmt>
+    <desc>km 2298.3: the walking route stops here and starts again 12.6 km away at Round Hill Route. Crossed by Rakaia River (Hazard Bypass), published as a bypass with no chainage of its own.</desc>
+    <type>gap</type>
+  </wpt>
+  <wpt lat="-43.318859" lon="171.385248">
+    <ele>458</ele>
+    <name>Trail resumes - Rakaia River</name>
+    <cmt>Rakaia River</cmt>
+    <desc>km 2298.3: the walking route starts again here, 12.6 km from where it stopped at Arboretum Track. Crossed by Rakaia River (Hazard Bypass), published as a bypass with no chainage of its own.</desc>
+    <type>gap</type>
+  </wpt>
+  <wpt lat="-43.57723" lon="170.953682">
+    <ele>558</ele>
+    <name>Trail ends - Rangitata River</name>
+    <cmt>Rangitata River</cmt>
+    <desc>km 2367.8: the walking route stops here and starts again 7.0 km away at Mesopotamia Station. Crossed by Rangitata River (Hazard Bypass), published as a bypass with no chainage of its own.</desc>
+    <type>gap</type>
+  </wpt>
+  <wpt lat="-43.62305" lon="170.894758">
+    <ele>515</ele>
+    <name>Trail resumes - Rangitata River</name>
+    <cmt>Rangitata River</cmt>
+    <desc>km 2367.8: the walking route starts again here, 7.0 km from where it stopped at Hakatere Station Route. Crossed by Rangitata River (Hazard Bypass), published as a bypass with no chainage of its own.</desc>
+    <type>gap</type>
+  </wpt>
+  <wpt lat="-45.032183" lon="168.659449">
+    <ele>312.5</ele>
+    <name>Trail ends - Lake Wakatipu</name>
+    <cmt>Lake Wakatipu</cmt>
+    <desc>km 2733.8: the walking route stops here and starts again 26.5 km away at Greenstone Track. Crossed by Lake Wakatipu Bypass, published as a bypass with no chainage of its own.</desc>
+    <type>gap</type>
+  </wpt>
+  <wpt lat="-44.924741" lon="168.358641">
+    <ele>316.5</ele>
+    <name>Trail resumes - Lake Wakatipu</name>
+    <cmt>Lake Wakatipu</cmt>
+    <desc>km 2733.8: the walking route starts again here, 26.5 km from where it stopped at Queenstown Waterfront. Crossed by Lake Wakatipu Bypass, published as a bypass with no chainage of its own.</desc>
+    <type>gap</type>
+  </wpt>
   <trk>
-    <name>Te Araroa (SOBO)</name>
+    <name>Te Araroa (SOBO) 1/7: km 0.0-407.3</name>
     <trkseg>
       <trkpt lat="-34.426699" lon="172.677591">
         <ele>148.9</ele>
@@ -15853,6 +15935,9 @@
         <ele>6.6</ele>
       </trkpt>
     </trkseg>
+  </trk>
+  <trk>
+    <name>Te Araroa (SOBO) 2/7: km 407.3-606.0</name>
     <trkseg>
       <trkpt lat="-35.834741" lon="174.490484"></trkpt>
       <trkpt lat="-35.838208" lon="174.490331">
@@ -22122,6 +22207,9 @@
       <trkpt lat="-36.833236" lon="174.796026"></trkpt>
       <trkpt lat="-36.833253" lon="174.795577"></trkpt>
     </trkseg>
+  </trk>
+  <trk>
+    <name>Te Araroa (SOBO) 3/7: km 606.0-1739.0</name>
     <trkseg>
       <trkpt lat="-36.842715" lon="174.765542">
         <ele>2.3</ele>
@@ -59315,6 +59403,9 @@
         <ele>6.6</ele>
       </trkpt>
     </trkseg>
+  </trk>
+  <trk>
+    <name>Te Araroa (SOBO) 4/7: km 1739.0-2298.3</name>
     <trkseg>
       <trkpt lat="-41.094737" lon="174.235252">
         <ele>5.1</ele>
@@ -83301,6 +83392,9 @@
         <ele>370.3</ele>
       </trkpt>
     </trkseg>
+  </trk>
+  <trk>
+    <name>Te Araroa (SOBO) 5/7: km 2298.3-2367.8</name>
     <trkseg>
       <trkpt lat="-43.318859" lon="171.385248">
         <ele>458</ele>
@@ -86051,6 +86145,9 @@
         <ele>558</ele>
       </trkpt>
     </trkseg>
+  </trk>
+  <trk>
+    <name>Te Araroa (SOBO) 6/7: km 2367.8-2733.8</name>
     <trkseg>
       <trkpt lat="-43.62305" lon="170.894758">
         <ele>515</ele>
@@ -98617,6 +98714,9 @@
         <ele>312.5</ele>
       </trkpt>
     </trkseg>
+  </trk>
+  <trk>
+    <name>Te Araroa (SOBO) 7/7: km 2733.8-3073.2</name>
     <trkseg>
       <trkpt lat="-44.924741" lon="168.358641">
         <ele>316.5</ele>

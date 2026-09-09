@@ -16,6 +16,7 @@ import {
   haversineMeters,
   orientSegments,
   projectOntoRoute,
+  walkedStretches,
   type ChainedSegment,
   type Coord,
 } from "../src/route.ts";
@@ -200,4 +201,40 @@ test("projectOntoRoute refines past the nearest vertex", () => {
   const onRoute = projectOntoRoute({ lat: 0.01, lon: 0 }, route.points);
   assert.ok(Math.abs(onRoute.km - 1) < 1e-6);
   assert.ok(onRoute.offTrailMeters < 1e-6);
+});
+
+test("walkedStretches cuts the route at every break and nowhere else", () => {
+  // Two pieces of trail with a kilometre of water between them. The chainage is
+  // continuous across it - the trust numbers its trail that way - so nothing
+  // but the geometry says the walking stopped.
+  const route = assembleRoute([
+    segment("north shore", 0, 1, [at(0, 0), at(0.005, 0), at(0.01, 0)]),
+    segment("south shore", 1, 2, [at(0.02, 0), at(0.03, 0)]),
+  ]);
+  assert.equal(route.breaks.length, 1);
+
+  const stretches = walkedStretches(route);
+  assert.equal(stretches.length, 2);
+  assert.deepEqual(
+    stretches.map((s) => s.length),
+    [3, 2]
+  );
+  // Every vertex ends up in exactly one stretch, in order, and none is invented.
+  assert.deepEqual(stretches.flat(), route.points);
+
+  // Which is the whole point: measured this way, the water is not walked.
+  const walked = stretches.reduce((sum, s) => sum + geometricLengthKm(s), 0);
+  assert.ok(
+    walked < geometricLengthKm(route.points) - 1,
+    "the straight line across the break is still being counted"
+  );
+});
+
+test("a route with no break comes back as one stretch", () => {
+  const route = assembleRoute([
+    segment("a", 0, 1, [at(0, 0), at(0.01, 0)]),
+    segment("b", 1, 2, [at(0.01, 0), at(0.02, 0)]),
+  ]);
+  assert.equal(route.breaks.length, 0);
+  assert.deepEqual(walkedStretches(route), [route.points]);
 });

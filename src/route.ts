@@ -198,6 +198,33 @@ export function assembleRoute(
   return { points, breaks, segments };
 }
 
+/**
+ * Split an assembled route into the stretches you can actually walk.
+ *
+ * The edge across a break is not a piece of trail. It is a ferry, a river
+ * crossing or a link nobody has mapped, and it exists in `points` only because
+ * a point list has to be continuous. Anything that measures walking - distance,
+ * ascent, a drawn line, a datasheet leg - has to sum over these stretches
+ * rather than over `points`, or it charges the walker for a straight line
+ * across water.
+ */
+export function walkedStretches(route: AssembledRoute): RoutePoint[][] {
+  const endsAStretch = new Set(route.breaks.map((b) => b.index));
+  const stretches: RoutePoint[][] = [];
+  let current: RoutePoint[] = [];
+
+  route.points.forEach((point, index) => {
+    current.push(point);
+    if (endsAStretch.has(index)) {
+      stretches.push(current);
+      current = [];
+    }
+  });
+  if (current.length > 0) stretches.push(current);
+
+  return stretches;
+}
+
 export interface RouteProjection {
   /** Official trail km of the closest point on the route. */
   km: number;

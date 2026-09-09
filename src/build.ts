@@ -59,7 +59,9 @@ import {
   assembleRoute,
   elevationStats,
   geometricLengthKm,
+  haversineMeters,
   projectOntoRoute,
+  walkedStretches,
   type ChainedSegment,
   type Coord,
   type RoutePoint,
@@ -225,14 +227,107 @@ interface SectionSpan {
   toKm: number;
 }
 
+/**
+ * How close a bypass has to pass to both sides of a break to be the link across
+ * it. The three the trust draws come within 108 m of the walking route at the
+ * worst; a road on the far side of a valley comes nowhere near.
+ */
+const GAP_LINK_METERS = 250;
+
+/**
+ * One place the walking route stops and starts again somewhere else.
+ *
+ * `assembleRoute` reports these as bare geometry - two indices and a distance.
+ * This adds the part a walker needs: where you are standing when the trail runs
+ * out, where it starts again, and what the trust publishes across the space
+ * between, which is a ferry for some of them, a hazard bypass for the rest.
+ *
+ * The trust's chainage runs straight through a break as if nothing had
+ * happened - the segment after one starts at exactly the km the segment before
+ * it ended - so nothing in the official numbering marks these. Everything this
+ * build says about them is derived here.
+ */
+interface RouteGap {
+  /** Official km at which walking stops and, later, resumes. */
+  km: number;
+  straightLineMeters: number;
+  /** The trust's segment names either side. */
+  fromSegment: string;
+  toSegment: string;
+  /** Last vertex you can walk to, and the first one on the far side. */
+  endsAt: RoutePoint;
+  resumesAt: RoutePoint;
+  /** The trust's own name(s) for whatever crosses it, if anything does. */
+  coveredBy: string[];
+  kind: "ferry" | "bypass" | "unmapped";
+  /** Those names with the link type stripped off: "Rakaia River". */
+  label: string;
+  /** One sentence for a GPX waypoint or a datasheet row. */
+  crossing: string;
+}
+
+/**
+ * Strip the trust's word for the link type, leaving the place.
+ *
+ * "Rakaia River (Hazard Bypass)" is the name of a line in the KMZ; "Rakaia
+ * River" is where you are standing. Only the suffixes the trust actually uses
+ * are removed, and a name that matches none of them is passed through, so a
+ * renamed link degrades to a longer label rather than a wrong one.
+ */
+function linkPlace(name: string): string {
+  return name
+    .replace(/\s*\((?:hazard\s+)?bypass\)\s*$/i, "")
+    .replace(/\s+bypass$/i, "")
+    .replace(/\s+-\s+ferry crossing$/i, "")
+    .replace(/\s+ferry crossing$/i, "")
+    .replace(/\s+crossing$/i, "")
+    .trim();
+}
+
+/** Distance from a position to the nearest vertex of a line, in metres. */
+function nearestVertexMeters(line: Coord[], target: Coord): number {
+  let best = Infinity;
+  for (const vertex of line) {
+    const distance = haversineMeters(vertex, target);
+    if (distance < best) best = distance;
+  }
+  return best;
+}
+
+/** "a", "a and b", "a, b and c" - for prose, not for a machine to parse. */
+function sentenceList(items: string[]): string {
+  if (items.length <= 1) return items[0] ?? "";
+  return `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
+}
+
+/**
+ * Pick the name for a break out of the names of the links that cross it.
+ *
+ * Cook Strait is crossed by two of them, and joining both gives "Picton to Ship
+ * Cove - Water Taxi and Te Moana O Raukawa", which is 54 characters of vehicle
+ * where a waypoint list wants a place. A name reading "X to Y" is a journey
+ * between two places rather than the name of one, so those are set aside when
+ * anything else is on offer - which leaves Te Moana O Raukawa, the strait
+ * itself. With one link, or with nothing but journeys, every name is kept.
+ */
+function breakName(places: string[]): string {
+  const named = places.filter((place) => !/ to /i.test(place));
+  return sentenceList(named.length > 0 ? named : places);
+}
+
 /** Everything `writeDirection` needs, all of it in official chainage terms. */
 interface DirectionContext {
   season: string;
   attribution: string;
   sites: SiteRecord[];
   connectors: ChainedSegment[];
-  mainSegments: RoutePoint[][];
+  /** The route cut at every break: one entry per stretch you can walk. */
+  stretches: RoutePoint[][];
+  gaps: RouteGap[];
   bypasses: Array<{
+    /** The trust's own name. */
+    label: string;
+    /** That name as it appears on the GPX track. */
     name: string;
     coordinates: Coord[];
     startKm: number;
@@ -241,7 +336,8 @@ interface DirectionContext {
   kmMarkers: Array<{ km: number; section: string; coord: Coord }>;
   baseSections: SectionSpan[];
   officialKm: number;
-  geometricKm: number;
+  /** Walked geometry only: the straight lines across the breaks are not in it. */
+  walkedKm: number;
   routePointCount: number;
   elevationAt: (km: number) => number;
   cumulativeAscentAt: (km: number) => { ascent: number; descent: number };
@@ -342,6 +438,103 @@ function tidyCsvValue(column: string, value: unknown): unknown {
   return value;
 }
 
+/**
+ * Join gpx-tools' per-track output back into one walk.
+ *
+ * `processGpxTravelPlan` measures one track at a time and never across two,
+ * which is exactly what handing it a track per walkable stretch buys: no leg is
+ * charged for a ferry. But it also restarts its running totals at every track,
+ * and seven stretches each beginning at 0 km is not a datasheet anybody can
+ * plan five months with. The one number a thru-hiker looks for is how far they
+ * have walked in total.
+ *
+ * So the totals are re-accumulated from the per-leg columns, which were right
+ * all along, and the seam between two stretches - a bare track-name row, an
+ * `End:` and a `Start:` that between them say nothing - collapses into one row
+ * naming the break and what crosses it. Nothing is dropped and nothing is
+ * counted twice: the `End:` row carries the walk from the last waypoint to
+ * where the trail runs out, so it is that row that is relabelled, and the
+ * `Start:` row it is paired with is all zeroes.
+ */
+function stitchStretches(
+  csv: string,
+  trackNames: string[],
+  gaps: RouteGap[],
+  trailLabel: string
+): string {
+  const parsed = Papa.parse<Record<string, string>>(csv.trim(), {
+    header: true,
+    skipEmptyLines: true,
+  });
+  const columns = parsed.meta.fields ?? [];
+  const starts = new Set(trackNames.map((name) => `Start: ${name}`));
+  const ends = new Set(trackNames.map((name) => `End: ${name}`));
+  const bare = new Set(trackNames);
+
+  const rows: Array<Record<string, string>> = [];
+  let seam = 0;
+
+  for (const row of parsed.data) {
+    const location = row["Location"] ?? "";
+
+    // The track-name-only row gpx-tools writes above each track's block.
+    if (bare.has(location)) continue;
+
+    if (starts.has(location)) {
+      // Only the first one is a real start; the rest are the far side of a
+      // break, already accounted for by the row that closes it.
+      if (rows.length === 0) rows.push({ ...row, Location: `Start: ${trailLabel}` });
+      continue;
+    }
+
+    if (ends.has(location)) {
+      if (seam >= gaps.length) {
+        rows.push({ ...row, Location: `End: ${trailLabel}` });
+        continue;
+      }
+      const gap = gaps[seam++];
+      rows.push({
+        ...row,
+        Location: `Trail ends - ${gap.label}`,
+        Notes:
+          `The walking route stops here and starts again ` +
+          `${(gap.straightLineMeters / 1000).toFixed(1)} km away. ${gap.crossing}`,
+      });
+      continue;
+    }
+
+    rows.push(row);
+  }
+
+  if (seam !== gaps.length) {
+    throw new Error(
+      `Datasheet has ${seam} track seams but the route has ${gaps.length} breaks. ` +
+        `gpx-tools' per-track output shape has changed.`
+    );
+  }
+
+  // Re-run the running totals over the whole walk. The per-leg columns are
+  // untouched, so this only restates what the sheet already measured.
+  const totals = new Map<string, number>();
+  const cumulative = (
+    [
+      ["Distance (km)", "Total Distance (km)"],
+      ["Ascent (m)", "Total Ascent (m)"],
+      ["Descent (m)", "Total Descent (m)"],
+    ] as Array<[string, string]>
+  ).filter(([leg, total]) => columns.includes(leg) && columns.includes(total));
+
+  for (const row of rows) {
+    for (const [leg, total] of cumulative) {
+      const running = (totals.get(total) ?? 0) + (Number(row[leg]) || 0);
+      totals.set(total, running);
+      row[total] = String(Math.round(running * 1000) / 1000);
+    }
+  }
+
+  return Papa.unparse(rows, { quotes: true, columns });
+}
+
 /** The same pass for tables gpx-tools hands back already rendered as CSV. */
 function tidyCsvText(csv: string): string {
   const parsed = Papa.parse<Record<string, string>>(csv.trim(), {
@@ -418,27 +611,31 @@ async function main(): Promise<void> {
 
   const route = assembleRoute(walking);
   const officialKm = walking[walking.length - 1].toKm;
-  const geometricKm = geometricLengthKm(route.points);
-  const { ascent, descent } = elevationStats(route.points);
+
+  // The stretches you can walk, and nothing else. `route.points` is a single
+  // continuous list because a point list has to be, but the edges spanning its
+  // breaks are ferries and river crossings. Measuring over `route.points` bills
+  // the walker for 100 km of straight lines, every one of them over water, so
+  // every length, climb, drawn line and datasheet leg below is summed over
+  // these instead.
+  const stretches = walkedStretches(route);
+  const walkedKm = stretches.reduce((sum, s) => sum + geometricLengthKm(s), 0);
+  const gapKm = geometricLengthKm(route.points) - walkedKm;
+  const { ascent, descent } = stretches
+    .map(elevationStats)
+    .reduce(
+      (total, s) => ({
+        ascent: total.ascent + s.ascent,
+        descent: total.descent + s.descent,
+      }),
+      { ascent: 0, descent: 0 }
+    );
 
   console.log(
     `  route: ${route.points.length} points, official ${officialKm.toFixed(1)} km, ` +
-      `geometry ${geometricKm.toFixed(1)} km`
+      `walked geometry ${walkedKm.toFixed(1)} km in ${stretches.length} stretches ` +
+      `(+${gapKm.toFixed(1)} km of links you do not walk)`
   );
-  console.log(`  ${route.breaks.length} gaps in the walking route:`);
-  for (const gap of route.breaks) {
-    const covering = connectors.filter(
-      (c) => Math.abs(c.fromKm - gap.km) < 0.01
-    );
-    const label =
-      covering.length > 0
-        ? covering.map((c) => c.name).join(" / ")
-        : "no published route";
-    console.log(
-      `    km ${gap.km.toFixed(1).padStart(7)}  ${(gap.distanceMeters / 1000).toFixed(1).padStart(5)} km  ` +
-        `${gap.fromSegment} -> ${gap.toSegment}  [${label}]`
-    );
-  }
 
   // Chainage must be continuous or every distance downstream is wrong.
   const holes = walking
@@ -593,21 +790,6 @@ async function main(): Promise<void> {
 
   // ------------------------------------------- pieces both directions build on
 
-  // The main route is one track. trail-maps concatenates a track's segments, so
-  // splitting at the transport gaps would not change its distances; the split is
-  // here because it is the honest GPX for a route with unwalked links in it.
-  const mainSegments: RoutePoint[][] = [];
-  let current: RoutePoint[] = [];
-  const breakIndices = new Set(route.breaks.map((b) => b.index));
-  route.points.forEach((point, index) => {
-    current.push(point);
-    if (breakIndices.has(index)) {
-      mainSegments.push(current);
-      current = [];
-    }
-  });
-  if (current.length > 0) mainSegments.push(current);
-
   // Bypasses are published as bare lines with no chainage of their own, and the
   // trust does not draw them all the same way round. Projecting each one's two
   // endpoints onto the route gives it a km span, which is what lets
@@ -625,8 +807,10 @@ async function main(): Promise<void> {
               ).km,
             }
           : { startKm: 0, endKm: 0 };
+      const label = placemark.fields["Name"] ?? placemark.name;
       return {
-        name: `Bypass: ${placemark.fields["Name"] ?? placemark.name}`,
+        label,
+        name: `Bypass: ${label}`,
         coordinates,
         ...ends,
       };
@@ -641,6 +825,70 @@ async function main(): Promise<void> {
     console.log(
       `  ${misdrawn} of ${bypasses.length} bypasses are drawn against the trust's ` +
         `chainage; each is oriented to the direction being written`
+    );
+  }
+
+  // Now that the bypasses are read, every break can say what crosses it.
+  //
+  // The two kinds of link are found in different ways because the trust records
+  // them differently. A ferry is a trail segment whose chainage does not
+  // advance, so it is pinned to the break's km exactly. A bypass carries no
+  // chainage at all - it is a bare line - so the only way to tell which break it
+  // belongs to is that it passes close to both sides of one.
+  //
+  // Looking for the bypass rather than reporting "no published route" matters:
+  // on this release every break without a ferry over it turns out to have a
+  // hazard bypass drawn across it, so what the walker lacks at the Rakaia, the
+  // Rangitata and Lake Wakatipu is a chainage, not a route.
+  const gaps: RouteGap[] = route.breaks.map((routeBreak) => {
+    const endsAt = route.points[routeBreak.index];
+    const resumesAt = route.points[routeBreak.index + 1];
+
+    const ferries = connectors.filter(
+      (c) => Math.abs(c.fromKm - routeBreak.km) < 0.01
+    );
+    const detours = bypasses.filter(
+      (bypass) =>
+        nearestVertexMeters(bypass.coordinates, endsAt) < GAP_LINK_METERS &&
+        nearestVertexMeters(bypass.coordinates, resumesAt) < GAP_LINK_METERS
+    );
+
+    const covering =
+      ferries.length > 0
+        ? ferries.map((c) => c.name)
+        : detours.map((b) => b.label);
+    const kind =
+      ferries.length > 0 ? "ferry" : detours.length > 0 ? "bypass" : "unmapped";
+    const places = covering.map(linkPlace);
+
+    return {
+      km: routeBreak.km,
+      straightLineMeters: routeBreak.distanceMeters,
+      fromSegment: routeBreak.fromSegment,
+      toSegment: routeBreak.toSegment,
+      endsAt,
+      resumesAt,
+      coveredBy: covering,
+      kind,
+      label:
+        places.length > 0
+          ? breakName(places)
+          : `${routeBreak.fromSegment} to ${routeBreak.toSegment}`,
+      crossing:
+        kind === "ferry"
+          ? `Crossed by ${sentenceList(covering)}.`
+          : kind === "bypass"
+            ? `Crossed by ${sentenceList(covering)}, published as a bypass with no chainage of its own.`
+            : "The trust publishes no route across it.",
+    } satisfies RouteGap;
+  });
+
+  console.log(`  ${gaps.length} breaks in the walking route:`);
+  for (const gap of gaps) {
+    console.log(
+      `    km ${gap.km.toFixed(1).padStart(7)}  ` +
+        `${(gap.straightLineMeters / 1000).toFixed(1).padStart(5)} km  ` +
+        `${gap.label}  [${gap.kind}]`
     );
   }
 
@@ -717,7 +965,10 @@ async function main(): Promise<void> {
     }
   }
 
-  const cumulativeAscentAt = buildCumulativeAscent(route.points);
+  const cumulativeAscentAt = buildCumulativeAscent(
+    route.points,
+    new Set(route.breaks.map((b) => b.index))
+  );
 
   // ---------------------------------------------- one output set per direction
 
@@ -726,12 +977,13 @@ async function main(): Promise<void> {
     attribution: ATTRIBUTION,
     sites,
     connectors,
-    mainSegments,
+    stretches,
+    gaps,
     bypasses,
     kmMarkers,
     baseSections,
     officialKm,
-    geometricKm,
+    walkedKm,
     routePointCount: route.points.length,
     elevationAt,
     cumulativeAscentAt,
@@ -816,6 +1068,7 @@ async function main(): Promise<void> {
     kmzTrackPoints: allSegments.reduce((n, s) => n + s.coordinates.length, 0),
     routePoints: route.points.length,
     tracks: written[0].tracks,
+    walkingTracks: written[0].walkingTracks,
     waypoints: written[0].waypoints,
     sections: baseSections.length,
     docSites: sites.filter((s) => s.source === "DOC").length,
@@ -890,8 +1143,14 @@ async function main(): Promise<void> {
       : { kmz: basename(KMZ), gpx: basename(OFFICIAL_GPX) },
     stats,
     officialLengthKm: round(officialKm, 3),
-    geometricLengthKm: round(geometricKm, 3),
+    // What the route geometry measures over the stretches you can walk. The
+    // straight lines across the breaks are counted separately, in `gapLengthKm`
+    // and per break in `routeGaps`, because adding them to this figure would
+    // publish a trail 100 km longer than anyone walks.
+    walkedLengthKm: round(walkedKm, 3),
+    gapLengthKm: round(gapKm, 3),
     routePoints: route.points.length,
+    walkedStretches: stretches.length,
     ascentMeters: Math.round(ascent),
     descentMeters: Math.round(descent),
     transportConnectors: connectors.map((c) => ({
@@ -900,21 +1159,27 @@ async function main(): Promise<void> {
       status: c.status,
       lengthKm: round(geometricLengthKm(c.coordinates), 3),
     })),
-    // Every place the walking route stops and starts again. Some are covered by
-    // a published ferry route, the rest are links you arrange yourself.
-    routeGaps: route.breaks.map((b) => {
-      const covering = connectors.filter(
-        (c) => Math.abs(c.fromKm - b.km) < 0.01
-      );
-      return {
-        km: round(b.km, 3),
-        straightLineKm: round(b.distanceMeters / 1000, 3),
-        from: b.fromSegment,
-        to: b.toSegment,
-        coveredBy: covering.map((c) => c.name),
-        kind: covering.length > 0 ? ("ferry" as const) : ("unmapped" as const),
-      };
-    }),
+    // Every place the walking route stops and starts again: what crosses it,
+    // and the two positions you stand at either side. The chainage runs
+    // straight through all of them, so this is the only record that they exist.
+    routeGaps: gaps.map((gap) => ({
+      km: round(gap.km, 3),
+      straightLineKm: round(gap.straightLineMeters / 1000, 3),
+      from: gap.fromSegment,
+      to: gap.toSegment,
+      label: gap.label,
+      coveredBy: gap.coveredBy,
+      kind: gap.kind,
+      crossing: gap.crossing,
+      endsAt: {
+        lat: round(gap.endsAt.lat, 6),
+        lon: round(gap.endsAt.lon, 6),
+      },
+      resumesAt: {
+        lat: round(gap.resumesAt.lat, 6),
+        lon: round(gap.resumesAt.lon, 6),
+      },
+    })),
     sections: baseSections.map((s) => ({
       Section: s.section,
       Island: s.island,
@@ -943,7 +1208,7 @@ async function main(): Promise<void> {
   );
   console.log("  wrote te-araroa.meta.json");
 
-  writeDocsOverview(route.points, sites, meta);
+  writeDocsOverview(stretches, gaps, sites, meta);
 
   // The README and the project page quote these numbers. Regenerating them here
   // rather than in a separate step someone has to remember is the whole point:
@@ -961,6 +1226,8 @@ async function main(): Promise<void> {
  */
 interface DirectionResult {
   tracks: number;
+  /** How many of those tracks are the main route, one per walkable stretch. */
+  walkingTracks: number;
   waypoints: number;
   planRows: number;
 }
@@ -974,12 +1241,13 @@ function writeDirection(
     attribution: ATTRIBUTION,
     sites,
     connectors,
-    mainSegments,
+    stretches,
+    gaps,
     bypasses,
     kmMarkers,
     baseSections,
     officialKm,
-    geometricKm,
+    walkedKm,
     routePointCount,
     elevationAt,
     cumulativeAscentAt,
@@ -1046,20 +1314,84 @@ function writeDirection(
     });
   }
 
-  const mainTrack: GpxTrack = {
-    name: `${TRAIL_NAME} (${direction.code})`,
-    segments: inOrder(mainSegments).map((points) => ({
-      points: inOrder(points).map((p) => ({
-        lat: p.lat,
-        lon: p.lon,
-        ele: p.ele,
-        time: null,
-      })),
-    })),
-  };
+  // The breaks, in the order you meet them. Northbound you reach each one from
+  // the far side, so the point where walking stops and the point where it
+  // resumes swap over.
+  const gapsAhead = inOrder(gaps).map((gap) => ({
+    ...gap,
+    endsAt: nobo ? gap.resumesAt : gap.endsAt,
+    resumesAt: nobo ? gap.endsAt : gap.resumesAt,
+    from: nobo ? gap.toSegment : gap.fromSegment,
+    to: nobo ? gap.fromSegment : gap.toSegment,
+  }));
+
+  // A waypoint at each end of every break.
+  //
+  // The track split below is what stops a viewer drawing a line across the
+  // water, but a track name is invisible on most watches and handhelds, and a
+  // hiker scrolling a waypoint list is entitled to find out that the trail runs
+  // out at km 2,733.8 before they are standing there. These say so in the one
+  // place every device shows.
+  const gapWaypoints: GpxWaypoint[] = gapsAhead.flatMap((gap) => {
+    const at = `km ${progressKm(gap.km).toFixed(1)}`;
+    const across = `${(gap.straightLineMeters / 1000).toFixed(1)} km`;
+    return [
+      {
+        lat: gap.endsAt.lat,
+        lon: gap.endsAt.lon,
+        ele: gap.endsAt.ele,
+        name: `Trail ends - ${gap.label}`,
+        desc:
+          `${at}: the walking route stops here and starts again ${across} away ` +
+          `at ${gap.to}. ${gap.crossing}`,
+        type: "gap",
+        cmt: gap.label,
+      },
+      {
+        lat: gap.resumesAt.lat,
+        lon: gap.resumesAt.lon,
+        ele: gap.resumesAt.ele,
+        name: `Trail resumes - ${gap.label}`,
+        desc:
+          `${at}: the walking route starts again here, ${across} from where it ` +
+          `stopped at ${gap.from}. ${gap.crossing}`,
+        type: "gap",
+        cmt: gap.label,
+      },
+    ];
+  });
+
+  // One track per stretch you can walk, not one track with a segment each.
+  //
+  // The geometry was already cut at the breaks, but a <trkseg> is only a hint:
+  // Garmin, Gaia, CalTopo and every Leaflet viewer join a track's segments into
+  // one line, so the published file drew a straight line over Cook Strait and
+  // charged 52.7 km for it. Separate <trk> elements are the only split every
+  // consumer honours - and gpx-tools measures a track at a time, which is what
+  // keeps those 100 km out of the datasheets below.
+  const mainTracks: GpxTrack[] = inOrder(stretches).map((points, index) => {
+    const walked = inOrder(points);
+    const from = progressKm(walked[0].km);
+    const to = progressKm(walked[walked.length - 1].km);
+    return {
+      name:
+        `${TRAIL_NAME} (${direction.code}) ${index + 1}/${stretches.length}: ` +
+        `km ${from.toFixed(1)}-${to.toFixed(1)}`,
+      segments: [
+        {
+          points: walked.map((p) => ({
+            lat: p.lat,
+            lon: p.lon,
+            ele: p.ele,
+            time: null,
+          })),
+        },
+      ],
+    };
+  });
 
   const tracks: GpxTrack[] = [
-    mainTrack,
+    ...mainTracks,
     {
       name: "Te Araroa - Transport Connectors",
       segments: inOrder(connectors).map((segment) => ({
@@ -1095,15 +1427,20 @@ function writeDirection(
     });
   }
 
+  // The gap waypoints go last so that the first waypoint in the file is still
+  // the first thing you walk past.
+  const allWaypoints = [...waypoints, ...gapWaypoints];
+
   const gpx = writeGpx(
-    { tracks, routes: [], waypoints },
+    { tracks, routes: [], waypoints: allWaypoints },
     {
       name: `${TRAIL_NAME} ${season} (${direction.code})`,
       desc:
         `Built from the official KMZ, walked ${direction.from} to ${direction.to}. ` +
         `Official chainage ${officialKm.toFixed(1)} km (measured southbound from ` +
-        `Cape Reinga); route geometry ${geometricKm.toFixed(1)} km over ` +
-        `${routePointCount} points.`,
+        `Cape Reinga); ${walkedKm.toFixed(1)} km of walked geometry over ` +
+        `${routePointCount} points, in ${stretches.length} stretches separated by ` +
+        `${gaps.length} links you do not walk.`,
       author: "Te Araroa Trust",
       keywords: ATTRIBUTION,
       creator: "te-araroa-data (gpx-tools kml-parser)",
@@ -1115,7 +1452,7 @@ function writeDirection(
   writeFileSync(join(outDir, files.stableGpx), gpx);
   console.log(
     `  wrote ${files.gpx} and ${files.stableGpx} (${(gpx.length / 1e6).toFixed(1)} MB, ` +
-      `${tracks.length} tracks, ${waypoints.length} waypoints)`
+      `${tracks.length} tracks, ${allWaypoints.length} waypoints)`
   );
 
   // ------------------------------------------------------------- sections CSV
@@ -1141,12 +1478,24 @@ function writeDirection(
 
   // -------------------------------------------------------- resupply planning
 
+  // Which break, if any, falls between two consecutive stops. The trust's
+  // chainage runs straight through a break, so "From previous km" on the row
+  // after one is a true chainage difference and a false walk: between
+  // Queenstown and the next stop it reads 0.1 km, and 26.5 km of Lake Wakatipu
+  // sit inside it. This is the column that says so.
+  const gapBetween = (fromKm: number, toKm: number): RouteGap | null => {
+    const low = Math.min(fromKm, toKm);
+    const high = Math.max(fromKm, toKm);
+    return gaps.find((gap) => gap.km > low && gap.km <= high) ?? null;
+  };
+
   const planRows = ordered.map((site, index) => {
     const previous = index > 0 ? ordered[index - 1] : null;
     const next = index < ordered.length - 1 ? ordered[index + 1] : null;
     const climb = previous
       ? legClimb(previous.km, site.km)
       : { ascent: 0, descent: 0 };
+    const crossed = previous ? gapBetween(previous.km, site.km) : null;
 
     return {
       Km: round(progressKm(site.km), 2),
@@ -1168,6 +1517,9 @@ function writeDirection(
       "To next km": next ? round(Math.abs(next.km - site.km), 2) : 0,
       "Leg ascent m": Math.round(climb.ascent),
       "Leg descent m": Math.round(climb.descent),
+      // Blank on all but a handful of rows, and the whole point of those rows.
+      "Leg crosses": crossed ? crossed.label : "",
+      "Leg gap km": crossed ? round(crossed.straightLineMeters / 1000, 2) : "",
       Bunks: site.bunks ?? "",
       Water: site.water ? "Yes" : "",
       "Booking required": site.bookingRequired ? "Yes" : "",
@@ -1190,8 +1542,12 @@ function writeDirection(
   // Only the main route goes in. `processGpxTravelPlan` totals every track it
   // is given, so handing it the bypasses and connectors as well would report a
   // trail nearly 5,000 km long.
+  //
+  // The gap waypoints stay out too. Each break already gets a row of its own
+  // from `stitchStretches`, and a sheet that announced the same 26.5 km three
+  // times over would be harder to read, not more honest.
   const mainRouteGpx = writeGpx(
-    { tracks: [mainTrack], routes: [], waypoints },
+    { tracks: mainTracks, routes: [], waypoints },
     {
       name: `${TRAIL_NAME} ${season} (${direction.code}) - main route`,
       keywords: ATTRIBUTION,
@@ -1211,23 +1567,26 @@ function writeDirection(
     ],
     waypointMaxDistance: 500,
   });
-  writeFileSync(
-    join(outDir, files.datasheet),
-    tidyCsvText(datasheet.processedPlan)
-  );
+  const trackNames = mainTracks.map((track) => track.name);
+  const trailLabel = `${TRAIL_NAME} (${direction.code})`;
+  const stitch = (csv: string): string =>
+    tidyCsvText(stitchStretches(csv, trackNames, gapsAhead, trailLabel));
+
+  writeFileSync(join(outDir, files.datasheet), stitch(datasheet.processedPlan));
   writeFileSync(
     join(outDir, files.datasheetResupply),
-    tidyCsvText(datasheet.resupplyPoints)
+    stitch(datasheet.resupplyPoints)
   );
   console.log(
     `  wrote ${files.datasheet} via gpx-tools ` +
       `(${datasheet.stats.matchedWaypoints}/${datasheet.stats.totalWaypoints} waypoints matched, ` +
-      `${datasheet.stats.totalDistance.toFixed(1)} km)`
+      `${datasheet.stats.totalDistance.toFixed(1)} km over ${mainTracks.length} stretches)`
   );
 
   return {
     tracks: tracks.length,
-    waypoints: waypoints.length,
+    walkingTracks: mainTracks.length,
+    waypoints: allWaypoints.length,
     planRows: planRows.length,
   };
 }
@@ -1242,14 +1601,21 @@ function writeDirection(
  * levels a whole-country overview can show is visually identical.
  */
 function writeDocsOverview(
-  points: RoutePoint[],
+  stretches: RoutePoint[][],
+  gaps: RouteGap[],
   sites: SiteRecord[],
-  meta: { officialLengthKm: number; geometricLengthKm: number; season: string }
+  meta: { officialLengthKm: number; walkedLengthKm: number; season: string }
 ): void {
-  const simplified = douglasPeucker(
-    points.map((p) => ({ lat: p.lat, lon: p.lon, ele: p.ele, time: null })),
-    50
+  // Simplified one stretch at a time. A single line through all of them was
+  // what put a straight line across Cook Strait on the front page of this
+  // project: the map cannot draw a break it has not been given.
+  const simplified = stretches.map((points) =>
+    douglasPeucker(
+      points.map((p) => ({ lat: p.lat, lon: p.lon, ele: p.ele, time: null })),
+      50
+    )
   );
+  const routePoints = simplified.reduce((n, line) => n + line.length, 0);
 
   const overview = {
     type: "FeatureCollection" as const,
@@ -1257,21 +1623,42 @@ function writeDocsOverview(
       note: "Simplified overview for the project page map. Use the GPX in out/ for anything real.",
       season: meta.season,
       officialLengthKm: meta.officialLengthKm,
-      geometricLengthKm: meta.geometricLengthKm,
-      routePoints: simplified.length,
+      walkedLengthKm: meta.walkedLengthKm,
+      routePoints,
+      stretches: simplified.length,
     },
     features: [
       {
         type: "Feature" as const,
         properties: { name: TRAIL_NAME, kind: "route" },
+        // One line per walkable stretch. Nothing joins them, so nothing draws
+        // the ferry, the two river crossings or the lake as trail.
         geometry: {
-          type: "LineString" as const,
-          coordinates: simplified.map((p) => [
-            round(p.lon, 5),
-            round(p.lat, 5),
-          ]),
+          type: "MultiLineString" as const,
+          coordinates: simplified.map((line) =>
+            line.map((p) => [round(p.lon, 5), round(p.lat, 5)])
+          ),
         },
       },
+      // The breaks themselves, so the map can show the trail stopping rather
+      // than just going quiet. Drawn dashed by docs/index.html.
+      ...gaps.map((gap) => ({
+        type: "Feature" as const,
+        properties: {
+          name: gap.label,
+          kind: "gap",
+          km: round(gap.km, 1),
+          straightLineKm: round(gap.straightLineMeters / 1000, 1),
+          crossing: gap.crossing,
+        },
+        geometry: {
+          type: "LineString" as const,
+          coordinates: [
+            [round(gap.endsAt.lon, 5), round(gap.endsAt.lat, 5)],
+            [round(gap.resumesAt.lon, 5), round(gap.resumesAt.lat, 5)],
+          ],
+        },
+      })),
       ...sites.map((site) => ({
         type: "Feature" as const,
         properties: {
@@ -1293,8 +1680,8 @@ function writeDocsOverview(
   writeFileSync(path, JSON.stringify(overview));
   const kb = Math.round(JSON.stringify(overview).length / 1024);
   console.log(
-    `  wrote docs/data/overview.geojson ` +
-      `(${points.length} route points simplified to ${simplified.length}, ${kb} KB)`
+    `  wrote docs/data/overview.geojson (${stretches.length} stretches, ` +
+      `${routePoints} points, ${gaps.length} breaks drawn, ${kb} KB)`
   );
 }
 
@@ -1303,12 +1690,16 @@ function writeDocsOverview(
  *
  * Built once as a prefix sum so a datasheet with hundreds of rows does not walk
  * the 35,000-point route for every leg.
+ *
+ * The edge across a break contributes nothing. It is the sea between Wellington
+ * and Ship Cove, not a hill, and a leg that happens to span one should report
+ * the climb you actually do on your feet.
  */
-function buildCumulativeAscent(points: RoutePoint[]) {
+function buildCumulativeAscent(points: RoutePoint[], breakIndices: Set<number>) {
   const ascent = new Float64Array(points.length);
   const descent = new Float64Array(points.length);
   for (let i = 1; i < points.length; i++) {
-    const delta = points[i].ele - points[i - 1].ele;
+    const delta = breakIndices.has(i - 1) ? 0 : points[i].ele - points[i - 1].ele;
     ascent[i] = ascent[i - 1] + (delta > 0 ? delta : 0);
     descent[i] = descent[i - 1] + (delta < 0 ? -delta : 0);
   }

@@ -35,7 +35,9 @@ interface Meta {
   version: string;
   generatedAt: string;
   officialLengthKm: number;
-  geometricLengthKm: number;
+  walkedLengthKm: number;
+  gapLengthKm: number;
+  walkedStretches: number;
   ascentMeters: number;
   descentMeters: number;
   source?: { fetchedAt?: string };
@@ -44,14 +46,17 @@ interface Meta {
     straightLineKm: number;
     from: string;
     to: string;
+    label: string;
     coveredBy: string[];
-    kind: "ferry" | "unmapped";
+    kind: "ferry" | "bypass" | "unmapped";
+    crossing: string;
   }>;
   stats: {
     officialGpxTrackPoints: number | null;
     kmzTrackPoints: number;
     routePoints: number;
     tracks: number;
+    walkingTracks: number;
     waypoints: number;
     sections: number;
     docSites: number;
@@ -149,19 +154,26 @@ function readme(meta: Meta): Record<string, string> {
   const built = longDate(meta.generatedAt);
   const gpxPoints = s.officialGpxTrackPoints;
 
+  const KIND_NOTE: Record<string, string> = {
+    ferry: "ferry",
+    bypass: "a bypass the trust draws but gives no chainage",
+    unmapped: "",
+  };
   const gaps = meta.routeGaps
     .map((gap) => {
-      // For a gap nobody has mapped, the segments either side are the only
-      // useful description of where you are left standing.
+      const note = KIND_NOTE[gap.kind] ?? "";
       const covered =
-        gap.kind === "ferry"
-          ? gap.coveredBy.join(" + ")
+        gap.coveredBy.length > 0
+          ? gap.coveredBy.join(" + ") + (note ? ` — ${note}` : "")
           : `*no published route* (${gap.from} → ${gap.to})`;
-      return `| ${km(gap.km)} | ${gap.straightLineKm.toFixed(1)} km | ${covered} |`;
+      return `| ${km(gap.km)} | ${gap.label} | ${gap.straightLineKm.toFixed(1)} km | ${covered} |`;
     })
     .join("\n");
   const ferries = meta.routeGaps.filter((g) => g.kind === "ferry").length;
-  const unmapped = meta.routeGaps.length - ferries;
+  const bypassed = meta.routeGaps.filter((g) => g.kind === "bypass").length;
+  const unmapped = meta.routeGaps.filter((g) => g.kind === "unmapped").length;
+  const sentence = (value: number): string =>
+    `${count(value)[0].toUpperCase()}${count(value).slice(1)}`;
 
   const carries = s.longestCarries
     .map(
@@ -220,6 +232,14 @@ markers essentially exactly.`
 | Bypasses, no-camping zones | none | ${s.bypasses} + ${n(s.noCampingAreas)} |
 `,
 
+    climb: `
+**A northbound sheet is not the southbound sheet read from the bottom.** The
+rows reverse, but so do the climbs — what you ascend walking north you descend
+walking south — so \`Leg ascent m\` and \`Leg descent m\` genuinely differ between
+the two files. Over the whole trail it is ${n(meta.descentMeters)} m of climbing northbound
+against ${n(meta.ascentMeters)} m southbound.
+`,
+
     resupplyGap: `
 **The official data also contains no resupply at all** - no towns, shops or
 supermarkets anywhere in the KMZ, and only ${s.officialFoodSites} of its ${n(s.officialSites)} sites classify as food.
@@ -233,11 +253,11 @@ Most files come in both directions, \`-sobo\` (Cape Reinga → Bluff) and \`-nob
 
 | File | Contents |
 |---|---|
-| \`te-araroa-{sobo,nobo}.gpx\` | ${s.tracks} tracks (main route, transport connectors, ${s.bypasses} bypasses), ${n(s.waypoints)} waypoints typed \`hut\`/\`campsite\`/\`town\`/\`resupply\`/\`food\`/\`accommodation\`/\`caravan-park\`, all in walking order. The stable filenames - link to these |
+| \`te-araroa-{sobo,nobo}.gpx\` | ${s.tracks} tracks (${s.walkingTracks} for the main route, one per stretch you can walk; transport connectors; ${s.bypasses} bypasses), ${n(s.waypoints)} waypoints typed \`hut\`/\`campsite\`/\`town\`/\`resupply\`/\`food\`/\`accommodation\`/\`caravan-park\`/\`gap\`, all in walking order. The stable filenames - link to these |
 | \`te-araroa-${meta.season}-{sobo,nobo}.gpx\` | the same bytes under this release's name |
-| \`resupply-plan-{sobo,nobo}.csv\` | ${n(s.planRows)} sites in trail order: km, official km, section, trail elevation, leg distances, leg ascent/descent, bunks, water, booking, phone, address, hours, DOC link |
+| \`resupply-plan-{sobo,nobo}.csv\` | ${n(s.planRows)} sites in trail order: km, official km, section, trail elevation, leg distances, leg ascent/descent, whether the leg crosses a break in the route, bunks, water, booking, phone, address, hours, DOC link |
 | \`sections-{sobo,nobo}.csv\` | ${s.sections} official sections with km ranges, counted in that direction and in the trust's chainage |
-| \`datasheet-{sobo,nobo}.csv\`, \`datasheet-resupply-{sobo,nobo}.csv\` | the same route through \`gpx-tools\`' \`processGpxTravelPlan\` |
+| \`datasheet-{sobo,nobo}.csv\`, \`datasheet-resupply-{sobo,nobo}.csv\` | the same route through \`gpx-tools\`' \`processGpxTravelPlan\`, measured a stretch at a time with a row at each break |
 | \`no-camping-areas.geojson\` | ${n(s.noCampingAreas)} restricted-camping polygons. No chainage, so one file serves both |
 | \`te-araroa.meta.json\` | every GIS attribute per site, plus sections, connectors, route gaps, the numbers this README quotes, and source checksums, always in official chainage |
 `,
@@ -245,14 +265,25 @@ Most files come in both directions, \`-sobo\` (Cape Reinga → Bluff) and \`-nob
     accuracy: `\n${accuracy}\n`,
 
     gaps: `
-**Official length is ${km(meta.officialLengthKm)} km; the geometry measures ${km(meta.geometricLengthKm)} km.** The
-difference is the ${count(meta.routeGaps.length)} places where the walking route stops and starts again.
-${count(ferries)[0].toUpperCase()}${count(ferries).slice(1)} are covered by a published ferry route, ${count(unmapped)} are links you arrange
-yourself:
+**The walking route stops and starts again in ${count(meta.routeGaps.length)} places.** Its official
+length is ${km(meta.officialLengthKm)} km and its geometry measures ${km(meta.walkedLengthKm)} km, but neither
+number includes the ${km(meta.gapLengthKm)} km of links between the ${count(meta.walkedStretches)} stretches: the
+trust's chainage runs straight through every break as though nothing had
+happened, and the geometry is measured a stretch at a time so it does not
+charge you for a straight line across water.
 
-| km | Gap | Covered by |
-|---|---|---|
+${sentence(ferries)} of the breaks are crossed by a published ferry, ${count(bypassed)} by a hazard
+bypass the trust draws but gives no chainage${unmapped > 0 ? `, and ${count(unmapped)} by nothing at all` : ""}:
+
+| km | Break | Straight line | Crossed by |
+|---|---|---|---|
 ${gaps}
+
+Each break is two \`gap\` waypoints in the GPX, its own row in the datasheets, a
+dashed line on the project page's map, and a hard split between tracks - the
+main route is ${count(meta.walkedStretches)} tracks, not one, because most tools join a track's
+segments back into a single line and draw exactly the straight line this is
+trying not to draw.
 `,
 
     resupply: `
@@ -295,15 +326,15 @@ function projectPage(meta: Meta): Record<string, string> {
       // The stable name, not the dated one: this page is a permanent URL and
       // its links should not break when the trust publishes a new season.
       "te-araroa-{dir}.gpx",
-      `${s.tracks} tracks (main route, ferry connectors, ${s.bypasses} bypasses) and ${n(s.waypoints)} typed waypoints, in walking order. Elevation throughout.`,
+      `${s.tracks} tracks (${s.walkingTracks} for the main route, one per stretch you can walk, plus ferry connectors and ${s.bypasses} bypasses) and ${n(s.waypoints)} typed waypoints, in walking order. Elevation throughout.`,
     ],
     [
       "resupply-plan-{dir}.csv",
-      `${n(s.planRows)} sites in trail order: km, official km, section, elevation, leg distances and ascent, bunks, water, booking, phone, hours.`,
+      `${n(s.planRows)} sites in trail order: km, official km, section, elevation, leg distances and ascent, any break the leg crosses, bunks, water, booking, phone, hours.`,
     ],
     [
       "datasheet-{dir}.csv",
-      "The route through <code>gpx-tools</code>' datasheet: every waypoint with running distance, ascent and descent.",
+      "The route through <code>gpx-tools</code>' datasheet: every waypoint with running distance, ascent and descent, measured one walkable stretch at a time.",
     ],
     [
       "datasheet-resupply-{dir}.csv",
@@ -331,13 +362,11 @@ function projectPage(meta: Meta): Record<string, string> {
 `,
 
     warning: `
-  <p><strong>This follows the trust, but it is not the trust.</strong></p>
+  <p><strong>This follows what the TA trust published, but it is not the trust.</strong></p>
   <p>
     A scheduled job checks the trust's download page every Monday and rebuilds
-    when the published files change, so this is not a frozen snapshot. But a
-    rebuild still needs a person to merge it, and nothing here can see a reroute
-    the trust has not published yet. This is not official and not endorsed by
-    the Te Araroa Trust.
+    when the published files change, so this is not a frozen snapshot. But it
+    still needs manual review and can get out of date.
   </p>
   <p>
     The resupply data is the exception: it is researched by hand, last revised
@@ -355,6 +384,8 @@ function projectPage(meta: Meta): Record<string, string> {
     mapnote: `
   Simplified for the web to ${n(overview.properties.routePoints)} points. Huts and campsites in green, resupply
   in orange, and the ringed markers are where this direction starts and finishes.
+  The ${count(meta.routeGaps.length)} dashed links are the places the walking route stops and starts
+  again; click one to see what crosses it.
   The published GPX has the full ${n(s.routePoints)}-point geometry.
 `,
 
