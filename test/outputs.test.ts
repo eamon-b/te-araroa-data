@@ -354,6 +354,95 @@ test("the resupply plan says when a leg crosses a break", () => {
   }
 });
 
+
+test("every site the trail does not pass has a turnoff on the route", () => {
+  const sites: Array<{
+    name: string;
+    km: number;
+    lat: number;
+    lon: number;
+    offTrailMeters: number;
+    accessLat: number | null;
+    accessLon: number | null;
+  }> = meta.sites;
+
+  // The threshold is the datasheet's own waypoint-matching distance, which is
+  // what makes the two mutually exclusive: a site nearer than that matches on
+  // its own coordinates, one further away matches through its turnoff. Get this
+  // wrong in either direction and a town either doubles up or vanishes.
+  for (const site of sites) {
+    const hasAccess = site.accessLat !== null && site.accessLon !== null;
+    assert.equal(
+      hasAccess,
+      site.offTrailMeters >= 500,
+      `${site.name} is ${site.offTrailMeters} m off trail and ${hasAccess ? "has" : "has no"} turnoff`
+    );
+  }
+
+  const access = sites.filter((s) => s.accessLat !== null);
+  assert.ok(access.length > 20, `only ${access.length} turnoffs`);
+
+  // Where the off-trail figure is the build's own projection, it is the distance
+  // to the nearest point on the route and the turnoff is the nearest vertex, so
+  // the straight line back to the site is that distance or a little more - never
+  // less, and never by more than the spacing between vertices. Where
+  // data/resupply.json declares a road distance instead, the two are different
+  // measurements and cannot be compared; the build warns about the ones that
+  // contradict each other outright.
+  const declared = new Set(
+    JSON.parse(readFileSync(join(root, "data/resupply.json"), "utf8"))
+      .points.filter((p: { accessFromKm?: number }) => p.accessFromKm !== undefined)
+      .map((p: { name: string }) => p.name)
+  );
+  for (const site of access) {
+    if (declared.has(site.name)) continue;
+    const separation = haversineKm(
+      { lat: site.accessLat!, lon: site.accessLon! },
+      site
+    );
+    const offTrail = site.offTrailMeters / 1000;
+    assert.ok(
+      separation >= offTrail - 0.02,
+      `${site.name}'s turnoff is ${separation.toFixed(2)} km from it, nearer than the ${offTrail.toFixed(2)} km it is recorded as being off trail`
+    );
+    assert.ok(
+      separation <= offTrail + 1,
+      `${site.name}'s turnoff is ${separation.toFixed(1)} km from it, but it is recorded as ${offTrail.toFixed(1)} km off trail`
+    );
+  }
+
+  for (const direction of meta.directions) {
+    const gpx = readFileSync(out(`te-araroa-${direction.id}.gpx`), "utf8");
+    assert.equal(
+      (gpx.match(/<type>access<\/type>/g) ?? []).length,
+      access.length,
+      `${direction.code} GPX is missing turnoff waypoints`
+    );
+    for (const site of access) {
+      // Site names carry ampersands, which the GPX escapes and this does not.
+      const name = site.name
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/'/g, "&apos;");
+      assert.ok(
+        gpx.includes(`<name>${name} turnoff</name>`),
+        `${direction.code} GPX has no turnoff for ${site.name}`
+      );
+    }
+  }
+
+  // The whole point: a town the trail does not reach still earns a datasheet
+  // row, at the km you leave the trail rather than not at all.
+  const datasheet = csv("datasheet-nobo.csv");
+  const rows = new Set(datasheet.map((row) => row["Location"]));
+  for (const site of access) {
+    assert.ok(
+      rows.has(`${site.name} turnoff`),
+      `${site.name} turnoff is not in datasheet-nobo.csv`
+    );
+  }
+});
+
 test("the northbound sheet is a true mirror of the southbound one", () => {
   const sobo = csv("resupply-plan-sobo.csv");
   const nobo = csv("resupply-plan-nobo.csv");
@@ -475,17 +564,35 @@ test("the project page's map data matches the build it came from", () => {
   assert.equal(overview.type, "FeatureCollection");
   assert.equal(overview.properties.season, meta.season);
   assert.equal(overview.properties.officialLengthKm, L);
+  // The route, one line per break in it, every site, and for each site the trail
+  // does not pass, a turnoff marker plus the line tying it back to the place.
+  const access = meta.sites.filter(
+    (site: { accessLat: number | null }) => site.accessLat !== null
+  );
+  assert.equal(access.length, meta.stats.accessPoints);
   assert.equal(
     overview.features.length,
-    meta.sites.length + 1 + meta.routeGaps.length
+    meta.sites.length + access.length * 2 + meta.routeGaps.length + 1
   );
 
   // One line per walkable stretch, and nothing joining them. Drawn as a single
   // LineString, this file put a straight line across Cook Strait, the Rakaia,
   // the Rangitata and Lake Wakatipu on the front page of the project.
   const route = overview.features[0];
+  assert.equal(route.properties.kind, "route");
   assert.equal(route.geometry.type, "MultiLineString");
   assert.equal(route.geometry.coordinates.length, meta.walkedStretches);
+
+  // The page styles by kind, so nothing else may claim to be the route - the
+  // gaps and the access links are lines too, and drawing either as trail would
+  // put stretches across the country that nobody walks.
+  const ofKind = (kind: string) =>
+    overview.features.filter(
+      (f: { properties: { kind: string } }) => f.properties.kind === kind
+    ).length;
+  assert.equal(ofKind("route"), 1);
+  assert.equal(ofKind("gap"), meta.routeGaps.length);
+  assert.equal(ofKind("access-link"), access.length);
 
   const points = route.geometry.coordinates.flat();
   // Simplified enough for a phone on one bar of signal, detailed enough to read.
