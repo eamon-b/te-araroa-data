@@ -414,7 +414,7 @@ test("every site the trail does not pass has a turnoff on the route", () => {
   for (const direction of meta.directions) {
     const gpx = readFileSync(out(`te-araroa-${direction.id}.gpx`), "utf8");
     assert.equal(
-      (gpx.match(/<type>access<\/type>/g) ?? []).length,
+      (gpx.match(/<type>[a-z-]+-access<\/type>/g) ?? []).length,
       access.length,
       `${direction.code} GPX is missing turnoff waypoints`
     );
