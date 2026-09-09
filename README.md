@@ -12,7 +12,7 @@ contain.
 <!-- generated:snapshot -->
 > ### What this is, and how current it is
 >
-> Built on **8 September 2026** from the trust's **2026-27 release (v45)**.
+> Built on **9 September 2026** from the trust's **2026-27 release (v45)**.
 >
 > A scheduled job checks the trust's download page every Monday and opens a pull
 > request when the published files change, so this repository follows the trust
@@ -73,11 +73,11 @@ Most files come in both directions, `-sobo` (Cape Reinga → Bluff) and `-nobo`
 
 | File | Contents |
 |---|---|
-| `te-araroa-{sobo,nobo}.gpx` | 15 tracks (main route, transport connectors, 13 bypasses), 574 waypoints typed `hut`/`campsite`/`town`/`resupply`/`food`/`accommodation`/`caravan-park`, all in walking order. The stable filenames - link to these |
+| `te-araroa-{sobo,nobo}.gpx` | 21 tracks (7 for the main route, one per stretch you can walk; transport connectors; 13 bypasses), 586 waypoints typed `hut`/`campsite`/`town`/`resupply`/`food`/`accommodation`/`caravan-park`/`gap`, all in walking order. The stable filenames - link to these |
 | `te-araroa-2026-27-{sobo,nobo}.gpx` | the same bytes under this release's name |
-| `resupply-plan-{sobo,nobo}.csv` | 266 sites in trail order: km, official km, section, trail elevation, leg distances, leg ascent/descent, bunks, water, booking, phone, address, hours, DOC link |
+| `resupply-plan-{sobo,nobo}.csv` | 266 sites in trail order: km, official km, section, trail elevation, leg distances, leg ascent/descent, whether the leg crosses a break in the route, bunks, water, booking, phone, address, hours, DOC link |
 | `sections-{sobo,nobo}.csv` | 79 official sections with km ranges, counted in that direction and in the trust's chainage |
-| `datasheet-{sobo,nobo}.csv`, `datasheet-resupply-{sobo,nobo}.csv` | the same route through `gpx-tools`' `processGpxTravelPlan` |
+| `datasheet-{sobo,nobo}.csv`, `datasheet-resupply-{sobo,nobo}.csv` | the same route through `gpx-tools`' `processGpxTravelPlan`, measured a stretch at a time with a row at each break |
 | `no-camping-areas.geojson` | 353 restricted-camping polygons. No chainage, so one file serves both |
 | `te-araroa.meta.json` | every GIS attribute per site, plus sections, connectors, route gaps, the numbers this README quotes, and source checksums, always in official chainage |
 <!-- /generated:files -->
@@ -88,11 +88,13 @@ The trust chains the trail southbound: km 0 is Cape Reinga, and every number it
 publishes counts that way. Around a fifth of thru-hikers walk north from Bluff,
 and for them the official chainage runs backwards.
 
+<!-- generated:climb -->
 **A northbound sheet is not the southbound sheet read from the bottom.** The
 rows reverse, but so do the climbs — what you ascend walking north you descend
 walking south — so `Leg ascent m` and `Leg descent m` genuinely differ between
-the two files. Over the whole trail it is 83,916 m of climbing northbound
-against 83,775 m southbound.
+the two files. Over the whole trail it is 83,864 m of climbing northbound
+against 83,680 m southbound.
+<!-- /generated:climb -->
 
 Two decisions worth knowing about:
 
@@ -182,9 +184,17 @@ generated blocks refreshed; `npm run build` does it for you.
 4. **Interpolates official km onto every vertex**, proportionally within each
    segment's `Fromkm`→`Tokm` span. Chainage is asserted continuous; the build
    fails if it is not.
-5. **Positions each hut and campsite** by projecting it onto the route, giving
+5. **Cuts the route at every break.** Where two consecutive segments do not
+   physically meet, the edge between them is water, not trail. `walkedStretches`
+   splits the route there, and every length, climb, drawn line and datasheet leg
+   after this point is summed over the stretches rather than over the whole
+   list - which is what keeps 102.7 km of straight lines out of the numbers.
+   Each break is then matched to whatever the trust publishes across it: a
+   ferry, which is pinned to the break's km, or a hazard bypass, which carries
+   no chainage and is matched by passing close to both sides.
+6. **Positions each hut and campsite** by projecting it onto the route, giving
    official km, section, island and off-trail distance.
-6. **Writes** the GPX, a sidecar JSON with every GIS attribute, a GeoJSON of the
+7. **Writes** the GPX, a sidecar JSON with every GIS attribute, a GeoJSON of the
    no-camping polygons, and the planning CSVs.
 
 ### Accuracy check
@@ -204,19 +214,30 @@ markers essentially exactly.
 ## Known characteristics of the data
 
 <!-- generated:gaps -->
-**Official length is 3,073.2 km; the geometry measures 3,159.5 km.** The
-difference is the six places where the walking route stops and starts again.
-Three are covered by a published ferry route, three are links you arrange
-yourself:
+**The walking route stops and starts again in six places.** Its official
+length is 3,073.2 km and its geometry measures 3,056.8 km, but neither
+number includes the 102.7 km of links between the seven stretches: the
+trust's chainage runs straight through every break as though nothing had
+happened, and the geometry is measured a stretch at a time so it does not
+charge you for a straight line across water.
 
-| km | Gap | Covered by |
-|---|---|---|
-| 407.3 | 1.1 km | Whangarei Heads crossing |
-| 606.0 | 2.9 km | Devonport Ferry crossing |
-| 1,739.0 | 52.7 km | Picton to Ship Cove - Water Taxi + Te Moana O Raukawa - Ferry Crossing |
-| 2,298.3 | 12.6 km | *no published route* (Arboretum Track → Round Hill Route) |
-| 2,367.8 | 7.0 km | *no published route* (Hakatere Station Route → Mesopotamia Station) |
-| 2,733.8 | 26.5 km | *no published route* (Queenstown Waterfront → Greenstone Track) |
+Three of the breaks are crossed by a published ferry, three by a hazard
+bypass the trust draws but gives no chainage:
+
+| km | Break | Straight line | Crossed by |
+|---|---|---|---|
+| 407.3 | Whangarei Heads | 1.1 km | Whangarei Heads crossing — ferry |
+| 606.0 | Devonport | 2.9 km | Devonport Ferry crossing — ferry |
+| 1,739.0 | Te Moana O Raukawa | 52.7 km | Picton to Ship Cove - Water Taxi + Te Moana O Raukawa - Ferry Crossing — ferry |
+| 2,298.3 | Rakaia River | 12.6 km | Rakaia River (Hazard Bypass) — a bypass the trust draws but gives no chainage |
+| 2,367.8 | Rangitata River | 7.0 km | Rangitata River (Hazard Bypass) — a bypass the trust draws but gives no chainage |
+| 2,733.8 | Lake Wakatipu | 26.5 km | Lake Wakatipu Bypass — a bypass the trust draws but gives no chainage |
+
+Each break is two `gap` waypoints in the GPX, its own row in the datasheets, a
+dashed line on the project page's map, and a hard split between tracks - the
+main route is seven tracks, not one, because most tools join a track's
+segments back into a single line and draw exactly the straight line this is
+trying not to draw.
 <!-- /generated:gaps -->
 
 <!-- generated:resupply -->
@@ -259,8 +280,9 @@ are kept, with `Off trail m` recording the detour.
 
 - `src/fetch.ts` — discovers this season's downloads on the trust's site,
   fetches them, records checksums.
-- `src/route.ts` — chainage-driven route assembly. Trail-agnostic; would suit any
-  trail published as GIS segments with a chainage.
+- `src/route.ts` — chainage-driven route assembly, and `walkedStretches`, which
+  cuts the assembled route at the places it stops being walkable. Trail-agnostic;
+  would suit any trail published as GIS segments with a chainage.
 - `src/te-araroa.ts` — the Te Araroa specifics: folder names, the DOC and private
   attribute vocabularies, the waypoint-type mapping.
 - `src/build.ts` — orchestration and output; `writeDirection` is the only part

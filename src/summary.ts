@@ -19,7 +19,8 @@ interface Meta {
   season: string;
   version: string;
   officialLengthKm: number;
-  geometricLengthKm: number;
+  walkedLengthKm: number;
+  gapLengthKm: number;
   ascentMeters: number;
   routeGaps: Array<{ km: number; straightLineKm: number; kind: string }>;
   sections: Array<Record<string, string | number>>;
@@ -122,9 +123,14 @@ function main(): void {
       `${(after.officialLengthKm - before.officialLengthKm >= 0 ? "+" : "") + (after.officialLengthKm - before.officialLengthKm).toFixed(1)} km`
     ),
     row(
-      "Route geometry",
-      `${before.geometricLengthKm.toFixed(1)} km`,
-      `${after.geometricLengthKm.toFixed(1)} km`
+      "Walked geometry",
+      `${before.walkedLengthKm.toFixed(1)} km`,
+      `${after.walkedLengthKm.toFixed(1)} km`
+    ),
+    row(
+      "Links you do not walk",
+      `${before.gapLengthKm.toFixed(1)} km`,
+      `${after.gapLengthKm.toFixed(1)} km`
     ),
     row("Route points", n(b.routePoints), n(a.routePoints)),
     row("Waypoints", n(b.waypoints), n(a.waypoints)),

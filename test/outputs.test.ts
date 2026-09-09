@@ -22,6 +22,11 @@ const out = (name: string) => join(root, "out", name);
 const meta = JSON.parse(readFileSync(out("te-araroa.meta.json"), "utf8"));
 const L: number = meta.officialLengthKm;
 
+interface Position {
+  lat: number;
+  lon: number;
+}
+
 /** Everything published sits inside New Zealand. */
 const NZ = { minLat: -47.5, maxLat: -34, minLon: 166, maxLon: 179 };
 
@@ -34,6 +39,20 @@ const csv = (name: string): Array<Record<string, string>> =>
 const total = (rows: Array<Record<string, string>>, column: string): number =>
   rows.reduce((sum, row) => sum + Number(row[column] || 0), 0);
 
+/** Great-circle distance between two published positions, in km. */
+const haversineKm = (
+  a: { lat: number; lon: number },
+  b: { lat: number; lon: number }
+): number => {
+  const rad = Math.PI / 180;
+  const dLat = (b.lat - a.lat) * rad;
+  const dLon = (b.lon - a.lon) * rad;
+  const h =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLon / 2) ** 2;
+  return 2 * 6371 * Math.asin(Math.min(1, Math.sqrt(h)));
+};
+
 test("the metadata describes a plausible Te Araroa", () => {
   assert.equal(meta.trail, "Te Araroa");
   assert.match(meta.season, /^\d{4}-\d{2}$/);
@@ -44,9 +63,17 @@ test("the metadata describes a plausible Te Araroa", () => {
   // A reroute moves the trail by kilometres, not by hundreds of them. A figure
   // outside this band means the build misread the file, not that the trail moved.
   assert.ok(L > 2800 && L < 3400, `official length ${L} km is not credible`);
-  // Geometry is always a little longer than the chainage: it follows every bend.
-  assert.ok(meta.geometricLengthKm >= L, "geometry is shorter than the chainage");
-  assert.ok(meta.geometricLengthKm < L * 1.15, "geometry is implausibly long");
+  // Walked geometry is measured a stretch at a time, so it excludes the links
+  // between them and lands close to the chainage from either side - the trust's
+  // own numbering is a little generous against its own lines. What it must not
+  // do is drift far, and it must never quietly grow by the size of the links.
+  assert.ok(
+    meta.walkedLengthKm > L * 0.97 && meta.walkedLengthKm < L * 1.05,
+    `walked geometry ${meta.walkedLengthKm} km against ${L} km of chainage`
+  );
+  // The links are real distance and must be reported, just not as walking.
+  assert.ok(meta.gapLengthKm > 0, "the route has no links between its stretches");
+  assert.equal(meta.walkedStretches, meta.routeGaps.length + 1);
   assert.ok(meta.routePoints > 20000);
   assert.ok(meta.ascentMeters > 50000 && meta.descentMeters > 50000);
 
@@ -150,11 +177,23 @@ test("every site sits on the trail, in chainage order", () => {
 
 test("the gaps in the walking route are described, not silently bridged", () => {
   for (const gap of meta.routeGaps) {
-    assert.ok(["ferry", "unmapped"].includes(gap.kind), gap.kind);
+    assert.ok(["ferry", "bypass", "unmapped"].includes(gap.kind), gap.kind);
     assert.ok(gap.km >= 0 && gap.km <= L);
     assert.ok(gap.straightLineKm > 0.2, "a gap under the threshold was recorded");
     assert.ok(gap.from && gap.to);
-    if (gap.kind === "ferry") assert.ok(gap.coveredBy.length > 0);
+    assert.ok(gap.label && gap.crossing, `gap at km ${gap.km} has no description`);
+    // A gap says what crosses it, or says that nothing does - never neither.
+    if (gap.kind === "unmapped") assert.equal(gap.coveredBy.length, 0);
+    else assert.ok(gap.coveredBy.length > 0, `${gap.kind} gap with nothing on it`);
+
+    // The two positions are the point you walk to and the point you start
+    // again from, so they must be the recorded distance apart.
+    const separation = haversineKm(gap.endsAt, gap.resumesAt);
+    assert.ok(
+      Math.abs(separation - gap.straightLineKm) < 0.1,
+      `${gap.label}: ends and resumes are ${separation.toFixed(2)} km apart, ` +
+        `not the ${gap.straightLineKm} km recorded`
+    );
   }
   // The Cook Strait crossing at least is always there.
   assert.ok(meta.routeGaps.length > 0, "no route gaps at all - is the route joined up?");
@@ -213,6 +252,105 @@ test("each GPX carries what the metadata says, walked the right way", () => {
         assert.fail(`${label} GPX has a point at ${lat}, ${lon}`);
       }
     }
+  }
+});
+
+test("no GPX track walks across a break in the route", () => {
+  for (const direction of meta.directions) {
+    const gpx = readFileSync(out(`te-araroa-${direction.id}.gpx`), "utf8");
+    const label = direction.code;
+
+    // Tracks, not track segments. A <trkseg> boundary is a hint most consumers
+    // ignore - Garmin, Gaia, CalTopo and Leaflet all join a track's segments
+    // into one line - so the main route is published as one <trk> per stretch,
+    // and this is the check that it still is.
+    const tracks = [...gpx.matchAll(/<trk>\s*<name>([^<]*)<\/name>([\s\S]*?)<\/trk>/g)].map(
+      (match) => ({ name: match[1], body: match[2] })
+    );
+    assert.equal(tracks.length, meta.stats.tracks);
+
+    const walking = tracks.filter((track) =>
+      track.name.startsWith(`Te Araroa (${label}) `)
+    );
+    assert.equal(
+      walking.length,
+      meta.walkedStretches,
+      `${label} publishes ${walking.length} walking tracks, not ${meta.walkedStretches}`
+    );
+    for (const track of walking) {
+      assert.equal(
+        (track.body.match(/<trkseg>/g) ?? []).length,
+        1,
+        `${track.name} is more than one segment, which most tools will join up`
+      );
+    }
+
+    // Walked in this direction, each track has to stop where a break starts.
+    const point = (xml: string, which: "first" | "last") => {
+      const all = [...xml.matchAll(/<trkpt lat="(-?[\d.]+)" lon="(-?[\d.]+)"/g)];
+      const match = which === "first" ? all[0] : all[all.length - 1];
+      return { lat: Number(match[1]), lon: Number(match[2]) };
+    };
+    const nobo = direction.id === "nobo";
+    const breaks = nobo ? [...meta.routeGaps].reverse() : meta.routeGaps;
+
+    breaks.forEach((gap: { label: string; endsAt: Position; resumesAt: Position }, index: number) => {
+      // Northbound you arrive at each break from the far side.
+      const stops = nobo ? gap.resumesAt : gap.endsAt;
+      const starts = nobo ? gap.endsAt : gap.resumesAt;
+      assert.ok(
+        haversineKm(point(walking[index].body, "last"), stops) < 0.01,
+        `${label} track ${index + 1} does not stop at ${gap.label}`
+      );
+      assert.ok(
+        haversineKm(point(walking[index + 1].body, "first"), starts) < 0.01,
+        `${label} track ${index + 2} does not resume at ${gap.label}`
+      );
+    });
+
+    // And both ends of every break are called out as waypoints, because a
+    // track name is invisible on most of the devices these files end up on.
+    const gapWaypoints = [...gpx.matchAll(/<wpt[\s\S]*?<\/wpt>/g)]
+      .map((match) => match[0])
+      .filter((wpt) => wpt.includes("<type>gap</type>"))
+      .map((wpt) => wpt.match(/<name>([^<]*)<\/name>/)?.[1] ?? "");
+    assert.equal(gapWaypoints.length, meta.routeGaps.length * 2);
+    for (const gap of meta.routeGaps) {
+      assert.ok(
+        gapWaypoints.includes(`Trail ends - ${gap.label}`),
+        `${label} GPX has no "trail ends" waypoint for ${gap.label}`
+      );
+      assert.ok(
+        gapWaypoints.includes(`Trail resumes - ${gap.label}`),
+        `${label} GPX has no "trail resumes" waypoint for ${gap.label}`
+      );
+    }
+  }
+});
+
+test("the resupply plan says when a leg crosses a break", () => {
+  for (const id of ["sobo", "nobo"]) {
+    const rows = csv(`resupply-plan-${id}.csv`);
+    const flagged = rows.filter((row) => row["Leg crosses"]);
+    // Chainage runs straight through a break, so the leg either side of one
+    // reads as an ordinary walk unless something says otherwise. Between
+    // Queenstown and the far shore it reads 0.1 km, and 26.5 km of Lake
+    // Wakatipu sit inside it.
+    assert.equal(
+      flagged.length,
+      meta.routeGaps.length,
+      `resupply-plan-${id}.csv flags ${flagged.length} of ${meta.routeGaps.length} breaks`
+    );
+    const labels = meta.routeGaps.map((gap: { label: string }) => gap.label);
+    for (const row of flagged) {
+      assert.ok(labels.includes(row["Leg crosses"]), row["Leg crosses"]);
+      assert.ok(Number(row["Leg gap km"]) > 0.2, row.Name);
+    }
+    // The same six legs whichever way you walk them.
+    assert.deepEqual(
+      [...flagged.map((row) => row["Leg crosses"])].sort(),
+      [...labels].sort()
+    );
   }
 });
 
@@ -289,14 +427,44 @@ test("the datasheets gpx-tools produces are readable tables", () => {
       );
     }
     // gpx-tools totals the walk including the step out to each waypoint, so
-    // this runs a little past the route geometry - but only a little.
+    // this runs a little past the route geometry - but only a little. What it
+    // must never do again is include the links between the stretches: this file
+    // once ended at 3,174 km, of which 102.7 km was straight lines over water.
     const walked = Number(rows.at(-1)!["Total Distance (km)"]);
     assert.ok(
-      walked >= meta.geometricLengthKm &&
-        walked < meta.geometricLengthKm * 1.03,
-      `datasheet-${id}.csv ends at ${walked} km, route geometry is ${meta.geometricLengthKm} km`
+      walked >= meta.walkedLengthKm * 0.98 &&
+        walked < meta.walkedLengthKm * 1.03,
+      `datasheet-${id}.csv ends at ${walked} km, walked geometry is ${meta.walkedLengthKm} km`
     );
-    assert.ok(csv(`datasheet-resupply-${id}.csv`).length > 0);
+
+    // The running totals must run: one walk, not one sheet per stretch.
+    let previous = -1;
+    for (const row of rows) {
+      const running = Number(row["Total Distance (km)"]);
+      assert.ok(
+        running >= previous,
+        `datasheet-${id}.csv resets to ${running} km at "${row.Location}"`
+      );
+      previous = running;
+    }
+
+    // And every break gets a row of its own, naming it.
+    const breaks = rows.filter((row) => row.Location.startsWith("Trail ends -"));
+    assert.equal(
+      breaks.length,
+      meta.routeGaps.length,
+      `datasheet-${id}.csv marks ${breaks.length} of ${meta.routeGaps.length} breaks`
+    );
+    for (const row of breaks) {
+      assert.match(row.Notes, /starts again [\d.]+ km away/, row.Location);
+    }
+
+    const resupply = csv(`datasheet-resupply-${id}.csv`);
+    assert.ok(resupply.length > 0);
+    assert.equal(
+      resupply.filter((row) => row.Location.startsWith("Trail ends -")).length,
+      meta.routeGaps.length
+    );
   }
 });
 
@@ -307,17 +475,60 @@ test("the project page's map data matches the build it came from", () => {
   assert.equal(overview.type, "FeatureCollection");
   assert.equal(overview.properties.season, meta.season);
   assert.equal(overview.properties.officialLengthKm, L);
-  assert.equal(overview.features.length, meta.sites.length + 1);
+  assert.equal(
+    overview.features.length,
+    meta.sites.length + 1 + meta.routeGaps.length
+  );
 
+  // One line per walkable stretch, and nothing joining them. Drawn as a single
+  // LineString, this file put a straight line across Cook Strait, the Rakaia,
+  // the Rangitata and Lake Wakatipu on the front page of the project.
   const route = overview.features[0];
-  assert.equal(route.geometry.type, "LineString");
+  assert.equal(route.geometry.type, "MultiLineString");
+  assert.equal(route.geometry.coordinates.length, meta.walkedStretches);
+
+  const points = route.geometry.coordinates.flat();
   // Simplified enough for a phone on one bar of signal, detailed enough to read.
-  assert.ok(route.geometry.coordinates.length > 2000);
-  assert.ok(route.geometry.coordinates.length < meta.routePoints / 2);
-  for (const [lon, lat] of route.geometry.coordinates) {
+  assert.ok(points.length > 2000);
+  assert.ok(points.length < meta.routePoints / 2);
+  for (const [lon, lat] of points) {
     if (lat < NZ.minLat || lat > NZ.maxLat || lon < NZ.minLon || lon > NZ.maxLon) {
       assert.fail(`overview.geojson has a point at ${lat}, ${lon}`);
     }
+  }
+
+  // Every line ends where a break begins and the next starts on its far side.
+  // Simplification is free to leave a long straight where the trail really is
+  // straight - Ninety Mile Beach comes out as 1.5 km hops - so what is checked
+  // is not the length of the steps but that the cuts land on the breaks.
+  const at = (point: number[]) => ({ lon: point[0], lat: point[1] });
+  meta.routeGaps.forEach(
+    (
+      gap: { label: string; endsAt: { lat: number; lon: number }; resumesAt: { lat: number; lon: number } },
+      index: number
+    ) => {
+      const before = route.geometry.coordinates[index];
+      const after = route.geometry.coordinates[index + 1];
+      assert.ok(
+        haversineKm(at(before[before.length - 1]), gap.endsAt) < 0.01,
+        `stretch ${index + 1} does not end where ${gap.label} does`
+      );
+      assert.ok(
+        haversineKm(at(after[0]), gap.resumesAt) < 0.01,
+        `stretch ${index + 2} does not start where ${gap.label} ends`
+      );
+    }
+  );
+
+  // The breaks are drawn, as their own dashed features.
+  const gaps = overview.features.filter(
+    (f: { properties: { kind: string } }) => f.properties.kind === "gap"
+  );
+  assert.equal(gaps.length, meta.routeGaps.length);
+  for (const gap of gaps) {
+    assert.equal(gap.geometry.type, "LineString");
+    assert.equal(gap.geometry.coordinates.length, 2);
+    assert.ok(gap.properties.name && gap.properties.crossing);
   }
 });
 
