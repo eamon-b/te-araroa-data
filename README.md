@@ -73,7 +73,7 @@ Most files come in both directions, `-sobo` (Cape Reinga → Bluff) and `-nobo`
 
 | File | Contents |
 |---|---|
-| `te-araroa-{sobo,nobo}.gpx` | 21 tracks (7 for the main route, one per stretch you can walk; transport connectors; 13 bypasses), 656 waypoints typed `hut`/`campsite`/`town`/`resupply`/`food`/`accommodation`/`caravan-park`/`gap`/`access`, all in walking order - the 70 `access` ones are turnoffs on the route itself, marking where you leave the trail for a site it does not pass. The stable filenames - link to these |
+| `te-araroa-{sobo,nobo}.gpx` | 21 tracks (7 for the main route, one per stretch you can walk; transport connectors; 13 bypasses), 656 waypoints typed `hut`/`campsite`/`town`/`resupply`/`food`/`accommodation`/`caravan-park`/`gap`, all in walking order, plus 70 turnoffs typed `<type>-access` (`town-access`, `hut-access`, ...) - points on the route itself marking where you leave the trail for a site it does not pass, carrying the type of what they serve so a reader can tell a shop from a hut without following the link. The stable filenames - link to these |
 | `te-araroa-2026-27-{sobo,nobo}.gpx` | the same bytes under this release's name |
 | `resupply-plan-{sobo,nobo}.csv` | 266 sites in trail order: km, official km, section, trail elevation, leg distances, leg ascent/descent, whether the leg crosses a break in the route, bunks, water, booking, phone, address, hours, DOC link |
 | `sections-{sobo,nobo}.csv` | 79 official sections with km ranges, counted in that direction and in the trust's chainage |

@@ -267,7 +267,7 @@ Most files come in both directions, \`-sobo\` (Cape Reinga → Bluff) and \`-nob
 
 | File | Contents |
 |---|---|
-| \`te-araroa-{sobo,nobo}.gpx\` | ${s.tracks} tracks (${s.walkingTracks} for the main route, one per stretch you can walk; transport connectors; ${s.bypasses} bypasses), ${n(s.waypoints)} waypoints typed \`hut\`/\`campsite\`/\`town\`/\`resupply\`/\`food\`/\`accommodation\`/\`caravan-park\`/\`gap\`/\`access\`, all in walking order - the ${s.accessPoints} \`access\` ones are turnoffs on the route itself, marking where you leave the trail for a site it does not pass. The stable filenames - link to these |
+| \`te-araroa-{sobo,nobo}.gpx\` | ${s.tracks} tracks (${s.walkingTracks} for the main route, one per stretch you can walk; transport connectors; ${s.bypasses} bypasses), ${n(s.waypoints)} waypoints typed \`hut\`/\`campsite\`/\`town\`/\`resupply\`/\`food\`/\`accommodation\`/\`caravan-park\`/\`gap\`, all in walking order, plus ${s.accessPoints} turnoffs typed \`<type>-access\` (\`town-access\`, \`hut-access\`, ...) - points on the route itself marking where you leave the trail for a site it does not pass, carrying the type of what they serve so a reader can tell a shop from a hut without following the link. The stable filenames - link to these |
 | \`te-araroa-${meta.season}-{sobo,nobo}.gpx\` | the same bytes under this release's name |
 | \`resupply-plan-{sobo,nobo}.csv\` | ${n(s.planRows)} sites in trail order: km, official km, section, trail elevation, leg distances, leg ascent/descent, whether the leg crosses a break in the route, bunks, water, booking, phone, address, hours, DOC link |
 | \`sections-{sobo,nobo}.csv\` | ${s.sections} official sections with km ranges, counted in that direction and in the trust's chainage |

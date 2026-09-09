@@ -1427,7 +1427,12 @@ function writeDirection(
         `${kmPrefix(site.km)} | Leave the trail here for ${site.name} ` +
         `(${site.type}), ${(site.offTrailMeters / 1000).toFixed(1)} km off ` +
         `trail. | ${site.description}`,
-      type: "access",
+      // The turnoff carries the type of what it serves, with `-access` on the
+      // end. Both halves are load-bearing: a consumer deciding whether it can
+      // buy food here needs to know a town is a town, and a walker reading the
+      // list needs to know this is the roadside, not the town. Typing every
+      // turnoff `access` lost the first; typing it `town` would lose the second.
+      type: `${site.type}-access`,
       cmt: site.section,
     };
     // The turnoff comes first: you reach it before you reach the place.
