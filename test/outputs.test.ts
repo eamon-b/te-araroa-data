@@ -443,6 +443,114 @@ test("every site the trail does not pass has a turnoff on the route", () => {
   }
 });
 
+test("the off-trail numbers are published as data, not only as prose", () => {
+  // A planner cannot act on "70 km off trail. Accepts resupply boxes." without
+  // parsing English out of a description. The same facts go into a `tn:`
+  // extension block on the resupply point and on its turnoff, so that either
+  // waypoint on its own says how far the other one is.
+  const resupply: Array<{
+    name: string;
+    type: string;
+    offTrailMeters: number;
+    accessLat: number | null;
+  }> = meta.sites.filter((site: { source: string }) => site.source === "Resupply");
+  const offTrail = resupply.filter((site) => site.accessLat !== null);
+  assert.equal(resupply.length, meta.stats.resupply.total);
+  assert.equal(offTrail.length, meta.stats.resupplyAccessPoints);
+
+  for (const direction of meta.directions) {
+    const gpx = readFileSync(out(`te-araroa-${direction.id}.gpx`), "utf8");
+    const label = direction.code;
+
+    // Without this on the root, the blocks below are not namespaced XML.
+    assert.match(
+      gpx,
+      /xmlns:tn="https:\/\/tracknotes\.app\/xmlschemas\/gpx-waypoint\/1"/,
+      `${label} GPX declares no tn: namespace`
+    );
+
+    const waypoints = [...gpx.matchAll(/<wpt[\s\S]*?<\/wpt>/g)].map((m) => m[0]);
+    // Names come back out of the file escaped: half the South Island's places
+    // have an apostrophe in them.
+    const text = (value: string) =>
+      value
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&quot;/g, '"')
+        .replace(/&apos;/g, "'")
+        .replace(/&amp;/g, "&");
+    const nameOf = (wpt: string) => text(wpt.match(/<name>([^<]*)<\/name>/)?.[1] ?? "");
+    const typeOf = (wpt: string) => wpt.match(/<type>([^<]*)<\/type>/)?.[1] ?? "";
+    const field = (wpt: string, tag: string) =>
+      wpt.match(new RegExp(`<tn:${tag}>([^<]*)</tn:${tag}>`))?.[1];
+    const block = (wpt: string) =>
+      wpt.match(/<extensions>[\s\S]*<\/extensions>/)?.[0];
+
+    // Every resupply point, and nothing but resupply points and their
+    // turnoffs: the KMZ says nothing about how you reach a hut, so a hut
+    // declares nothing.
+    const declaring = waypoints.filter((wpt) => wpt.includes("<extensions>"));
+    assert.equal(
+      declaring.length,
+      resupply.length + offTrail.length,
+      `${label} GPX declares ${declaring.length} extension blocks`
+    );
+
+    for (const site of resupply) {
+      const own = declaring.find((wpt) => nameOf(wpt) === site.name);
+      assert.ok(own, `${label} GPX has no waypoint for ${site.name}`);
+      assert.equal(typeOf(own), site.type, site.name);
+      assert.equal(
+        field(own, "offTrailKm"),
+        (site.offTrailMeters / 1000).toFixed(1),
+        `${site.name} declares the wrong off-trail distance`
+      );
+      assert.ok(
+        ["true", "false"].includes(field(own, "acceptsBoxes") ?? ""),
+        `${site.name} does not say whether it takes boxes`
+      );
+      // Nothing is guessed: the file has no access mode or turnoff name for
+      // any point today, and an element that says nothing is left out.
+      const mode = field(own, "accessMode");
+      if (mode !== undefined) {
+        assert.match(mode, /^(foot|hitch|shuttle|boat|on-trail)$/, site.name);
+      }
+
+      // The turnoff carries the same block, so the two never disagree.
+      if (site.accessLat === null) {
+        assert.equal(
+          declaring.filter((wpt) => nameOf(wpt) === `${site.name} turnoff`).length,
+          0,
+          `${site.name} has no turnoff but something declares one`
+        );
+        continue;
+      }
+      const turnoff = declaring.find(
+        (wpt) => nameOf(wpt) === `${site.name} turnoff`
+      );
+      assert.ok(turnoff, `${label} GPX has no turnoff for ${site.name}`);
+      assert.equal(typeOf(turnoff), `${site.type}-access`, site.name);
+      assert.equal(block(turnoff), block(own), `${site.name} turnoff disagrees`);
+      // And the sentence a person reads says the same number as the element a
+      // program reads.
+      assert.ok(
+        turnoff.includes(`${(site.offTrailMeters / 1000).toFixed(1)} km off`),
+        `${site.name} turnoff reads differently from what it declares`
+      );
+    }
+
+    for (const wpt of declaring) {
+      // GPX 1.1 puts extensions last in a waypoint; a strict reader is
+      // entitled to reject the file if they are anywhere else.
+      assert.match(
+        wpt,
+        /<type>[^<]*<\/type>\s*<extensions>[\s\S]*<\/extensions>\s*<\/wpt>/,
+        nameOf(wpt)
+      );
+    }
+  }
+});
+
 test("the northbound sheet is a true mirror of the southbound one", () => {
   const sobo = csv("resupply-plan-sobo.csv");
   const nobo = csv("resupply-plan-nobo.csv");
