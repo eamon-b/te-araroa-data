@@ -310,6 +310,16 @@ distance). Without it the build reports a straight line across country that
 nobody walks - Geraldine came out 55 km off the Two Thumb Range, when in reality
 you leave at the Rangitata.
 
+**Both waypoints of a resupply point carry the numbers as data**, not only as a
+sentence in \`<desc>\`: an \`<extensions>\` block in the \`tn:\` namespace
+(\`https://tracknotes.app/xmlschemas/gpx-waypoint/1\`) holding \`offTrailKm\`,
+\`acceptsBoxes\`, and \`accessMode\` (\`foot\`, \`hitch\`, \`shuttle\`, \`boat\`
+or \`on-trail\`) and \`accessName\` where the research has them. A turnoff
+declares the same block as the place it serves, so either waypoint on its own
+says how far away the other is. Everything in it is optional, nothing is
+guessed - a point with no researched mode carries no \`accessMode\` element -
+and a reader that does not know the namespace ignores the block entirely.
+
 The longest carries between resupply points come out as:
 
 | km | Stretch | Through |

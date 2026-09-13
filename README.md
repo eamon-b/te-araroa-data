@@ -12,7 +12,7 @@ contain.
 <!-- generated:snapshot -->
 > ### What this is, and how current it is
 >
-> Built on **9 September 2026** from the trust's **2026-27 release (v45)**.
+> Built on **13 September 2026** from the trust's **2026-27 release (v45)**.
 >
 > A scheduled job checks the trust's download page every Monday and opens a pull
 > request when the published files change, so this repository follows the trust
@@ -250,6 +250,16 @@ distance). Without it the build reports a straight line across country that
 nobody walks - Geraldine came out 55 km off the Two Thumb Range, when in reality
 you leave at the Rangitata.
 
+**Both waypoints of a resupply point carry the numbers as data**, not only as a
+sentence in `<desc>`: an `<extensions>` block in the `tn:` namespace
+(`https://tracknotes.app/xmlschemas/gpx-waypoint/1`) holding `offTrailKm`,
+`acceptsBoxes`, and `accessMode` (`foot`, `hitch`, `shuttle`, `boat`
+or `on-trail`) and `accessName` where the research has them. A turnoff
+declares the same block as the place it serves, so either waypoint on its own
+says how far away the other is. Everything in it is optional, nothing is
+guessed - a point with no researched mode carries no `accessMode` element -
+and a reader that does not know the namespace ignores the block entirely.
+
 The longest carries between resupply points come out as:
 
 | km | Stretch | Through |
@@ -312,6 +322,13 @@ and will be overwritten. Everything else in this file is written by hand.
 Corrections to the resupply data are the most useful thing anyone can send -
 that file is hand-built and it decays. If a shop has closed, changed hours, or
 stopped taking boxes, open an issue or a PR against `data/resupply.json`.
+
+Two optional fields there are worth filling in wherever you know the answer,
+because they are published as data and nothing can be inferred from the notes:
+`accessName`, what the turnoff is actually called - "Rangitata road end", not a
+km - and `accessMode`, one of `foot`, `hitch`, `shuttle`, `boat` or `on-trail`.
+Both are left out of the GPX entirely when absent: a turnoff with no recorded
+mode is a turnoff with no recorded mode, not a walk.
 
 ## Licence and attribution
 

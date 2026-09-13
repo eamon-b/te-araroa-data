@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="te-araroa-data (gpx-tools kml-parser)"
   xmlns="http://www.topografix.com/GPX/1/1"
+  xmlns:tn="https://tracknotes.app/xmlschemas/gpx-waypoint/1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <metadata>
@@ -53,6 +54,10 @@
     <cmt>The Northland Forests</cmt>
     <desc>km 102.8 | Ahipara Superette: groceries and post shop. Cafe closes 2pm. First resupply after Cape Reinga.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.114126" lon="173.263996">
     <ele>19</ele>
@@ -60,6 +65,10 @@
     <cmt>The Northland Forests</cmt>
     <desc>km 116.0 | Pak&apos;nSave, Bells Produce, two bulk-food shops. 14 km inland from Ahipara; hitch or bus.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.3</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.211542" lon="173.513544">
     <ele>41</ele>
@@ -74,6 +83,10 @@
     <cmt>The Northland Forests</cmt>
     <desc>km 161.3 | Dairy and takeaways on SH1, Mon-Fri 7am-6pm. Phone charging. Snacks only.</desc>
     <type>food</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.236231" lon="173.658972">
     <ele>302.1</ele>
@@ -104,6 +117,10 @@
     <cmt>Mangakaretu to Kerikeri</cmt>
     <desc>km 221.6 | Leave the trail here for Kerikeri (town), 0.7 km off trail. | New World and Countdown. Full resupply, hostels.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>0.7</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.227261" lon="173.949106">
     <ele>39</ele>
@@ -111,6 +128,10 @@
     <cmt>Mangakaretu to Kerikeri</cmt>
     <desc>km 221.6 | New World and Countdown. Full resupply, hostels.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.7</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.281241" lon="174.092088">
     <ele>5.3</ele>
@@ -118,6 +139,10 @@
     <cmt>Paihia to Ōpua Coastal Walkway</cmt>
     <desc>km 245.2 | Countdown Central plus a larger Countdown at Waitangi. Four Square on Williams Rd.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.300327" lon="174.10178">
     <ele>5.4</ele>
@@ -132,6 +157,10 @@
     <cmt>Waikare Connection - by Water</cmt>
     <desc>km 251.9 | Small general store, expensive. Ferry point.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.513872" lon="174.451941">
     <ele>5.7</ele>
@@ -139,6 +168,10 @@
     <cmt>Waikare to Ngunguru</cmt>
     <desc>km 322.5 | Leave the trail here for Whananaki (resupply), 1.2 km off trail. | Whananaki Superette: limited supplies. Holiday park with a hut for TA walkers.</desc>
     <type>resupply-access</type>
+    <extensions>
+      <tn:offTrailKm>1.2</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.507515" lon="174.462946">
     <ele>5.7</ele>
@@ -146,6 +179,10 @@
     <cmt>Waikare to Ngunguru</cmt>
     <desc>km 322.5 | Whananaki Superette: limited supplies. Holiday park with a hut for TA walkers.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>1.2</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.558184" lon="174.47242">
     <ele>19</ele>
@@ -153,6 +190,10 @@
     <cmt>Waikare to Ngunguru</cmt>
     <desc>km 331.2 | Leave the trail here for Matapouri (resupply), 2.9 km off trail. | Small general store.</desc>
     <type>resupply-access</type>
+    <extensions>
+      <tn:offTrailKm>2.9</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.566397" lon="174.50307">
     <ele>19</ele>
@@ -160,6 +201,10 @@
     <cmt>Waikare to Ngunguru</cmt>
     <desc>km 331.2 | Small general store.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>2.9</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.633363" lon="174.500775">
     <ele>2</ele>
@@ -167,6 +212,10 @@
     <cmt>Waikare to Ngunguru</cmt>
     <desc>km 347.6 | Four Square dairy and takeaway, plus cafes. Limited and expensive.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.643241" lon="174.489648">
     <ele>16.3</ele>
@@ -181,6 +230,10 @@
     <cmt>Bream Bay Walk</cmt>
     <desc>km 407.3 | Leave the trail here for Whangarei (town), 36.0 km off trail. | Countdown and Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangarei Heads / Marsden Point crossing.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>36.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.727527" lon="174.31942">
     <ele>2</ele>
@@ -188,18 +241,30 @@
     <cmt>Bream Bay Walk</cmt>
     <desc>km 407.3 | Countdown and Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangarei Heads / Marsden Point crossing.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>36.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.879312" lon="174.469092">
     <name>Ruakaka turnoff</name>
     <cmt>Bream Bay Walk</cmt>
     <desc>km 414.1 | Leave the trail here for Ruakaka (town), 1.3 km off trail. | FreshChoice supermarket and takeaways.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>1.3</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.875436" lon="174.455707">
     <name>Ruakaka</name>
     <cmt>Bream Bay Walk</cmt>
     <desc>km 414.1 | FreshChoice supermarket and takeaways.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>1.3</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-35.905789" lon="174.452677">
     <ele>1.4</ele>
@@ -223,6 +288,10 @@
     <cmt>Bream Bay Walk</cmt>
     <desc>km 428.4 | Four Square, cafes, hotel with budget rooms. Camp Waipu Cove has a dairy.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-36.028951" lon="174.493809">
     <ele>65.1</ele>
@@ -259,6 +328,10 @@
     <cmt>Mangawhai to Pākiri</cmt>
     <desc>km 458.4 | Four Square at 3 Wood St. Holiday park.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-36.125995" lon="174.575476">
     <ele>11</ele>
@@ -266,6 +339,10 @@
     <cmt>Mangawhai to Pākiri</cmt>
     <desc>km 462.8 | New World 1 km north of the village, plus a Four Square.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-36.130821" lon="174.585028">
     <ele>7</ele>
@@ -289,6 +366,10 @@
     <cmt>Mt Tamahunga (Te Hīkoi O Te Kiri) Track</cmt>
     <desc>km 488.1 | Camp store: food, drinks, milk, bread. 9am-5pm summer only.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-36.307725" lon="174.702071">
     <ele>318</ele>
@@ -310,6 +391,10 @@
     <cmt>Govan Wilson to Pūhoi Valley</cmt>
     <desc>km 508.2 | Leave the trail here for Warkworth (town), 6.0 km off trail. | Countdown, New World and a Bin Inn. About 6 km off trail. Short detour off the Dome Valley section.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>6.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-36.397669" lon="174.665849">
     <ele>306.4</ele>
@@ -317,6 +402,10 @@
     <cmt>Govan Wilson to Pūhoi Valley</cmt>
     <desc>km 508.2 | Countdown, New World and a Bin Inn. About 6 km off trail. Short detour off the Dome Valley section.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>6.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-36.500378" lon="174.618869">
     <ele>25.4</ele>
@@ -331,6 +420,10 @@
     <cmt>Pūhoi to Wenderholm Kayak</cmt>
     <desc>km 539.1 | General store 7am-7pm, historic pub, three cafes.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-36.53633" lon="174.704998">
     <ele>16.2</ele>
@@ -345,6 +438,10 @@
     <cmt>Wenderholm to Stillwater</cmt>
     <desc>km 556.8 | New World and Countdown, cafes, outdoor shops.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.5</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-36.596545" lon="174.699284">
     <ele>1</ele>
@@ -375,6 +472,10 @@
     <cmt>Wenderholm to Stillwater</cmt>
     <desc>km 562.9 | Silverdale Centre: Woolworths, Macpac, Kathmandu, ATMs.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-36.715628" lon="174.748198">
     <ele>0.8</ele>
@@ -382,6 +483,10 @@
     <cmt>North Shore Coastal Walk</cmt>
     <desc>km 586.6 | New World and Countdown.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.1</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-36.829731" lon="174.797538">
     <ele>4</ele>
@@ -389,6 +494,10 @@
     <cmt>North Shore Coastal Walk</cmt>
     <desc>km 605.6 | New World. Ferry to the city.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.2</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-36.851712" lon="174.769885">
     <ele>40</ele>
@@ -396,6 +505,10 @@
     <cmt>Coast to Coast Walkway</cmt>
     <desc>km 607.5 | Leave the trail here for Auckland CBD (town), 0.6 km off trail. | Full resupply and gear replacement. Metro supermarkets are smaller than suburban ones.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>0.6</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-36.852095" lon="174.76318">
     <ele>40</ele>
@@ -403,6 +516,10 @@
     <cmt>Coast to Coast Walkway</cmt>
     <desc>km 607.5 | Full resupply and gear replacement. Metro supermarkets are smaller than suburban ones.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.6</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-36.943904" lon="174.785241">
     <ele>2.1</ele>
@@ -410,6 +527,10 @@
     <cmt>Onehunga to Puhinui</cmt>
     <desc>km 622.8 | FreshChoice, slightly off trail.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.4</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-36.946154" lon="174.75745">
     <ele>1</ele>
@@ -425,6 +546,10 @@
     <cmt>Botanic Gardens to Mangatāwhiri</cmt>
     <desc>km 662.7 | Leave the trail here for Papakura (town), 1.4 km off trail. | Pak&apos;nSave, Countdown, New World.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>1.4</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-37.064265" lon="174.944667">
     <ele>20</ele>
@@ -432,6 +557,10 @@
     <cmt>Botanic Gardens to Mangatāwhiri</cmt>
     <desc>km 662.7 | Pak&apos;nSave, Countdown, New World.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>1.4</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-37.113148" lon="174.979693">
     <ele>49.4</ele>
@@ -495,6 +624,10 @@
     <cmt>Mangatāwhiri to Mercer</cmt>
     <desc>km 703.0 | Service centre with food outlets; motel with camping.</desc>
     <type>food</type>
+    <extensions>
+      <tn:offTrailKm>0.2</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-37.549727" lon="175.154327">
     <ele>14.1</ele>
@@ -516,6 +649,10 @@
     <cmt>Rangiriri to Huntly</cmt>
     <desc>km 744.7 | Leave the trail here for Huntly (town), 0.6 km off trail. | Woolworths, about 1 km off trail.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>0.6</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-37.5584" lon="175.158832">
     <ele>17.4</ele>
@@ -523,6 +660,10 @@
     <cmt>Rangiriri to Huntly</cmt>
     <desc>km 744.7 | Woolworths, about 1 km off trail.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.6</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-37.666266" lon="175.150053">
     <ele>20</ele>
@@ -530,6 +671,10 @@
     <cmt>Ngāruawāhia to Hamilton - Te Awa (The River)</cmt>
     <desc>km 764.5 | New World and cafes.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.2</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-37.787881" lon="175.281788">
     <ele>44</ele>
@@ -537,6 +682,10 @@
     <cmt>Hamilton City</cmt>
     <desc>km 785.5 | Pak&apos;nSave, Woolworths, Trek N Travel outdoor store. Full gear replacement.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-37.797633" lon="175.153352">
     <ele>22</ele>
@@ -544,6 +693,10 @@
     <cmt>Waipā Walk</cmt>
     <desc>km 799.8 | Petrol station store, gastro pub and village cafe.</desc>
     <type>food</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-37.938422" lon="175.074801">
     <ele>134</ele>
@@ -583,6 +736,10 @@
     <cmt>Pehitawa Track</cmt>
     <desc>km 883.2 | Waitomo Village Store 7am-7pm, expensive. Cafes and restaurants.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.1</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-38.334193" lon="175.165712">
     <ele>60</ele>
@@ -590,6 +747,10 @@
     <cmt>Te Kūiti to Pureora</cmt>
     <desc>km 898.8 | New World and SuperValue.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.1</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-38.511263" lon="175.562355">
     <ele>565.9</ele>
@@ -650,6 +811,10 @@
     <cmt>42 Traverse</cmt>
     <desc>km 1060.5 | New World at the west end. Seriously Outdoors for gear; canoe hire.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.3</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-38.995956" lon="175.379537">
     <ele>440</ele>
@@ -657,6 +822,10 @@
     <cmt>42 Traverse</cmt>
     <desc>km 1087.0 | Blue Hill Cafe, 8am-2pm.</desc>
     <type>food</type>
+    <extensions>
+      <tn:offTrailKm>0.5</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-39.13223" lon="175.656895">
     <ele>1700</ele>
@@ -725,6 +894,10 @@
     <cmt>Mangatepopo to National Park</cmt>
     <desc>km 1172.1 | Camp store carries little more than ice blocks and muesli bars. Not a resupply.</desc>
     <type>food</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-39.202392" lon="175.54006">
     <ele>1146</ele>
@@ -808,6 +981,10 @@
     <cmt>National Park to Whanganui River</cmt>
     <desc>km 1193.2 | Four Square, well stocked with dehydrated meals and gas. First real shop since Whanganui.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.4</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-39.106443" lon="175.074228">
     <ele>119.6</ele>
@@ -815,6 +992,10 @@
     <cmt>National Park to Whanganui River</cmt>
     <desc>km 1244.8 | Blue Duck Cafe 8am-3pm Thu-Mon. DoC campsite. Blue Duck Station does meals and accommodation. Accepts resupply boxes.</desc>
     <type>food</type>
+    <extensions>
+      <tn:offTrailKm>0.4</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-39.109242" lon="175.070879">
     <ele>129.8</ele>
@@ -969,6 +1150,10 @@
     <cmt>Whanganui River - via Whanganui River</cmt>
     <desc>km 1313.6 | Minimal cafe and shop at the campground. Jetboat transfers.</desc>
     <type>food</type>
+    <extensions>
+      <tn:offTrailKm>0.2</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-39.605687" lon="175.160834">
     <ele>20.2</ele>
@@ -976,6 +1161,10 @@
     <cmt>Whanganui River - via Whanganui River</cmt>
     <desc>km 1335.8 | Matahiwi Gallery and Cafe: coffee, cold drinks, local knowledge.</desc>
     <type>food</type>
+    <extensions>
+      <tn:offTrailKm>0.3</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-39.726423" lon="175.131593">
     <ele>21</ele>
@@ -1007,6 +1196,10 @@
     <cmt>Whanganui River - via Whanganui River</cmt>
     <desc>km 1403.6 | New World, Countdown, Pak&apos;nSave. Kathmandu; Wilsons Hunting and Outdoors stores bounce boxes. Accepts resupply boxes.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.5</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-40.174539" lon="175.384895">
     <ele>46</ele>
@@ -1014,6 +1207,10 @@
     <cmt>Bulls to Feilding</cmt>
     <desc>km 1462.1 | Four Square at 114 Bridge St, plus takeaways.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-40.185086" lon="175.387038">
     <ele>39</ele>
@@ -1029,6 +1226,10 @@
     <cmt>Bulls to Feilding</cmt>
     <desc>km 1483.7 | New World, Bin Inn. Friday farmers market. 2-3 km off trail.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-40.28259" lon="175.631499">
     <ele>54</ele>
@@ -1036,6 +1237,10 @@
     <cmt>Feilding to Palmerston North</cmt>
     <desc>km 1492.7 | Dairy, takeaway bar and toilets, on trail.</desc>
     <type>food</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-40.356317" lon="175.611239">
     <ele>34</ele>
@@ -1043,6 +1248,10 @@
     <cmt>Feilding to Palmerston North</cmt>
     <desc>km 1503.1 | Pak&apos;nSave, Woolworths, New World, Bin Inn. Full resupply.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.1</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-40.503822" lon="175.583522">
     <ele>357</ele>
@@ -1071,6 +1280,10 @@
     <cmt>Palmerston North to Poads Road</cmt>
     <desc>km 1573.1 | Leave the trail here for Levin (town), 9.0 km off trail. | Pak&apos;nSave, New World, Countdown. About 9 km off trail. Leave at Poads Rd.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>9.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-40.621816" lon="175.286585">
     <ele>111.4</ele>
@@ -1078,6 +1291,10 @@
     <cmt>Palmerston North to Poads Road</cmt>
     <desc>km 1573.1 | Pak&apos;nSave, New World, Countdown. About 9 km off trail. Leave at Poads Rd.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>9.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-40.726329" lon="175.357078">
     <ele>969.3</ele>
@@ -1141,6 +1358,10 @@
     <cmt>Pukeatua Track</cmt>
     <desc>km 1646.1 | Countdown and New World near the town centre. No backpackers.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.2</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-40.873962" lon="175.024094">
     <ele>11</ele>
@@ -1156,6 +1377,10 @@
     <cmt>Kāpiti Coast</cmt>
     <desc>km 1656.3 | Cafes, shops and a small supermarket.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.1</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-40.988307" lon="174.951443">
     <ele>19</ele>
@@ -1163,6 +1388,10 @@
     <cmt>Escarpment Track</cmt>
     <desc>km 1668.4 | Dairy/grocery, two fruit and vegetable shops, cafes and a pub.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-41.135422" lon="174.839782">
     <ele>17</ele>
@@ -1170,6 +1399,10 @@
     <cmt>Rangituhi/ Colonial Knob Walk</cmt>
     <desc>km 1692.5 | New World, Woolworths and Pak&apos;nSave together, 150 m off trail.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-41.137954" lon="174.82795">
     <ele>53.8</ele>
@@ -1185,6 +1418,10 @@
     <cmt>Wellington City</cmt>
     <desc>km 1726.3 | Capital: full resupply, gear stores, bulk-food refilleries. End of the North Island. Accepts resupply boxes.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-41.290916" lon="174.006908">
     <ele>10.5</ele>
@@ -1192,6 +1429,10 @@
     <cmt>Queen Charlotte Track</cmt>
     <desc>km 1739.0 | Four Square and FreshChoice on High St. Ferry arrival; off the walking route. Ferry landing; walk resumes at Ship Cove by water taxi.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-41.11135" lon="174.224882">
     <ele>23.6</ele>
@@ -1293,6 +1534,10 @@
     <cmt>Anakiwa to Pelorus Bridge</cmt>
     <desc>km 1829.1 | Small Four Square, post office, cafes. Havelock Holiday Park accepts food parcels. Accepts resupply boxes.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.1</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-41.301094" lon="173.570141">
     <ele>68.2</ele>
@@ -1340,6 +1585,10 @@
     <cmt>Richmond Alpine Track</cmt>
     <desc>km 1895.0 | Leave the trail here for Nelson (town), 29.0 km off trail. | Supermarkets, outdoor shops, backpackers. About 29 km off trail from Hacket car park. Leave at the Hacket car park, start of the Richmond Alpine Track.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>29.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-41.271085" lon="173.283676">
     <ele>266.9</ele>
@@ -1347,6 +1596,10 @@
     <cmt>Richmond Alpine Track</cmt>
     <desc>km 1895.0 | Supermarkets, outdoor shops, backpackers. About 29 km off trail from Hacket car park. Leave at the Hacket car park, start of the Richmond Alpine Track.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>29.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-41.415837" lon="173.245972">
     <ele>260</ele>
@@ -1449,6 +1702,10 @@
     <cmt>Richmond Alpine Track</cmt>
     <desc>km 1990.5 | General store and 24 hr NPD station; DoC centre sells gas and dehydrated meals. Alpine Lodge holds parcels ($15-30). Expensive. Accepts resupply boxes.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-41.805773" lon="172.847958">
     <ele>628</ele>
@@ -1642,6 +1899,10 @@
     <cmt>Waiau Pass Track</cmt>
     <desc>km 2109.2 | No shop. Boyle River Outdoor Education Centre holds resupply boxes, sells basic food, beds $50. Accepts resupply boxes.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-42.516639" lon="172.386459">
     <ele>582.7</ele>
@@ -1657,6 +1918,10 @@
     <cmt>Waiau Pass Track</cmt>
     <desc>km 2109.4 | Leave the trail here for Hanmer Springs (town), 55.0 km off trail. | Four Square, hot pools, backpackers. About 55 km off trail from Boyle; shuttle or hitch. Leave at Boyle Village on SH7; shuttle or hitch.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>55.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-42.521795" lon="172.830299">
     <ele>582.7</ele>
@@ -1664,6 +1929,10 @@
     <cmt>Waiau Pass Track</cmt>
     <desc>km 2109.4 | Four Square, hot pools, backpackers. About 55 km off trail from Boyle; shuttle or hitch. Leave at Boyle Village on SH7; shuttle or hitch.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>55.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-42.615627" lon="172.29809">
     <ele>566.6</ele>
@@ -1759,6 +2028,10 @@
     <cmt>Boyle to Arthur&apos;s Pass</cmt>
     <desc>km 2222.2 | Leave the trail here for Arthur&apos;s Pass (resupply), 4.5 km off trail. | Arthur&apos;s Pass Cafe and Store: limited, expensive groceries. DoC centre sells gas. Mountain House holds boxes. Accepts resupply boxes.</desc>
     <type>resupply-access</type>
+    <extensions>
+      <tn:offTrailKm>4.5</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-42.939301" lon="171.561379">
     <ele>721</ele>
@@ -1766,6 +2039,10 @@
     <cmt>Boyle to Arthur&apos;s Pass</cmt>
     <desc>km 2222.2 | Arthur&apos;s Pass Cafe and Store: limited, expensive groceries. DoC centre sells gas. Mountain House holds boxes. Accepts resupply boxes.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>4.5</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-43.002032" lon="171.589249">
     <ele>637</ele>
@@ -1828,6 +2105,10 @@
     <cmt>Arthur&apos;s Pass to Rākaia River</cmt>
     <desc>km 2298.1 | No shops. Powerhouse Lodge holds bounce boxes and has tent sites. Accepts resupply boxes.</desc>
     <type>food</type>
+    <extensions>
+      <tn:offTrailKm>0.4</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-43.363884" lon="171.528357">
     <ele>370.3</ele>
@@ -1835,6 +2116,10 @@
     <cmt>Arthur&apos;s Pass to Rākaia River</cmt>
     <desc>km 2298.3 | Leave the trail here for Methven (town), 48.0 km off trail. | Two supermarkets, Alpine Sports for dehydrated meals and gas. Snow Denn Lodge holds boxes ($5). Shuttle from Rakaia. Leave at the Rakaia River; the river is a no-ford hazard zone, shuttle required. Accepts resupply boxes.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>48.0</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-43.632433" lon="171.647261">
     <ele>370.3</ele>
@@ -1842,6 +2127,10 @@
     <cmt>Arthur&apos;s Pass to Rākaia River</cmt>
     <desc>km 2298.3 | Two supermarkets, Alpine Sports for dehydrated meals and gas. Snow Denn Lodge holds boxes ($5). Shuttle from Rakaia. Leave at the Rakaia River; the river is a no-ford hazard zone, shuttle required. Accepts resupply boxes.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>48.0</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-43.382862" lon="171.370368">
     <ele>1039.2</ele>
@@ -1903,6 +2192,10 @@
     <cmt>Rakaia River to Rangitata River</cmt>
     <desc>km 2367.8 | Leave the trail here for Geraldine (town), 70.0 km off trail. | Supermarket and accommodation. About 70 km from the Rangitata via Methven; community shuttle $24. Leave at the Rangitata River; community shuttle $24, book two days ahead.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>70.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-44.092104" lon="171.24259">
     <ele>558</ele>
@@ -1910,6 +2203,10 @@
     <cmt>Rakaia River to Rangitata River</cmt>
     <desc>km 2367.8 | Supermarket and accommodation. About 70 km from the Rangitata via Methven; community shuttle $24. Leave at the Rangitata River; community shuttle $24, book two days ahead.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>70.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-43.57723" lon="170.953682">
     <ele>558</ele>
@@ -1917,6 +2214,10 @@
     <cmt>Rakaia River to Rangitata River</cmt>
     <desc>km 2367.8 | Leave the trail here for Peel Forest (resupply), 50.0 km off trail. | DoC Peel Forest camp and a small store. Homestay offers transport to the trailhead. Leave at the Rangitata River.</desc>
     <type>resupply-access</type>
+    <extensions>
+      <tn:offTrailKm>50.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-43.911219" lon="171.260376">
     <ele>558</ele>
@@ -1924,6 +2225,10 @@
     <cmt>Rakaia River to Rangitata River</cmt>
     <desc>km 2367.8 | DoC Peel Forest camp and a small store. Homestay offers transport to the trailhead. Leave at the Rangitata River.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>50.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-43.57723" lon="170.953682">
     <ele>558</ele>
@@ -1931,6 +2236,10 @@
     <cmt>Rakaia River to Rangitata River</cmt>
     <desc>km 2367.8 | Leave the trail here for Mesopotamia Station (food), 2.5 km off trail. | Historic station near the Rangitata; holds food parcels. Leave at the Rangitata River crossing. Accepts resupply boxes.</desc>
     <type>food-access</type>
+    <extensions>
+      <tn:offTrailKm>2.5</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-43.663438" lon="170.884449">
     <ele>558</ele>
@@ -1938,6 +2247,10 @@
     <cmt>Rakaia River to Rangitata River</cmt>
     <desc>km 2367.8 | Historic station near the Rangitata; holds food parcels. Leave at the Rangitata River crossing. Accepts resupply boxes.</desc>
     <type>food</type>
+    <extensions>
+      <tn:offTrailKm>2.5</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-43.57723" lon="170.953682">
     <ele>558</ele>
@@ -1945,6 +2258,10 @@
     <cmt>Rakaia River to Rangitata River</cmt>
     <desc>km 2367.8 | Leave the trail here for Mt Potts Lodge (food), 3.0 km off trail. | Cafe and restaurant, closed Tue/Wed, book meals ahead. Has held food parcels; check first. Leave at the Rangitata River crossing. Accepts resupply boxes.</desc>
     <type>food-access</type>
+    <extensions>
+      <tn:offTrailKm>3.0</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-43.502584" lon="170.924859">
     <ele>558</ele>
@@ -1952,6 +2269,10 @@
     <cmt>Rakaia River to Rangitata River</cmt>
     <desc>km 2367.8 | Cafe and restaurant, closed Tue/Wed, book meals ahead. Has held food parcels; check first. Leave at the Rangitata River crossing. Accepts resupply boxes.</desc>
     <type>food</type>
+    <extensions>
+      <tn:offTrailKm>3.0</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-43.623891" lon="170.789844">
     <ele>1038.9</ele>
@@ -1990,6 +2311,10 @@
     <cmt>Two Thumb Track</cmt>
     <desc>km 2442.1 | Large Four Square, cafes. Tailormade Backpackers and Bespoke Bikes receive bounce boxes. Accepts resupply boxes.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.0</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-44.004646" lon="170.475451">
     <ele>727</ele>
@@ -2026,6 +2351,10 @@
     <cmt>Tekapo to Lake Ōhau</cmt>
     <desc>km 2496.6 | Leave the trail here for Twizel (town), 0.5 km off trail. | Two Four Squares, Southern Alps Outdoors for gas. High Country Lodge holds parcels. Accepts resupply boxes.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>0.5</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-44.257483" lon="170.099414">
     <ele>465</ele>
@@ -2033,6 +2362,10 @@
     <cmt>Tekapo to Lake Ōhau</cmt>
     <desc>km 2496.6 | Two Four Squares, Southern Alps Outdoors for gas. High Country Lodge holds parcels. Accepts resupply boxes.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.5</tn:offTrailKm>
+      <tn:acceptsBoxes>true</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-44.273947" lon="169.849623">
     <ele>526</ele>
@@ -2086,6 +2419,10 @@
     <cmt>Gladstone to Wānaka</cmt>
     <desc>km 2613.8 | Sailz general store with cafe, open to 9pm; FreshChoice on Bodkin St; Hawea Hotel for pub food.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.3</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-44.68324" lon="169.187264">
     <ele>280</ele>
@@ -2093,6 +2430,10 @@
     <cmt>Gladstone to Wānaka</cmt>
     <desc>km 2627.2 | Small Four Square and a patisserie, a short detour off trail.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.3</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-44.694169" lon="169.136464">
     <ele>280</ele>
@@ -2100,6 +2441,10 @@
     <cmt>Glendhu Bay Track</cmt>
     <desc>km 2639.0 | New World, Four Square, Mediterranean Market for bulk, Macpac. Full resupply.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.1</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-44.699186" lon="169.118018">
     <ele>280.4</ele>
@@ -2169,6 +2514,10 @@
     <cmt>Wakatipu Track</cmt>
     <desc>km 2704.4 | Small supermarket and a Night&apos;n Day; limited and expensive. Hourly bus to Queenstown.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.4</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-45.020792" lon="168.731096">
     <ele>330</ele>
@@ -2176,6 +2525,10 @@
     <cmt>Wakatipu Track</cmt>
     <desc>km 2725.7 | Pak&apos;nSave, New World, Woolworths. Cheapest resupply in the Queenstown basin.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.1</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-45.038956" lon="168.657043">
     <ele>309.1</ele>
@@ -2198,6 +2551,10 @@
     <cmt>Wakatipu Track</cmt>
     <desc>km 2733.7 | FreshChoice, Four Square, outdoor stores. Full gear replacement.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.1</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-44.924741" lon="168.358641">
     <ele>316.5</ele>
@@ -2235,6 +2592,10 @@
     <cmt>Mavora Walkway</cmt>
     <desc>km 2733.8 | Leave the trail here for Glenorchy (resupply), 25.0 km off trail. | Glenorchy Hotel general store. About 1.5 hr drive from the Greenstone car park. Leave at the Greenstone car park.</desc>
     <type>resupply-access</type>
+    <extensions>
+      <tn:offTrailKm>25.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-44.849749" lon="168.385198">
     <ele>319.4</ele>
@@ -2242,6 +2603,10 @@
     <cmt>Mavora Walkway</cmt>
     <desc>km 2733.8 | Glenorchy Hotel general store. About 1.5 hr drive from the Greenstone car park. Leave at the Greenstone car park.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>25.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-44.95628" lon="168.274357">
     <ele>438.8</ele>
@@ -2320,6 +2685,10 @@
     <cmt>Mararoa River Track</cmt>
     <desc>km 2829.8 | Leave the trail here for Te Anau (town), 35.0 km off trail. | Four Square and FreshChoice, Outside Sports. 28-35 km off trail from SH94; shuttle or hitch. Leave at the SH94 / Princhester junction (The Key).</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>35.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-45.41449" lon="167.717489">
     <ele>339.7</ele>
@@ -2327,6 +2696,10 @@
     <cmt>Mararoa River Track</cmt>
     <desc>km 2829.8 | Four Square and FreshChoice, Outside Sports. 28-35 km off trail from SH94; shuttle or hitch. Leave at the SH94 / Princhester junction (The Key).</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>35.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-45.545359" lon="167.935053">
     <ele>339.7</ele>
@@ -2334,6 +2707,10 @@
     <cmt>Mararoa River Track</cmt>
     <desc>km 2829.8 | Leave the trail here for Mossburn (resupply), 20.0 km off trail. | Four Square at 37 Devon St. About 20 km from the Princhester/SH94 junction. Leave at the SH94 / Princhester junction (The Key).</desc>
     <type>resupply-access</type>
+    <extensions>
+      <tn:offTrailKm>20.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-45.669331" lon="168.234768">
     <ele>339.7</ele>
@@ -2341,6 +2718,10 @@
     <cmt>Mararoa River Track</cmt>
     <desc>km 2829.8 | Four Square at 37 Devon St. About 20 km from the Princhester/SH94 junction. Leave at the SH94 / Princhester junction (The Key).</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>20.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-45.545359" lon="167.935053">
     <ele>339.7</ele>
@@ -2348,6 +2729,10 @@
     <cmt>Mararoa River Track</cmt>
     <desc>km 2829.8 | Leave the trail here for The Key (Princhester) (food), 3.1 km off trail. | Sprig and Thistle coffee caravan at the SH94 junction, Tue-Fri 7am-3pm, Sat 8am-2pm.</desc>
     <type>food-access</type>
+    <extensions>
+      <tn:offTrailKm>3.1</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-45.545322" lon="167.895161">
     <ele>339.7</ele>
@@ -2355,6 +2740,10 @@
     <cmt>Mararoa River Track</cmt>
     <desc>km 2829.8 | Sprig and Thistle coffee caravan at the SH94 junction, Tue-Fri 7am-3pm, Sat 8am-2pm.</desc>
     <type>food</type>
+    <extensions>
+      <tn:offTrailKm>3.1</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-45.593313" lon="167.951587">
     <ele>478</ele>
@@ -2393,6 +2782,10 @@
     <cmt>Birchwood to Merrivale</cmt>
     <desc>km 2912.4 | Leave the trail here for Nightcaps (resupply), 9.0 km off trail. | Four Square and a pub. About 9-16 km east of the trail near Birchwood. Leave near Birchwood.</desc>
     <type>resupply-access</type>
+    <extensions>
+      <tn:offTrailKm>9.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-45.970441" lon="168.031142">
     <ele>376</ele>
@@ -2400,6 +2793,10 @@
     <cmt>Birchwood to Merrivale</cmt>
     <desc>km 2912.4 | Four Square and a pub. About 9-16 km east of the trail near Birchwood. Leave near Birchwood.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>9.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-46.14844" lon="167.823177">
     <ele>629.7</ele>
@@ -2407,6 +2804,10 @@
     <cmt>Longwood Forest Track</cmt>
     <desc>km 2943.1 | Leave the trail here for Tuatapere (resupply), 26.0 km off trail. | Small supermarket, several lodges. About 26 km west of Merrivale Rd. Leave at Merrivale Rd.</desc>
     <type>resupply-access</type>
+    <extensions>
+      <tn:offTrailKm>26.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-46.131637" lon="167.689851">
     <ele>629.7</ele>
@@ -2414,6 +2815,10 @@
     <cmt>Longwood Forest Track</cmt>
     <desc>km 2943.1 | Small supermarket, several lodges. About 26 km west of Merrivale Rd. Leave at Merrivale Rd.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>26.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-46.194824" lon="167.922526">
     <ele>79</ele>
@@ -2421,6 +2826,10 @@
     <cmt>Longwood Forest Track</cmt>
     <desc>km 2960.1 | Leave the trail here for Otautau (resupply), 16.0 km off trail. | Small supermarket, hotels with backpacker beds. About 12-16 km east of Merrivale Rd. Leave at Merrivale Rd.</desc>
     <type>resupply-access</type>
+    <extensions>
+      <tn:offTrailKm>16.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-46.142735" lon="167.997221">
     <ele>79</ele>
@@ -2428,6 +2837,10 @@
     <cmt>Longwood Forest Track</cmt>
     <desc>km 2960.1 | Small supermarket, hotels with backpacker beds. About 12-16 km east of Merrivale Rd. Leave at Merrivale Rd.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>16.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-46.262878" lon="167.860163">
     <ele>416.8</ele>
@@ -2451,6 +2864,10 @@
     <cmt>Tīhaka Beach Track</cmt>
     <desc>km 2996.5 | Leave the trail here for Colac Bay (food), 1.4 km off trail. | Colac Bay Bakehouse and Cafe with a camping ground; shop operating.</desc>
     <type>food-access</type>
+    <extensions>
+      <tn:offTrailKm>1.4</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-46.369551" lon="167.914933">
     <ele>7</ele>
@@ -2458,6 +2875,10 @@
     <cmt>Tīhaka Beach Track</cmt>
     <desc>km 2996.5 | Colac Bay Bakehouse and Cafe with a camping ground; shop operating.</desc>
     <type>food</type>
+    <extensions>
+      <tn:offTrailKm>1.4</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-46.362211" lon="168.007661">
     <ele>18</ele>
@@ -2473,6 +2894,10 @@
     <cmt>Oreti Beach Track</cmt>
     <desc>km 3007.6 | FreshChoice/SuperValue on Palmerston St, cafes and takeaways. Holiday park.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>0.1</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-46.431793" lon="168.27908">
     <ele>10</ele>
@@ -2480,6 +2905,10 @@
     <cmt>Oreti Beach Track</cmt>
     <desc>km 3034.4 | Leave the trail here for Otatara (resupply), 0.7 km off trail. | Four Square, on the way into Invercargill.</desc>
     <type>resupply-access</type>
+    <extensions>
+      <tn:offTrailKm>0.7</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-46.43803" lon="168.28698">
     <ele>6</ele>
@@ -2487,6 +2916,10 @@
     <cmt>Oreti Beach Track</cmt>
     <desc>km 3034.4 | Four Square, on the way into Invercargill.</desc>
     <type>resupply</type>
+    <extensions>
+      <tn:offTrailKm>0.7</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-46.418474" lon="168.337514">
     <ele>2</ele>
@@ -2494,6 +2927,10 @@
     <cmt>Invercargill to Bluff</cmt>
     <desc>km 3038.7 | Leave the trail here for Invercargill (town), 1.0 km off trail. | Pak&apos;nSave, New World, Woolworths, Macpac and Kathmandu. Last full resupply.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>1.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-46.411847" lon="168.347063">
     <ele>2</ele>
@@ -2501,6 +2938,10 @@
     <cmt>Invercargill to Bluff</cmt>
     <desc>km 3038.7 | Pak&apos;nSave, New World, Woolworths, Macpac and Kathmandu. Last full resupply.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>1.0</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-46.610893" lon="168.346493">
     <ele>155</ele>
@@ -2508,6 +2949,10 @@
     <cmt>Invercargill to Bluff</cmt>
     <desc>km 3072.0 | Leave the trail here for Bluff (town), 1.4 km off trail. | Four Square. Trail end at Stirling Point.</desc>
     <type>town-access</type>
+    <extensions>
+      <tn:offTrailKm>1.4</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-46.59882" lon="168.343368">
     <ele>155</ele>
@@ -2515,6 +2960,10 @@
     <cmt>Invercargill to Bluff</cmt>
     <desc>km 3072.0 | Four Square. Trail end at Stirling Point.</desc>
     <type>town</type>
+    <extensions>
+      <tn:offTrailKm>1.4</tn:offTrailKm>
+      <tn:acceptsBoxes>false</tn:acceptsBoxes>
+    </extensions>
   </wpt>
   <wpt lat="-34.426699" lon="172.677591">
     <name>0 km</name>

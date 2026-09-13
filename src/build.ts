@@ -103,6 +103,19 @@ const TRAIL_NAME = "Te Araroa";
 const WAYPOINT_MAX_DISTANCE_M = 500;
 
 /**
+ * The namespace the off-trail fields are published in.
+ *
+ * GPX has nowhere to say "this town is 70 km down a road, and it will hold a
+ * box for you", so those facts have only ever survived as English inside
+ * `<desc>`, where a planner can do nothing with them but print them. These
+ * carry the same numbers as data, on the site and on its turnoff alike. Every
+ * element is optional and a reader that does not know the namespace ignores
+ * the block, so the file reads exactly as it did before to everything that
+ * already reads it.
+ */
+const TRACKNOTES_NS = "https://tracknotes.app/xmlschemas/gpx-waypoint/1";
+
+/**
  * Slack allowed between a hand-entered road distance and the straight line the
  * geometry gives. Road distances in data/resupply.json are researched and
  * rounded, and a turnoff is a route vertex up to ~85 m from the true nearest
@@ -364,6 +377,27 @@ interface DirectionContext {
   cumulativeAscentAt: (km: number) => { ascent: number; descent: number };
 }
 
+/** How you cover the distance between the trail and the place. */
+type AccessMode = "foot" | "hitch" | "shuttle" | "boat" | "on-trail";
+
+/**
+ * The off-trail facts a planner needs, published as GPX `<extensions>`.
+ *
+ * Carried by both waypoints of a resupply point - the place itself and the
+ * turnoff on the route - so that whichever of the two a reader is holding, it
+ * knows how far away the other one is. Anything the research does not say is
+ * left out rather than guessed: no `accessMode` means nobody has recorded how
+ * you get there, which is not the same as saying you walk.
+ */
+interface WaypointAccess {
+  /** Trail to place, in km: the road distance wherever the file gives one. */
+  offTrailKm: number;
+  accessMode?: AccessMode;
+  acceptsBoxes?: boolean;
+  /** The turnoff's own name, and the header a planner groups it under. */
+  accessName?: string;
+}
+
 /** A hut or campsite, positioned on the route. */
 interface SiteRecord {
   name: string;
@@ -390,6 +424,14 @@ interface SiteRecord {
   description: string;
   link: string;
   fields: Record<string, string>;
+  /**
+   * What to publish as `<extensions>` on this site and on its turnoff.
+   *
+   * Only the researched resupply carries one. The KMZ says nothing about how
+   * you reach a hut, and inventing a mode for one would be a guess printed as
+   * a fact.
+   */
+  access?: WaypointAccess;
 }
 
 /** data/resupply.json - hand-researched, because the KMZ has no shops in it. */
@@ -409,6 +451,10 @@ interface ResupplyFile {
     accessFromKm?: number;
     /** Road distance from that access point to the town, in km. */
     accessRoadKm?: number;
+    /** What the turnoff is called: "Rangitata road end", not a km. */
+    accessName?: string;
+    /** How you cover that road distance, where the research says. */
+    accessMode?: AccessMode;
   }>;
 }
 
@@ -836,6 +882,15 @@ async function main(): Promise<void> {
         : point.notes,
       link: "",
       fields: point.osm ? { osm: point.osm } : {},
+      // Read off the same `offTrailMeters` the description sentence is written
+      // from, so the number in the prose and the number in the data cannot
+      // drift apart.
+      access: {
+        offTrailKm: offTrailMeters / 1000,
+        ...(point.accessMode ? { accessMode: point.accessMode } : {}),
+        acceptsBoxes: point.acceptsBoxes,
+        ...(point.accessName ? { accessName: point.accessName } : {}),
+      },
     });
   }
 
@@ -1405,6 +1460,11 @@ function writeDirection(
   // a town is a marker floating in the countryside with nothing tying it to the
   // day you walk past - and, because the datasheet only matches waypoints within
   // WAYPOINT_MAX_DISTANCE_M of the track, no row in the datasheet at all.
+  // `writeGpx` has no notion of extensions, so they are attached afterwards by
+  // position. This is filled in alongside the waypoints rather than worked out
+  // again later, because the two orders have to be the same order.
+  const siteAccess: Array<WaypointAccess | undefined> = [];
+
   const waypoints: GpxWaypoint[] = ordered.flatMap((site) => {
     const place: GpxWaypoint = {
       lat: site.lat,
@@ -1416,7 +1476,10 @@ function writeDirection(
       cmt: site.section,
       ...(site.link ? { link: site.link } : {}),
     };
-    if (!site.accessPoint) return [place];
+    if (!site.accessPoint) {
+      siteAccess.push(site.access);
+      return [place];
+    }
 
     const access: GpxWaypoint = {
       lat: site.accessPoint.lat,
@@ -1435,7 +1498,10 @@ function writeDirection(
       type: `${site.type}-access`,
       cmt: site.section,
     };
-    // The turnoff comes first: you reach it before you reach the place.
+    // The turnoff comes first: you reach it before you reach the place. It
+    // carries the same block as the place - from here, that is how far away
+    // the place is and what you will find when you get there.
+    siteAccess.push(site.access, site.access);
     return [access, place];
   });
 
@@ -1572,20 +1638,31 @@ function writeDirection(
   // the first thing you walk past.
   const allWaypoints = [...waypoints, ...gapWaypoints];
 
-  const gpx = writeGpx(
-    { tracks, routes: [], waypoints: allWaypoints },
-    {
-      name: `${TRAIL_NAME} ${season} (${direction.code})`,
-      desc:
-        `Built from the official KMZ, walked ${direction.from} to ${direction.to}. ` +
-        `Official chainage ${officialKm.toFixed(1)} km (measured southbound from ` +
-        `Cape Reinga); ${walkedKm.toFixed(1)} km of walked geometry over ` +
-        `${routePointCount} points, in ${stretches.length} stretches separated by ` +
-        `${gaps.length} links you do not walk.`,
-      author: "Te Araroa Trust",
-      keywords: ATTRIBUTION,
-      creator: "te-araroa-data (gpx-tools kml-parser)",
-    }
+  // One entry per waypoint, in the order `writeGpx` will meet them. A km
+  // marker and a break have nothing to declare.
+  const waypointAccess: Array<WaypointAccess | undefined> = [
+    ...siteAccess,
+    ...kmMarkers.map(() => undefined),
+    ...gapWaypoints.map(() => undefined),
+  ];
+
+  const gpx = addWaypointExtensions(
+    writeGpx(
+      { tracks, routes: [], waypoints: allWaypoints },
+      {
+        name: `${TRAIL_NAME} ${season} (${direction.code})`,
+        desc:
+          `Built from the official KMZ, walked ${direction.from} to ${direction.to}. ` +
+          `Official chainage ${officialKm.toFixed(1)} km (measured southbound from ` +
+          `Cape Reinga); ${walkedKm.toFixed(1)} km of walked geometry over ` +
+          `${routePointCount} points, in ${stretches.length} stretches separated by ` +
+          `${gaps.length} links you do not walk.`,
+        author: "Te Araroa Trust",
+        keywords: ATTRIBUTION,
+        creator: "te-araroa-data (gpx-tools kml-parser)",
+      }
+    ),
+    waypointAccess
   );
   // Written twice: under the release's name, and under a name that never
   // changes so links to it survive a season rollover.
@@ -1894,6 +1971,83 @@ function buildCumulativeAscent(points: RoutePoint[], breakIndices: Set<number>) 
     const index = indexAtKm(points, km);
     return { ascent: ascent[index], descent: descent[index] };
   };
+}
+
+/**
+ * Attach the `tn:` extension blocks to the waypoints that carry one.
+ *
+ * `writeGpx` offers no hook for this, so it walks the file that came out of it
+ * and fills them in by position: `access[i]` belongs to the i-th `<wpt>`,
+ * which is the order the waypoints went in. If the two counts ever disagree
+ * the writer has changed shape underneath us, and that is worth failing a
+ * build over rather than quietly hanging Geraldine's road distance on a hut in
+ * the Richmonds.
+ */
+function addWaypointExtensions(
+  gpx: string,
+  access: Array<WaypointAccess | undefined>
+): string {
+  const declaration = '  xmlns="http://www.topografix.com/GPX/1/1"';
+  const lines = gpx.split("\n");
+  const out: string[] = [];
+  let declared = false;
+  let index = -1;
+
+  for (const line of lines) {
+    if (line.startsWith("  <wpt ")) index++;
+    // GPX 1.1 puts extensions last in a waypoint, so they go in on the way out
+    // of one rather than on the way in.
+    if (line === "  </wpt>") {
+      const entry = access[index];
+      if (entry) out.push(...extensionLines(entry));
+    }
+    out.push(line);
+    if (line === declaration) {
+      out.push(`  xmlns:tn="${TRACKNOTES_NS}"`);
+      declared = true;
+    }
+  }
+
+  if (index + 1 !== access.length) {
+    throw new Error(
+      `the GPX has ${index + 1} waypoints and ${access.length} were described`
+    );
+  }
+  if (!declared) {
+    throw new Error("the GPX has no GPX 1.1 namespace to hang tn: on");
+  }
+  return out.join("\n");
+}
+
+/** One `<extensions>` block, leaving out everything nobody has researched. */
+function extensionLines(access: WaypointAccess): string[] {
+  const fields: Array<[string, string]> = [
+    // One decimal, the same as the description sentence: a road distance
+    // researched from a trail guide is not a metre-accurate figure.
+    ["offTrailKm", access.offTrailKm.toFixed(1)],
+  ];
+  if (access.accessMode) fields.push(["accessMode", access.accessMode]);
+  if (access.acceptsBoxes !== undefined) {
+    fields.push(["acceptsBoxes", String(access.acceptsBoxes)]);
+  }
+  if (access.accessName) fields.push(["accessName", access.accessName]);
+  return [
+    "    <extensions>",
+    ...fields.map(
+      ([name, value]) => `      <tn:${name}>${escapeXml(value)}</tn:${name}>`
+    ),
+    "    </extensions>",
+  ];
+}
+
+/** The five XML entities, for the text added after `writeGpx` has run. */
+function escapeXml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
 }
 
 /** Binary search for the first route vertex at or past `km`. */
