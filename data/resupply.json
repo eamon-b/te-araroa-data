@@ -41,7 +41,7 @@
       "lat": -35.227261,
       "lon": 173.949106,
       "acceptsBoxes": false,
-      "notes": "New World and Countdown. Full resupply, hostels.",
+      "notes": "New World and Woolworths. Full resupply, hostels.",
       "osm": "node/1297247535"
     },
     {
@@ -50,7 +50,7 @@
       "lat": -35.281241,
       "lon": 174.092088,
       "acceptsBoxes": false,
-      "notes": "Countdown Central plus a larger Countdown at Waitangi. Four Square on Williams Rd.",
+      "notes": "Woolworths in the centre plus a larger Woolworths at Waitangi. Four Square on Williams Rd.",
       "osm": "way/1442884916"
     },
     {
@@ -95,7 +95,7 @@
       "lat": -35.727527,
       "lon": 174.31942,
       "acceptsBoxes": false,
-      "notes": "Countdown and Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangarei Heads / Marsden Point crossing.",
+      "notes": "Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangarei Heads / Marsden Point crossing.",
       "osm": "node/71374851",
       "accessFromKm": 407.33,
       "accessRoadKm": 36
@@ -142,7 +142,7 @@
       "lat": -36.397669,
       "lon": 174.665849,
       "acceptsBoxes": false,
-      "notes": "Countdown, New World and a Bin Inn. About 6 km off trail. Short detour off the Dome Valley section.",
+      "notes": "Woolworths, New World and a Bin Inn. About 6 km off trail. Short detour off the Dome Valley section.",
       "osm": "node/251601939",
       "accessFromKm": 508.2,
       "accessRoadKm": 6
@@ -171,7 +171,7 @@
       "lat": -36.58576,
       "lon": 174.691496,
       "acceptsBoxes": false,
-      "notes": "New World and Countdown, cafes, outdoor shops.",
+      "notes": "New World and Woolworths, cafes, outdoor shops.",
       "osm": "node/795264556"
     },
     {
@@ -189,7 +189,7 @@
       "lat": -36.715628,
       "lon": 174.748198,
       "acceptsBoxes": false,
-      "notes": "New World and Countdown.",
+      "notes": "New World and Woolworths.",
       "osm": "node/292687627"
     },
     {
@@ -225,7 +225,7 @@
       "lat": -37.064265,
       "lon": 174.944667,
       "acceptsBoxes": false,
-      "notes": "Pak'nSave, Countdown, New World.",
+      "notes": "Pak'nSave, Woolworths, New World.",
       "osm": "node/560604787"
     },
     {
@@ -360,7 +360,7 @@
       "lat": -39.93249,
       "lon": 175.051931,
       "acceptsBoxes": true,
-      "notes": "New World, Countdown, Pak'nSave. Kathmandu; Wilsons Hunting and Outdoors stores bounce boxes.",
+      "notes": "New World, Woolworths, Pak'nSave. Kathmandu; Wilsons Hunting and Outdoors stores bounce boxes.",
       "osm": "node/60023047"
     },
     {
@@ -405,7 +405,7 @@
       "lat": -40.621816,
       "lon": 175.286585,
       "acceptsBoxes": false,
-      "notes": "Pak'nSave, New World, Countdown. About 9 km off trail. Leave at Poads Rd.",
+      "notes": "Pak'nSave, New World, Woolworths. About 9 km off trail. Leave at Poads Rd.",
       "osm": "node/57843878",
       "accessFromKm": 1573.1,
       "accessRoadKm": 9
@@ -416,7 +416,7 @@
       "lat": -40.875843,
       "lon": 175.064304,
       "acceptsBoxes": false,
-      "notes": "Countdown and New World near the town centre. No backpackers.",
+      "notes": "Woolworths and New World near the town centre. No backpackers.",
       "osm": "node/339057887"
     },
     {
@@ -612,7 +612,7 @@
       "lat": -44.612673,
       "lon": 169.264055,
       "acceptsBoxes": false,
-      "notes": "Sailz general store with cafe, open to 9pm; FreshChoice on Bodkin St; Hawea Hotel for pub food.",
+      "notes": "Hāwea Store & Kitchen: grocer, cafe, takeaways and licensed restaurant and bar, open 7 days; FreshChoice on Bodkin St; Hawea Hotel for pub food.",
       "osm": "place/Lake Hawea (town)"
     },
     {

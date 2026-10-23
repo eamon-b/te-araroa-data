@@ -115,7 +115,7 @@
     <ele>39</ele>
     <name>Kerikeri turnoff</name>
     <cmt>Mangakaretu to Kerikeri</cmt>
-    <desc>km 221.6 | Leave the trail here for Kerikeri (town), 0.7 km off trail. | New World and Countdown. Full resupply, hostels.</desc>
+    <desc>km 221.6 | Leave the trail here for Kerikeri (town), 0.7 km off trail. | New World and Woolworths. Full resupply, hostels.</desc>
     <type>town-access</type>
     <extensions>
       <tn:offTrailKm>0.7</tn:offTrailKm>
@@ -126,7 +126,7 @@
     <ele>39</ele>
     <name>Kerikeri</name>
     <cmt>Mangakaretu to Kerikeri</cmt>
-    <desc>km 221.6 | New World and Countdown. Full resupply, hostels.</desc>
+    <desc>km 221.6 | New World and Woolworths. Full resupply, hostels.</desc>
     <type>town</type>
     <extensions>
       <tn:offTrailKm>0.7</tn:offTrailKm>
@@ -137,7 +137,7 @@
     <ele>5.3</ele>
     <name>Paihia</name>
     <cmt>Paihia to Ōpua Coastal Walkway</cmt>
-    <desc>km 245.2 | Countdown Central plus a larger Countdown at Waitangi. Four Square on Williams Rd.</desc>
+    <desc>km 245.2 | Woolworths in the centre plus a larger Woolworths at Waitangi. Four Square on Williams Rd.</desc>
     <type>town</type>
     <extensions>
       <tn:offTrailKm>0.0</tn:offTrailKm>
@@ -228,7 +228,7 @@
     <ele>2</ele>
     <name>Whangarei turnoff</name>
     <cmt>Bream Bay Walk</cmt>
-    <desc>km 407.3 | Leave the trail here for Whangarei (town), 36.0 km off trail. | Countdown and Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangarei Heads / Marsden Point crossing.</desc>
+    <desc>km 407.3 | Leave the trail here for Whangarei (town), 36.0 km off trail. | Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangarei Heads / Marsden Point crossing.</desc>
     <type>town-access</type>
     <extensions>
       <tn:offTrailKm>36.0</tn:offTrailKm>
@@ -239,7 +239,7 @@
     <ele>2</ele>
     <name>Whangarei</name>
     <cmt>Bream Bay Walk</cmt>
-    <desc>km 407.3 | Countdown and Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangarei Heads / Marsden Point crossing.</desc>
+    <desc>km 407.3 | Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangarei Heads / Marsden Point crossing.</desc>
     <type>town</type>
     <extensions>
       <tn:offTrailKm>36.0</tn:offTrailKm>
@@ -373,14 +373,14 @@
   </wpt>
   <wpt lat="-36.307725" lon="174.702071">
     <ele>318</ele>
-    <name>Happy Dayz Accomodation turnoff</name>
+    <name>Happy Dayz Accommodation turnoff</name>
     <cmt>Mt Tamahunga (Te Hīkoi O Te Kiri) Track</cmt>
-    <desc>km 494.9 | Leave the trail here for Happy Dayz Accomodation (accommodation), 5.0 km off trail. | Facilities: Backpacker accommodation, camping | Address: 84 Omaha Flats Rd, Matakana | Phone: 09 422 7149 | Hours: 8:00am- 8:00pm | Categories: Hostel LodgingBusiness</desc>
+    <desc>km 494.9 | Leave the trail here for Happy Dayz Accommodation (accommodation), 5.0 km off trail. | Facilities: Backpacker accommodation, camping | Address: 84 Omaha Flats Rd, Matakana | Phone: 09 422 7149 | Hours: 8:00am- 8:00pm | Categories: Hostel LodgingBusiness</desc>
     <type>accommodation-access</type>
   </wpt>
   <wpt lat="-36.340531" lon="174.740361">
     <ele>318</ele>
-    <name>Happy Dayz Accomodation</name>
+    <name>Happy Dayz Accommodation</name>
     <cmt>Mt Tamahunga (Te Hīkoi O Te Kiri) Track</cmt>
     <desc>km 494.9 | Facilities: Backpacker accommodation, camping | Address: 84 Omaha Flats Rd, Matakana | Phone: 09 422 7149 | Hours: 8:00am- 8:00pm | Categories: Hostel LodgingBusiness</desc>
     <type>accommodation</type>
@@ -389,7 +389,7 @@
     <ele>306.4</ele>
     <name>Warkworth turnoff</name>
     <cmt>Govan Wilson to Pūhoi Valley</cmt>
-    <desc>km 508.2 | Leave the trail here for Warkworth (town), 6.0 km off trail. | Countdown, New World and a Bin Inn. About 6 km off trail. Short detour off the Dome Valley section.</desc>
+    <desc>km 508.2 | Leave the trail here for Warkworth (town), 6.0 km off trail. | Woolworths, New World and a Bin Inn. About 6 km off trail. Short detour off the Dome Valley section.</desc>
     <type>town-access</type>
     <extensions>
       <tn:offTrailKm>6.0</tn:offTrailKm>
@@ -400,7 +400,7 @@
     <ele>306.4</ele>
     <name>Warkworth</name>
     <cmt>Govan Wilson to Pūhoi Valley</cmt>
-    <desc>km 508.2 | Countdown, New World and a Bin Inn. About 6 km off trail. Short detour off the Dome Valley section.</desc>
+    <desc>km 508.2 | Woolworths, New World and a Bin Inn. About 6 km off trail. Short detour off the Dome Valley section.</desc>
     <type>town</type>
     <extensions>
       <tn:offTrailKm>6.0</tn:offTrailKm>
@@ -436,7 +436,7 @@
   <wpt lat="-36.58576" lon="174.691496">
     <name>Orewa</name>
     <cmt>Wenderholm to Stillwater</cmt>
-    <desc>km 556.8 | New World and Countdown, cafes, outdoor shops.</desc>
+    <desc>km 556.8 | New World and Woolworths, cafes, outdoor shops.</desc>
     <type>town</type>
     <extensions>
       <tn:offTrailKm>0.5</tn:offTrailKm>
@@ -481,7 +481,7 @@
     <ele>0.8</ele>
     <name>Browns Bay</name>
     <cmt>North Shore Coastal Walk</cmt>
-    <desc>km 586.6 | New World and Countdown.</desc>
+    <desc>km 586.6 | New World and Woolworths.</desc>
     <type>town</type>
     <extensions>
       <tn:offTrailKm>0.1</tn:offTrailKm>
@@ -544,7 +544,7 @@
     <ele>20</ele>
     <name>Papakura turnoff</name>
     <cmt>Botanic Gardens to Mangatāwhiri</cmt>
-    <desc>km 662.7 | Leave the trail here for Papakura (town), 1.4 km off trail. | Pak&apos;nSave, Countdown, New World.</desc>
+    <desc>km 662.7 | Leave the trail here for Papakura (town), 1.4 km off trail. | Pak&apos;nSave, Woolworths, New World.</desc>
     <type>town-access</type>
     <extensions>
       <tn:offTrailKm>1.4</tn:offTrailKm>
@@ -555,7 +555,7 @@
     <ele>20</ele>
     <name>Papakura</name>
     <cmt>Botanic Gardens to Mangatāwhiri</cmt>
-    <desc>km 662.7 | Pak&apos;nSave, Countdown, New World.</desc>
+    <desc>km 662.7 | Pak&apos;nSave, Woolworths, New World.</desc>
     <type>town</type>
     <extensions>
       <tn:offTrailKm>1.4</tn:offTrailKm>
@@ -1176,9 +1176,9 @@
   </wpt>
   <wpt lat="-39.894576" lon="175.089307">
     <ele>20</ele>
-    <name>Wanganui Top 10 Holiday Park</name>
+    <name>Whanganui River Top 10 Holiday Park</name>
     <cmt>Whanganui River - via Whanganui River</cmt>
-    <desc>km 1396.7 | Facilities: Holiday park accommodation, motel units, campground, motorhomes, campervans, tent &amp; powered sites | Address: 460 Somme Parade, Upper Aramoho, Wanganui | Phone: (06) 343 8402 | Website: http://www.wrivertop10.co.nz | Categories: RVPark LodgingBusiness</desc>
+    <desc>km 1396.7 | Facilities: Holiday park accommodation, motel units, campground, motorhomes, campervans, tent &amp; powered sites | Address: 460 Somme Parade, Upper Aramoho, Whanganui | Phone: (06) 343 8402 | Website: http://www.wrivertop10.co.nz | Categories: RVPark LodgingBusiness</desc>
     <link href="http://www.wrivertop10.co.nz" />
     <type>caravan-park</type>
   </wpt>
@@ -1194,7 +1194,7 @@
     <ele>20</ele>
     <name>Whanganui</name>
     <cmt>Whanganui River - via Whanganui River</cmt>
-    <desc>km 1403.6 | New World, Countdown, Pak&apos;nSave. Kathmandu; Wilsons Hunting and Outdoors stores bounce boxes. Accepts resupply boxes.</desc>
+    <desc>km 1403.6 | New World, Woolworths, Pak&apos;nSave. Kathmandu; Wilsons Hunting and Outdoors stores bounce boxes. Accepts resupply boxes.</desc>
     <type>town</type>
     <extensions>
       <tn:offTrailKm>0.5</tn:offTrailKm>
@@ -1278,7 +1278,7 @@
     <ele>111.4</ele>
     <name>Levin turnoff</name>
     <cmt>Palmerston North to Poads Road</cmt>
-    <desc>km 1573.1 | Leave the trail here for Levin (town), 9.0 km off trail. | Pak&apos;nSave, New World, Countdown. About 9 km off trail. Leave at Poads Rd.</desc>
+    <desc>km 1573.1 | Leave the trail here for Levin (town), 9.0 km off trail. | Pak&apos;nSave, New World, Woolworths. About 9 km off trail. Leave at Poads Rd.</desc>
     <type>town-access</type>
     <extensions>
       <tn:offTrailKm>9.0</tn:offTrailKm>
@@ -1289,7 +1289,7 @@
     <ele>111.4</ele>
     <name>Levin</name>
     <cmt>Palmerston North to Poads Road</cmt>
-    <desc>km 1573.1 | Pak&apos;nSave, New World, Countdown. About 9 km off trail. Leave at Poads Rd.</desc>
+    <desc>km 1573.1 | Pak&apos;nSave, New World, Woolworths. About 9 km off trail. Leave at Poads Rd.</desc>
     <type>town</type>
     <extensions>
       <tn:offTrailKm>9.0</tn:offTrailKm>
@@ -1356,7 +1356,7 @@
     <ele>31</ele>
     <name>Waikanae</name>
     <cmt>Pukeatua Track</cmt>
-    <desc>km 1646.1 | Countdown and New World near the town centre. No backpackers.</desc>
+    <desc>km 1646.1 | Woolworths and New World near the town centre. No backpackers.</desc>
     <type>town</type>
     <extensions>
       <tn:offTrailKm>0.2</tn:offTrailKm>
@@ -1452,7 +1452,7 @@
   </wpt>
   <wpt lat="-41.171681" lon="174.141867">
     <ele>344.1</ele>
-    <name>Bay Of Many Coves Campsite</name>
+    <name>Bay of Many Coves Campsite</name>
     <cmt>Queen Charlotte Track</cmt>
     <desc>km 1775.0 | Category: Backcountry | Facilities: Non-powered/tent sites, Shelter for cooking, Water from tap - not treated, boil before use, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Queen Charlotte Sound/Tōtaranui area | Region: Marlborough</desc>
     <link href="https://www.doc.govt.nz/link/dc39330f148546d3a7cc520648aa478b.aspx" />
@@ -2318,17 +2318,17 @@
   </wpt>
   <wpt lat="-44.004646" lon="170.475451">
     <ele>727</ele>
-    <name>Lake Tekapo Motels &amp; Holiday Park turnoff</name>
+    <name>Lakes Edge Holiday Park turnoff</name>
     <cmt>Tekapo to Lake Ōhau</cmt>
-    <desc>km 2442.3 | Leave the trail here for Lake Tekapo Motels &amp; Holiday Park (caravan-park), 1.0 km off trail. | Facilities: Budget holiday park accommodation, backpacker accommodation, motorcamp, campervan sites, tourist flats, tent sites for camping and cabins with all the modern campground facilities | Address: 2 Lakeside Drive, Lake Tekapo | Phone: 0800 853 853 | Website: http://www.laketekapo-accommodation.co.nz/ | Categories: Motel RVPark</desc>
+    <desc>km 2442.3 | Leave the trail here for Lakes Edge Holiday Park (caravan-park), 1.0 km off trail. | Facilities: Budget holiday park accommodation, backpacker accommodation, motorcamp, campervan sites, tourist flats, tent sites for camping and cabins with all the modern campground facilities | Address: 2 Lakeside Drive, Lake Tekapo | Phone: 0800 853 853 | Website: https://lakesedgeholidaypark.co.nz/ | Categories: Motel RVPark</desc>
     <type>caravan-park-access</type>
   </wpt>
   <wpt lat="-44.00081" lon="170.46452">
     <ele>727</ele>
-    <name>Lake Tekapo Motels &amp; Holiday Park</name>
+    <name>Lakes Edge Holiday Park</name>
     <cmt>Tekapo to Lake Ōhau</cmt>
-    <desc>km 2442.3 | Facilities: Budget holiday park accommodation, backpacker accommodation, motorcamp, campervan sites, tourist flats, tent sites for camping and cabins with all the modern campground facilities | Address: 2 Lakeside Drive, Lake Tekapo | Phone: 0800 853 853 | Website: http://www.laketekapo-accommodation.co.nz/ | Categories: Motel RVPark</desc>
-    <link href="http://www.laketekapo-accommodation.co.nz/" />
+    <desc>km 2442.3 | Facilities: Budget holiday park accommodation, backpacker accommodation, motorcamp, campervan sites, tourist flats, tent sites for camping and cabins with all the modern campground facilities | Address: 2 Lakeside Drive, Lake Tekapo | Phone: 0800 853 853 | Website: https://lakesedgeholidaypark.co.nz/ | Categories: Motel RVPark</desc>
+    <link href="https://lakesedgeholidaypark.co.nz/" />
     <type>caravan-park</type>
   </wpt>
   <wpt lat="-44.141218" lon="170.229032">
@@ -2417,7 +2417,7 @@
     <ele>362.1</ele>
     <name>Lake Hāwea</name>
     <cmt>Gladstone to Wānaka</cmt>
-    <desc>km 2613.8 | Sailz general store with cafe, open to 9pm; FreshChoice on Bodkin St; Hawea Hotel for pub food.</desc>
+    <desc>km 2613.8 | Hāwea Store &amp; Kitchen: grocer, cafe, takeaways and licensed restaurant and bar, open 7 days; FreshChoice on Bodkin St; Hawea Hotel for pub food.</desc>
     <type>resupply</type>
     <extensions>
       <tn:offTrailKm>0.3</tn:offTrailKm>

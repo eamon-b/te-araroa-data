@@ -5,8 +5,47 @@
     {
       "globalId": "{BCE4094E-FF65-435A-85C8-950112A4D8AF}",
       "trustName": "Makene Road Campsite",
-      "remove": ["phone"],
+      "remove": [
+        "phone"
+      ],
       "reason": "The trust's phone field for this site holds a personal email address, not a phone number. It is dropped rather than published."
+    },
+    {
+      "globalId": "{46D8158C-289F-482F-A6B0-9DBAAD92B811}",
+      "trustName": "Happy Dayz Accomodation",
+      "set": {
+        "name": "Happy Dayz Accommodation"
+      },
+      "reason": "Spelling: \"Accomodation\" is a misspelling of \"Accommodation\"."
+    },
+    {
+      "globalId": "{A331A665-9329-4F12-8916-C2DC0C837331}",
+      "trustName": "Wanganui Top 10 Holiday Park",
+      "set": {
+        "name": "Whanganui River Top 10 Holiday Park",
+        "physical_address": "460 Somme Parade, Upper Aramoho, Whanganui"
+      },
+      "reason": "The park's own name is Whanganui River Top 10 Holiday Park, and the city's official name is Whanganui (NZ Gazetteer place 7006).",
+      "source": "https://www.wrivertop10.co.nz/ ; https://gazetteer.linz.govt.nz/place/7006"
+    },
+    {
+      "globalId": "{A566B347-E00D-4460-863B-46D47851E9E6}",
+      "trustName": "Lake Tekapo Motels & Holiday Park",
+      "set": {
+        "name": "Lakes Edge Holiday Park",
+        "website": "https://lakesedgeholidaypark.co.nz/"
+      },
+      "reason": "Renamed: the park's own site says \"Formerly Lake Tekapo Motels and Holiday Park\", at the same address and phone number. The trust's website link redirects there.",
+      "source": "https://lakesedgeholidaypark.co.nz/"
+    },
+    {
+      "globalId": "{1DDBECB9-BD16-48C2-92F0-AB8071AF5590}",
+      "trustName": "Bay Of Many Coves Campsite",
+      "set": {
+        "Name of site": "Bay of Many Coves Campsite"
+      },
+      "reason": "Capitalisation: DOC's own page names it Bay of Many Coves campsite.",
+      "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/marlborough/places/queen-charlotte-sound-totaranui-area/things-to-do/campsites/bay-of-many-coves-campsite/"
     }
   ]
 }
