@@ -40,7 +40,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-10-23T05:50:33.324Z",
+  "generatedAt": "2026-10-23T05:51:30.092Z",
   "source": {
     "fetchedAt": "2026-09-08",
     "files": [
@@ -1910,7 +1910,7 @@
       }
     },
     {
-      "name": "Red Beach Top 10 Holiday Park",
+      "name": "Pinewoods Holiday Park (Red Beach TOP 10)",
       "type": "accommodation",
       "source": "Private",
       "km": 558.386,
@@ -1924,7 +1924,7 @@
       "island": "North",
       "bunks": null,
       "fields": {
-        "name": "Red Beach Top 10 Holiday Park",
+        "name": "Pinewoods Holiday Park (Red Beach TOP 10)",
         "tags": "Holiday campground, caravans, tents, motor homes, children's playground, trampoline",
         "website": "http://www.pinewoods.co.nz",
         "physical_address": "23 Marie Ave, Red Beach, Orewa, Hibiscus Coast, Auckland",
@@ -1936,6 +1936,15 @@
         "globalid": "{0AD0F220-58C5-4184-9B61-1EB7B9D1A988}",
         "created_date": "4/07/2024 2:04:57 am",
         "last_edited_date": "5/07/2024 12:37:20 am"
+      },
+      "correction": {
+        "replaced": {
+          "name": "Red Beach Top 10 Holiday Park"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "The park's own site, which the trust's record links to, calls it Pinewoods Holiday Park; TOP 10 lists the same park (23 Marie Avenue, 09 426 4526) as Red Beach TOP 10 Holiday Park. Both names are current, so both are given.",
+        "source": "https://www.pinewoods.co.nz/ ; https://top10.co.nz/park/auckland/red-beach-top-10-holiday-park/"
       }
     },
     {
@@ -8157,7 +8166,7 @@
         },
         "note": "Private hut owned by Longslip Station, not covered by the Backcountry Hut Pass: 6 bunks, $10 a night by honesty box or internet banking (account details in the hut). The track here crosses private farmland, where DOC says there is no camping before the conservation area boundary.",
         "reason": "The trust's record has no tags, so the build typed it a campsite. The trust's own Otago trail notes describe a 6-bunk private hut that walkers may use for $10 a night; DOC's track page marks it private and rules out camping on the farmland around it.",
-        "source": "Te Araroa Trust Otago trail notes (https://www.teararoa.org.nz/trail-notes/, Breast Hill Track: Birchwood Carpark to Top Timaru Hut); https://www.doc.govt.nz/parks-and-recreation/places-to-go/otago/places/hawea-conservation-park/things-to-do/breast-hill-track/"
+        "source": "Te Araroa Trust Otago trail notes, Breast Hill Track, last edited 27 August 2026 (https://www.teararoa.org.nz/notes-and-maps/, served from https://thetrailapp-members-api.azurewebsites.net/api/notes/region/9); https://www.doc.govt.nz/parks-and-recreation/places-to-go/otago/places/hawea-conservation-park/things-to-do/breast-hill-track/"
       }
     },
     {
