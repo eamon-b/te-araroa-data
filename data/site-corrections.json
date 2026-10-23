@@ -166,6 +166,226 @@
         "website"
       ],
       "reason": "The trust's website link (campervanpark.co.nz) is dead: the domain no longer resolves (checked 23 October 2026). The name is kept; listings for 263 Studholme Road disagree on the current operator."
+    },
+    {
+      "globalId": "{EA392426-D512-40CA-9E73-CE4C3C60DA28}",
+      "trustName": "Captains Creek Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/24384e1bdf7544549153aef93ce5f7dc.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{CB4CF3F9-715B-485C-A6AC-0EC85C8E2D53}",
+      "trustName": "Middy Creek Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/6a16800d8ec84e2cab775a8146096246.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{4C4C5EA3-164D-4EE0-8837-9DAF11E9F19F}",
+      "trustName": "Rocks Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/023da8553a7f49fa849a4cdbae8e806c.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{774C669B-3852-4C90-925F-2F811BC301AE}",
+      "trustName": "Browning Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/4ba6f86f2030455e9a60bae6f4744ed8.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{5421F8DB-124B-4009-BACB-3B097FCA325E}",
+      "trustName": "Hacket Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/8a7754d26feb413ea177fa006ce6ec5b.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{A5C63483-50F5-49C6-BDE8-BF99D77F2988}",
+      "trustName": "Starveall Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/8b403b57449f4588b55ea676a01d47b4.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{6DAD5D01-9EFB-435A-B368-87316D10505B}",
+      "trustName": "Slaty Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/dfc191ebf2a14b208aa546f836240b40.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{D1B3FD97-C75C-4A12-8369-520F12B30023}",
+      "trustName": "Old Man Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/d9248299483640cda4dc33f1d497f33d.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{6DAEFFCF-42FF-4B0B-9A95-9315284336BC}",
+      "trustName": "Mt Rintoul Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/bc782d530e4a4aed90ba579583b4d861.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{7D86FD21-2A90-4AA3-9BCC-B43FB8981E51}",
+      "trustName": "Tarn Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/d7d5f551bb584272bea9a9177d59927c.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{431FB23D-38EE-4C00-B4B7-EBB315AC184D}",
+      "trustName": "Mid Wairoa Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/1c5a5813e29545cd88584224df3513c1.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{E5DB248B-917E-4762-B4D0-4BF1B15E4B45}",
+      "trustName": "Top Wairoa Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/c87b1791147e451fb37c99bf5891a03f.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{A9E264D3-3D58-4F5C-A851-4A09CE210329}",
+      "trustName": "Hunters Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/4779357f75c645358c4c23ab4017f2b2.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{CEABE047-78F4-4D05-B2BE-BFE69FE97672}",
+      "trustName": "Porters Creek Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/6af41d9fa22b474cbf477321b3f0bde1.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{91183B09-29E8-438B-A425-685CCAA5EE28}",
+      "trustName": "Red Hills Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/4aa7dc66ccc147b6999349d86e6eafd0.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{61C69865-73F5-42EC-813D-2C015760E7AF}",
+      "trustName": "Waiau Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/3f5b4b54c38b4425b5e6091741e84aed.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{30E09E13-4A69-494C-B173-F43DEFC976B5}",
+      "trustName": "Magdalen Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/aba6d10d76174cbb857f7eb154f5b815.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{B07D1740-F92F-46E7-BBE8-B451F906C550}",
+      "trustName": "Hurunui Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/d3a1c61a8d574f1793a11c0c50d3c877.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{7651602A-75A1-491F-B837-631ED3A7CDF0}",
+      "trustName": "Hurunui No. 3 Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/4154121ceee1404193f6875ed1abfb63.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{4AB0CB7F-6EF5-4FEA-BA38-E387A61C9D43}",
+      "trustName": "Locke Stream Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/e91a86acf13b4d3f9c500dfdcff98293.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{88CECB2F-A038-4436-8218-4D9870C4E267}",
+      "trustName": "Kiwi Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/9f385509c69a4f2888cc4e44126e4614.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
+    },
+    {
+      "globalId": "{5A576D4C-3A04-418D-9297-AD70EAF0BD34}",
+      "trustName": "Goat Pass Hut",
+      "set": {
+        "Bookable": "Yes",
+        "Booking Required": "Yes"
+      },
+      "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+      "source": "https://www.doc.govt.nz/link/c4c0cef1b00541e29d54b1868c31a10c.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
     }
   ]
 }

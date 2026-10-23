@@ -1551,7 +1551,7 @@
     <ele>121</ele>
     <name>Captains Creek Hut</name>
     <cmt>Pelorus River Track</cmt>
-    <desc>km 1872.4 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
+    <desc>km 1872.4 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
     <link href="https://www.doc.govt.nz/link/24384e1bdf7544549153aef93ce5f7dc.aspx" />
     <type>hut</type>
   </wpt>
@@ -1559,7 +1559,7 @@
     <ele>158</ele>
     <name>Middy Creek Hut</name>
     <cmt>Pelorus River Track</cmt>
-    <desc>km 1877.2 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
+    <desc>km 1877.2 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
     <link href="https://www.doc.govt.nz/link/6a16800d8ec84e2cab775a8146096246.aspx" />
     <type>hut</type>
   </wpt>
@@ -1567,7 +1567,7 @@
     <ele>809.8</ele>
     <name>Rocks Hut</name>
     <cmt>Pelorus River Track</cmt>
-    <desc>km 1882.0 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
+    <desc>km 1882.0 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
     <link href="https://www.doc.govt.nz/link/023da8553a7f49fa849a4cdbae8e806c.aspx" />
     <type>hut</type>
   </wpt>
@@ -1575,7 +1575,7 @@
     <ele>481.4</ele>
     <name>Browning Hut</name>
     <cmt>Pelorus River Track</cmt>
-    <desc>km 1892.6 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
+    <desc>km 1892.6 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
     <link href="https://www.doc.govt.nz/link/4ba6f86f2030455e9a60bae6f4744ed8.aspx" />
     <type>hut</type>
   </wpt>
@@ -1605,7 +1605,7 @@
     <ele>260</ele>
     <name>Hacket Hut</name>
     <cmt>Richmond Alpine Track</cmt>
-    <desc>km 1896.0 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
+    <desc>km 1896.0 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
     <link href="https://www.doc.govt.nz/link/8a7754d26feb413ea177fa006ce6ec5b.aspx" />
     <type>hut</type>
   </wpt>
@@ -1613,7 +1613,7 @@
     <ele>1186.8</ele>
     <name>Starveall Hut</name>
     <cmt>Richmond Alpine Track</cmt>
-    <desc>km 1901.9 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
+    <desc>km 1901.9 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
     <link href="https://www.doc.govt.nz/link/8b403b57449f4588b55ea676a01d47b4.aspx" />
     <type>hut</type>
   </wpt>
@@ -1621,7 +1621,7 @@
     <ele>1387.9</ele>
     <name>Slaty Hut</name>
     <cmt>Richmond Alpine Track</cmt>
-    <desc>km 1906.8 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
+    <desc>km 1906.8 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
     <link href="https://www.doc.govt.nz/link/dfc191ebf2a14b208aa546f836240b40.aspx" />
     <type>hut</type>
   </wpt>
@@ -1629,14 +1629,14 @@
     <ele>1315.9</ele>
     <name>Old Man Hut turnoff</name>
     <cmt>Richmond Alpine Track</cmt>
-    <desc>km 1915.0 | Leave the trail here for Old Man Hut (hut), 0.6 km off trail. | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
+    <desc>km 1915.0 | Leave the trail here for Old Man Hut (hut), 0.6 km off trail. | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
     <type>hut-access</type>
   </wpt>
   <wpt lat="-41.525224" lon="173.270884">
     <ele>1315.9</ele>
     <name>Old Man Hut</name>
     <cmt>Richmond Alpine Track</cmt>
-    <desc>km 1915.0 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
+    <desc>km 1915.0 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
     <link href="https://www.doc.govt.nz/link/d9248299483640cda4dc33f1d497f33d.aspx" />
     <type>hut</type>
   </wpt>
@@ -1644,7 +1644,7 @@
     <ele>1236</ele>
     <name>Mt Rintoul Hut</name>
     <cmt>Richmond Alpine Track</cmt>
-    <desc>km 1919.7 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
+    <desc>km 1919.7 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
     <link href="https://www.doc.govt.nz/link/bc782d530e4a4aed90ba579583b4d861.aspx" />
     <type>hut</type>
   </wpt>
@@ -1652,7 +1652,7 @@
     <ele>1020.3</ele>
     <name>Tarn Hut</name>
     <cmt>Richmond Alpine Track</cmt>
-    <desc>km 1928.0 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
+    <desc>km 1928.0 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Marlborough</desc>
     <link href="https://www.doc.govt.nz/link/d7d5f551bb584272bea9a9177d59927c.aspx" />
     <type>hut</type>
   </wpt>
@@ -1660,7 +1660,7 @@
     <ele>379</ele>
     <name>Mid Wairoa Hut</name>
     <cmt>Richmond Alpine Track</cmt>
-    <desc>km 1934.8 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
+    <desc>km 1934.8 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
     <link href="https://www.doc.govt.nz/link/1c5a5813e29545cd88584224df3513c1.aspx" />
     <type>hut</type>
   </wpt>
@@ -1668,7 +1668,7 @@
     <ele>857.7</ele>
     <name>Top Wairoa Hut</name>
     <cmt>Richmond Alpine Track</cmt>
-    <desc>km 1941.7 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
+    <desc>km 1941.7 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
     <link href="https://www.doc.govt.nz/link/c87b1791147e451fb37c99bf5891a03f.aspx" />
     <type>hut</type>
   </wpt>
@@ -1676,7 +1676,7 @@
     <ele>842</ele>
     <name>Hunters Hut</name>
     <cmt>Richmond Alpine Track</cmt>
-    <desc>km 1951.9 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
+    <desc>km 1951.9 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
     <link href="https://www.doc.govt.nz/link/4779357f75c645358c4c23ab4017f2b2.aspx" />
     <type>hut</type>
   </wpt>
@@ -1684,7 +1684,7 @@
     <ele>895</ele>
     <name>Porters Creek Hut</name>
     <cmt>Richmond Alpine Track</cmt>
-    <desc>km 1958.7 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
+    <desc>km 1958.7 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
     <link href="https://www.doc.govt.nz/link/6af41d9fa22b474cbf477321b3f0bde1.aspx" />
     <type>hut</type>
   </wpt>
@@ -1692,7 +1692,7 @@
     <ele>904.1</ele>
     <name>Red Hills Hut</name>
     <cmt>Richmond Alpine Track</cmt>
-    <desc>km 1970.0 | Category: Standard | Facilities: Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
+    <desc>km 1970.0 | Category: Standard | Facilities: Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Mount Richmond Forest Park | Region: Nelson/Tasman</desc>
     <link href="https://www.doc.govt.nz/link/4aa7dc66ccc147b6999349d86e6eafd0.aspx" />
     <type>hut</type>
   </wpt>
@@ -1797,7 +1797,7 @@
     <ele>859</ele>
     <name>Waiau Hut</name>
     <cmt>Waiau Pass Track</cmt>
-    <desc>km 2053.4 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: St James Conservation Area | Region: Canterbury</desc>
+    <desc>km 2053.4 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: St James Conservation Area | Region: Canterbury</desc>
     <link href="https://www.doc.govt.nz/link/3f5b4b54c38b4425b5e6091741e84aed.aspx" />
     <type>hut</type>
   </wpt>
@@ -1889,7 +1889,7 @@
     <ele>763.4</ele>
     <name>Magdalen Hut</name>
     <cmt>Waiau Pass Track</cmt>
-    <desc>km 2100.6 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | More Info: Included in The Trail Pass | Place: St James Conservation Area | Region: Canterbury</desc>
+    <desc>km 2100.6 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | More Info: Included in The Trail Pass | Place: St James Conservation Area | Region: Canterbury</desc>
     <link href="https://www.doc.govt.nz/link/aba6d10d76174cbb857f7eb154f5b815.aspx" />
     <type>hut</type>
   </wpt>
@@ -1954,7 +1954,7 @@
     <ele>614.9</ele>
     <name>Hurunui Hut</name>
     <cmt>Boyle to Arthur&apos;s Pass</cmt>
-    <desc>km 2154.4 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Lake Sumner Forest Park | Region: Canterbury</desc>
+    <desc>km 2154.4 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Lake Sumner Forest Park | Region: Canterbury</desc>
     <link href="https://www.doc.govt.nz/link/d3a1c61a8d574f1793a11c0c50d3c877.aspx" />
     <type>hut</type>
   </wpt>
@@ -1962,7 +1962,7 @@
     <ele>643</ele>
     <name>Hurunui No. 3 Hut</name>
     <cmt>Boyle to Arthur&apos;s Pass</cmt>
-    <desc>km 2164.3 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Lake Sumner Forest Park | Region: Canterbury</desc>
+    <desc>km 2164.3 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Lake Sumner Forest Park | Region: Canterbury</desc>
     <link href="https://www.doc.govt.nz/link/4154121ceee1404193f6875ed1abfb63.aspx" />
     <type>hut</type>
   </wpt>
@@ -1986,7 +1986,7 @@
     <ele>498.1</ele>
     <name>Locke Stream Hut</name>
     <cmt>Boyle to Arthur&apos;s Pass</cmt>
-    <desc>km 2179.7 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Arthur&apos;s Pass National Park | Region: West Coast</desc>
+    <desc>km 2179.7 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Arthur&apos;s Pass National Park | Region: West Coast</desc>
     <link href="https://www.doc.govt.nz/link/e91a86acf13b4d3f9c500dfdcff98293.aspx" />
     <type>hut</type>
   </wpt>
@@ -1994,7 +1994,7 @@
     <ele>337</ele>
     <name>Kiwi Hut</name>
     <cmt>Boyle to Arthur&apos;s Pass</cmt>
-    <desc>km 2187.8 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Arthur&apos;s Pass National Park | Region: West Coast</desc>
+    <desc>km 2187.8 | Category: Standard | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Arthur&apos;s Pass National Park | Region: West Coast</desc>
     <link href="https://www.doc.govt.nz/link/9f385509c69a4f2888cc4e44126e4614.aspx" />
     <type>hut</type>
   </wpt>
@@ -2010,7 +2010,7 @@
     <ele>1071.2</ele>
     <name>Goat Pass Hut</name>
     <cmt>Boyle to Arthur&apos;s Pass</cmt>
-    <desc>km 2215.2 | Category: Standard | Facilities: Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Arthur&apos;s Pass National Park | Region: Canterbury</desc>
+    <desc>km 2215.2 | Category: Standard | Facilities: Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Arthur&apos;s Pass National Park | Region: Canterbury</desc>
     <link href="https://www.doc.govt.nz/link/c4c0cef1b00541e29d54b1868c31a10c.aspx" />
     <type>hut</type>
   </wpt>
