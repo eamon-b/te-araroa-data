@@ -146,6 +146,31 @@ test("a site correction replaces and removes fields on a copy", () => {
   assert.equal(applied.note, "A note.");
 });
 
+test("a site correction moves a value filed under the wrong field", () => {
+  const trust = { name: "Makene Road Campsite", phone: "someone@example.com" };
+  const { fields, applied } = applySiteCorrection(trust, {
+    globalId: "{A}",
+    trustName: "Makene Road Campsite",
+    move: { phone: "email" },
+    reason: "An email address in the phone field.",
+  });
+  assert.equal(fields.email, "someone@example.com");
+  assert.equal("phone" in fields, false);
+  assert.deepEqual(applied.moved, { phone: "email" });
+  assert.equal(
+    describePrivateSite(fields),
+    "Email: someone@example.com"
+  );
+  assert.throws(
+    () =>
+      applySiteCorrection(
+        { ...trust, email: "x@example.com" },
+        { globalId: "{A}", trustName: "Makene Road Campsite", move: { phone: "email" }, reason: "" }
+      ),
+    /already has email/
+  );
+});
+
 test("a site correction refuses a record that is not the one it was written for", () => {
   const correction = {
     globalId: "{A}",

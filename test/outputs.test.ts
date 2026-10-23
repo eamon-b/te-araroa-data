@@ -787,9 +787,9 @@ test("the prose still describes the data it sits beside", () => {
 });
 
 test("no site publishes an email address as its phone number", () => {
-  // The trust's KMZ had one: a private campsite whose phone field held a
-  // personal email address. data/site-corrections.json removes it; this keeps
-  // the next release from bringing one back unnoticed.
+  // The trust's KMZ files one site's email address under phone.
+  // data/site-corrections.json moves it to email; this keeps the next release
+  // from putting one back under the wrong label unnoticed.
   const email = /[^\s@|]+@[^\s@|]+\.[a-z]{2,}/i;
   for (const site of meta.sites) {
     const phone = site.fields?.phone ?? site.fields?.Phone ?? "";
@@ -802,6 +802,45 @@ test("no site publishes an email address as its phone number", () => {
         email,
         `${name}: ${row["Name"]} has an email as its phone`
       );
+      assert.doesNotMatch(
+        row["Detail"] ?? "",
+        /Phone: [^|]*@/,
+        `${name}: ${row["Name"]} labels an email as a phone`
+      );
     }
+  }
+  for (const file of ["te-araroa-sobo.gpx", "te-araroa-nobo.gpx"]) {
+    assert.doesNotMatch(
+      readFileSync(out(file), "utf8"),
+      /Phone: [^|<]*@/,
+      `${file} labels an email address as a phone number`
+    );
+  }
+});
+
+test("Makene Road Campsite's email address is published as its email", () => {
+  const site = meta.sites.find(
+    (s: { name: string }) => s.name === "Makene Road Campsite"
+  );
+  assert.ok(site, "Makene Road Campsite is missing");
+  const address: string = site.fields.email;
+  assert.match(address ?? "", /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i);
+  assert.equal(site.fields.phone, undefined);
+  assert.deepEqual(site.correction.moved, { phone: "email" });
+
+  for (const name of ["resupply-plan-sobo.csv", "resupply-plan-nobo.csv"]) {
+    const row = csv(name).find((r) => r["Name"] === "Makene Road Campsite");
+    assert.ok(row, `${name} has no Makene Road Campsite row`);
+    assert.equal(row["Email"], address);
+    assert.equal(row["Phone"], "");
+    assert.ok(row["Detail"].includes(`Email: ${address}`), row["Detail"]);
+  }
+  for (const file of ["te-araroa-sobo.gpx", "te-araroa-nobo.gpx"]) {
+    const gpx = readFileSync(out(file), "utf8");
+    const wpt = gpx
+      .split("<wpt ")
+      .find((w) => w.includes("<name>Makene Road Campsite</name>"));
+    assert.ok(wpt, `${file} has no Makene Road Campsite waypoint`);
+    assert.ok(wpt.includes(`| Email: ${address}</desc>`), wpt);
   }
 });

@@ -75,7 +75,7 @@ Most files come in both directions, `-sobo` (Cape Reinga → Bluff) and `-nobo`
 |---|---|
 | `te-araroa-{sobo,nobo}.gpx` | 21 tracks (7 for the main route, one per stretch you can walk; transport connectors; 13 bypasses), 656 waypoints typed `hut`/`campsite`/`town`/`resupply`/`food`/`accommodation`/`caravan-park`/`gap`, all in walking order, plus 70 turnoffs typed `<type>-access` (`town-access`, `hut-access`, ...) - points on the route itself marking where you leave the trail for a site it does not pass, carrying the type of what they serve so a reader can tell a shop from a hut without following the link. The stable filenames - link to these |
 | `te-araroa-2026-27-{sobo,nobo}.gpx` | the same bytes under this release's name |
-| `resupply-plan-{sobo,nobo}.csv` | 266 sites in trail order: km, official km, section, trail elevation, leg distances, leg ascent/descent, whether the leg crosses a break in the route, bunks, water, booking, phone, address, hours, DOC link |
+| `resupply-plan-{sobo,nobo}.csv` | 266 sites in trail order: km, official km, section, trail elevation, leg distances, leg ascent/descent, whether the leg crosses a break in the route, bunks, water, booking, phone, email, address, hours, DOC link |
 | `sections-{sobo,nobo}.csv` | 79 official sections with km ranges, counted in that direction and in the trust's chainage |
 | `datasheet-{sobo,nobo}.csv`, `datasheet-resupply-{sobo,nobo}.csv` | the same route through `gpx-tools`' `processGpxTravelPlan`, measured a stretch at a time with a row at each break |
 | `no-camping-areas.geojson` | 353 restricted-camping polygons. No chainage, so one file serves both |
@@ -297,11 +297,12 @@ are kept, with `Off trail m` recording the detour.
   attribute vocabularies, the waypoint-type mapping.
 - `data/site-corrections.json` — the few places the trust's own hut and
   campsite records are wrong and cannot wait for its next release: a misspelt
-  name, a renamed business, a field that must not be published. Each is keyed
+  name, a renamed business, a value filed under the wrong field. Each is keyed
   by the record's GlobalID, says why and on what evidence, and stops the build
   if the trust's record has changed under it. Corrected records carry a
   `correction` block in `te-araroa.meta.json` giving the trust's value for
-  anything replaced; a removed field is named, never echoed.
+  anything replaced and where any moved field came from; a removed field is
+  named, never echoed.
 - `src/build.ts` — orchestration and output; `writeDirection` is the only part
   that knows there is more than one way to walk the trail.
 - `src/docs.ts` — regenerates the marked blocks in this README and the project
