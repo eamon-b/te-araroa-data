@@ -96,6 +96,43 @@
       },
       "reason": "Consistency with Pāhautea Hut, the record beside it. The NZ Gazetteer has no official name here (only an unofficial recorded Pahautea, place 58563), so this follows DOC, whose own page names the site Pāhautea Hut Campsite.",
       "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/waikato/places/pirongia-forest-park/things-to-do/pahautea-hut-campsite/"
+    },
+    {
+      "globalId": "{97E3DEB4-2DD9-4EA3-A84F-7E5E11E30914}",
+      "trustName": "Mangatepopo Hut",
+      "note": "Access: the Mangatepopo Track from here to Whakapapa Village has been closed indefinitely since the November 2025 fire (Te Araroa alert 254; DOC, 18 May 2026), and Mangatepopo Road is open only to approved shuttle operators.",
+      "reason": "The Mangatepopo Track has been closed since the Tongariro National Park fire of November 2025; the KMZ does not say so.",
+      "source": "https://thetrailapp-members-api.azurewebsites.net/api/alerts/254 (Te Araroa trail alert 254, shown at https://www.teararoa.org.nz/trail-alerts/) ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/new-hut-updated-route-for-tongariro-northern-circuit-walkers/"
+    },
+    {
+      "globalId": "{26685844-7D75-4CCB-9249-DC76D4FED9DC}",
+      "trustName": "Mangatepopo Campsite",
+      "note": "Access: the Mangatepopo Track from here to Whakapapa Village has been closed indefinitely since the November 2025 fire (Te Araroa alert 254; DOC, 18 May 2026), and Mangatepopo Road is open only to approved shuttle operators.",
+      "reason": "The Mangatepopo Track has been closed since the Tongariro National Park fire of November 2025; the KMZ does not say so.",
+      "source": "https://thetrailapp-members-api.azurewebsites.net/api/alerts/254 (Te Araroa trail alert 254, shown at https://www.teararoa.org.nz/trail-alerts/) ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/new-hut-updated-route-for-tongariro-northern-circuit-walkers/"
+    },
+    {
+      "globalId": "{CA13B90B-5FA0-4DD6-A636-59B46838AE6D}",
+      "trustName": "Bog Inn Hut",
+      "note": "Access: DOC says Tihoi and Bog Inn Roads are closed and the hut cannot be reached on foot or by vehicle using them, and the track between Mt Pureora and Bog Inn is no longer maintained.",
+      "reason": "DOC's page for the hut reports the road closures and the unmaintained track; the KMZ does not.",
+      "source": "https://www.doc.govt.nz/link/221debd600f74c5d943105d46641ff70.aspx"
+    },
+    {
+      "globalId": "{B0144446-5F53-49C3-AE09-A5DDF760E896}",
+      "trustName": "East Ahuriri Hut",
+      "note": "DOC lists this hut as derelict: an old Quailburn Station mustering hut that may offer very basic shelter.",
+      "reason": "The trust added this hut by hand (DOC system ID 99999) with 6 bunks; it is not in DOC's hut data, and DOC's Quailburn Track page describes it as derelict.",
+      "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/ahuriri-conservation-park/things-to-do/tracks/quailburn-track/"
+    },
+    {
+      "globalId": "{E0B4BF28-851F-4090-84CD-E4D4CF5168D5}",
+      "trustName": "Boielles Campsite",
+      "set": {
+        "URL to webpage": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/wellington-kapiti/places/tararua-forest-park/things-to-do/campsites/boielles-campsite/"
+      },
+      "reason": "The trust's link is cut off mid-path and leads to DOC's 'Page not found'. The name is right: DOC's own page is titled Boielles Campsite.",
+      "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/wellington-kapiti/places/tararua-forest-park/things-to-do/campsites/boielles-campsite/"
     }
   ]
 }

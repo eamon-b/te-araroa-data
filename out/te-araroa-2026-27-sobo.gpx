@@ -764,14 +764,14 @@
     <ele>840.6</ele>
     <name>Bog Inn Hut turnoff</name>
     <cmt>Pureora Forest - The Timber Trail</cmt>
-    <desc>km 973.2 | Leave the trail here for Bog Inn Hut (hut), 0.5 km off trail. | Category: Standard | Facilities: Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Pureora Forest Park | Region: Waikato</desc>
+    <desc>km 973.2 | Leave the trail here for Bog Inn Hut (hut), 0.5 km off trail. | Access: DOC says Tihoi and Bog Inn Roads are closed and the hut cannot be reached on foot or by vehicle using them, and the track between Mt Pureora and Bog Inn is no longer maintained. | Category: Standard | Facilities: Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Pureora Forest Park | Region: Waikato</desc>
     <type>hut-access</type>
   </wpt>
   <wpt lat="-38.583166" lon="175.628789">
     <ele>840.6</ele>
     <name>Bog Inn Hut</name>
     <cmt>Pureora Forest - The Timber Trail</cmt>
-    <desc>km 973.2 | Category: Standard | Facilities: Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Pureora Forest Park | Region: Waikato</desc>
+    <desc>km 973.2 | Access: DOC says Tihoi and Bog Inn Roads are closed and the hut cannot be reached on foot or by vehicle using them, and the track between Mt Pureora and Bog Inn is no longer maintained. | Category: Standard | Facilities: Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Pureora Forest Park | Region: Waikato</desc>
     <link href="https://www.doc.govt.nz/link/221debd600f74c5d943105d46641ff70.aspx" />
     <type>hut</type>
   </wpt>
@@ -831,14 +831,14 @@
     <ele>1700</ele>
     <name>Mangatepopo Hut turnoff</name>
     <cmt>Tongariro Alpine Crossing</cmt>
-    <desc>km 1143.8 | Leave the trail here for Mangatepopo Hut (hut), 5.4 km off trail. | Category: Great Walk | Facilities: Cooking, Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping next to hut included in The Trail Pass (Bookings Required) | Place: Tongariro National Park | Region: Central North Island</desc>
+    <desc>km 1143.8 | Leave the trail here for Mangatepopo Hut (hut), 5.4 km off trail. | Access: the Mangatepopo Track from here to Whakapapa Village has been closed indefinitely since the November 2025 fire (Te Araroa alert 254; DOC, 18 May 2026), and Mangatepopo Road is open only to approved shuttle operators. | Category: Great Walk | Facilities: Cooking, Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping next to hut included in The Trail Pass (Bookings Required) | Place: Tongariro National Park | Region: Central North Island</desc>
     <type>hut-access</type>
   </wpt>
   <wpt lat="-39.144585" lon="175.596732">
     <ele>1700</ele>
     <name>Mangatepopo Hut</name>
     <cmt>Tongariro Alpine Crossing</cmt>
-    <desc>km 1143.8 | Category: Great Walk | Facilities: Cooking, Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping next to hut included in The Trail Pass (Bookings Required) | Place: Tongariro National Park | Region: Central North Island</desc>
+    <desc>km 1143.8 | Access: the Mangatepopo Track from here to Whakapapa Village has been closed indefinitely since the November 2025 fire (Te Araroa alert 254; DOC, 18 May 2026), and Mangatepopo Road is open only to approved shuttle operators. | Category: Great Walk | Facilities: Cooking, Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping next to hut included in The Trail Pass (Bookings Required) | Place: Tongariro National Park | Region: Central North Island</desc>
     <link href="https://www.doc.govt.nz/link/3aad802a585e496ba8fdd614ddf1b377.aspx" />
     <type>hut</type>
   </wpt>
@@ -846,14 +846,14 @@
     <ele>1700</ele>
     <name>Mangatepopo Campsite turnoff</name>
     <cmt>Tongariro Alpine Crossing</cmt>
-    <desc>km 1143.8 | Leave the trail here for Mangatepopo Campsite (campsite), 5.4 km off trail. | Category: Great Walk | Facilities: Water from tap - not treated, boil before use, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | More Info: Camping next to hut included in The Trail Pass (Bookings Required) | Place: Tongariro National Park | Region: Central North Island</desc>
+    <desc>km 1143.8 | Leave the trail here for Mangatepopo Campsite (campsite), 5.4 km off trail. | Access: the Mangatepopo Track from here to Whakapapa Village has been closed indefinitely since the November 2025 fire (Te Araroa alert 254; DOC, 18 May 2026), and Mangatepopo Road is open only to approved shuttle operators. | Category: Great Walk | Facilities: Water from tap - not treated, boil before use, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | More Info: Camping next to hut included in The Trail Pass (Bookings Required) | Place: Tongariro National Park | Region: Central North Island</desc>
     <type>campsite-access</type>
   </wpt>
   <wpt lat="-39.144763" lon="175.596403">
     <ele>1700</ele>
     <name>Mangatepopo Campsite</name>
     <cmt>Tongariro Alpine Crossing</cmt>
-    <desc>km 1143.8 | Category: Great Walk | Facilities: Water from tap - not treated, boil before use, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | More Info: Camping next to hut included in The Trail Pass (Bookings Required) | Place: Tongariro National Park | Region: Central North Island</desc>
+    <desc>km 1143.8 | Access: the Mangatepopo Track from here to Whakapapa Village has been closed indefinitely since the November 2025 fire (Te Araroa alert 254; DOC, 18 May 2026), and Mangatepopo Road is open only to approved shuttle operators. | Category: Great Walk | Facilities: Water from tap - not treated, boil before use, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | More Info: Camping next to hut included in The Trail Pass (Bookings Required) | Place: Tongariro National Park | Region: Central North Island</desc>
     <link href="https://www.doc.govt.nz/link/164b5dfa7a064b49a369bb556a6de369.aspx" />
     <type>campsite</type>
   </wpt>
@@ -1349,7 +1349,7 @@
     <name>Boielles Campsite</name>
     <cmt>Tararua Ranges</cmt>
     <desc>km 1620.3 | Category: Standard | Facilities: 15 non powered sites, Toilets (flush), water, cooking shelter | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Tararua Forest Park | Region: Wellington</desc>
-    <link href="https://www.doc.govt.nz/parks-and-recreation/places-to-go/wellington-k" />
+    <link href="https://www.doc.govt.nz/parks-and-recreation/places-to-go/wellington-kapiti/places/tararua-forest-park/things-to-do/campsites/boielles-campsite/" />
     <type>campsite</type>
   </wpt>
   <wpt lat="-40.875843" lon="175.064304">
@@ -2379,7 +2379,7 @@
     <ele>1003.7</ele>
     <name>East Ahuriri Hut</name>
     <cmt>East Ahuriri Track</cmt>
-    <desc>km 2544.8 | Category: Backcountry | Facilities: 6 Bunks | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Ahuriri Conservation Park | Region: Canterbury</desc>
+    <desc>km 2544.8 | DOC lists this hut as derelict: an old Quailburn Station mustering hut that may offer very basic shelter. | Category: Backcountry | Facilities: 6 Bunks | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Ahuriri Conservation Park | Region: Canterbury</desc>
     <type>hut</type>
   </wpt>
   <wpt lat="-44.449798" lon="169.589393">
