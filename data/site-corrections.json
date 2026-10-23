@@ -133,6 +133,22 @@
       },
       "reason": "The trust's link is cut off mid-path and leads to DOC's 'Page not found'. The name is right: DOC's own page is titled Boielles Campsite.",
       "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/wellington-kapiti/places/tararua-forest-park/things-to-do/campsites/boielles-campsite/"
+    },
+    {
+      "globalId": "{6ED11FDA-16A1-4C26-8BAC-1590CFBB06BB}",
+      "trustName": "Camp Stream Hut",
+      "type": "hut",
+      "note": "A basic six-bunk hut owned and managed by the Mackenzie Alpine Trust; DOC says a $10 donation can be left at the hut.",
+      "reason": "The trust's record has no tags, so the build typed it a campsite. DOC describes it as a basic six-bunk hut.",
+      "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/te-kahui-kaupeka-conservation-park/things-to-do/huts/camp-stream-hut/"
+    },
+    {
+      "globalId": "{3C237660-ACF7-4E2F-869E-8AECD124DBB0}",
+      "trustName": "Tin Hut (Private)",
+      "type": "hut",
+      "note": "Private hut owned by Longslip Station, not covered by the Backcountry Hut Pass: 6 bunks, $10 a night by honesty box or internet banking (account details in the hut). The track here crosses private farmland, where DOC says there is no camping before the conservation area boundary.",
+      "reason": "The trust's record has no tags, so the build typed it a campsite. The trust's own Otago trail notes describe a 6-bunk private hut that walkers may use for $10 a night; DOC's track page marks it private and rules out camping on the farmland around it.",
+      "source": "Te Araroa Trust Otago trail notes (https://www.teararoa.org.nz/trail-notes/, Breast Hill Track: Birchwood Carpark to Top Timaru Hut); https://www.doc.govt.nz/parks-and-recreation/places-to-go/otago/places/hawea-conservation-park/things-to-do/breast-hill-track/"
     }
   ]
 }

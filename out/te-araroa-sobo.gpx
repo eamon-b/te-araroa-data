@@ -2302,8 +2302,8 @@
     <ele>1227.9</ele>
     <name>Camp Stream Hut</name>
     <cmt>Two Thumb Track</cmt>
-    <desc>km 2408.4 | </desc>
-    <type>campsite</type>
+    <desc>km 2408.4 | A basic six-bunk hut owned and managed by the Mackenzie Alpine Trust; DOC says a $10 donation can be left at the hut.</desc>
+    <type>hut</type>
   </wpt>
   <wpt lat="-44.004519" lon="170.477727">
     <ele>721.5</ele>
@@ -2386,8 +2386,8 @@
     <ele>933.1</ele>
     <name>Tin Hut (Private)</name>
     <cmt>Breast Hill Track</cmt>
-    <desc>km 2565.7 | </desc>
-    <type>campsite</type>
+    <desc>km 2565.7 | Private hut owned by Longslip Station, not covered by the Backcountry Hut Pass: 6 bunks, $10 a night by honesty box or internet banking (account details in the hut). The track here crosses private farmland, where DOC says there is no camping before the conservation area boundary.</desc>
+    <type>hut</type>
   </wpt>
   <wpt lat="-44.470482" lon="169.501394">
     <ele>906.8</ele>

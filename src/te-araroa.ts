@@ -182,6 +182,12 @@ export interface SiteCorrection {
    * from the key to the value: `{ "phone": "email" }`.
    */
   move?: Record<string, string>;
+  /**
+   * The waypoint type to publish, where the one the build derives from the
+   * trust's attributes is wrong. Changing a type re-keys the waypoint in
+   * trail-maps' id registry, so say so in the pull request.
+   */
+  type?: string;
   /** A sentence put in front of the site's description. */
   note?: string;
   reason: string;
@@ -200,6 +206,8 @@ export interface AppliedCorrection {
   removed: string[];
   /** Fields moved to another attribute, from -> to. The value is unchanged. */
   moved: Record<string, string>;
+  /** The type the build derived from the trust's record, and the one published. */
+  retyped?: { from: string; to: string };
   note?: string;
   reason: string;
   source?: string;
@@ -228,7 +236,8 @@ export function siteTrustName(
 export function applySiteCorrection(
   fields: Record<string, string>,
   correction: SiteCorrection,
-  fallbackName = ""
+  fallbackName = "",
+  typeOf?: (fields: Record<string, string>) => string
 ): { fields: Record<string, string>; applied: AppliedCorrection } {
   const name = siteTrustName(fields, fallbackName);
   if (name !== correction.trustName) {
@@ -275,12 +284,31 @@ export function applySiteCorrection(
     next[to] = fields[from];
     delete next[from];
   }
+  let retyped: { from: string; to: string } | undefined;
+  if (correction.type !== undefined) {
+    if (!typeOf) {
+      throw new Error(
+        `site correction for ${correction.trustName} sets a type, but no ` +
+          `type mapping was given to compare it with`
+      );
+    }
+    const from = typeOf(fields);
+    if (from === correction.type) {
+      throw new Error(
+        `site correction for ${correction.trustName} retypes it to ` +
+          `${correction.type}, which the trust's record already maps to. ` +
+          `Check data/site-corrections.json.`
+      );
+    }
+    retyped = { from, to: correction.type };
+  }
   return {
     fields: next,
     applied: {
       replaced,
       removed: [...(correction.remove ?? [])],
       moved: { ...(correction.move ?? {}) },
+      ...(retyped ? { retyped } : {}),
       ...(correction.note ? { note: correction.note } : {}),
       reason: correction.reason,
       ...(correction.source ? { source: correction.source } : {}),

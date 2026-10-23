@@ -683,7 +683,8 @@ async function main(): Promise<void> {
   }
   const correctionsApplied = new Set<string>();
   const correctSite = (
-    placemark: KmlPlacemark
+    placemark: KmlPlacemark,
+    typeOf: (fields: Record<string, string>) => string
   ): { fields: Record<string, string>; applied?: AppliedCorrection } => {
     const id = siteGlobalId(placemark.fields);
     const correction = correctionById.get(id);
@@ -692,10 +693,15 @@ async function main(): Promise<void> {
       throw new Error(`two site records in the KMZ share the id ${id}`);
     }
     correctionsApplied.add(id);
-    return applySiteCorrection(placemark.fields, correction, placemark.name);
+    return applySiteCorrection(
+      placemark.fields,
+      correction,
+      placemark.name,
+      typeOf
+    );
   };
   const withNote = (applied: AppliedCorrection | undefined, text: string) =>
-    applied?.note ? `${applied.note} | ${text}` : text;
+    applied?.note ? [applied.note, text].filter(Boolean).join(" | ") : text;
 
   // The trust stamps a version on every trail segment. Read it rather than
   // carrying it in a constant here, where it would silently describe the wrong
@@ -829,10 +835,10 @@ async function main(): Promise<void> {
     if (!coord) continue;
     const projection = projectOntoRoute(coord, route.points);
     const { section, island } = sectionAtKm(projection.km);
-    const { fields, applied } = correctSite(placemark);
+    const { fields, applied } = correctSite(placemark, docSiteType);
     sites.push({
       name: fields["Name of site"] || placemark.name,
-      type: docSiteType(fields),
+      type: applied?.retyped?.to ?? docSiteType(fields),
       lat: coord.lat,
       lon: coord.lon,
       ele: coord.ele || elevationAt(projection.km),
@@ -861,10 +867,10 @@ async function main(): Promise<void> {
     if (!coord) continue;
     const projection = projectOntoRoute(coord, route.points);
     const { section, island } = sectionAtKm(projection.km);
-    const { fields, applied } = correctSite(placemark);
+    const { fields, applied } = correctSite(placemark, privateSiteType);
     sites.push({
       name: fields["name"] || placemark.name,
-      type: privateSiteType(fields),
+      type: applied?.retyped?.to ?? privateSiteType(fields),
       lat: coord.lat,
       lon: coord.lon,
       ele: coord.ele || elevationAt(projection.km),

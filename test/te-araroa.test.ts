@@ -171,6 +171,37 @@ test("a site correction moves a value filed under the wrong field", () => {
   );
 });
 
+test("a site correction can override the derived waypoint type", () => {
+  const trust = { name: "Camp Stream Hut", globalid: "{A}" };
+  const correction = {
+    globalId: "{A}",
+    trustName: "Camp Stream Hut",
+    type: "hut",
+    reason: "A six-bunk hut.",
+  };
+  const { applied } = applySiteCorrection(trust, correction, "", privateSiteType);
+  assert.deepEqual(applied.retyped, { from: "campsite", to: "hut" });
+
+  // A retype to what the mapping already gives is stale, not harmless.
+  assert.throws(
+    () =>
+      applySiteCorrection(
+        { ...trust, tags: "free hut" },
+        correction,
+        "",
+        privateSiteType
+      ),
+    /already maps to/
+  );
+  // And it cannot be checked without the mapping it overrides.
+  assert.throws(() => applySiteCorrection(trust, correction), /no type mapping/);
+  // A correction with no type leaves the type alone.
+  assert.equal(
+    applySiteCorrection(trust, { ...correction, type: undefined }).applied.retyped,
+    undefined
+  );
+});
+
 test("a site correction refuses a record that is not the one it was written for", () => {
   const correction = {
     globalId: "{A}",

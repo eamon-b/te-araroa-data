@@ -297,7 +297,8 @@ are kept, with `Off trail m` recording the detour.
   attribute vocabularies, the waypoint-type mapping.
 - `data/site-corrections.json` — the few places the trust's own hut and
   campsite records are wrong and cannot wait for its next release: a misspelt
-  name, a renamed business, a value filed under the wrong field. Each is keyed
+  name, a renamed business, a value filed under the wrong field, a site
+  typed as the wrong kind of place. Each is keyed
   by the record's GlobalID, says why and on what evidence, and stops the build
   if the trust's record has changed under it. Corrected records carry a
   `correction` block in `te-araroa.meta.json` giving the trust's value for
