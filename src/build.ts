@@ -68,6 +68,7 @@ import {
 } from "./route.ts";
 import {
   FOLDERS,
+  applySiteCorrection,
   bunkCount,
   describeDocSite,
   describePrivateSite,
@@ -76,6 +77,10 @@ import {
   hasWater,
   isTransportConnector,
   privateSiteType,
+  correctRouteName,
+  siteGlobalId,
+  type AppliedCorrection,
+  type SiteCorrection,
 } from "./te-araroa.ts";
 import type { SourceManifest, SourceRole } from "./fetch.ts";
 import { writeDocs } from "./docs.ts";
@@ -424,6 +429,8 @@ interface SiteRecord {
   description: string;
   link: string;
   fields: Record<string, string>;
+  /** What data/site-corrections.json changed in the trust's record, if anything. */
+  correction?: AppliedCorrection;
   /**
    * What to publish as `<extensions>` on this site and on its turnoff.
    *
@@ -432,6 +439,17 @@ interface SiteRecord {
    * a fact.
    */
   access?: WaypointAccess;
+}
+
+/**
+ * data/site-corrections.json - the few places the trust's own records are
+ * wrong and cannot wait for its next release. See `SiteCorrection`.
+ */
+interface SiteCorrectionsFile {
+  description: string;
+  /** Misspelt route names - sections, segments, crossings - by exact match. */
+  routeNames: Record<string, string>;
+  sites: SiteCorrection[];
 }
 
 /** data/resupply.json - hand-researched, because the KMZ has no shops in it. */
@@ -649,6 +667,36 @@ async function main(): Promise<void> {
     return list;
   };
 
+  const corrections = JSON.parse(
+    readFileSync(join(root, "data/site-corrections.json"), "utf8")
+  ) as SiteCorrectionsFile;
+  const routeName = (name: string): string =>
+    correctRouteName(name, corrections.routeNames);
+  const correctionById = new Map<string, SiteCorrection>();
+  for (const correction of corrections.sites) {
+    if (correctionById.has(correction.globalId)) {
+      throw new Error(
+        `data/site-corrections.json corrects ${correction.globalId} twice`
+      );
+    }
+    correctionById.set(correction.globalId, correction);
+  }
+  const correctionsApplied = new Set<string>();
+  const correctSite = (
+    placemark: KmlPlacemark
+  ): { fields: Record<string, string>; applied?: AppliedCorrection } => {
+    const id = siteGlobalId(placemark.fields);
+    const correction = correctionById.get(id);
+    if (!correction) return { fields: placemark.fields };
+    if (correctionsApplied.has(id)) {
+      throw new Error(`two site records in the KMZ share the id ${id}`);
+    }
+    correctionsApplied.add(id);
+    return applySiteCorrection(placemark.fields, correction, placemark.name);
+  };
+  const withNote = (applied: AppliedCorrection | undefined, text: string) =>
+    applied?.note ? `${applied.note} | ${text}` : text;
+
   // The trust stamps a version on every trail segment. Read it rather than
   // carrying it in a constant here, where it would silently describe the wrong
   // release the first time the build ran unattended.
@@ -662,8 +710,8 @@ async function main(): Promise<void> {
 
   const allSegments: ChainedSegment[] = folder(FOLDERS.mainTrail).map(
     (placemark) => ({
-      name: placemark.fields["NAME"] ?? placemark.name,
-      section: placemark.fields["Section"] ?? "",
+      name: routeName(placemark.fields["NAME"] ?? placemark.name),
+      section: routeName(placemark.fields["Section"] ?? ""),
       fromKm: Number(placemark.fields["Fromkm"]),
       toKm: Number(placemark.fields["Tokm"]),
       status: placemark.fields["STATUS"] ?? "",
@@ -781,9 +829,10 @@ async function main(): Promise<void> {
     if (!coord) continue;
     const projection = projectOntoRoute(coord, route.points);
     const { section, island } = sectionAtKm(projection.km);
+    const { fields, applied } = correctSite(placemark);
     sites.push({
-      name: placemark.fields["Name of site"] || placemark.name,
-      type: docSiteType(placemark.fields),
+      name: fields["Name of site"] || placemark.name,
+      type: docSiteType(fields),
       lat: coord.lat,
       lon: coord.lon,
       ele: coord.ele || elevationAt(projection.km),
@@ -796,13 +845,14 @@ async function main(): Promise<void> {
       section,
       island,
       source: "DOC",
-      bunks: bunkCount(placemark.fields),
-      water: hasWater(placemark.fields),
-      bookingRequired: placemark.fields["Booking Required"] === "Yes",
-      trailPass: placemark.fields["Te Araroa Pass"] ?? "",
-      description: describeDocSite(placemark.fields),
-      link: placemark.fields["URL to webpage"] ?? "",
-      fields: placemark.fields,
+      bunks: bunkCount(fields),
+      water: hasWater(fields),
+      bookingRequired: fields["Booking Required"] === "Yes",
+      trailPass: fields["Te Araroa Pass"] ?? "",
+      description: withNote(applied, describeDocSite(fields)),
+      link: fields["URL to webpage"] ?? "",
+      fields,
+      ...(applied ? { correction: applied } : {}),
     });
   }
 
@@ -811,9 +861,10 @@ async function main(): Promise<void> {
     if (!coord) continue;
     const projection = projectOntoRoute(coord, route.points);
     const { section, island } = sectionAtKm(projection.km);
+    const { fields, applied } = correctSite(placemark);
     sites.push({
-      name: placemark.fields["name"] || placemark.name,
-      type: privateSiteType(placemark.fields),
+      name: fields["name"] || placemark.name,
+      type: privateSiteType(fields),
       lat: coord.lat,
       lon: coord.lon,
       ele: coord.ele || elevationAt(projection.km),
@@ -830,10 +881,24 @@ async function main(): Promise<void> {
       water: false,
       bookingRequired: false,
       trailPass: "",
-      description: describePrivateSite(placemark.fields),
-      link: placemark.fields["website"] ?? "",
-      fields: placemark.fields,
+      description: withNote(applied, describePrivateSite(fields)),
+      link: fields["website"] ?? "",
+      fields,
+      ...(applied ? { correction: applied } : {}),
     });
+  }
+
+  // A correction that matched nothing is a correction nobody is getting: the
+  // trust has dropped or re-keyed the record, and whatever it fixed may be
+  // back under a new id.
+  const unapplied = corrections.sites.filter(
+    (c) => !correctionsApplied.has(c.globalId)
+  );
+  if (unapplied.length > 0) {
+    throw new Error(
+      `data/site-corrections.json has corrections for records the KMZ no ` +
+        `longer contains: ${unapplied.map((c) => c.trustName).join(", ")}`
+    );
   }
 
   // The KMZ contains no towns or shops at all - only 3 of its 184 sites sell
@@ -962,7 +1027,7 @@ async function main(): Promise<void> {
               ).km,
             }
           : { startKm: 0, endKm: 0 };
-      const label = placemark.fields["Name"] ?? placemark.name;
+      const label = routeName(placemark.fields["Name"] ?? placemark.name);
       return {
         label,
         name: `Bypass: ${label}`,
@@ -1052,7 +1117,7 @@ async function main(): Promise<void> {
   const kmMarkers = folder(FOLDERS.kmMarkers)
     .map((placemark) => ({
       km: Number(placemark.fields["KM"]),
-      section: placemark.fields["Section"] ?? "",
+      section: routeName(placemark.fields["Section"] ?? ""),
       coord: pointCoord(placemark),
     }))
     .filter(
@@ -1362,6 +1427,7 @@ async function main(): Promise<void> {
       island: site.island,
       bunks: site.bunks,
       fields: site.fields,
+      ...(site.correction ? { correction: site.correction } : {}),
     })),
   };
   writeFileSync(

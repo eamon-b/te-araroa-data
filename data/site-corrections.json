@@ -1,0 +1,12 @@
+{
+  "description": "Hand corrections to the trust's own hut and campsite records, applied by the build on top of the KMZ. Each one is keyed by the record's ArcGIS GlobalID, names the record as the trust publishes it, and says why and on what evidence. The build fails if a correction no longer matches the record it was written for. routeNames corrects misspelt section, segment and crossing names by exact match.",
+  "routeNames": {},
+  "sites": [
+    {
+      "globalId": "{BCE4094E-FF65-435A-85C8-950112A4D8AF}",
+      "trustName": "Makene Road Campsite",
+      "remove": ["phone"],
+      "reason": "The trust's phone field for this site holds a personal email address, not a phone number. It is dropped rather than published."
+    }
+  ]
+}

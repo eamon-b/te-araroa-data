@@ -40,7 +40,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-09-13T09:35:13.919Z",
+  "generatedAt": "2026-10-23T05:21:46.088Z",
   "source": {
     "fetchedAt": "2026-09-08",
     "files": [
@@ -1065,12 +1065,18 @@
       "bunks": null,
       "fields": {
         "name": "Makene Road Campsite",
-        "phone": "trishterran@gmail.com",
         "creator": "Daniel.Radford@herengaanuku.govt.nz",
         "last_editor": "Daniel.Radford@herengaanuku.govt.nz",
         "globalid": "{BCE4094E-FF65-435A-85C8-950112A4D8AF}",
         "created_date": "30/07/2024 10:42:33 pm",
         "last_edited_date": "30/07/2024 10:42:33 pm"
+      },
+      "correction": {
+        "replaced": {},
+        "removed": [
+          "phone"
+        ],
+        "reason": "The trust's phone field for this site holds a personal email address, not a phone number. It is dropped rather than published."
       }
     },
     {

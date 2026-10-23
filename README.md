@@ -12,7 +12,7 @@ contain.
 <!-- generated:snapshot -->
 > ### What this is, and how current it is
 >
-> Built on **13 September 2026** from the trust's **2026-27 release (v45)**.
+> Built on **23 October 2026** from the trust's **2026-27 release (v45)**.
 >
 > A scheduled job checks the trust's download page every Monday and opens a pull
 > request when the published files change, so this repository follows the trust
@@ -295,6 +295,13 @@ are kept, with `Off trail m` recording the detour.
   would suit any trail published as GIS segments with a chainage.
 - `src/te-araroa.ts` — the Te Araroa specifics: folder names, the DOC and private
   attribute vocabularies, the waypoint-type mapping.
+- `data/site-corrections.json` — the few places the trust's own hut and
+  campsite records are wrong and cannot wait for its next release: a misspelt
+  name, a renamed business, a field that must not be published. Each is keyed
+  by the record's GlobalID, says why and on what evidence, and stops the build
+  if the trust's record has changed under it. Corrected records carry a
+  `correction` block in `te-araroa.meta.json` giving the trust's value for
+  anything replaced; a removed field is named, never echoed.
 - `src/build.ts` — orchestration and output; `writeDirection` is the only part
   that knows there is more than one way to walk the trail.
 - `src/docs.ts` — regenerates the marked blocks in this README and the project

@@ -150,3 +150,126 @@ export function hasWater(fields: Record<string, string>): boolean {
 export function isTransportConnector(fromKm: number, toKm: number): boolean {
   return Math.abs(toKm - fromKm) < 1e-6;
 }
+
+/**
+ * A hand correction to one of the trust's site records.
+ *
+ * The KMZ is the trust's data and the build otherwise passes it through
+ * untouched, but some of it is wrong in ways that do not wait for the next
+ * release: a misspelt name, a business that has changed hands, a field holding
+ * somebody's private email address. `data/site-corrections.json` holds those,
+ * each with the reason and the source that justifies it.
+ *
+ * A correction is keyed by the record's ArcGIS GlobalID rather than its name,
+ * because the name is one of the things it corrects. It also names the record
+ * as the trust publishes it, and the build refuses to apply it if that no
+ * longer matches: a correction written against one record must not quietly
+ * land on whatever the trust puts under that id next season.
+ */
+export interface SiteCorrection {
+  /** The record's `GlobalID` (DOC) or `globalid` (private), braces included. */
+  globalId: string;
+  /** The site's name as the trust publishes it. */
+  trustName: string;
+  /** Fields to replace, by the trust's own attribute name. */
+  set?: Record<string, string>;
+  /** Fields to drop, and not publish anywhere. */
+  remove?: string[];
+  /** A sentence put in front of the site's description. */
+  note?: string;
+  reason: string;
+  /** Where the correction can be checked. Omitted only where there is none. */
+  source?: string;
+}
+
+/** What the trust's attributes were, for the fields a correction replaced. */
+export interface AppliedCorrection {
+  /**
+   * The trust's value of each replaced field. Removed fields are listed by
+   * name only: a field is removed precisely because its value must not be
+   * published, so it is not published here either.
+   */
+  replaced: Record<string, string>;
+  removed: string[];
+  note?: string;
+  reason: string;
+  source?: string;
+}
+
+/** The ArcGIS GlobalID of a site record, whichever folder it came from. */
+export function siteGlobalId(fields: Record<string, string>): string {
+  return fields["GlobalID"] ?? fields["globalid"] ?? "";
+}
+
+/** The trust's name for a site record, whichever folder it came from. */
+export function siteTrustName(
+  fields: Record<string, string>,
+  fallback = ""
+): string {
+  return fields["Name of site"] || fields["name"] || fallback;
+}
+
+/**
+ * Apply a correction to a copy of a site's attributes.
+ *
+ * Throws if the record is not the one the correction was written for, or if a
+ * field it replaces or removes is not there - either means the trust has
+ * changed the record and the correction needs a person to look at it again.
+ */
+export function applySiteCorrection(
+  fields: Record<string, string>,
+  correction: SiteCorrection,
+  fallbackName = ""
+): { fields: Record<string, string>; applied: AppliedCorrection } {
+  const name = siteTrustName(fields, fallbackName);
+  if (name !== correction.trustName) {
+    throw new Error(
+      `site correction ${correction.globalId} was written for ` +
+        `${JSON.stringify(correction.trustName)}, but the trust now publishes ` +
+        `${JSON.stringify(name)} under that id. Check data/site-corrections.json.`
+    );
+  }
+  const next = { ...fields };
+  const replaced: Record<string, string> = {};
+  for (const [key, value] of Object.entries(correction.set ?? {})) {
+    if (!(key in fields)) {
+      throw new Error(
+        `site correction for ${correction.trustName} replaces ${key}, which ` +
+          `the trust's record does not have. Check data/site-corrections.json.`
+      );
+    }
+    replaced[key] = fields[key];
+    next[key] = value;
+  }
+  for (const key of correction.remove ?? []) {
+    if (!(key in fields)) {
+      throw new Error(
+        `site correction for ${correction.trustName} removes ${key}, which ` +
+          `the trust's record no longer has. Check data/site-corrections.json.`
+      );
+    }
+    delete next[key];
+  }
+  return {
+    fields: next,
+    applied: {
+      replaced,
+      removed: [...(correction.remove ?? [])],
+      ...(correction.note ? { note: correction.note } : {}),
+      reason: correction.reason,
+      ...(correction.source ? { source: correction.source } : {}),
+    },
+  };
+}
+
+/**
+ * Correct one of the trust's route names - a section, a segment, a crossing -
+ * where `data/site-corrections.json` says it is misspelt. Exact match only, so
+ * a name the trust has since fixed or reworded passes through unchanged.
+ */
+export function correctRouteName(
+  name: string,
+  corrections: Record<string, string>
+): string {
+  return Object.hasOwn(corrections, name) ? corrections[name] : name;
+}

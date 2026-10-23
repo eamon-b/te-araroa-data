@@ -785,3 +785,23 @@ test("the prose still describes the data it sits beside", () => {
     }
   }
 });
+
+test("no site publishes an email address as its phone number", () => {
+  // The trust's KMZ had one: a private campsite whose phone field held a
+  // personal email address. data/site-corrections.json removes it; this keeps
+  // the next release from bringing one back unnoticed.
+  const email = /[^\s@|]+@[^\s@|]+\.[a-z]{2,}/i;
+  for (const site of meta.sites) {
+    const phone = site.fields?.phone ?? site.fields?.Phone ?? "";
+    assert.doesNotMatch(phone, email, `${site.name} has an email as its phone`);
+  }
+  for (const name of ["resupply-plan-sobo.csv", "resupply-plan-nobo.csv"]) {
+    for (const row of csv(name)) {
+      assert.doesNotMatch(
+        row["Phone"] ?? "",
+        email,
+        `${name}: ${row["Name"]} has an email as its phone`
+      );
+    }
+  }
+});

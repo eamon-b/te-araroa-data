@@ -12,7 +12,9 @@ import type { KmlPlacemark } from "gpx-tools/lib/kml-parser";
 
 import {
   FOLDERS,
+  applySiteCorrection,
   bunkCount,
+  correctRouteName,
   describeDocSite,
   describePrivateSite,
   docSiteType,
@@ -20,6 +22,7 @@ import {
   hasWater,
   isTransportConnector,
   privateSiteType,
+  siteGlobalId,
 } from "../src/te-araroa.ts";
 
 test("folderOf reads the deepest folder a placemark sits in", () => {
@@ -114,4 +117,69 @@ test("a segment whose chainage does not advance is a transport connector", () =>
   assert.equal(isTransportConnector(0, 1e-9), true);
   assert.equal(isTransportConnector(1503.2, 1503.3), false);
   assert.equal(isTransportConnector(0, 3073.2), false);
+});
+
+test("a site correction replaces and removes fields on a copy", () => {
+  const trust = {
+    name: "Happy Dayz Accomodation",
+    phone: "someone@example.com",
+    globalid: "{A}",
+  };
+  const { fields, applied } = applySiteCorrection(trust, {
+    globalId: "{A}",
+    trustName: "Happy Dayz Accomodation",
+    set: { name: "Happy Dayz Accommodation" },
+    remove: ["phone"],
+    note: "A note.",
+    reason: "Spelling.",
+  });
+
+  assert.equal(fields.name, "Happy Dayz Accommodation");
+  assert.equal("phone" in fields, false);
+  // The trust's record is not modified in place.
+  assert.equal(trust.name, "Happy Dayz Accomodation");
+  assert.deepEqual(applied.replaced, { name: "Happy Dayz Accomodation" });
+  // A removed field is named, never echoed: it was removed so as not to be
+  // published.
+  assert.deepEqual(applied.removed, ["phone"]);
+  assert.equal(JSON.stringify(applied).includes("example.com"), false);
+  assert.equal(applied.note, "A note.");
+});
+
+test("a site correction refuses a record that is not the one it was written for", () => {
+  const correction = {
+    globalId: "{A}",
+    trustName: "Top Timaru Hut",
+    set: { "Name of site": "Top Tīmaru Hut" },
+    reason: "Gazetteer.",
+  };
+  assert.throws(
+    () => applySiteCorrection({ "Name of site": "Something Else Hut" }, correction),
+    /now publishes "Something Else Hut"/
+  );
+  assert.throws(
+    () =>
+      applySiteCorrection(
+        { "Name of site": "Top Timaru Hut" },
+        { ...correction, set: undefined, remove: ["phone"] }
+      ),
+    /no longer has/
+  );
+});
+
+test("site ids are read from either folder's spelling of GlobalID", () => {
+  assert.equal(siteGlobalId({ GlobalID: "{DOC}" }), "{DOC}");
+  assert.equal(siteGlobalId({ globalid: "{PRIVATE}" }), "{PRIVATE}");
+  assert.equal(siteGlobalId({}), "");
+});
+
+test("route names are corrected by exact match only", () => {
+  const names = { "Arthur's Pass to Rākaia River": "Arthur's Pass to Rakaia River" };
+  assert.equal(
+    correctRouteName("Arthur's Pass to Rākaia River", names),
+    "Arthur's Pass to Rakaia River"
+  );
+  assert.equal(correctRouteName("Rākaia River", names), "Rākaia River");
+  // Inherited properties are not corrections.
+  assert.equal(correctRouteName("toString", names), "toString");
 });
