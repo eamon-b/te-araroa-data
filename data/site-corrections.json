@@ -158,6 +158,14 @@
       },
       "reason": "The park's own site, which the trust's record links to, calls it Pinewoods Holiday Park; TOP 10 lists the same park (23 Marie Avenue, 09 426 4526) as Red Beach TOP 10 Holiday Park. Both names are current, so both are given.",
       "source": "https://www.pinewoods.co.nz/ ; https://top10.co.nz/park/auckland/red-beach-top-10-holiday-park/"
+    },
+    {
+      "globalId": "{ABBB2952-FC19-4578-B0A9-7A34A7668D18}",
+      "trustName": "Wanaka Top 10 Holiday Park",
+      "remove": [
+        "website"
+      ],
+      "reason": "The trust's website link (campervanpark.co.nz) is dead: the domain no longer resolves (checked 23 October 2026). The name is kept; listings for 263 Studholme Road disagree on the current operator."
     }
   ]
 }
