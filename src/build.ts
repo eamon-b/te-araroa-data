@@ -1809,6 +1809,7 @@ function writeDirection(
       "Booking required": site.bookingRequired ? "Yes" : "",
       "Trail Pass": site.trailPass,
       Phone: site.fields["phone"] ?? "",
+      Email: site.fields["email"] ?? "",
       Address: site.fields["physical_address"] ?? "",
       Hours: site.fields["opening_hours"] ?? "",
       Link: site.link,

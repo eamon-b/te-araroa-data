@@ -40,7 +40,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-10-23T05:29:10.053Z",
+  "generatedAt": "2026-10-23T05:41:51.410Z",
   "source": {
     "fetchedAt": "2026-09-08",
     "files": [
@@ -1069,14 +1069,16 @@
         "last_editor": "Daniel.Radford@herengaanuku.govt.nz",
         "globalid": "{BCE4094E-FF65-435A-85C8-950112A4D8AF}",
         "created_date": "30/07/2024 10:42:33 pm",
-        "last_edited_date": "30/07/2024 10:42:33 pm"
+        "last_edited_date": "30/07/2024 10:42:33 pm",
+        "email": "trishterran@gmail.com"
       },
       "correction": {
         "replaced": {},
-        "removed": [
-          "phone"
-        ],
-        "reason": "The trust's phone field for this site holds a personal email address, not a phone number. It is dropped rather than published."
+        "removed": [],
+        "moved": {
+          "phone": "email"
+        },
+        "reason": "The trust publishes this address in the site's phone field. It is an email address, so it is shown as the site's email contact instead of as a phone number."
       }
     },
     {
@@ -1182,6 +1184,7 @@
           "Name of site": "Puketi Recreation Area Campsite"
         },
         "removed": [],
+        "moved": {},
         "reason": "Macron: Puketī as in the official Puketī Forest (NZ Gazetteer place 54972); DOC's own page names it Puketī Recreation Area campsite.",
         "source": "https://gazetteer.linz.govt.nz/place/54972 ; https://www.doc.govt.nz/parks-and-recreation/places-to-go/northland/places/puketi-and-omahuta-forests/things-to-do/puketi-recreation-area-campsite/"
       }
@@ -1234,6 +1237,7 @@
           "Name of site": "Puketi Forest Hut"
         },
         "removed": [],
+        "moved": {},
         "reason": "Macron: the official name of the forest is Puketī Forest (NZ Gazetteer place 54972), and DOC's own page names the hut Puketī Forest Hut.",
         "source": "https://gazetteer.linz.govt.nz/place/54972 ; https://www.doc.govt.nz/parks-and-recreation/places-to-go/northland/places/puketi-and-omahuta-forests/things-to-do/puketi-forest-hut/"
       }
@@ -1698,6 +1702,7 @@
           "name": "Pakiri Beach Holiday Park"
         },
         "removed": [],
+        "moved": {},
         "reason": "Macron: the official name is Pākiri (NZ Gazetteer place 35107), and the park spells its own name Pākiri Beach Holiday Park.",
         "source": "https://gazetteer.linz.govt.nz/place/35107 ; https://www.pakiriholidaypark.co.nz/"
       }
@@ -1752,6 +1757,7 @@
           "name": "Happy Dayz Accomodation"
         },
         "removed": [],
+        "moved": {},
         "reason": "Spelling: \"Accomodation\" is a misspelling of \"Accommodation\"."
       }
     },
@@ -2372,6 +2378,7 @@
           "Name of site": "Pahautea Hut Campsite"
         },
         "removed": [],
+        "moved": {},
         "reason": "Consistency with Pāhautea Hut, the record beside it. The NZ Gazetteer has no official name here (only an unofficial recorded Pahautea, place 58563), so this follows DOC, whose own page names the site Pāhautea Hut Campsite.",
         "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/waikato/places/pirongia-forest-park/things-to-do/pahautea-hut-campsite/"
       }
@@ -2573,6 +2580,7 @@
       "correction": {
         "replaced": {},
         "removed": [],
+        "moved": {},
         "note": "Access: DOC says Tihoi and Bog Inn Roads are closed and the hut cannot be reached on foot or by vehicle using them, and the track between Mt Pureora and Bog Inn is no longer maintained.",
         "reason": "DOC's page for the hut reports the road closures and the unmaintained track; the KMZ does not.",
         "source": "https://www.doc.govt.nz/link/221debd600f74c5d943105d46641ff70.aspx"
@@ -2756,6 +2764,7 @@
       "correction": {
         "replaced": {},
         "removed": [],
+        "moved": {},
         "note": "Access: the Mangatepopo Track from here to Whakapapa Village has been closed indefinitely since the November 2025 fire (Te Araroa alert 254; DOC, 18 May 2026), and Mangatepopo Road is open only to approved shuttle operators.",
         "reason": "The Mangatepopo Track has been closed since the Tongariro National Park fire of November 2025; the KMZ does not say so.",
         "source": "https://thetrailapp-members-api.azurewebsites.net/api/alerts/254 (Te Araroa trail alert 254, shown at https://www.teararoa.org.nz/trail-alerts/) ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/new-hut-updated-route-for-tongariro-northern-circuit-walkers/"
@@ -2807,6 +2816,7 @@
       "correction": {
         "replaced": {},
         "removed": [],
+        "moved": {},
         "note": "Access: the Mangatepopo Track from here to Whakapapa Village has been closed indefinitely since the November 2025 fire (Te Araroa alert 254; DOC, 18 May 2026), and Mangatepopo Road is open only to approved shuttle operators.",
         "reason": "The Mangatepopo Track has been closed since the Tongariro National Park fire of November 2025; the KMZ does not say so.",
         "source": "https://thetrailapp-members-api.azurewebsites.net/api/alerts/254 (Te Araroa trail alert 254, shown at https://www.teararoa.org.nz/trail-alerts/) ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/new-hut-updated-route-for-tongariro-northern-circuit-walkers/"
@@ -3939,6 +3949,7 @@
           "physical_address": "460 Somme Parade, Upper Aramoho, Wanganui"
         },
         "removed": [],
+        "moved": {},
         "reason": "The park's own name is Whanganui River Top 10 Holiday Park, and the city's official name is Whanganui (NZ Gazetteer place 7006).",
         "source": "https://www.wrivertop10.co.nz/ ; https://gazetteer.linz.govt.nz/place/7006"
       }
@@ -4484,6 +4495,7 @@
           "URL to webpage": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/wellington-k"
         },
         "removed": [],
+        "moved": {},
         "reason": "The trust's link is cut off mid-path and leads to DOC's 'Page not found'. The name is right: DOC's own page is titled Boielles Campsite.",
         "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/wellington-kapiti/places/tararua-forest-park/things-to-do/campsites/boielles-campsite/"
       }
@@ -4787,6 +4799,7 @@
           "Name of site": "Bay Of Many Coves Campsite"
         },
         "removed": [],
+        "moved": {},
         "reason": "Capitalisation: DOC's own page names it Bay of Many Coves campsite.",
         "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/marlborough/places/queen-charlotte-sound-totaranui-area/things-to-do/campsites/bay-of-many-coves-campsite/"
       }
@@ -7942,6 +7955,7 @@
           "website": "http://www.laketekapo-accommodation.co.nz/"
         },
         "removed": [],
+        "moved": {},
         "reason": "Renamed: the park's own site says \"Formerly Lake Tekapo Motels and Holiday Park\", at the same address and phone number. The trust's website link redirects there.",
         "source": "https://lakesedgeholidaypark.co.nz/"
       }
@@ -8093,6 +8107,7 @@
       "correction": {
         "replaced": {},
         "removed": [],
+        "moved": {},
         "note": "DOC lists this hut as derelict: an old Quailburn Station mustering hut that may offer very basic shelter.",
         "reason": "The trust added this hut by hand (DOC system ID 99999) with 6 bunks; it is not in DOC's hut data, and DOC's Quailburn Track page describes it as derelict.",
         "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/ahuriri-conservation-park/things-to-do/tracks/quailburn-track/"
@@ -8168,6 +8183,7 @@
           "Name of site": "Top Timaru Hut"
         },
         "removed": [],
+        "moved": {},
         "reason": "Macron: the hut is at the head of the Tīmaru River, Otago (official, NZ Gazetteer place 44068), and DOC's own page names it Top Tīmaru Hut. Not the Canterbury city, which is officially unmacronned.",
         "source": "https://gazetteer.linz.govt.nz/place/44068 ; https://www.doc.govt.nz/parks-and-recreation/places-to-go/otago/places/hawea-conservation-park/things-to-do/top-timaru-hut/"
       }

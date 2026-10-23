@@ -10,10 +10,10 @@
     {
       "globalId": "{BCE4094E-FF65-435A-85C8-950112A4D8AF}",
       "trustName": "Makene Road Campsite",
-      "remove": [
-        "phone"
-      ],
-      "reason": "The trust's phone field for this site holds a personal email address, not a phone number. It is dropped rather than published."
+      "move": {
+        "phone": "email"
+      },
+      "reason": "The trust publishes this address in the site's phone field. It is an email address, so it is shown as the site's email contact instead of as a phone number."
     },
     {
       "globalId": "{46D8158C-289F-482F-A6B0-9DBAAD92B811}",

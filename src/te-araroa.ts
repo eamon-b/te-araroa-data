@@ -77,6 +77,7 @@ const PRIVATE_FIELD_ORDER = [
   "tags",
   "physical_address",
   "phone",
+  "email",
   "opening_hours",
   "website",
   "categories",
@@ -86,6 +87,7 @@ const FIELD_LABELS: Record<string, string> = {
   tags: "Facilities",
   physical_address: "Address",
   phone: "Phone",
+  email: "Email",
   opening_hours: "Hours",
   website: "Website",
   categories: "Categories",
@@ -175,6 +177,11 @@ export interface SiteCorrection {
   set?: Record<string, string>;
   /** Fields to drop, and not publish anywhere. */
   remove?: string[];
+  /**
+   * Fields whose value is right but filed under the wrong attribute, moved
+   * from the key to the value: `{ "phone": "email" }`.
+   */
+  move?: Record<string, string>;
   /** A sentence put in front of the site's description. */
   note?: string;
   reason: string;
@@ -191,6 +198,8 @@ export interface AppliedCorrection {
    */
   replaced: Record<string, string>;
   removed: string[];
+  /** Fields moved to another attribute, from -> to. The value is unchanged. */
+  moved: Record<string, string>;
   note?: string;
   reason: string;
   source?: string;
@@ -250,11 +259,28 @@ export function applySiteCorrection(
     }
     delete next[key];
   }
+  for (const [from, to] of Object.entries(correction.move ?? {})) {
+    if (!(from in fields)) {
+      throw new Error(
+        `site correction for ${correction.trustName} moves ${from}, which ` +
+          `the trust's record no longer has. Check data/site-corrections.json.`
+      );
+    }
+    if (to in fields) {
+      throw new Error(
+        `site correction for ${correction.trustName} moves ${from} to ${to}, ` +
+          `but the trust's record already has ${to}. Check data/site-corrections.json.`
+      );
+    }
+    next[to] = fields[from];
+    delete next[from];
+  }
   return {
     fields: next,
     applied: {
       replaced,
       removed: [...(correction.remove ?? [])],
+      moved: { ...(correction.move ?? {}) },
       ...(correction.note ? { note: correction.note } : {}),
       reason: correction.reason,
       ...(correction.source ? { source: correction.source } : {}),
