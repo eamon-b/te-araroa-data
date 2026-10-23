@@ -40,7 +40,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-10-23T05:24:31.331Z",
+  "generatedAt": "2026-10-23T05:27:12.789Z",
   "source": {
     "fetchedAt": "2026-09-08",
     "files": [
@@ -181,7 +181,7 @@
       "lengthKm": 98.925
     },
     {
-      "name": "Whangarei Heads crossing",
+      "name": "Whangārei Heads crossing",
       "km": 407.326,
       "status": "water",
       "lengthKm": 1.173
@@ -193,12 +193,12 @@
       "straightLineKm": 1.105,
       "from": "Reotahi Track",
       "to": "Bream Bay Marsden",
-      "label": "Whangarei Heads",
+      "label": "Whangārei Heads",
       "coveredBy": [
-        "Whangarei Heads crossing"
+        "Whangārei Heads crossing"
       ],
       "kind": "ferry",
-      "crossing": "Crossed by Whangarei Heads crossing.",
+      "crossing": "Crossed by Whangārei Heads crossing.",
       "endsAt": {
         "lat": -35.826533,
         "lon": 174.497403
@@ -368,7 +368,7 @@
       "Length km": 26.3
     },
     {
-      "Section": "Pataua North to Whāngārei Heads",
+      "Section": "Pataua North to Whangārei Heads",
       "Island": "North",
       "Start km": 374.64,
       "End km": 407.33,
@@ -732,7 +732,7 @@
       "Length km": 115.45
     },
     {
-      "Section": "Arthur's Pass to Rākaia River",
+      "Section": "Arthur's Pass to Rakaia River",
       "Island": "South",
       "Start km": 2224.84,
       "End km": 2298.31,
@@ -1136,7 +1136,7 @@
       }
     },
     {
-      "name": "Puketi Recreation Area Campsite",
+      "name": "Puketī Recreation Area Campsite",
       "type": "campsite",
       "source": "DOC",
       "km": 198.376,
@@ -1166,7 +1166,7 @@
         "creator": "teararoa.gis",
         "last_editor": "teararoa.gis",
         "GIS Datasource": "https://services1.arcgis.com/3JjYDyG3oajxU6HO/arcgis/rest/services/DOC_Campsites/FeatureServer/0",
-        "Name of site": "Puketi Recreation Area Campsite",
+        "Name of site": "Puketī Recreation Area Campsite",
         "Te Araroa Pass": "Yes",
         "Data Source Type": "DOC Campsites",
         "Category": "Standard",
@@ -1176,10 +1176,18 @@
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Name of site": "Puketi Recreation Area Campsite"
+        },
+        "removed": [],
+        "reason": "Macron: Puketī as in the official Puketī Forest (NZ Gazetteer place 54972); DOC's own page names it Puketī Recreation Area campsite.",
+        "source": "https://gazetteer.linz.govt.nz/place/54972 ; https://www.doc.govt.nz/parks-and-recreation/places-to-go/northland/places/puketi-and-omahuta-forests/things-to-do/puketi-recreation-area-campsite/"
       }
     },
     {
-      "name": "Puketi Forest Hut",
+      "name": "Puketī Forest Hut",
       "type": "hut",
       "source": "DOC",
       "km": 198.434,
@@ -1209,7 +1217,7 @@
         "creator": "teararoa.gis",
         "last_editor": "teararoa.gis",
         "GIS Datasource": "https://services1.arcgis.com/3JjYDyG3oajxU6HO/arcgis/rest/services/DOC_Huts/FeatureServer/0",
-        "Name of site": "Puketi Forest Hut",
+        "Name of site": "Puketī Forest Hut",
         "Te Araroa Pass": "Yes",
         "Data Source Type": "DOC Huts",
         "Category": "Serviced",
@@ -1220,6 +1228,14 @@
         "More Info": "Camping (booking required) next to hut included in The Trail Pass.",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "12/08/2025 2:01:01 am"
+      },
+      "correction": {
+        "replaced": {
+          "Name of site": "Puketi Forest Hut"
+        },
+        "removed": [],
+        "reason": "Macron: the official name of the forest is Puketī Forest (NZ Gazetteer place 54972), and DOC's own page names the hut Puketī Forest Hut.",
+        "source": "https://gazetteer.linz.govt.nz/place/54972 ; https://www.doc.govt.nz/parks-and-recreation/places-to-go/northland/places/puketi-and-omahuta-forests/things-to-do/puketi-forest-hut/"
       }
     },
     {
@@ -1384,7 +1400,7 @@
       }
     },
     {
-      "name": "Whangarei",
+      "name": "Whangārei",
       "type": "town",
       "source": "Resupply",
       "km": 407.33,
@@ -1402,7 +1418,7 @@
       }
     },
     {
-      "name": "Ruakaka",
+      "name": "Ruakākā",
       "type": "town",
       "source": "Resupply",
       "km": 414.13,
@@ -1649,7 +1665,7 @@
       }
     },
     {
-      "name": "Pakiri Beach Holiday Park",
+      "name": "Pākiri Beach Holiday Park",
       "type": "food",
       "source": "Private",
       "km": 485.491,
@@ -1663,7 +1679,7 @@
       "island": "North",
       "bunks": null,
       "fields": {
-        "name": "Pakiri Beach Holiday Park",
+        "name": "Pākiri Beach Holiday Park",
         "tags": "Holiday park, campground, accommodation, lodges, flats, self contained units, store. Dump station.",
         "website": "http://www.pakiriholidaypark.co.nz/",
         "physical_address": "261 Pakiri River Road, Pakiri",
@@ -1676,10 +1692,18 @@
         "globalid": "{CA8630D8-D695-442B-B572-0FCDF2B98C97}",
         "created_date": "4/07/2024 2:04:57 am",
         "last_edited_date": "4/07/2024 11:08:39 pm"
+      },
+      "correction": {
+        "replaced": {
+          "name": "Pakiri Beach Holiday Park"
+        },
+        "removed": [],
+        "reason": "Macron: the official name is Pākiri (NZ Gazetteer place 35107), and the park spells its own name Pākiri Beach Holiday Park.",
+        "source": "https://gazetteer.linz.govt.nz/place/35107 ; https://www.pakiriholidaypark.co.nz/"
       }
     },
     {
-      "name": "Pakiri Beach Holiday Park",
+      "name": "Pākiri Beach Holiday Park",
       "type": "resupply",
       "source": "Resupply",
       "km": 488.112,
@@ -1981,7 +2005,7 @@
       }
     },
     {
-      "name": "Mangere Bridge",
+      "name": "Māngere Bridge",
       "type": "town",
       "source": "Resupply",
       "km": 622.816,
@@ -2205,7 +2229,7 @@
       }
     },
     {
-      "name": "Ngaruawahia",
+      "name": "Ngāruawāhia",
       "type": "town",
       "source": "Resupply",
       "km": 764.502,
@@ -2302,7 +2326,7 @@
       }
     },
     {
-      "name": "Pahautea Hut Campsite",
+      "name": "Pāhautea Hut Campsite",
       "type": "hut",
       "source": "DOC",
       "km": 832.986,
@@ -2332,7 +2356,7 @@
         "creator": "teararoa.gis",
         "last_editor": "teararoa.gis",
         "GIS Datasource": "https://services1.arcgis.com/3JjYDyG3oajxU6HO/arcgis/rest/services/DOC_Huts/FeatureServer/0",
-        "Name of site": "Pahautea Hut Campsite",
+        "Name of site": "Pāhautea Hut Campsite",
         "Te Araroa Pass": "Yes",
         "Data Source Type": "DOC Huts",
         "Category": "Backcountry",
@@ -2342,6 +2366,14 @@
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Name of site": "Pahautea Hut Campsite"
+        },
+        "removed": [],
+        "reason": "Consistency with Pāhautea Hut, the record beside it. The NZ Gazetteer has no official name here (only an unofficial recorded Pahautea, place 58563), so this follows DOC, whose own page names the site Pāhautea Hut Campsite.",
+        "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/waikato/places/pirongia-forest-park/things-to-do/pahautea-hut-campsite/"
       }
     },
     {
@@ -2654,7 +2686,7 @@
       }
     },
     {
-      "name": "Owhango",
+      "name": "Ōwhango",
       "type": "food",
       "source": "Resupply",
       "km": 1086.972,
@@ -4493,7 +4525,7 @@
       }
     },
     {
-      "name": "Paekakariki",
+      "name": "Paekākāriki",
       "type": "resupply",
       "source": "Resupply",
       "km": 1668.407,
@@ -7084,7 +7116,7 @@
       "offTrailMeters": 52,
       "accessLat": null,
       "accessLon": null,
-      "section": "Arthur's Pass to Rākaia River",
+      "section": "Arthur's Pass to Rakaia River",
       "island": "South",
       "bunks": null,
       "fields": {
@@ -7127,7 +7159,7 @@
       "offTrailMeters": 25,
       "accessLat": null,
       "accessLon": null,
-      "section": "Arthur's Pass to Rākaia River",
+      "section": "Arthur's Pass to Rakaia River",
       "island": "South",
       "bunks": null,
       "fields": {
@@ -7170,7 +7202,7 @@
       "offTrailMeters": 73,
       "accessLat": null,
       "accessLon": null,
-      "section": "Arthur's Pass to Rākaia River",
+      "section": "Arthur's Pass to Rakaia River",
       "island": "South",
       "bunks": null,
       "fields": {
@@ -7213,7 +7245,7 @@
       "offTrailMeters": 29,
       "accessLat": null,
       "accessLon": null,
-      "section": "Arthur's Pass to Rākaia River",
+      "section": "Arthur's Pass to Rakaia River",
       "island": "South",
       "bunks": null,
       "fields": {
@@ -7256,7 +7288,7 @@
       "offTrailMeters": 0,
       "accessLat": null,
       "accessLon": null,
-      "section": "Arthur's Pass to Rākaia River",
+      "section": "Arthur's Pass to Rakaia River",
       "island": "South",
       "bunks": null,
       "fields": {
@@ -7299,7 +7331,7 @@
       "offTrailMeters": 467,
       "accessLat": null,
       "accessLon": null,
-      "section": "Arthur's Pass to Rākaia River",
+      "section": "Arthur's Pass to Rakaia River",
       "island": "South",
       "bunks": null,
       "fields": {
@@ -7342,7 +7374,7 @@
       "offTrailMeters": 90,
       "accessLat": null,
       "accessLon": null,
-      "section": "Arthur's Pass to Rākaia River",
+      "section": "Arthur's Pass to Rakaia River",
       "island": "South",
       "bunks": null,
       "fields": {
@@ -7366,7 +7398,7 @@
       "offTrailMeters": 360,
       "accessLat": null,
       "accessLon": null,
-      "section": "Arthur's Pass to Rākaia River",
+      "section": "Arthur's Pass to Rakaia River",
       "island": "South",
       "bunks": null,
       "fields": {
@@ -7384,7 +7416,7 @@
       "offTrailMeters": 48000,
       "accessLat": -43.363884,
       "accessLon": 171.528357,
-      "section": "Arthur's Pass to Rākaia River",
+      "section": "Arthur's Pass to Rakaia River",
       "island": "South",
       "bunks": null,
       "fields": {
@@ -8054,7 +8086,7 @@
       }
     },
     {
-      "name": "Top Timaru Hut",
+      "name": "Top Tīmaru Hut",
       "type": "hut",
       "source": "DOC",
       "km": 2579.048,
@@ -8084,7 +8116,7 @@
         "creator": "teararoa.gis",
         "last_editor": "teararoa.gis",
         "GIS Datasource": "https://services1.arcgis.com/3JjYDyG3oajxU6HO/arcgis/rest/services/DOC_Huts/FeatureServer/0",
-        "Name of site": "Top Timaru Hut",
+        "Name of site": "Top Tīmaru Hut",
         "Te Araroa Pass": "Yes",
         "Data Source Type": "DOC Huts",
         "Category": "Standard",
@@ -8094,6 +8126,14 @@
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Name of site": "Top Timaru Hut"
+        },
+        "removed": [],
+        "reason": "Macron: the hut is at the head of the Tīmaru River, Otago (official, NZ Gazetteer place 44068), and DOC's own page names it Top Tīmaru Hut. Not the Canterbury city, which is officially unmacronned.",
+        "source": "https://gazetteer.linz.govt.nz/place/44068 ; https://www.doc.govt.nz/parks-and-recreation/places-to-go/otago/places/hawea-conservation-park/things-to-do/top-timaru-hut/"
       }
     },
     {
@@ -8219,7 +8259,7 @@
       }
     },
     {
-      "name": "Wanaka",
+      "name": "Wānaka",
       "type": "town",
       "source": "Resupply",
       "km": 2638.989,

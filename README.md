@@ -174,7 +174,7 @@ generated blocks refreshed; `npm run build` does it for you.
    recovers them as key/value pairs.
 2. **Separates walking from transport.** Four segments have `Fromkm === Tokm` -
    the Cook Strait ferry, the Picton–Ship Cove water taxi, the Devonport ferry
-   and the Whangarei Heads crossing. They contribute nothing to the official
+   and the Whangārei Heads crossing. They contribute nothing to the official
    3,073 km and would inflate every distance downstream, so they are held out of
    the main route and emitted as their own track.
 3. **Assembles the route.** The remaining 466 segments are sorted by `Fromkm` and
@@ -226,7 +226,7 @@ bypass the trust draws but gives no chainage:
 
 | km | Break | Straight line | Crossed by |
 |---|---|---|---|
-| 407.3 | Whangarei Heads | 1.1 km | Whangarei Heads crossing — ferry |
+| 407.3 | Whangārei Heads | 1.1 km | Whangārei Heads crossing — ferry |
 | 606.0 | Devonport | 2.9 km | Devonport Ferry crossing — ferry |
 | 1,739.0 | Te Moana O Raukawa | 52.7 km | Picton to Ship Cove - Water Taxi + Te Moana O Raukawa - Ferry Crossing — ferry |
 | 2,298.3 | Rakaia River | 12.6 km | Rakaia River (Hazard Bypass) — a bypass the trust draws but gives no chainage |

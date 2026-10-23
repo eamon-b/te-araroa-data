@@ -90,18 +90,18 @@
       "osm": "node/332339535"
     },
     {
-      "name": "Whangarei",
+      "name": "Whangārei",
       "type": "town",
       "lat": -35.727527,
       "lon": 174.31942,
       "acceptsBoxes": false,
-      "notes": "Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangarei Heads / Marsden Point crossing.",
+      "notes": "Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangārei Heads / Marsden Point crossing.",
       "osm": "node/71374851",
       "accessFromKm": 407.33,
       "accessRoadKm": 36
     },
     {
-      "name": "Ruakaka",
+      "name": "Ruakākā",
       "type": "town",
       "lat": -35.875436,
       "lon": 174.455707,
@@ -148,7 +148,7 @@
       "accessRoadKm": 6
     },
     {
-      "name": "Pakiri Beach Holiday Park",
+      "name": "Pākiri Beach Holiday Park",
       "type": "resupply",
       "lat": -36.264396,
       "lon": 174.727471,
@@ -211,7 +211,7 @@
       "osm": "node/292806332"
     },
     {
-      "name": "Mangere Bridge",
+      "name": "Māngere Bridge",
       "type": "town",
       "lat": -36.943904,
       "lon": 174.785241,
@@ -247,7 +247,7 @@
       "osm": "node/860209476"
     },
     {
-      "name": "Ngaruawahia",
+      "name": "Ngāruawāhia",
       "type": "town",
       "lat": -37.666266,
       "lon": 175.150053,
@@ -301,7 +301,7 @@
       "osm": "node/296287151"
     },
     {
-      "name": "Owhango",
+      "name": "Ōwhango",
       "type": "food",
       "lat": -38.995956,
       "lon": 175.379537,
@@ -429,7 +429,7 @@
       "osm": "node/2190657713"
     },
     {
-      "name": "Paekakariki",
+      "name": "Paekākāriki",
       "type": "resupply",
       "lat": -40.988307,
       "lon": 174.951443,
@@ -625,7 +625,7 @@
       "osm": "node/176718615"
     },
     {
-      "name": "Wanaka",
+      "name": "Wānaka",
       "type": "town",
       "lat": -44.694169,
       "lon": 169.136464,

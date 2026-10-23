@@ -97,7 +97,7 @@
   </wpt>
   <wpt lat="-35.211417" lon="173.793234">
     <ele>340</ele>
-    <name>Puketi Recreation Area Campsite</name>
+    <name>Puketī Recreation Area Campsite</name>
     <cmt>The Northland Forests</cmt>
     <desc>km 198.4 | Category: Standard | Facilities: BBQ, Fire pit/place for campfires (except in fire bans), Non-powered/tent sites, Shower - cold, Water from tap - not treated, boil before use, Wheelchair accessible with assistance, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Puketi and Omahuta Forests | Region: Northland</desc>
     <link href="https://www.doc.govt.nz/link/0ae368ae422245ea85a7b4271edb7484.aspx" />
@@ -105,7 +105,7 @@
   </wpt>
   <wpt lat="-35.211223" lon="173.793902">
     <ele>340</ele>
-    <name>Puketi Forest Hut</name>
+    <name>Puketī Forest Hut</name>
     <cmt>The Northland Forests</cmt>
     <desc>km 198.4 | Category: Serviced | Facilities: Cooking, Heating, Mattresses, Lighting, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | More Info: Camping (booking required) next to hut included in The Trail Pass. | Place: Puketi and Omahuta Forests | Region: Northland</desc>
     <link href="https://www.doc.govt.nz/link/de31f23db252446cad29c2e6de41e3ef.aspx" />
@@ -226,9 +226,9 @@
   </wpt>
   <wpt lat="-35.838208" lon="174.490331">
     <ele>2</ele>
-    <name>Whangarei turnoff</name>
+    <name>Whangārei turnoff</name>
     <cmt>Bream Bay Walk</cmt>
-    <desc>km 407.3 | Leave the trail here for Whangarei (town), 36.0 km off trail. | Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangarei Heads / Marsden Point crossing.</desc>
+    <desc>km 407.3 | Leave the trail here for Whangārei (town), 36.0 km off trail. | Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangārei Heads / Marsden Point crossing.</desc>
     <type>town-access</type>
     <extensions>
       <tn:offTrailKm>36.0</tn:offTrailKm>
@@ -237,9 +237,9 @@
   </wpt>
   <wpt lat="-35.727527" lon="174.31942">
     <ele>2</ele>
-    <name>Whangarei</name>
+    <name>Whangārei</name>
     <cmt>Bream Bay Walk</cmt>
-    <desc>km 407.3 | Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangarei Heads / Marsden Point crossing.</desc>
+    <desc>km 407.3 | Woolworths, hostels, buses. Inland from the Heads; a detour, not on route. Leave at the Whangārei Heads / Marsden Point crossing.</desc>
     <type>town</type>
     <extensions>
       <tn:offTrailKm>36.0</tn:offTrailKm>
@@ -247,9 +247,9 @@
     </extensions>
   </wpt>
   <wpt lat="-35.879312" lon="174.469092">
-    <name>Ruakaka turnoff</name>
+    <name>Ruakākā turnoff</name>
     <cmt>Bream Bay Walk</cmt>
-    <desc>km 414.1 | Leave the trail here for Ruakaka (town), 1.3 km off trail. | FreshChoice supermarket and takeaways.</desc>
+    <desc>km 414.1 | Leave the trail here for Ruakākā (town), 1.3 km off trail. | FreshChoice supermarket and takeaways.</desc>
     <type>town-access</type>
     <extensions>
       <tn:offTrailKm>1.3</tn:offTrailKm>
@@ -257,7 +257,7 @@
     </extensions>
   </wpt>
   <wpt lat="-35.875436" lon="174.455707">
-    <name>Ruakaka</name>
+    <name>Ruakākā</name>
     <cmt>Bream Bay Walk</cmt>
     <desc>km 414.1 | FreshChoice supermarket and takeaways.</desc>
     <type>town</type>
@@ -354,7 +354,7 @@
   </wpt>
   <wpt lat="-36.24553" lon="174.72292">
     <ele>4.7</ele>
-    <name>Pakiri Beach Holiday Park</name>
+    <name>Pākiri Beach Holiday Park</name>
     <cmt>Mt Tamahunga (Te Hīkoi O Te Kiri) Track</cmt>
     <desc>km 485.5 | Facilities: Holiday park, campground, accommodation, lodges, flats, self contained units, store. Dump station. | Address: 261 Pakiri River Road, Pakiri | Phone: (09) 422 6199 | Hours: 9:00am - 5:00pm | Website: http://www.pakiriholidaypark.co.nz/ | Categories: RVPark LodgingBusiness</desc>
     <link href="http://www.pakiriholidaypark.co.nz/" />
@@ -362,7 +362,7 @@
   </wpt>
   <wpt lat="-36.264396" lon="174.727471">
     <ele>39.7</ele>
-    <name>Pakiri Beach Holiday Park</name>
+    <name>Pākiri Beach Holiday Park</name>
     <cmt>Mt Tamahunga (Te Hīkoi O Te Kiri) Track</cmt>
     <desc>km 488.1 | Camp store: food, drinks, milk, bread. 9am-5pm summer only.</desc>
     <type>resupply</type>
@@ -523,7 +523,7 @@
   </wpt>
   <wpt lat="-36.943904" lon="174.785241">
     <ele>2.1</ele>
-    <name>Mangere Bridge</name>
+    <name>Māngere Bridge</name>
     <cmt>Onehunga to Puhinui</cmt>
     <desc>km 622.8 | FreshChoice, slightly off trail.</desc>
     <type>town</type>
@@ -667,7 +667,7 @@
   </wpt>
   <wpt lat="-37.666266" lon="175.150053">
     <ele>20</ele>
-    <name>Ngaruawahia</name>
+    <name>Ngāruawāhia</name>
     <cmt>Ngāruawāhia to Hamilton - Te Awa (The River)</cmt>
     <desc>km 764.5 | New World and cafes.</desc>
     <type>town</type>
@@ -708,7 +708,7 @@
   </wpt>
   <wpt lat="-37.99375" lon="175.092244">
     <ele>901.4</ele>
-    <name>Pahautea Hut Campsite</name>
+    <name>Pāhautea Hut Campsite</name>
     <cmt>Pirongia Traverse</cmt>
     <desc>km 833.0 | Category: Backcountry | Facilities: Non-powered/tent sites, Water from tap - not treated, boil before use, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Pirongia Forest Park | Region: Waikato</desc>
     <link href="https://www.doc.govt.nz/link/362328c3e2ca47ea88529cbfe15b9d7e.aspx" />
@@ -818,7 +818,7 @@
   </wpt>
   <wpt lat="-38.995956" lon="175.379537">
     <ele>440</ele>
-    <name>Owhango</name>
+    <name>Ōwhango</name>
     <cmt>42 Traverse</cmt>
     <desc>km 1087.0 | Blue Hill Cafe, 8am-2pm.</desc>
     <type>food</type>
@@ -1384,7 +1384,7 @@
   </wpt>
   <wpt lat="-40.988307" lon="174.951443">
     <ele>19</ele>
-    <name>Paekakariki</name>
+    <name>Paekākāriki</name>
     <cmt>Escarpment Track</cmt>
     <desc>km 1668.4 | Dairy/grocery, two fruit and vegetable shops, cafes and a pub.</desc>
     <type>resupply</type>
@@ -2047,7 +2047,7 @@
   <wpt lat="-43.002032" lon="171.589249">
     <ele>637</ele>
     <name>Klondyke Corner Campsite</name>
-    <cmt>Arthur&apos;s Pass to Rākaia River</cmt>
+    <cmt>Arthur&apos;s Pass to Rakaia River</cmt>
     <desc>km 2227.5 | Category: Standard | Facilities: Non-powered/tent sites, Shelter for cooking, Water from tap - not treated, boil before use, Wheelchair accessible with assistance, Toilets - non-flush, Toilets, Water supply | Bookable: Yes | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Arthur&apos;s Pass National Park | Region: Canterbury</desc>
     <link href="https://www.doc.govt.nz/link/85fde6766e364d50916d8bd9a296c4c7.aspx" />
     <type>campsite</type>
@@ -2055,7 +2055,7 @@
   <wpt lat="-43.037768" lon="171.641758">
     <ele>732.4</ele>
     <name>Bealey Hut</name>
-    <cmt>Arthur&apos;s Pass to Rākaia River</cmt>
+    <cmt>Arthur&apos;s Pass to Rakaia River</cmt>
     <desc>km 2235.0 | Category: Basic/bivvies | Facilities: Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Craigieburn Forest Park | Region: Canterbury</desc>
     <link href="https://www.doc.govt.nz/link/ff5464f84f5941ecbb0cf1d5f74f80a2.aspx" />
     <type>hut</type>
@@ -2063,7 +2063,7 @@
   <wpt lat="-43.054856" lon="171.601116">
     <ele>1140.5</ele>
     <name>Lagoon Saddle Hut</name>
-    <cmt>Arthur&apos;s Pass to Rākaia River</cmt>
+    <cmt>Arthur&apos;s Pass to Rakaia River</cmt>
     <desc>km 2240.6 | Category: Basic/bivvies | Facilities: Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Craigieburn Forest Park | Region: Canterbury</desc>
     <link href="https://www.doc.govt.nz/link/5cd35674f8c64fb69202dc08a7ec3048.aspx" />
     <type>hut</type>
@@ -2071,7 +2071,7 @@
   <wpt lat="-43.055133" lon="171.601687">
     <ele>1140.5</ele>
     <name>Lagoon Saddle A Frame Hut</name>
-    <cmt>Arthur&apos;s Pass to Rākaia River</cmt>
+    <cmt>Arthur&apos;s Pass to Rakaia River</cmt>
     <desc>km 2240.6 | Category: Basic/bivvies | Facilities: Toilets - non-flush, Water from stream, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Craigieburn Forest Park | Region: Canterbury</desc>
     <link href="https://www.doc.govt.nz/link/812020186f0542ec82f7b89efba7ff7e.aspx" />
     <type>hut</type>
@@ -2079,7 +2079,7 @@
   <wpt lat="-43.099772" lon="171.607037">
     <ele>881.2</ele>
     <name>West Harper Hut</name>
-    <cmt>Arthur&apos;s Pass to Rākaia River</cmt>
+    <cmt>Arthur&apos;s Pass to Rakaia River</cmt>
     <desc>km 2246.1 | Category: Basic/bivvies | Facilities: Heating, Toilets - non-flush, Water from stream, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Craigieburn Forest Park | Region: Canterbury</desc>
     <link href="https://www.doc.govt.nz/link/5d55aaf9dcda4f128dcb064d2dd26408.aspx" />
     <type>hut</type>
@@ -2087,7 +2087,7 @@
   <wpt lat="-43.129339" lon="171.629787">
     <ele>779</ele>
     <name>Hamilton Hut</name>
-    <cmt>Arthur&apos;s Pass to Rākaia River</cmt>
+    <cmt>Arthur&apos;s Pass to Rakaia River</cmt>
     <desc>km 2250.1 | Category: Serviced | Facilities: Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply | Bookable: No | Booking Required: Yes | Trail Pass: Yes | Trail Pass discount (%): 20 | Place: Craigieburn Forest Park | Region: Canterbury</desc>
     <link href="https://www.doc.govt.nz/link/4a41150c50884c8aac115ac9f6e1038c.aspx" />
     <type>hut</type>
@@ -2095,14 +2095,14 @@
   <wpt lat="-43.221748" lon="171.457451">
     <ele>520.6</ele>
     <name>Trustpower Campsite</name>
-    <cmt>Arthur&apos;s Pass to Rākaia River</cmt>
+    <cmt>Arthur&apos;s Pass to Rakaia River</cmt>
     <desc>km 2269.6 | Facilities: Te Araroa</desc>
     <type>campsite</type>
   </wpt>
   <wpt lat="-43.365964" lon="171.532599">
     <ele>388.9</ele>
     <name>Lake Coleridge Village</name>
-    <cmt>Arthur&apos;s Pass to Rākaia River</cmt>
+    <cmt>Arthur&apos;s Pass to Rakaia River</cmt>
     <desc>km 2298.1 | No shops. Powerhouse Lodge holds bounce boxes and has tent sites. Accepts resupply boxes.</desc>
     <type>food</type>
     <extensions>
@@ -2113,7 +2113,7 @@
   <wpt lat="-43.363884" lon="171.528357">
     <ele>370.3</ele>
     <name>Methven turnoff</name>
-    <cmt>Arthur&apos;s Pass to Rākaia River</cmt>
+    <cmt>Arthur&apos;s Pass to Rakaia River</cmt>
     <desc>km 2298.3 | Leave the trail here for Methven (town), 48.0 km off trail. | Two supermarkets, Alpine Sports for dehydrated meals and gas. Snow Denn Lodge holds boxes ($5). Shuttle from Rakaia. Leave at the Rakaia River; the river is a no-ford hazard zone, shuttle required. Accepts resupply boxes.</desc>
     <type>town-access</type>
     <extensions>
@@ -2124,7 +2124,7 @@
   <wpt lat="-43.632433" lon="171.647261">
     <ele>370.3</ele>
     <name>Methven</name>
-    <cmt>Arthur&apos;s Pass to Rākaia River</cmt>
+    <cmt>Arthur&apos;s Pass to Rakaia River</cmt>
     <desc>km 2298.3 | Two supermarkets, Alpine Sports for dehydrated meals and gas. Snow Denn Lodge holds boxes ($5). Shuttle from Rakaia. Leave at the Rakaia River; the river is a no-ford hazard zone, shuttle required. Accepts resupply boxes.</desc>
     <type>town</type>
     <extensions>
@@ -2391,7 +2391,7 @@
   </wpt>
   <wpt lat="-44.470482" lon="169.501394">
     <ele>906.8</ele>
-    <name>Top Timaru Hut</name>
+    <name>Top Tīmaru Hut</name>
     <cmt>Breast Hill Track</cmt>
     <desc>km 2579.0 | Category: Standard | Facilities: Mattresses, Toilets - non-flush, Water from stream, Water supply | Bookable: No | Booking Required: No | Trail Pass: Yes | Trail Pass discount (%): 100 | Place: Hāwea Conservation Park | Region: Otago</desc>
     <link href="https://www.doc.govt.nz/link/38653eb26aa841a0b3d87066cf14f766.aspx" />
@@ -2437,7 +2437,7 @@
   </wpt>
   <wpt lat="-44.694169" lon="169.136464">
     <ele>280</ele>
-    <name>Wanaka</name>
+    <name>Wānaka</name>
     <cmt>Glendhu Bay Track</cmt>
     <desc>km 2639.0 | New World, Four Square, Mediterranean Market for bulk, Macpac. Full resupply.</desc>
     <type>town</type>
@@ -3157,17 +3157,17 @@
   </wpt>
   <wpt lat="-35.749265" lon="174.54042">
     <name>380 km</name>
-    <desc>Pataua North to Whāngārei Heads</desc>
+    <desc>Pataua North to Whangārei Heads</desc>
     <type>waypoint</type>
   </wpt>
   <wpt lat="-35.816804" lon="174.560474">
     <name>390 km</name>
-    <desc>Pataua North to Whāngārei Heads</desc>
+    <desc>Pataua North to Whangārei Heads</desc>
     <type>waypoint</type>
   </wpt>
   <wpt lat="-35.849422" lon="174.533977">
     <name>400 km</name>
-    <desc>Pataua North to Whāngārei Heads</desc>
+    <desc>Pataua North to Whangārei Heads</desc>
     <type>waypoint</type>
   </wpt>
   <wpt lat="-35.848661" lon="174.493748">
@@ -4082,37 +4082,37 @@
   </wpt>
   <wpt lat="-43.02003" lon="171.606995">
     <name>2230 km</name>
-    <desc>Arthur&apos;s Pass to Rākaia River</desc>
+    <desc>Arthur&apos;s Pass to Rakaia River</desc>
     <type>waypoint</type>
   </wpt>
   <wpt lat="-43.049624" lon="171.600641">
     <name>2240 km</name>
-    <desc>Arthur&apos;s Pass to Rākaia River</desc>
+    <desc>Arthur&apos;s Pass to Rakaia River</desc>
     <type>waypoint</type>
   </wpt>
   <wpt lat="-43.128274" lon="171.624058">
     <name>2250 km</name>
-    <desc>Arthur&apos;s Pass to Rākaia River</desc>
+    <desc>Arthur&apos;s Pass to Rakaia River</desc>
     <type>waypoint</type>
   </wpt>
   <wpt lat="-43.183638" lon="171.545782">
     <name>2260 km</name>
-    <desc>Arthur&apos;s Pass to Rākaia River</desc>
+    <desc>Arthur&apos;s Pass to Rakaia River</desc>
     <type>waypoint</type>
   </wpt>
   <wpt lat="-43.219175" lon="171.460215">
     <name>2270 km</name>
-    <desc>Arthur&apos;s Pass to Rākaia River</desc>
+    <desc>Arthur&apos;s Pass to Rakaia River</desc>
     <type>waypoint</type>
   </wpt>
   <wpt lat="-43.27047" lon="171.541826">
     <name>2280 km</name>
-    <desc>Arthur&apos;s Pass to Rākaia River</desc>
+    <desc>Arthur&apos;s Pass to Rakaia River</desc>
     <type>waypoint</type>
   </wpt>
   <wpt lat="-43.340671" lon="171.592793">
     <name>2290 km</name>
-    <desc>Arthur&apos;s Pass to Rākaia River</desc>
+    <desc>Arthur&apos;s Pass to Rakaia River</desc>
     <type>waypoint</type>
   </wpt>
   <wpt lat="-43.331317" lon="171.375966">
@@ -4507,15 +4507,15 @@
   </wpt>
   <wpt lat="-35.826533" lon="174.497403">
     <ele>6.6</ele>
-    <name>Trail ends - Whangarei Heads</name>
-    <cmt>Whangarei Heads</cmt>
-    <desc>km 407.3: the walking route stops here and starts again 1.1 km away at Bream Bay Marsden. Crossed by Whangarei Heads crossing.</desc>
+    <name>Trail ends - Whangārei Heads</name>
+    <cmt>Whangārei Heads</cmt>
+    <desc>km 407.3: the walking route stops here and starts again 1.1 km away at Bream Bay Marsden. Crossed by Whangārei Heads crossing.</desc>
     <type>gap</type>
   </wpt>
   <wpt lat="-35.834741" lon="174.490484">
-    <name>Trail resumes - Whangarei Heads</name>
-    <cmt>Whangarei Heads</cmt>
-    <desc>km 407.3: the walking route starts again here, 1.1 km from where it stopped at Reotahi Track. Crossed by Whangarei Heads crossing.</desc>
+    <name>Trail resumes - Whangārei Heads</name>
+    <cmt>Whangārei Heads</cmt>
+    <desc>km 407.3: the walking route starts again here, 1.1 km from where it stopped at Reotahi Track. Crossed by Whangārei Heads crossing.</desc>
     <type>gap</type>
   </wpt>
   <wpt lat="-36.833253" lon="174.795577">
@@ -110574,7 +110574,7 @@
     </trkseg>
   </trk>
   <trk>
-    <name>Bypass: Omahuta- Puketi Forest Bypass</name>
+    <name>Bypass: Omahuta- Puketī Forest Bypass</name>
     <trkseg>
       <trkpt lat="-35.22742" lon="173.63842">
         <ele>366.3</ele>
