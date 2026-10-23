@@ -40,7 +40,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-10-23T05:21:46.088Z",
+  "generatedAt": "2026-10-23T05:24:31.331Z",
   "source": {
     "fetchedAt": "2026-09-08",
     "files": [
@@ -1697,7 +1697,7 @@
       }
     },
     {
-      "name": "Happy Dayz Accomodation",
+      "name": "Happy Dayz Accommodation",
       "type": "accommodation",
       "source": "Private",
       "km": 494.914,
@@ -1711,7 +1711,7 @@
       "island": "North",
       "bunks": null,
       "fields": {
-        "name": "Happy Dayz Accomodation",
+        "name": "Happy Dayz Accommodation",
         "tags": "Backpacker accommodation, camping",
         "physical_address": "84 Omaha Flats Rd, Matakana",
         "phone": "09 422 7149",
@@ -1722,6 +1722,13 @@
         "globalid": "{46D8158C-289F-482F-A6B0-9DBAAD92B811}",
         "created_date": "4/07/2024 2:04:57 am",
         "last_edited_date": "9/07/2024 11:43:12 pm"
+      },
+      "correction": {
+        "replaced": {
+          "name": "Happy Dayz Accomodation"
+        },
+        "removed": [],
+        "reason": "Spelling: \"Accomodation\" is a misspelling of \"Accommodation\"."
       }
     },
     {
@@ -3846,7 +3853,7 @@
       }
     },
     {
-      "name": "Wanganui Top 10 Holiday Park",
+      "name": "Whanganui River Top 10 Holiday Park",
       "type": "caravan-park",
       "source": "Private",
       "km": 1396.724,
@@ -3860,10 +3867,10 @@
       "island": "North",
       "bunks": null,
       "fields": {
-        "name": "Wanganui Top 10 Holiday Park",
+        "name": "Whanganui River Top 10 Holiday Park",
         "tags": "Holiday park accommodation, motel units, campground, motorhomes, campervans, tent & powered sites",
         "website": "http://www.wrivertop10.co.nz",
-        "physical_address": "460 Somme Parade, Upper Aramoho, Wanganui",
+        "physical_address": "460 Somme Parade, Upper Aramoho, Whanganui",
         "phone": "(06) 343 8402",
         "facebook_page": "https://www.facebook.com/WhanganuiHolidayPark/",
         "categories": "RVPark LodgingBusiness",
@@ -3872,6 +3879,15 @@
         "globalid": "{A331A665-9329-4F12-8916-C2DC0C837331}",
         "created_date": "4/07/2024 2:04:57 am",
         "last_edited_date": "4/07/2024 10:23:47 pm"
+      },
+      "correction": {
+        "replaced": {
+          "name": "Wanganui Top 10 Holiday Park",
+          "physical_address": "460 Somme Parade, Upper Aramoho, Wanganui"
+        },
+        "removed": [],
+        "reason": "The park's own name is Whanganui River Top 10 Holiday Park, and the city's official name is Whanganui (NZ Gazetteer place 7006).",
+        "source": "https://www.wrivertop10.co.nz/ ; https://gazetteer.linz.govt.nz/place/7006"
       }
     },
     {
@@ -4664,7 +4680,7 @@
       }
     },
     {
-      "name": "Bay Of Many Coves Campsite",
+      "name": "Bay of Many Coves Campsite",
       "type": "campsite",
       "source": "DOC",
       "km": 1775.021,
@@ -4694,7 +4710,7 @@
         "creator": "teararoa.gis",
         "last_editor": "landon.breidenstein_teararoa",
         "GIS Datasource": "https://services1.arcgis.com/3JjYDyG3oajxU6HO/arcgis/rest/services/DOC_Campsites/FeatureServer/0",
-        "Name of site": "Bay Of Many Coves Campsite",
+        "Name of site": "Bay of Many Coves Campsite",
         "Te Araroa Pass": "Yes",
         "Data Source Type": "DOC Campsites",
         "Category": "Backcountry",
@@ -4704,6 +4720,14 @@
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "9/10/2025 4:26:34 am"
+      },
+      "correction": {
+        "replaced": {
+          "Name of site": "Bay Of Many Coves Campsite"
+        },
+        "removed": [],
+        "reason": "Capitalisation: DOC's own page names it Bay of Many Coves campsite.",
+        "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/marlborough/places/queen-charlotte-sound-totaranui-area/things-to-do/campsites/bay-of-many-coves-campsite/"
       }
     },
     {
@@ -7825,7 +7849,7 @@
       }
     },
     {
-      "name": "Lake Tekapo Motels & Holiday Park",
+      "name": "Lakes Edge Holiday Park",
       "type": "caravan-park",
       "source": "Private",
       "km": 2442.337,
@@ -7839,9 +7863,9 @@
       "island": "South",
       "bunks": null,
       "fields": {
-        "name": "Lake Tekapo Motels & Holiday Park",
+        "name": "Lakes Edge Holiday Park",
         "tags": "Budget holiday park accommodation, backpacker accommodation, motorcamp, campervan sites, tourist flats, tent sites for camping and cabins with all the modern campground facilities",
-        "website": "http://www.laketekapo-accommodation.co.nz/",
+        "website": "https://lakesedgeholidaypark.co.nz/",
         "physical_address": "2 Lakeside Drive, Lake Tekapo",
         "phone": "0800 853 853",
         "categories": "Motel RVPark",
@@ -7850,6 +7874,15 @@
         "globalid": "{A566B347-E00D-4460-863B-46D47851E9E6}",
         "created_date": "4/07/2024 2:04:57 am",
         "last_edited_date": "5/07/2024 12:46:34 am"
+      },
+      "correction": {
+        "replaced": {
+          "name": "Lake Tekapo Motels & Holiday Park",
+          "website": "http://www.laketekapo-accommodation.co.nz/"
+        },
+        "removed": [],
+        "reason": "Renamed: the park's own site says \"Formerly Lake Tekapo Motels and Holiday Park\", at the same address and phone number. The trust's website link redirects there.",
+        "source": "https://lakesedgeholidaypark.co.nz/"
       }
     },
     {
