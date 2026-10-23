@@ -40,7 +40,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-10-23T05:27:12.789Z",
+  "generatedAt": "2026-10-23T05:29:10.053Z",
   "source": {
     "fetchedAt": "2026-09-08",
     "files": [
@@ -2569,6 +2569,13 @@
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "12/03/2026 12:57:32 am"
+      },
+      "correction": {
+        "replaced": {},
+        "removed": [],
+        "note": "Access: DOC says Tihoi and Bog Inn Roads are closed and the hut cannot be reached on foot or by vehicle using them, and the track between Mt Pureora and Bog Inn is no longer maintained.",
+        "reason": "DOC's page for the hut reports the road closures and the unmaintained track; the KMZ does not.",
+        "source": "https://www.doc.govt.nz/link/221debd600f74c5d943105d46641ff70.aspx"
       }
     },
     {
@@ -2745,6 +2752,13 @@
         "More Info": "Camping next to hut included in The Trail Pass (Bookings Required)",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "11/08/2025 2:10:24 pm"
+      },
+      "correction": {
+        "replaced": {},
+        "removed": [],
+        "note": "Access: the Mangatepopo Track from here to Whakapapa Village has been closed indefinitely since the November 2025 fire (Te Araroa alert 254; DOC, 18 May 2026), and Mangatepopo Road is open only to approved shuttle operators.",
+        "reason": "The Mangatepopo Track has been closed since the Tongariro National Park fire of November 2025; the KMZ does not say so.",
+        "source": "https://thetrailapp-members-api.azurewebsites.net/api/alerts/254 (Te Araroa trail alert 254, shown at https://www.teararoa.org.nz/trail-alerts/) ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/new-hut-updated-route-for-tongariro-northern-circuit-walkers/"
       }
     },
     {
@@ -2789,6 +2803,13 @@
         "More Info": "Camping next to hut included in The Trail Pass (Bookings Required)",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "11/08/2025 2:10:24 pm"
+      },
+      "correction": {
+        "replaced": {},
+        "removed": [],
+        "note": "Access: the Mangatepopo Track from here to Whakapapa Village has been closed indefinitely since the November 2025 fire (Te Araroa alert 254; DOC, 18 May 2026), and Mangatepopo Road is open only to approved shuttle operators.",
+        "reason": "The Mangatepopo Track has been closed since the Tongariro National Park fire of November 2025; the KMZ does not say so.",
+        "source": "https://thetrailapp-members-api.azurewebsites.net/api/alerts/254 (Te Araroa trail alert 254, shown at https://www.teararoa.org.nz/trail-alerts/) ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/new-hut-updated-route-for-tongariro-northern-circuit-walkers/"
       }
     },
     {
@@ -4439,7 +4460,7 @@
         "Bookable": "Yes",
         "Facilities": "15 non powered sites, Toilets (flush), water, cooking shelter",
         "Has alerts": "Refer to DOC website for current alerts",
-        "URL to webpage": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/wellington-k",
+        "URL to webpage": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/wellington-kapiti/places/tararua-forest-park/things-to-do/campsites/boielles-campsite/",
         "Description of place": "Boielles Campsite remains open, despite the slip on the Otaki Gorge Road, b",
         "DOC system ID": "100035393",
         "Date loaded to GIS": "31/07/2024 11:35:11 pm",
@@ -4457,6 +4478,14 @@
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "URL to webpage": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/wellington-k"
+        },
+        "removed": [],
+        "reason": "The trust's link is cut off mid-path and leads to DOC's 'Page not found'. The name is right: DOC's own page is titled Boielles Campsite.",
+        "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/wellington-kapiti/places/tararua-forest-park/things-to-do/campsites/boielles-campsite/"
       }
     },
     {
@@ -8060,6 +8089,13 @@
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {},
+        "removed": [],
+        "note": "DOC lists this hut as derelict: an old Quailburn Station mustering hut that may offer very basic shelter.",
+        "reason": "The trust added this hut by hand (DOC system ID 99999) with 6 bunks; it is not in DOC's hut data, and DOC's Quailburn Track page describes it as derelict.",
+        "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/ahuriri-conservation-park/things-to-do/tracks/quailburn-track/"
       }
     },
     {
