@@ -518,15 +518,14 @@
     <ele>280.4</ele>
     <name>Wanaka Top 10 Holiday Park turnoff</name>
     <cmt>Glendhu Bay Track</cmt>
-    <desc>km 432.6 (TA 2640.6) | Leave the trail here for Wanaka Top 10 Holiday Park (accommodation), 0.9 km off trail. | Facilities: Accommodation: tents, powered caravan/campervan sites, dump station | Address: 263 Studholme Road, Wanaka | Phone: 0800 229 8439 | Website: http://www.campervanpark.co.nz | Categories: LodgingBusiness</desc>
+    <desc>km 432.6 (TA 2640.6) | Leave the trail here for Wanaka Top 10 Holiday Park (accommodation), 0.9 km off trail. | Facilities: Accommodation: tents, powered caravan/campervan sites, dump station | Address: 263 Studholme Road, Wanaka | Phone: 0800 229 8439 | Categories: LodgingBusiness</desc>
     <type>accommodation-access</type>
   </wpt>
   <wpt lat="-44.705129" lon="169.109566">
     <ele>280.4</ele>
     <name>Wanaka Top 10 Holiday Park</name>
     <cmt>Glendhu Bay Track</cmt>
-    <desc>km 432.6 (TA 2640.6) | Facilities: Accommodation: tents, powered caravan/campervan sites, dump station | Address: 263 Studholme Road, Wanaka | Phone: 0800 229 8439 | Website: http://www.campervanpark.co.nz | Categories: LodgingBusiness</desc>
-    <link href="http://www.campervanpark.co.nz" />
+    <desc>km 432.6 (TA 2640.6) | Facilities: Accommodation: tents, powered caravan/campervan sites, dump station | Address: 263 Studholme Road, Wanaka | Phone: 0800 229 8439 | Categories: LodgingBusiness</desc>
     <type>accommodation</type>
   </wpt>
   <wpt lat="-44.694169" lon="169.136464">

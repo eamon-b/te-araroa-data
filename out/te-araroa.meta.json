@@ -40,7 +40,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-10-23T05:51:30.092Z",
+  "generatedAt": "2026-10-23T05:52:02.071Z",
   "source": {
     "fetchedAt": "2026-09-08",
     "files": [
@@ -8378,7 +8378,6 @@
       "fields": {
         "name": "Wanaka Top 10 Holiday Park",
         "tags": "Accommodation: tents, powered caravan/campervan sites, dump station",
-        "website": "http://www.campervanpark.co.nz",
         "physical_address": "263 Studholme Road, Wanaka",
         "phone": "0800 229 8439",
         "facebook_page": "https://www.facebook.com/WanakaTOP10/photos/",
@@ -8388,6 +8387,14 @@
         "globalid": "{ABBB2952-FC19-4578-B0A9-7A34A7668D18}",
         "created_date": "4/07/2024 2:04:57 am",
         "last_edited_date": "4/07/2024 11:22:46 pm"
+      },
+      "correction": {
+        "replaced": {},
+        "removed": [
+          "website"
+        ],
+        "moved": {},
+        "reason": "The trust's website link (campervanpark.co.nz) is dead: the domain no longer resolves (checked 23 October 2026). The name is kept; listings for 263 Studholme Road disagree on the current operator."
       }
     },
     {
