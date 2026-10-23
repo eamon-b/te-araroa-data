@@ -40,7 +40,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-10-23T05:52:02.071Z",
+  "generatedAt": "2026-10-23T06:24:49.206Z",
   "source": {
     "fetchedAt": "2026-09-08",
     "files": [
@@ -5135,7 +5135,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Marlborough",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/21434f4c74b247688bc725464f9ae02d.jpg",
@@ -5155,10 +5155,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/24384e1bdf7544549153aef93ce5f7dc.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -5178,7 +5188,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Marlborough",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/e4a15a53dcdf4883892f141bb038cd74.aspx",
@@ -5198,10 +5208,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/6a16800d8ec84e2cab775a8146096246.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -5221,7 +5241,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Marlborough",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/0840253d015048738bafb2ec9b252124.jpg",
@@ -5241,10 +5261,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/023da8553a7f49fa849a4cdbae8e806c.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -5264,7 +5294,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Nelson/Tasman",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/9540268aaba7464799c01329fe9f93ec.jpg",
@@ -5284,10 +5314,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/4ba6f86f2030455e9a60bae6f4744ed8.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -5325,7 +5365,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Nelson/Tasman",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/5b1cc470b1ae48e0b343daba18841303.jpg",
@@ -5345,10 +5385,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "15/01/2026 9:13:53 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/8a7754d26feb413ea177fa006ce6ec5b.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -5368,7 +5418,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Nelson/Tasman",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/c1c4189a4196486b85502625cb078c2a.jpg",
@@ -5388,10 +5438,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/8b403b57449f4588b55ea676a01d47b4.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -5411,7 +5471,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Nelson/Tasman",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/fd245fcfdd2947f895de6bb3e873a162.jpg",
@@ -5431,10 +5491,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/dfc191ebf2a14b208aa546f836240b40.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -5454,7 +5524,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Marlborough",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/f044b095cc5a4052a95d063df90eebf8.jpg",
@@ -5474,10 +5544,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/d9248299483640cda4dc33f1d497f33d.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -5497,7 +5577,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Marlborough",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/d1ecb00424f443b293a8d5ca124205c9.jpg",
@@ -5517,10 +5597,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/bc782d530e4a4aed90ba579583b4d861.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -5540,7 +5630,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Marlborough",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/f9181d9ecdc0463daa0f94a3f4d10596.jpg",
@@ -5560,10 +5650,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/d7d5f551bb584272bea9a9177d59927c.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -5583,7 +5683,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Nelson/Tasman",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/ecd13a7b4de44827971a3708630b9556.aspx",
@@ -5603,10 +5703,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/1c5a5813e29545cd88584224df3513c1.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -5626,7 +5736,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Nelson/Tasman",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/3305a299e619464f8453cbaaac346094.jpg",
@@ -5646,10 +5756,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/c87b1791147e451fb37c99bf5891a03f.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -5669,7 +5789,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Nelson/Tasman",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/60bfaf799a04428381aee82a2161ac45.jpg",
@@ -5689,10 +5809,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/4779357f75c645358c4c23ab4017f2b2.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -5712,7 +5842,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Nelson/Tasman",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/53cb679d792340b084e1effa4bc28273.aspx",
@@ -5732,10 +5862,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/6af41d9fa22b474cbf477321b3f0bde1.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -5755,7 +5895,7 @@
       "fields": {
         "Place": "Mount Richmond Forest Park",
         "Region": "Nelson/Tasman",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/fc1f1bc4044c4bd0ac4ba01e1e87546c.jpg",
@@ -5775,10 +5915,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/4aa7dc66ccc147b6999349d86e6eafd0.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -6210,7 +6360,7 @@
       "fields": {
         "Place": "St James Conservation Area",
         "Region": "Canterbury",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/8f58812e8ffb4590bb329f87f76399b5.jpg",
@@ -6230,10 +6380,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/3f5b4b54c38b4425b5e6091741e84aed.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -6559,7 +6719,7 @@
       "fields": {
         "Place": "St James Conservation Area",
         "Region": "Canterbury",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/a793820cf689469cb26823450279cc9e.jpg",
@@ -6579,11 +6739,21 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List (2025-26)",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "More Info": "Included in The Trail Pass",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "11/08/2025 2:10:24 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/aba6d10d76174cbb857f7eb154f5b815.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -6768,7 +6938,7 @@
       "fields": {
         "Place": "Lake Sumner Forest Park",
         "Region": "Canterbury",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/ccdfb011b177452bae7ba7b0410d381d.aspx",
@@ -6788,10 +6958,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/d3a1c61a8d574f1793a11c0c50d3c877.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -6811,7 +6991,7 @@
       "fields": {
         "Place": "Lake Sumner Forest Park",
         "Region": "Canterbury",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/5e4db996d82e4e5d9da74bec94f98753.aspx",
@@ -6831,10 +7011,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/4154121ceee1404193f6875ed1abfb63.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -6940,7 +7130,7 @@
       "fields": {
         "Place": "Arthur's Pass National Park",
         "Region": "West Coast",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from stream, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/cc565572e4b8431c8c131e06d11401b7.jpg",
@@ -6960,10 +7150,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/e91a86acf13b4d3f9c500dfdcff98293.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -6983,7 +7183,7 @@
       "fields": {
         "Place": "Arthur's Pass National Park",
         "Region": "West Coast",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Heating, Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/eb86148f038c4689b2cf1d6bb642638f.aspx",
@@ -7003,10 +7203,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/9f385509c69a4f2888cc4e44126e4614.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
@@ -7069,7 +7279,7 @@
       "fields": {
         "Place": "Arthur's Pass National Park",
         "Region": "Canterbury",
-        "Bookable": "No",
+        "Bookable": "Yes",
         "Facilities": "Mattresses, Toilets - non-flush, Water from tap - not treated, boil before use, Water supply",
         "Has alerts": "Refer to DOC website for current alerts",
         "URL to thumbnail": "https://www.doc.govt.nz/thumbs/large/link/ce22e77bd35049d7969252e58d94f4cf.jpg",
@@ -7089,10 +7299,20 @@
         "Category": "Standard",
         "Type": "Hut",
         "TA Pass Source": "Official List",
-        "Booking Required": "No",
+        "Booking Required": "Yes",
         "Discount": "100",
         "create_dt": "31/07/2024 9:52:06 pm",
         "last_edit_dt": "31/07/2024 9:52:25 pm"
+      },
+      "correction": {
+        "replaced": {
+          "Bookable": "No",
+          "Booking Required": "No"
+        },
+        "removed": [],
+        "moved": {},
+        "reason": "DOC made this hut bookable from 1 November 2026: its DOC page shows \"Bookings required\" and an online booking link. This is a real booking, not the online Backcountry Hut Ticket for non-bookable huts. The trust's record still says No.",
+        "source": "https://www.doc.govt.nz/link/c4c0cef1b00541e29d54b1868c31a10c.aspx ; https://www.doc.govt.nz/news/media-releases/2026-media-releases/more-doc-huts-go-online-as-booking-and-payment-gets-easier/"
       }
     },
     {
