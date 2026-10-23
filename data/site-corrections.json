@@ -1,6 +1,11 @@
 {
   "description": "Hand corrections to the trust's own hut and campsite records, applied by the build on top of the KMZ. Each one is keyed by the record's ArcGIS GlobalID, names the record as the trust publishes it, and says why and on what evidence. The build fails if a correction no longer matches the record it was written for. routeNames corrects misspelt section, segment and crossing names by exact match.",
-  "routeNames": {},
+  "routeNames": {
+    "Pataua North to Whāngārei Heads": "Pataua North to Whangārei Heads",
+    "Whangarei Heads crossing": "Whangārei Heads crossing",
+    "Arthur's Pass to Rākaia River": "Arthur's Pass to Rakaia River",
+    "Omahuta- Puketi Forest Bypass": "Omahuta- Puketī Forest Bypass"
+  },
   "sites": [
     {
       "globalId": "{BCE4094E-FF65-435A-85C8-950112A4D8AF}",
@@ -46,6 +51,51 @@
       },
       "reason": "Capitalisation: DOC's own page names it Bay of Many Coves campsite.",
       "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/marlborough/places/queen-charlotte-sound-totaranui-area/things-to-do/campsites/bay-of-many-coves-campsite/"
+    },
+    {
+      "globalId": "{CA8630D8-D695-442B-B572-0FCDF2B98C97}",
+      "trustName": "Pakiri Beach Holiday Park",
+      "set": {
+        "name": "Pākiri Beach Holiday Park"
+      },
+      "reason": "Macron: the official name is Pākiri (NZ Gazetteer place 35107), and the park spells its own name Pākiri Beach Holiday Park.",
+      "source": "https://gazetteer.linz.govt.nz/place/35107 ; https://www.pakiriholidaypark.co.nz/"
+    },
+    {
+      "globalId": "{781F70A9-931A-4944-AB9E-B3865E2F39CC}",
+      "trustName": "Puketi Forest Hut",
+      "set": {
+        "Name of site": "Puketī Forest Hut"
+      },
+      "reason": "Macron: the official name of the forest is Puketī Forest (NZ Gazetteer place 54972), and DOC's own page names the hut Puketī Forest Hut.",
+      "source": "https://gazetteer.linz.govt.nz/place/54972 ; https://www.doc.govt.nz/parks-and-recreation/places-to-go/northland/places/puketi-and-omahuta-forests/things-to-do/puketi-forest-hut/"
+    },
+    {
+      "globalId": "{AE5DCCE9-ECA6-45EA-A608-8E1753DAE549}",
+      "trustName": "Puketi Recreation Area Campsite",
+      "set": {
+        "Name of site": "Puketī Recreation Area Campsite"
+      },
+      "reason": "Macron: Puketī as in the official Puketī Forest (NZ Gazetteer place 54972); DOC's own page names it Puketī Recreation Area campsite.",
+      "source": "https://gazetteer.linz.govt.nz/place/54972 ; https://www.doc.govt.nz/parks-and-recreation/places-to-go/northland/places/puketi-and-omahuta-forests/things-to-do/puketi-recreation-area-campsite/"
+    },
+    {
+      "globalId": "{AC69CB41-5F61-4175-BC89-B6FFDC3F02DB}",
+      "trustName": "Top Timaru Hut",
+      "set": {
+        "Name of site": "Top Tīmaru Hut"
+      },
+      "reason": "Macron: the hut is at the head of the Tīmaru River, Otago (official, NZ Gazetteer place 44068), and DOC's own page names it Top Tīmaru Hut. Not the Canterbury city, which is officially unmacronned.",
+      "source": "https://gazetteer.linz.govt.nz/place/44068 ; https://www.doc.govt.nz/parks-and-recreation/places-to-go/otago/places/hawea-conservation-park/things-to-do/top-timaru-hut/"
+    },
+    {
+      "globalId": "{B4D11F5D-06A9-4494-84EF-A32A7EBF5E53}",
+      "trustName": "Pahautea Hut Campsite",
+      "set": {
+        "Name of site": "Pāhautea Hut Campsite"
+      },
+      "reason": "Consistency with Pāhautea Hut, the record beside it. The NZ Gazetteer has no official name here (only an unofficial recorded Pahautea, place 58563), so this follows DOC, whose own page names the site Pāhautea Hut Campsite.",
+      "source": "https://www.doc.govt.nz/parks-and-recreation/places-to-go/waikato/places/pirongia-forest-park/things-to-do/pahautea-hut-campsite/"
     }
   ]
 }
