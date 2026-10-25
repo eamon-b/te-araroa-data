@@ -69,7 +69,9 @@ interface Meta {
     resupply: {
       total: number;
       byType: Record<string, number>;
+      byStore: Record<"full" | "limited" | "meals" | "none", number>;
       acceptsBoxes: number;
+      boxOnly: number;
       researchedAt: string;
     };
     longestCarries: Array<{
@@ -301,10 +303,14 @@ trying not to draw.
 `,
 
     resupply: `
-**Resupply is hand-researched, not official.** ${s.resupply.byType["town"] ?? 0} of the ${s.resupply.total} points are
-full-supermarket towns, ${s.resupply.byType["resupply"] ?? 0} are limited stores or dairies, ${s.resupply.byType["food"] ?? 0} are cafés or pubs;
-${s.resupply.acceptsBoxes} accept resupply boxes. Some towns are reached from a named road end rather
-than by the route's nearest approach, and for those the file declares
+**Resupply is hand-researched, not official.** Of the ${s.resupply.total} points,
+${s.resupply.byStore.full} are a full resupply, ${s.resupply.byStore.limited} are small stores or dairies, ${s.resupply.byStore.meals} sell
+meals only or hold parcels, and ${s.resupply.byStore.none} sell nothing at all; ${s.resupply.acceptsBoxes} accept resupply
+boxes, ${s.resupply.boxOnly} of them box-only stops. Each point's \`store\` field says
+which (\`full\`, \`limited\`, \`meals\` or \`none\`).
+
+Some towns are reached from a named road end rather than by the route's
+nearest approach, and for those the file declares
 \`accessFromKm\` (the trail km you leave at) and \`accessRoadKm\` (the road
 distance). Without it the build reports a straight line across country that
 nobody walks - Geraldine came out 55 km off the Two Thumb Range, when in reality
@@ -313,7 +319,7 @@ you leave at the Rangitata.
 **Both waypoints of a resupply point carry the numbers as data**, not only as a
 sentence in \`<desc>\`: an \`<extensions>\` block in the \`tn:\` namespace
 (\`https://tracknotes.app/xmlschemas/gpx-waypoint/1\`) holding \`offTrailKm\`,
-\`acceptsBoxes\`, and \`accessMode\` (\`foot\`, \`hitch\`, \`shuttle\`, \`boat\`
+\`acceptsBoxes\`, \`store\`, and \`accessMode\` (\`foot\`, \`hitch\`, \`shuttle\`, \`boat\`
 or \`on-trail\`) and \`accessName\` where the research has them. A turnoff
 declares the same block as the place it serves, so either waypoint on its own
 says how far away the other is. Everything in it is optional, nothing is
