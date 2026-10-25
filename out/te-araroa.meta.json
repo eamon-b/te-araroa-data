@@ -40,7 +40,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-10-25T08:52:28.263Z",
+  "generatedAt": "2026-10-25T08:54:00.989Z",
   "source": {
     "fetchedAt": "2026-09-08",
     "files": [
@@ -83,11 +83,11 @@
       "byStore": {
         "full": 44,
         "limited": 26,
-        "meals": 10,
-        "none": 2
+        "meals": 11,
+        "none": 1
       },
       "acceptsBoxes": 13,
-      "boxOnly": 2,
+      "boxOnly": 1,
       "researchedAt": "2026-09-08"
     },
     "longestCarries": [

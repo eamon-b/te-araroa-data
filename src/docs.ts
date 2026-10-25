@@ -305,8 +305,8 @@ trying not to draw.
     resupply: `
 **Resupply is hand-researched, not official.** Of the ${s.resupply.total} points,
 ${s.resupply.byStore.full} are a full resupply, ${s.resupply.byStore.limited} are small stores or dairies, ${s.resupply.byStore.meals} sell
-meals only or hold parcels, and ${s.resupply.byStore.none} sell nothing at all; ${s.resupply.acceptsBoxes} accept resupply
-boxes, ${s.resupply.boxOnly} of them box-only stops. Each point's \`store\` field says
+meals only or hold parcels, and ${s.resupply.byStore.none} ${s.resupply.byStore.none === 1 ? "sells" : "sell"} nothing at all; ${s.resupply.acceptsBoxes} accept resupply
+boxes, ${s.resupply.boxOnly === 1 ? "1 of them a box-only stop" : `${s.resupply.boxOnly} of them box-only stops`}. Each point's \`store\` field says
 which (\`full\`, \`limited\`, \`meals\` or \`none\`).
 
 Some towns are reached from a named road end rather than by the route's

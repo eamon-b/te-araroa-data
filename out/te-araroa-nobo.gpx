@@ -587,7 +587,7 @@
     <extensions>
       <tn:offTrailKm>0.3</tn:offTrailKm>
       <tn:acceptsBoxes>false</tn:acceptsBoxes>
-      <tn:store>limited</tn:store>
+      <tn:store>full</tn:store>
     </extensions>
   </wpt>
   <wpt lat="-44.581661" lon="169.356167">
@@ -1126,7 +1126,7 @@
     <extensions>
       <tn:offTrailKm>0.0</tn:offTrailKm>
       <tn:acceptsBoxes>true</tn:acceptsBoxes>
-      <tn:store>none</tn:store>
+      <tn:store>meals</tn:store>
     </extensions>
   </wpt>
   <wpt lat="-42.497337" lon="172.474807">
@@ -1495,7 +1495,7 @@
     <extensions>
       <tn:offTrailKm>0.1</tn:offTrailKm>
       <tn:acceptsBoxes>true</tn:acceptsBoxes>
-      <tn:store>full</tn:store>
+      <tn:store>limited</tn:store>
     </extensions>
   </wpt>
   <wpt lat="-41.278872" lon="173.768289">
