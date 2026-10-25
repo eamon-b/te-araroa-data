@@ -458,6 +458,18 @@ test("the off-trail numbers are published as data, not only as prose", () => {
   assert.equal(resupply.length, meta.stats.resupply.total);
   assert.equal(offTrail.length, meta.stats.resupplyAccessPoints);
 
+  // What each point sells, straight from the hand-researched file.
+  const researched: Array<{ name: string; store: string; acceptsBoxes: boolean }> =
+    JSON.parse(readFileSync(join(root, "data/resupply.json"), "utf8")).points;
+  const storeOf = new Map(researched.map((p) => [p.name, p.store]));
+  for (const point of researched) {
+    assert.match(point.store, /^(full|limited|meals|none)$/, point.name);
+  }
+  assert.equal(
+    researched.filter((p) => p.store === "none" && p.acceptsBoxes).length,
+    meta.stats.resupply.boxOnly
+  );
+
   for (const direction of meta.directions) {
     const gpx = readFileSync(out(`te-araroa-${direction.id}.gpx`), "utf8");
     const label = direction.code;
@@ -508,6 +520,13 @@ test("the off-trail numbers are published as data, not only as prose", () => {
       assert.ok(
         ["true", "false"].includes(field(own, "acceptsBoxes") ?? ""),
         `${site.name} does not say whether it takes boxes`
+      );
+      // What you can buy is required data, and it is the file's value, not a
+      // default the build filled in.
+      assert.equal(
+        field(own, "store"),
+        storeOf.get(site.name),
+        `${site.name} declares the wrong store kind`
       );
       // Nothing is guessed: the file has no access mode or turnoff name for
       // any point today, and an element that says nothing is left out.

@@ -386,6 +386,20 @@ interface DirectionContext {
 type AccessMode = "foot" | "hitch" | "shuttle" | "boat" | "on-trail";
 
 /**
+ * What you can buy at a resupply point - the thing a planner most wants to
+ * know about a town, and the one the `type` (town/resupply/food) only hints
+ * at: a station that holds your box and sells nothing is not a café.
+ *
+ * - `full`: a full resupply - a supermarket, or a town shop big enough to
+ *   restock from.
+ * - `limited`: a small store, superette or dairy. Food, but thin and dear.
+ * - `meals`: café, pub or lodge food only, or a parcel holder.
+ * - `none`: nothing to buy. With `acceptsBoxes` it is a box-only stop.
+ */
+type StoreKind = "full" | "limited" | "meals" | "none";
+const STORE_KINDS: readonly StoreKind[] = ["full", "limited", "meals", "none"];
+
+/**
  * The off-trail facts a planner needs, published as GPX `<extensions>`.
  *
  * Carried by both waypoints of a resupply point - the place itself and the
@@ -399,6 +413,7 @@ interface WaypointAccess {
   offTrailKm: number;
   accessMode?: AccessMode;
   acceptsBoxes?: boolean;
+  store?: StoreKind;
   /** The turnoff's own name, and the header a planner groups it under. */
   accessName?: string;
 }
@@ -463,6 +478,8 @@ interface ResupplyFile {
     lat: number;
     lon: number;
     acceptsBoxes: boolean;
+    /** What you can buy there. Required: every point says, see `StoreKind`. */
+    store: StoreKind;
     notes: string;
     osm: string | null;
     /** Trail km you leave the route at, when that is not the nearest approach. */
@@ -916,6 +933,19 @@ async function main(): Promise<void> {
     readFileSync(join(root, "data/resupply.json"), "utf8")
   ) as ResupplyFile;
 
+  // Every point must say what it sells. A missing or misspelt value would
+  // otherwise fall out of the GPX silently, and a reader would take a
+  // supermarket town for a place nobody has researched.
+  const unclassified = resupply.points.filter(
+    (p) => !STORE_KINDS.includes(p.store)
+  );
+  if (unclassified.length > 0) {
+    throw new Error(
+      `data/resupply.json: store must be one of ${STORE_KINDS.join("/")} - ` +
+        unclassified.map((p) => `${p.name} (${String(p.store)})`).join(", ")
+    );
+  }
+
   for (const point of resupply.points) {
     // An inland town's nearest approach is a straight line across country that
     // nobody walks - Geraldine's is 55 km over the Two Thumb Range, when the
@@ -960,6 +990,7 @@ async function main(): Promise<void> {
         offTrailKm: offTrailMeters / 1000,
         ...(point.accessMode ? { accessMode: point.accessMode } : {}),
         acceptsBoxes: point.acceptsBoxes,
+        store: point.store,
         ...(point.accessName ? { accessName: point.accessName } : {}),
       },
     });
@@ -1234,8 +1265,12 @@ async function main(): Promise<void> {
 
   const resupplySites = sites.filter((s) => s.source === "Resupply");
   const byResupplyType: Record<string, number> = {};
+  const byStore: Record<string, number> = Object.fromEntries(
+    STORE_KINDS.map((kind) => [kind, 0])
+  );
   for (const point of resupply.points) {
     byResupplyType[point.type] = (byResupplyType[point.type] ?? 0) + 1;
+    byStore[point.store]++;
   }
 
   // Which official sections a carry crosses. "St Arnaud to Boyle Village" is a
@@ -1311,7 +1346,11 @@ async function main(): Promise<void> {
     resupply: {
       total: resupply.points.length,
       byType: byResupplyType,
+      byStore,
       acceptsBoxes: resupply.points.filter((p) => p.acceptsBoxes).length,
+      boxOnly: resupply.points.filter(
+        (p) => p.store === "none" && p.acceptsBoxes
+      ).length,
       researchedAt: resupply.researchedAt ?? "",
     },
     longestCarries: carries,
@@ -2103,6 +2142,7 @@ function extensionLines(access: WaypointAccess): string[] {
   if (access.acceptsBoxes !== undefined) {
     fields.push(["acceptsBoxes", String(access.acceptsBoxes)]);
   }
+  if (access.store) fields.push(["store", access.store]);
   if (access.accessName) fields.push(["accessName", access.accessName]);
   return [
     "    <extensions>",
