@@ -4,6 +4,9 @@
     "https://teararoanobo.net/ (regional guides: Northland, Auckland, Waikato, Whanganui, Manawatu, Wellington, Marlborough-Tasman, Canterbury, Otago, Southland)",
     "https://bikehikesafari.com/te-araroa-resupply/",
     "https://seanmaskill.com/hikes/te-ararora-resupply-guide/",
+    "https://supermarketnews.co.nz/news/fresh-choice-convenience-in-lake-hawea (Lake Hāwea FreshChoice)",
+    "https://www.boyle.org.nz/tramping-services (Boyle River Outdoor Education Centre: shop, parcels, beds)",
+    "https://visithurunui.co.nz/listings/listing/hanmer-springs-foodway (Hanmer Springs Foodway)",
     "Coordinates: OpenStreetMap via Nominatim, ODbL"
   ],
   "researchedAt": "2026-09-08",
@@ -522,8 +525,8 @@
       "lat": -41.278597,
       "lon": 173.767683,
       "acceptsBoxes": true,
-      "store": "limited",
-      "notes": "Small Four Square, post office, cafes. Havelock Holiday Park accepts food parcels.",
+      "store": "full",
+      "notes": "Small Four Square, pricey but good enough for the Richmond Range carry; post office, cafes. Havelock Holiday Park accepts food parcels.",
       "osm": "node/205139786"
     },
     {
@@ -555,7 +558,7 @@
       "lon": 172.830299,
       "acceptsBoxes": false,
       "store": "full",
-      "notes": "Four Square, hot pools, backpackers. About 55 km off trail from Boyle; shuttle or hitch. Leave at Boyle Village on SH7; shuttle or hitch.",
+      "notes": "Well-stocked Four Square (butchery, bakery, post shop) and the Foodway superette on Amuri Ave, plus hot pools and backpackers. About 55 km off trail from Boyle; shuttle or hitch. Leave at Boyle Village on SH7; shuttle or hitch.",
       "osm": "node/294472598",
       "accessFromKm": 2109.38,
       "accessRoadKm": 55
@@ -566,8 +569,8 @@
       "lat": -42.517037,
       "lon": 172.387488,
       "acceptsBoxes": true,
-      "store": "meals",
-      "notes": "No shop. Boyle River Outdoor Education Centre holds resupply boxes, sells basic food, beds $50.",
+      "store": "limited",
+      "notes": "No shop in the village. Boyle River Outdoor Education Centre sells some basics (freeze-dried meals, pasta, rice, oats, snacks): fine for a top-up, not reliable for a full resupply. Holds parcels ($35 regular, $45 large); beds $60. Full resupply in Hanmer Springs.",
       "osm": "node/1988454043"
     },
     {
@@ -677,7 +680,7 @@
       "lon": 169.264055,
       "acceptsBoxes": false,
       "store": "full",
-      "notes": "Hāwea Store & Kitchen: grocer, cafe, takeaways and licensed restaurant and bar, open 7 days; FreshChoice on Bodkin St; Hawea Hotel for pub food.",
+      "notes": "FreshChoice supermarket on Bodkin St (opened Oct 2024). Hāwea Store & Kitchen (formerly Sailz): general store, cafe and takeaways, about 7:30am-8pm. Hawea Hotel for pub food.",
       "osm": "place/Lake Hawea (town)"
     },
     {

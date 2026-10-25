@@ -1592,12 +1592,12 @@
     <ele>13.4</ele>
     <name>Havelock</name>
     <cmt>Anakiwa to Pelorus Bridge</cmt>
-    <desc>km 1829.1 | Small Four Square, post office, cafes. Havelock Holiday Park accepts food parcels. Accepts resupply boxes.</desc>
+    <desc>km 1829.1 | Small Four Square, pricey but good enough for the Richmond Range carry; post office, cafes. Havelock Holiday Park accepts food parcels. Accepts resupply boxes.</desc>
     <type>town</type>
     <extensions>
       <tn:offTrailKm>0.1</tn:offTrailKm>
       <tn:acceptsBoxes>true</tn:acceptsBoxes>
-      <tn:store>limited</tn:store>
+      <tn:store>full</tn:store>
     </extensions>
   </wpt>
   <wpt lat="-41.301094" lon="173.570141">
@@ -1961,12 +1961,12 @@
     <ele>582.7</ele>
     <name>Boyle Village</name>
     <cmt>Waiau Pass Track</cmt>
-    <desc>km 2109.2 | No shop. Boyle River Outdoor Education Centre holds resupply boxes, sells basic food, beds $50. Accepts resupply boxes.</desc>
+    <desc>km 2109.2 | No shop in the village. Boyle River Outdoor Education Centre sells some basics (freeze-dried meals, pasta, rice, oats, snacks): fine for a top-up, not reliable for a full resupply. Holds parcels ($35 regular, $45 large); beds $60. Full resupply in Hanmer Springs. Accepts resupply boxes.</desc>
     <type>resupply</type>
     <extensions>
       <tn:offTrailKm>0.0</tn:offTrailKm>
       <tn:acceptsBoxes>true</tn:acceptsBoxes>
-      <tn:store>meals</tn:store>
+      <tn:store>limited</tn:store>
     </extensions>
   </wpt>
   <wpt lat="-42.516639" lon="172.386459">
@@ -1981,7 +1981,7 @@
     <ele>582.7</ele>
     <name>Hanmer Springs turnoff</name>
     <cmt>Waiau Pass Track</cmt>
-    <desc>km 2109.4 | Leave the trail here for Hanmer Springs (town), 55.0 km off trail. | Four Square, hot pools, backpackers. About 55 km off trail from Boyle; shuttle or hitch. Leave at Boyle Village on SH7; shuttle or hitch.</desc>
+    <desc>km 2109.4 | Leave the trail here for Hanmer Springs (town), 55.0 km off trail. | Well-stocked Four Square (butchery, bakery, post shop) and the Foodway superette on Amuri Ave, plus hot pools and backpackers. About 55 km off trail from Boyle; shuttle or hitch. Leave at Boyle Village on SH7; shuttle or hitch.</desc>
     <type>town-access</type>
     <extensions>
       <tn:offTrailKm>55.0</tn:offTrailKm>
@@ -1993,7 +1993,7 @@
     <ele>582.7</ele>
     <name>Hanmer Springs</name>
     <cmt>Waiau Pass Track</cmt>
-    <desc>km 2109.4 | Four Square, hot pools, backpackers. About 55 km off trail from Boyle; shuttle or hitch. Leave at Boyle Village on SH7; shuttle or hitch.</desc>
+    <desc>km 2109.4 | Well-stocked Four Square (butchery, bakery, post shop) and the Foodway superette on Amuri Ave, plus hot pools and backpackers. About 55 km off trail from Boyle; shuttle or hitch. Leave at Boyle Village on SH7; shuttle or hitch.</desc>
     <type>town</type>
     <extensions>
       <tn:offTrailKm>55.0</tn:offTrailKm>
@@ -2500,7 +2500,7 @@
     <ele>362.1</ele>
     <name>Lake Hāwea</name>
     <cmt>Gladstone to Wānaka</cmt>
-    <desc>km 2613.8 | Hāwea Store &amp; Kitchen: grocer, cafe, takeaways and licensed restaurant and bar, open 7 days; FreshChoice on Bodkin St; Hawea Hotel for pub food.</desc>
+    <desc>km 2613.8 | FreshChoice supermarket on Bodkin St (opened Oct 2024). Hāwea Store &amp; Kitchen (formerly Sailz): general store, cafe and takeaways, about 7:30am-8pm. Hawea Hotel for pub food.</desc>
     <type>resupply</type>
     <extensions>
       <tn:offTrailKm>0.3</tn:offTrailKm>

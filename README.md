@@ -242,7 +242,7 @@ trying not to draw.
 
 <!-- generated:resupply -->
 **Resupply is hand-researched, not official.** Of the 82 points,
-44 are a full resupply, 26 are small stores or dairies, 11 sell
+45 are a full resupply, 26 are small stores or dairies, 10 sell
 meals only or hold parcels, and 1 sells nothing at all; 13 accept resupply
 boxes, 1 of them a box-only stop. Each point's `store` field says
 which (`full`, `limited`, `meals` or `none`).

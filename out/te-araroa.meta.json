@@ -40,7 +40,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-10-25T08:54:00.989Z",
+  "generatedAt": "2026-10-25T08:54:45.845Z",
   "source": {
     "fetchedAt": "2026-09-08",
     "files": [
@@ -81,9 +81,9 @@
         "food": 14
       },
       "byStore": {
-        "full": 44,
+        "full": 45,
         "limited": 26,
-        "meals": 11,
+        "meals": 10,
         "none": 1
       },
       "acceptsBoxes": 13,
