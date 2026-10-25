@@ -242,9 +242,9 @@ trying not to draw.
 
 <!-- generated:resupply -->
 **Resupply is hand-researched, not official.** Of the 82 points,
-44 are a full resupply, 26 are small stores or dairies, 10 sell
-meals only or hold parcels, and 2 sell nothing at all; 13 accept resupply
-boxes, 2 of them box-only stops. Each point's `store` field says
+44 are a full resupply, 26 are small stores or dairies, 11 sell
+meals only or hold parcels, and 1 sells nothing at all; 13 accept resupply
+boxes, 1 of them a box-only stop. Each point's `store` field says
 which (`full`, `limited`, `meals` or `none`).
 
 Some towns are reached from a named road end rather than by the route's

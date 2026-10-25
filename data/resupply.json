@@ -522,7 +522,7 @@
       "lat": -41.278597,
       "lon": 173.767683,
       "acceptsBoxes": true,
-      "store": "full",
+      "store": "limited",
       "notes": "Small Four Square, post office, cafes. Havelock Holiday Park accepts food parcels.",
       "osm": "node/205139786"
     },
@@ -566,7 +566,7 @@
       "lat": -42.517037,
       "lon": 172.387488,
       "acceptsBoxes": true,
-      "store": "none",
+      "store": "meals",
       "notes": "No shop. Boyle River Outdoor Education Centre holds resupply boxes, sells basic food, beds $50.",
       "osm": "node/1988454043"
     },
@@ -676,7 +676,7 @@
       "lat": -44.612673,
       "lon": 169.264055,
       "acceptsBoxes": false,
-      "store": "limited",
+      "store": "full",
       "notes": "Hāwea Store & Kitchen: grocer, cafe, takeaways and licensed restaurant and bar, open 7 days; FreshChoice on Bodkin St; Hawea Hotel for pub food.",
       "osm": "place/Lake Hawea (town)"
     },
