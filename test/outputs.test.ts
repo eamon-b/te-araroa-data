@@ -477,7 +477,7 @@ test("the off-trail numbers are published as data, not only as prose", () => {
     // Without this on the root, the blocks below are not namespaced XML.
     assert.match(
       gpx,
-      /xmlns:tn="https:\/\/tracknotes\.app\/xmlschemas\/gpx-waypoint\/1"/,
+      /xmlns:tn="https:\/\/tracknotes\.info\/xmlschemas\/gpx-waypoint\/1"/,
       `${label} GPX declares no tn: namespace`
     );
 
