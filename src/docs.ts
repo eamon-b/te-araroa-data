@@ -318,7 +318,7 @@ you leave at the Rangitata.
 
 **Both waypoints of a resupply point carry the numbers as data**, not only as a
 sentence in \`<desc>\`: an \`<extensions>\` block in the \`tn:\` namespace
-(\`https://tracknotes.app/xmlschemas/gpx-waypoint/1\`) holding \`offTrailKm\`,
+(\`https://tracknotes.info/xmlschemas/gpx-waypoint/1\`) holding \`offTrailKm\`,
 \`acceptsBoxes\`, \`store\`, and \`accessMode\` (\`foot\`, \`hitch\`, \`shuttle\`, \`boat\`
 or \`on-trail\`) and \`accessName\` where the research has them. A turnoff
 declares the same block as the place it serves, so either waypoint on its own

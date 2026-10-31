@@ -12,7 +12,7 @@ contain.
 <!-- generated:snapshot -->
 > ### What this is, and how current it is
 >
-> Built on **25 October 2026** from the trust's **2026-27 release (v45)**.
+> Built on **31 October 2026** from the trust's **2026-27 release (v45)**.
 >
 > A scheduled job checks the trust's download page every Monday and opens a pull
 > request when the published files change, so this repository follows the trust
@@ -256,7 +256,7 @@ you leave at the Rangitata.
 
 **Both waypoints of a resupply point carry the numbers as data**, not only as a
 sentence in `<desc>`: an `<extensions>` block in the `tn:` namespace
-(`https://tracknotes.app/xmlschemas/gpx-waypoint/1`) holding `offTrailKm`,
+(`https://tracknotes.info/xmlschemas/gpx-waypoint/1`) holding `offTrailKm`,
 `acceptsBoxes`, `store`, and `accessMode` (`foot`, `hitch`, `shuttle`, `boat`
 or `on-trail`) and `accessName` where the research has them. A turnoff
 declares the same block as the place it serves, so either waypoint on its own

@@ -118,7 +118,7 @@ const WAYPOINT_MAX_DISTANCE_M = 500;
  * the block, so the file reads exactly as it did before to everything that
  * already reads it.
  */
-const TRACKNOTES_NS = "https://tracknotes.app/xmlschemas/gpx-waypoint/1";
+const TRACKNOTES_NS = "https://tracknotes.info/xmlschemas/gpx-waypoint/1";
 
 /**
  * Slack allowed between a hand-entered road distance and the straight line the
