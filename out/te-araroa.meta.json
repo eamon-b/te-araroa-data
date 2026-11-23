@@ -1076,16 +1076,15 @@
         "last_editor": "Daniel.Radford@herengaanuku.govt.nz",
         "globalid": "{BCE4094E-FF65-435A-85C8-950112A4D8AF}",
         "created_date": "30/07/2024 10:42:33 pm",
-        "last_edited_date": "30/07/2024 10:42:33 pm",
-        "email": "trishterran@gmail.com"
+        "last_edited_date": "30/07/2024 10:42:33 pm"
       },
       "correction": {
         "replaced": {},
-        "removed": [],
-        "moved": {
-          "phone": "email"
-        },
-        "reason": "The trust publishes this address in the site's phone field. It is an email address, so it is shown as the site's email contact instead of as a phone number."
+        "removed": [
+          "phone"
+        ],
+        "moved": {},
+        "reason": "The trust's phone field for this site holds a private person's email address rather than a phone number. It is not republished here: the campsite is still listed, and walkers can find its contact through the trust's own trail notes."
       }
     },
     {

@@ -837,22 +837,21 @@ test("no site publishes an email address as its phone number", () => {
   }
 });
 
-test("Makene Road Campsite's email address is published as its email", () => {
+test("Makene Road Campsite does not republish the private email address the trust filed as its phone", () => {
   const site = meta.sites.find(
     (s: { name: string }) => s.name === "Makene Road Campsite"
   );
   assert.ok(site, "Makene Road Campsite is missing");
-  const address: string = site.fields.email;
-  assert.match(address ?? "", /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i);
   assert.equal(site.fields.phone, undefined);
-  assert.deepEqual(site.correction.moved, { phone: "email" });
+  assert.equal(site.fields.email, undefined);
+  assert.deepEqual(site.correction.removed, ["phone"]);
 
   for (const name of ["resupply-plan-sobo.csv", "resupply-plan-nobo.csv"]) {
     const row = csv(name).find((r) => r["Name"] === "Makene Road Campsite");
     assert.ok(row, `${name} has no Makene Road Campsite row`);
-    assert.equal(row["Email"], address);
+    assert.equal(row["Email"], "");
     assert.equal(row["Phone"], "");
-    assert.ok(row["Detail"].includes(`Email: ${address}`), row["Detail"]);
+    assert.doesNotMatch(row["Detail"], /@/, row["Detail"]);
   }
   for (const file of ["te-araroa-sobo.gpx", "te-araroa-nobo.gpx"]) {
     const gpx = readFileSync(out(file), "utf8");
@@ -860,6 +859,6 @@ test("Makene Road Campsite's email address is published as its email", () => {
       .split("<wpt ")
       .find((w) => w.includes("<name>Makene Road Campsite</name>"));
     assert.ok(wpt, `${file} has no Makene Road Campsite waypoint`);
-    assert.ok(wpt.includes(`| Email: ${address}</desc>`), wpt);
+    assert.doesNotMatch(wpt, /@/, wpt);
   }
 });
